@@ -101,17 +101,18 @@ public class ToolboxView extends LinearLayout {
             nonSticky.add(item.getItemId());
         }
 
-        final ImageButton itemView = new ImageButton(getContext());
+        LinearLayout toolView = (LinearLayout) View.inflate(getContext(), R.layout.view_tool_icon, null);
+        toolView.setLayoutParams(params);
+
+        final ImageButton itemView = toolView.findViewById(R.id.icon);
         itemView.setId(item.getItemId());
-        itemView.setLayoutParams(params);
-        itemView.setBackgroundColor(Color.TRANSPARENT);
         itemView.setImageDrawable(item.getIcon());
 
         itemView.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
                 for (int i = 0; i < root.getChildCount(); i++) {
-                    if (v.getId() == root.getChildAt(i).getId()) {
+                    if (v.getId() == ((LinearLayout) root.getChildAt(i)).getChildAt(0).getId()) {
                         if (item.hasSubMenu()) {
                             if (primarySelected != v.getId() || secondaryToolbox.getVisibility() == GONE) {
                                 inflateMenu(secondaryToolbox, item.getSubMenu());
@@ -120,7 +121,7 @@ public class ToolboxView extends LinearLayout {
                                 selectTool(primaryToolbox, v.getId());
 
                                 if (hasOnToolSelectedListener()) {
-                                    int id = secondaryToolbox.getChildAt(0).getId();
+                                    int id = ((LinearLayout) secondaryToolbox.getChildAt(0)).getChildAt(0).getId();
                                     selectTool(secondaryToolbox, id);
 
                                     toolSelectedListener.onToolSelected(!nonSticky.contains(id), id);
@@ -149,7 +150,7 @@ public class ToolboxView extends LinearLayout {
             }
         });
 
-        root.addView(itemView);
+        root.addView(toolView);
     }
 
     private boolean hasOnToolSelectedListener() {
@@ -202,7 +203,7 @@ public class ToolboxView extends LinearLayout {
             primarySelected = -1;
 
         for (int i = 0; i < root.getChildCount(); i++) {
-            setToolColor(root.getChildAt(i).getId(), Color.WHITE);
+            setToolColor(((LinearLayout) root.getChildAt(i)).getChildAt(0).getId(), Color.WHITE);
         }
     }
 

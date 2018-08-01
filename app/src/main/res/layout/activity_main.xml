@@ -31,8 +31,7 @@
         android:id="@+id/container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:background="@color/overlayNight">
+        android:layout_alignParentBottom="true">
 
         <sfllhkhan95.doodle.core.views.ToolboxView
             android:id="@+id/toolbox"
@@ -47,7 +46,6 @@
         android:layout_width="match_parent"
         android:layout_height="35dp"
         android:layout_above="@+id/container"
-        android:background="@color/overlayNight"
         android:orientation="horizontal"
         android:weightSum="6">
 
