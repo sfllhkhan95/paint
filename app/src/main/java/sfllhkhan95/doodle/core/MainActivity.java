@@ -83,6 +83,7 @@ public class MainActivity extends AppCompatActivity implements
     // Action bars
     private CustomToolbar toolbar;
     private boolean isMaximized;
+    private boolean stickyMaximized;
 
     // Are we in a REPLY flow?
     private boolean mReplying;
@@ -365,6 +366,11 @@ public class MainActivity extends AppCompatActivity implements
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
+            case android.R.id.home:
+                setMaximized(!isMaximized);
+                stickyMaximized = !stickyMaximized;
+                break;
+
             case R.id.canvas:
                 CanvasColorPicker canvasColorPicker = new CanvasColorPicker(this, paintView.getCanvas().getColor());
                 canvasColorPicker.setOnColorPickedListener(new OnColorPickedListener() {
@@ -534,38 +540,51 @@ public class MainActivity extends AppCompatActivity implements
 
     @Override
     public boolean onTouch(View view, MotionEvent motionEvent) {
-        switch (motionEvent.getAction()) {
-            case MotionEvent.ACTION_UP:
-                if (!paintView.getShapeType().equals(sfllhkhan95.doodle.core.models.tools.ColorPicker.class)) {
-                    setMaximized(false);
-                } else {
-                    findViewById(R.id.pen).performClick();
-                }
-                break;
+        if (!stickyMaximized) {
+            switch (motionEvent.getAction()) {
+                case MotionEvent.ACTION_UP:
+                    if (!paintView.getShapeType().equals(sfllhkhan95.doodle.core.models.tools.ColorPicker.class)) {
+                        setMaximized(false);
+                    } else {
+                        findViewById(R.id.pen).performClick();
+                    }
+                    break;
 
-            case MotionEvent.ACTION_DOWN:
-                if (!paintView.getShapeType().equals(sfllhkhan95.doodle.core.models.tools.ColorPicker.class)) {
-                    setMaximized(true);
-                }
+                case MotionEvent.ACTION_DOWN:
+                    if (!paintView.getShapeType().equals(sfllhkhan95.doodle.core.models.tools.ColorPicker.class)) {
+                        setMaximized(true);
+                    }
 
-                view.performClick();
-                break;
+                    view.performClick();
+                    break;
+            }
         }
         return false;
     }
 
     private class CustomToolbar {
         private Toolbar primary;
+        private Toolbar secondary;
 
         CustomToolbar() {
             primary = findViewById(R.id.primaryToolbar);
             primary.setOverflowIcon(getResources().getDrawable(R.drawable.ic_action_layers));
             primary.setTitle("");
+
+            secondary = findViewById(R.id.secondaryToolbar);
+            secondary.setTitle("");
         }
 
         void configure(boolean isMaximized) {
             primary.setVisibility(isMaximized ? View.GONE : View.VISIBLE);
-            setSupportActionBar(primary);
+            secondary.setVisibility(!isMaximized ? View.GONE : View.VISIBLE);
+            setSupportActionBar(isMaximized ? secondary : primary);
+            if (getSupportActionBar() != null) {
+                getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+                getSupportActionBar().setHomeAsUpIndicator(
+                        isMaximized ? R.drawable.ic_action_minimize
+                                : R.drawable.ic_action_maximize);
+            }
         }
     }
 }
