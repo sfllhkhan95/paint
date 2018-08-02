@@ -8,6 +8,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.TextView;
 
+import com.facebook.Profile;
 import com.facebook.login.widget.LoginButton;
 
 import sfllhkhan95.doodle.FAQsActivity;
@@ -22,7 +23,7 @@ import sfllhkhan95.doodle.core.utils.DialogFactory;
 /**
  * @author saifkhichi96
  * @version 1.0
- *          created on 23/10/2017 2:28 AM
+ * created on 23/10/2017 2:28 AM
  */
 public class SettingsActivity extends AppCompatActivity implements OnUpdateListener,
         View.OnClickListener {
@@ -76,6 +77,16 @@ public class SettingsActivity extends AppCompatActivity implements OnUpdateListe
 
         // Display appropriate view
         onUpdate();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (Profile.getCurrentProfile() != null) {
+            ((TextView) findViewById(R.id.facebookConnectionStatus)).setText("Connected");
+        } else {
+            ((TextView) findViewById(R.id.facebookConnectionStatus)).setText("Not Connected");
+        }
     }
 
     @Override
