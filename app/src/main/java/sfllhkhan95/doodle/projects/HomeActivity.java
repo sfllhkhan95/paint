@@ -34,7 +34,6 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
     private static final int REQUEST_TAKE_PHOTO = 100;
     private static final int REQUEST_PICK_PHOTO = 200;
 
-    private final ProjectScanner projectScanner = new ProjectScanner();
     private ThumbnailInflater thumbnailInflater;
     private boolean backPressedOnce = false;
 
@@ -61,13 +60,8 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     protected void onResume() {
         super.onResume();
-        projectScanner.start();
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        projectScanner.finish();
+        thumbnailInflater.setSavedProjects(DoodleDatabase.listDoodles());
+        runOnUiThread(thumbnailInflater);
     }
 
     @Override
@@ -166,32 +160,6 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         // Save a file: path for use with ACTION_VIEW intents
         mCameraPicturePath = image.getAbsolutePath();
         return image;
-    }
-
-    private class ProjectScanner extends Thread {
-
-        private Handler mHandler = new Handler();
-        private boolean isListening = true;
-
-        @Override
-        public void run() {
-            thumbnailInflater.setSavedProjects(DoodleDatabase.listDoodles());
-            runOnUiThread(thumbnailInflater);
-
-            if (isListening) {
-                mHandler.postDelayed(this, 100);
-            }
-        }
-
-        @Override
-        public synchronized void start() {
-            mHandler.post(this);
-        }
-
-        void finish() {
-            isListening = false;
-        }
-
     }
 
 }
