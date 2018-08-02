@@ -1,10 +1,10 @@
 package sfllhkhan95.doodle.auth.views;
 
-import android.app.Activity;
-import android.app.Dialog;
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.support.annotation.NonNull;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -14,13 +14,11 @@ import sfllhkhan95.doodle.auth.models.User;
 import sfllhkhan95.doodle.auth.utils.FacebookUserPhotoDownloader;
 
 /**
- *
- *
  * @author saifkhichi96
- * @version 1.0
+ * @version 2.0.0
  * created on 23/10/2017 2:28 AM
  */
-public class UserView implements OnCompleteListener<Bitmap> {
+public class UserView extends View implements OnCompleteListener<Bitmap> {
 
     private final Bitmap DEFAULT_AVATAR;
 
@@ -28,65 +26,80 @@ public class UserView implements OnCompleteListener<Bitmap> {
     private TextView mUserEmailView;
     private ImageView mAvatarView;
 
-    private TextView mJoinDateView;
-    private TextView mLoginDateView;
-    private TextView mLastBackupView;
+    private static Bitmap mUserAvatar;
+    private static boolean isDownloading;
 
-    private Bitmap mUserAvatar;
-
-    public UserView(Activity parent) {
-        mUserNameView = parent.findViewById(R.id.headline);
-        mUserEmailView = parent.findViewById(R.id.email);
-        mJoinDateView = parent.findViewById(R.id.userSince);
-        mLoginDateView = parent.findViewById(R.id.lastLoginDate);
-        mLastBackupView = parent.findViewById(R.id.lastBackupDate);
-        mAvatarView = parent.findViewById(R.id.userAvatar);
-
-        DEFAULT_AVATAR = BitmapFactory.decodeResource(parent.getResources(), R.drawable.avatar_placeholder);
+    public UserView(Context context) {
+        super(context);
+        DEFAULT_AVATAR = BitmapFactory.decodeResource(context.getResources(), R.drawable.avatar_placeholder);
     }
 
-    public UserView(Dialog parent) {
-        mUserNameView = parent.findViewById(R.id.headline);
-        mUserEmailView = parent.findViewById(R.id.email);
-        mJoinDateView = parent.findViewById(R.id.userSince);
-        mLoginDateView = parent.findViewById(R.id.lastLoginDate);
-        mLastBackupView = parent.findViewById(R.id.lastBackupDate);
-        mAvatarView = parent.findViewById(R.id.userAvatar);
-
-        DEFAULT_AVATAR = BitmapFactory.decodeResource(parent.getContext().getResources(), R.drawable.avatar_placeholder);
+    public UserView setNameView(TextView mUserNameView) {
+        this.mUserNameView = mUserNameView;
+        return this;
     }
 
-    public void showUser(User user) {
-        mUserNameView.setText(user.getFirstName());
-        mUserEmailView.setText(user.getEmail());
-        mJoinDateView.setText(user.getCreationDate());
-        mLoginDateView.setText(user.getLoginDate());
-        mLastBackupView.setText(user.getBackupDate());
+    public UserView setEmailView(TextView mUserEmailView) {
+        this.mUserEmailView = mUserEmailView;
+        return this;
+    }
+
+    public UserView setAvatarView(ImageView mAvatarView) {
+        this.mAvatarView = mAvatarView;
+        return this;
+    }
+
+    private void showName(String name) {
+        if (mUserNameView != null && name != null) {
+            mUserNameView.setText(name);
+        }
+    }
+
+    private void showEmail(String email) {
+        if (mUserEmailView != null && email != null) {
+            mUserEmailView.setText(email.split("@")[0]);
+        }
+    }
+
+    private void showAvatar(Bitmap avatar) {
+        if (mAvatarView != null && avatar != null) {
+            mAvatarView.setImageBitmap(avatar);
+        }
+    }
+
+    public void showUser(@NonNull User user) {
+        showName(user.getFirstName());
+        showEmail(user.getEmail());
         if (user.getUid() == null || user.getUid().isEmpty()) {
-            mAvatarView.setImageBitmap(DEFAULT_AVATAR);
+            showAvatar(DEFAULT_AVATAR);
         } else if (mUserAvatar != null) {
             onSuccess(mUserAvatar);
         } else {
-            mAvatarView.setImageBitmap(DEFAULT_AVATAR);
+            showAvatar(DEFAULT_AVATAR);
             downloadUserPhoto(user.getUid(), 150, 150);
         }
     }
 
     private void downloadUserPhoto(String uid, int wd, int ht) {
-        FacebookUserPhotoDownloader downloadTask = new FacebookUserPhotoDownloader(uid, wd, ht);
-        downloadTask.setPhotoTracker(this);
-        downloadTask.execute();
+        if (!isDownloading) {
+            FacebookUserPhotoDownloader downloadTask = new FacebookUserPhotoDownloader(uid, wd, ht);
+            downloadTask.setPhotoTracker(this);
+            downloadTask.execute();
+
+            isDownloading = true;
+        }
     }
 
     @Override
     public void onSuccess(@NonNull Bitmap userAvatar) {
         mUserAvatar = userAvatar;
-        mAvatarView.setImageBitmap(userAvatar);
+        showAvatar(userAvatar);
+
+        isDownloading = false;
     }
 
     @Override
     public void onFailure(@NonNull Exception ex) {
-
+        isDownloading = false;
     }
-
 }

@@ -8,6 +8,8 @@ import android.support.annotation.UiThread;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
+import android.widget.ListView;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,7 +38,7 @@ public class ThumbnailInflater implements Runnable, AdapterView.OnItemClickListe
         if (savedProjects != null) {
             for (String projectName : savedProjects) {
                 Bitmap thumbnailBitmap;
-                if ((thumbnailBitmap = DoodleDatabase.loadDoodle(projectName, 100, 100)) != null) {
+                if ((thumbnailBitmap = DoodleDatabase.loadDoodle(projectName, 200, 200)) != null) {
                     Thumbnail thumbnail = new Thumbnail(this, thumbnailBitmap, projectName);
                     thumbnails.add(thumbnail);
                 }
@@ -45,18 +47,36 @@ public class ThumbnailInflater implements Runnable, AdapterView.OnItemClickListe
         return thumbnails;
     }
 
-    @Override
-    public void run() {
+    private void inflateGrid() {
         List<Thumbnail> thumbnails = getThumbnails();
         ThumbnailAdapter adapter = new ThumbnailAdapter(
                 activity,
                 R.layout.template_thumbnail,
                 thumbnails);
 
-        GridView doodlesView = activity.findViewById(R.id.savedDoodles);
-        doodlesView.setAdapter(adapter);
+        GridView projectGrid = activity.findViewById(R.id.savedProjectsGrid);
+        projectGrid.setAdapter(adapter);
 
-        doodlesView.setOnItemClickListener(this);
+        projectGrid.setOnItemClickListener(this);
+    }
+
+    private void inflateList() {
+        List<Thumbnail> thumbnails = getThumbnails();
+        ThumbnailAdapter adapter = new ThumbnailAdapter(
+                activity,
+                R.layout.template_thumbnail_list,
+                thumbnails);
+
+        ListView projectList = activity.findViewById(R.id.savedProjectsList);
+        projectList.setAdapter(adapter);
+        projectList.setOnItemClickListener(this);
+    }
+
+    @Override
+    public void run() {
+        ((TextView) activity.findViewById(R.id.postCount)).setText(String.valueOf(getThumbnails().size()));
+        inflateGrid();
+        inflateList();
     }
 
     @Override

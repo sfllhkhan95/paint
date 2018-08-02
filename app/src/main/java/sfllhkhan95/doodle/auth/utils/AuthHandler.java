@@ -73,7 +73,7 @@ public class AuthHandler implements FacebookCallback<LoginResult>, OnCompleteLis
     }
 
     public boolean isSignedIn() {
-        return currentUser != null;
+        return Profile.getCurrentProfile() != null && currentUser != null;
     }
 
     public User getCurrentUser() {
@@ -138,7 +138,7 @@ public class AuthHandler implements FacebookCallback<LoginResult>, OnCompleteLis
 
     @Override
     public void onError(FacebookException error) {
-        Toast.makeText(context, "Sign in failed!", Toast.LENGTH_SHORT).show();
+        Toast.makeText(context, "Check your internet connection", Toast.LENGTH_SHORT).show();
     }
 
     private void onFacebookSignedIn(Profile fbProfile) {

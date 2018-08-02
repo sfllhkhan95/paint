@@ -5,14 +5,14 @@
     <item
         android:id="@+id/canvas"
         android:icon="@drawable/ic_action_canvas_color"
-        android:title="Canvas Color"
-        app:showAsAction="always" />
+        android:title="@string/menu_tools_canvas"
+        app:showAsAction="ifRoom" />
 
     <item
         android:id="@+id/share"
         android:icon="@drawable/ic_action_share"
-        android:title="Share"
-        app:showAsAction="always"></item>
+        android:title="@string/menu_action_share"
+        app:showAsAction="ifRoom" />
 
     <!--item
         android:icon="@drawable/ic_action_save"
@@ -22,7 +22,7 @@
     <item
         android:id="@+id/save"
         android:icon="@drawable/ic_action_save"
-        android:title="Save"
+        android:title="@string/menu_action_save"
         app:showAsAction="always" />
     <!--item
         android:id="@+id/save_as"
@@ -33,27 +33,27 @@
 
     <item
         android:icon="@drawable/ic_action_layers"
-        android:title="Layers"
+        android:title="@string/menu_action_layers"
         app:showAsAction="always">
         <menu android:menuCategory="container">
             <item
                 android:id="@+id/undo"
                 android:enabled="false"
                 android:icon="@drawable/ic_action_undo"
-                android:title="Undo"
+                android:title="@string/menu_action_undo"
                 app:showAsAction="never" />
             <item
                 android:id="@+id/redo"
                 android:enabled="false"
                 android:icon="@drawable/ic_action_redo"
-                android:title="Redo"
+                android:title="@string/menu_action_redo"
                 app:showAsAction="never" />
 
             <item
                 android:id="@+id/revert"
                 android:enabled="false"
                 android:icon="@drawable/ic_action_revert"
-                android:title="Revert"
+                android:title="@string/menu_action_revert"
                 app:showAsAction="never" />
         </menu>
     </item>

@@ -450,7 +450,7 @@ public class MainActivity extends AppCompatActivity implements
                 // Display a nice error message to the user
                 Snackbar.make(
                         messengerShareButton,
-                        getString(R.string.unknownError),
+                        getString(R.string.error_unknown),
                         BaseTransientBottomBar.LENGTH_INDEFINITE
                 ).show();
             }

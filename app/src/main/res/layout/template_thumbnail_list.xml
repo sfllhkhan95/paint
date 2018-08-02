@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimaryLighter"
+    android:orientation="vertical"
+    android:padding="1dp"
+    android:theme="@style/AppTheme.Light">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+        android:layout_marginRight="@dimen/activity_horizontal_margin"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:gravity="top|start"
+        android:orientation="horizontal">
+
+        <android.support.v7.widget.CardView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:innerRadius="0dp"
+            android:shape="ring"
+            android:thicknessRatio="1.0"
+            app:cardBackgroundColor="@color/overlayNight"
+            app:cardCornerRadius="12dp">
+
+            <ImageView
+                android:id="@+id/userAvatar"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:contentDescription="@string/desc_avatar"
+                android:scaleType="centerCrop"
+                android:src="@drawable/avatar_placeholder" />
+
+        </android.support.v7.widget.CardView>
+
+        <TextView
+            android:id="@+id/email"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginStart="10dp"
+            android:text="username"
+            android:textAppearance="@style/TextAppearance.AppCompat.Caption" />
+
+    </LinearLayout>
+
+    <sfllhkhan95.doodle.projects.views.SquareImageView
+        android:id="@+id/projectIcon"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/overlayNight"
+        android:contentDescription="@string/desc_thumbnail"
+        android:scaleType="centerCrop"
+        android:src="@drawable/avatar_placeholder" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="?actionBarSize"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+        android:layout_marginRight="@dimen/activity_horizontal_margin"
+        android:gravity="center_vertical|end"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/shareButton"
+            android:layout_width="?actionBarSize"
+            android:layout_height="?actionBarSize"
+            android:contentDescription="@string/desc_delete_button"
+            android:scaleType="centerInside"
+            android:src="@drawable/ic_action_share"
+            android:tint="@color/colorSectionHeading" />
+
+        <ImageView
+            android:id="@+id/deleteButton"
+            android:layout_width="?actionBarSize"
+            android:layout_height="?actionBarSize"
+            android:contentDescription="@string/desc_delete_button"
+            android:scaleType="centerInside"
+            android:src="@drawable/ic_action_delete"
+            android:tint="@color/colorSectionHeading" />
+
+    </LinearLayout>
+
+</LinearLayout>

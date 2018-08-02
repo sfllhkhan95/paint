@@ -86,8 +86,7 @@
                 android:resource="@xml/provider_paths" />
         </provider>
 
-        <!-- For Facebook sharing -->
-        <provider android:authorities="com.facebook.app.FacebookContentProvider140472159955272"
+        <provider android:authorities="com.facebook.app.FacebookContentProvider{APP_ID}"
             android:name="com.facebook.FacebookContentProvider"
             android:exported="true"/>
 

@@ -1,10 +1,11 @@
 <!--?xml version="1.0" encoding="UTF-8"?-->
 <resources>
+    <color name="colorPrimaryLighter">#fdf1ff</color>
     <color name="colorPrimaryLight">#f8D4ff</color>
     <color name="colorPrimary">#ba68c8</color>
     <color name="colorPrimaryDark">#883997</color>
     <color name="colorAccent">#ff6e40</color>
-    <color name="colorAccentLight">#ffa166</color>
+    <color name="colorAccentDark">#d75c35</color>
 
     <color name="overlayNight">#AA130416</color>
 

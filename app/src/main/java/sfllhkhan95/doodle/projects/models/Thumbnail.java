@@ -39,21 +39,28 @@ public class Thumbnail implements View.OnClickListener {
 
     @Override
     public void onClick(View view) {
-        new ConfirmationDialog.Builder(view.getContext())
-                .setHeadline("Delete")
-                .setIcon(R.drawable.ic_action_delete)
-                .setTitle(view.getContext().getResources().getString(R.string.confirmDeleteTitle))
-                .setMessage(view.getContext().getResources().getString(R.string.confirmDeleteMessage))
-                .setPositiveButton("Delete", new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        DoodleDatabase.removeDoodle(Thumbnail.this.getName());
-                        inflater.run();
-                    }
-                }, true)
-                .setNegativeButton("Cancel", null, true)
-                .create()
-                .show();
+        switch (view.getId()) {
+            case R.id.shareButton:
+                break;
+
+            case R.id.deleteButton:
+                new ConfirmationDialog.Builder(view.getContext())
+                        .setHeadline("Delete")
+                        .setIcon(R.drawable.ic_action_delete)
+                        .setTitle(view.getContext().getResources().getString(R.string.confirm_delete_title))
+                        .setMessage(view.getContext().getResources().getString(R.string.confirm_delete_body))
+                        .setPositiveButton("Delete", new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                DoodleDatabase.removeDoodle(Thumbnail.this.getName());
+                                inflater.run();
+                            }
+                        }, true)
+                        .setNegativeButton("Cancel", null, true)
+                        .create()
+                        .show();
+                break;
+        }
     }
 
 }
