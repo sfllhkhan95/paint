@@ -21,6 +21,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 import pk.aspirasoft.core.db.PersistentValue;
+import sfllhkhan95.doodle.R;
 import sfllhkhan95.doodle.auth.models.User;
 
 public class AuthHandler implements FacebookCallback<LoginResult>, OnCompleteListener<AuthResult> {
@@ -124,7 +125,7 @@ public class AuthHandler implements FacebookCallback<LoginResult>, OnCompleteLis
      */
     @Override
     public void onSuccess(LoginResult loginResult) {
-        Toast.makeText(context, "Sign in successful!", Toast.LENGTH_SHORT).show();
+        Toast.makeText(context, R.string.signed_in, Toast.LENGTH_SHORT).show();
         linkFacebookAndFirebase(loginResult.getAccessToken());
 
         fbProfile = Profile.getCurrentProfile();
@@ -133,12 +134,12 @@ public class AuthHandler implements FacebookCallback<LoginResult>, OnCompleteLis
 
     @Override
     public void onCancel() {
-        Toast.makeText(context, "Sign in cancelled!", Toast.LENGTH_SHORT).show();
+        Toast.makeText(context, R.string.error_sign_in_cancelled, Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public void onError(FacebookException error) {
-        Toast.makeText(context, "Check your internet connection", Toast.LENGTH_SHORT).show();
+        Toast.makeText(context, R.string.error_no_internet, Toast.LENGTH_SHORT).show();
     }
 
     private void onFacebookSignedIn(Profile fbProfile) {

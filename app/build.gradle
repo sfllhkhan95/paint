@@ -6,7 +6,7 @@ android {
     buildToolsVersion "28.0.1"
     defaultConfig {
         applicationId "sfllhkhan95.doodle"
-        minSdkVersion 15
+        minSdkVersion 16
         targetSdkVersion 28
         versionCode 21
         versionName "3.4.3"

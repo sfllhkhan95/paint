@@ -50,13 +50,13 @@ public class UserView extends View implements OnCompleteListener<Bitmap> {
     }
 
     private void showName(String name) {
-        if (mUserNameView != null && name != null) {
+        if (mUserNameView != null && name != null && !name.isEmpty()) {
             mUserNameView.setText(name);
         }
     }
 
     private void showEmail(String email) {
-        if (mUserEmailView != null && email != null) {
+        if (mUserEmailView != null && email != null && !email.isEmpty()) {
             mUserEmailView.setText(email.split("@")[0]);
         }
     }
@@ -76,13 +76,13 @@ public class UserView extends View implements OnCompleteListener<Bitmap> {
             onSuccess(mUserAvatar);
         } else {
             showAvatar(DEFAULT_AVATAR);
-            downloadUserPhoto(user.getUid(), 150, 150);
+            downloadUserPhoto(user.getUid());
         }
     }
 
-    private void downloadUserPhoto(String uid, int wd, int ht) {
+    private void downloadUserPhoto(String uid) {
         if (!isDownloading) {
-            FacebookUserPhotoDownloader downloadTask = new FacebookUserPhotoDownloader(uid, wd, ht);
+            FacebookUserPhotoDownloader downloadTask = new FacebookUserPhotoDownloader(uid, 150, 150);
             downloadTask.setPhotoTracker(this);
             downloadTask.execute();
 

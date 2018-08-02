@@ -5,7 +5,6 @@
     android:layout_height="match_parent"
     android:background="@color/colorPrimaryLighter"
     android:orientation="vertical"
-    android:padding="1dp"
     android:theme="@style/AppTheme.Light">
 
     <LinearLayout
@@ -42,7 +41,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:layout_marginStart="10dp"
-            android:text="username"
+            android:text="@string/placeholder_username"
             android:textAppearance="@style/TextAppearance.AppCompat.Caption" />
 
     </LinearLayout>

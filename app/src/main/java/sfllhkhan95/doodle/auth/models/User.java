@@ -12,9 +12,9 @@ import java.util.Locale;
 
 public class User {
 
-    private final String DEFAULT_FIRST_NAME = "Guest";
+    private final String DEFAULT_FIRST_NAME = "";
     private final String DEFAULT_LAST_NAME = "";
-    private final String DEFAULT_EMAIL = "Not signed in";
+    private final String DEFAULT_EMAIL = "";
 
     private final long DEFAULT_CREATION_TIME = 0;
     private final long DEFAULT_LOGIN_TIME = 0;

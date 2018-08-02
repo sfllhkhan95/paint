@@ -27,7 +27,6 @@ public class SettingsActivity extends AppCompatActivity implements
 
         // Configure action bar
         Toolbar toolbar = findViewById(R.id.toolbar);
-        toolbar.setTitle("");
         setSupportActionBar(toolbar);
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);

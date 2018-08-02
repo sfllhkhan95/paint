@@ -72,7 +72,6 @@ public class HomeActivity extends AppCompatActivity implements OnUpdateListener,
         thumbnailInflater = new ThumbnailInflater(this);
 
         Toolbar toolbar = findViewById(R.id.toolbar);
-        toolbar.setTitle("Not signed in");
         setSupportActionBar(toolbar);
 
         // Build floating actions

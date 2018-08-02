@@ -17,10 +17,11 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <meta-data
             android:name="com.facebook.sdk.ApplicationId"
-            android:value="@string/facebook_app_id" />
+            android:value="@string/fb_app_id" />
 
         <activity
             android:name=".LaunchScreen"
@@ -31,13 +32,18 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity
             android:name=".projects.HomeActivity"
+            android:label="@string/app_name"
             android:screenOrientation="portrait" />
+
         <activity
             android:name=".auth.SettingsActivity"
+            android:label="Settings"
             android:parentActivityName=".projects.HomeActivity"
             android:screenOrientation="portrait" />
+
         <activity
             android:name=".core.MainActivity"
             android:screenOrientation="portrait">
@@ -48,10 +54,12 @@
                 <category android:name="com.facebook.orca.category.PLATFORM_THREAD_20150314" />
             </intent-filter>
         </activity>
+
         <activity
             android:name="com.facebook.FacebookActivity"
             android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
             android:label="@string/app_name" />
+
         <activity
             android:name="com.facebook.CustomTabActivity"
             android:exported="true">
@@ -67,11 +75,13 @@
 
         <activity
             android:name=".PrivacyPolicy"
+            android:label="Privacy Policy"
             android:parentActivityName=".auth.SettingsActivity"
             android:screenOrientation="portrait" />
 
         <activity
             android:name=".FAQsActivity"
+            android:label="Doodle FAQs"
             android:parentActivityName=".auth.SettingsActivity"
             android:screenOrientation="portrait" />
 
@@ -86,13 +96,16 @@
                 android:resource="@xml/provider_paths" />
         </provider>
 
-        <provider android:authorities="com.facebook.app.FacebookContentProvider{APP_ID}"
+        <!-- This content provider is required for sharing to Facebook feature -->
+        <provider
             android:name="com.facebook.FacebookContentProvider"
-            android:exported="true"/>
+            android:authorities="com.facebook.app.FacebookContentProvider140472159955272"
+            android:exported="false" />
 
-        <!-- This is required if you want to do any message handling beyond receiving notifications
-         on apps in the background. -->
-        <service android:name=".notifs.utils.NotificationService">
+        <!-- This service receives FCM messages and generates notifications -->
+        <service
+            android:name=".notifs.utils.NotificationService"
+            android:exported="false">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>

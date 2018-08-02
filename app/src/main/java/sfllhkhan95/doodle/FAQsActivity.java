@@ -23,7 +23,6 @@ public class FAQsActivity extends AppCompatActivity {
 
         // Set up action bar
         Toolbar toolbar = findViewById(R.id.toolbar);
-        toolbar.setTitle("Doodle FAQs");
         setSupportActionBar(toolbar);
         if (getSupportActionBar() != null)
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);

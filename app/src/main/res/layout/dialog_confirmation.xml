@@ -20,7 +20,8 @@
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="25dp"
-            android:tint="#FFF" />
+            android:contentDescription="@string/desc_icon"
+            android:tint="@color/colorWhite" />
 
         <TextView
             android:id="@+id/headline"
@@ -30,7 +31,7 @@
             android:layout_centerHorizontal="true"
             android:layout_marginTop="80dp"
             android:textAllCaps="true"
-            android:textColor="#FFF"
+            android:textColor="@color/colorWhite"
             android:textSize="20sp"
             android:textStyle="bold" />
 
@@ -72,10 +73,12 @@
 
             <Button
                 android:id="@+id/negativeButton"
+                style="?android:attr/buttonBarButtonStyle"
                 android:layout_width="100dp"
                 android:layout_height="35dp"
+                android:layout_marginEnd="35dp"
                 android:layout_marginRight="35dp"
-                android:background="#0000"
+                android:background="@android:color/transparent"
                 android:textAllCaps="true"
                 android:textColor="@color/colorPrimaryDark"
                 android:textSize="12sp"
@@ -83,12 +86,14 @@
 
             <Button
                 android:id="@+id/positiveButton"
+                style="?android:attr/buttonBarButtonStyle"
                 android:layout_width="100dp"
                 android:layout_height="30dp"
                 android:layout_marginLeft="35dp"
+                android:layout_marginStart="35dp"
                 android:background="@color/colorPrimaryDark"
                 android:textAllCaps="true"
-                android:textColor="#FFF"
+                android:textColor="@color/colorWhite"
                 android:textSize="12sp"
                 android:visibility="gone" />
 

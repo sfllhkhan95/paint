@@ -11,6 +11,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/bg_icon"
+        android:contentDescription="@string/messenger_send_button_text"
         android:padding="10dp"
         android:scaleType="centerInside"
         android:src="@drawable/ic_action_send" />

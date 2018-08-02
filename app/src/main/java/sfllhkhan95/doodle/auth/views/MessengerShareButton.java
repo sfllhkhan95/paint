@@ -18,10 +18,10 @@ import sfllhkhan95.doodle.R;
 /**
  * A button which can be used to share content to Messenger.
  *
- * @see <a href="https://www.messenger.com/features">Messenger</a>
  * @author saifkhichi96
  * @version 1.0
  * created on 23/10/2017 2:28 AM
+ * @see <a href="https://www.messenger.com/features">Messenger</a>
  */
 public class MessengerShareButton extends RelativeLayout {
 
@@ -55,10 +55,10 @@ public class MessengerShareButton extends RelativeLayout {
         mDescriptionStringView = findViewById(R.id.recipient);
         mActionButton = findViewById(R.id.share_button);
 
-        String DEFAULT_ACTION_TEXT = "Compose";
+        String DEFAULT_ACTION_TEXT = context.getString(R.string.label_compose);
         setActionText(DEFAULT_ACTION_TEXT);
 
-        String DEFAULT_DESCRIPTION_TEXT = "New Message";
+        String DEFAULT_DESCRIPTION_TEXT = context.getString(R.string.label_new_message);
         setDescriptionText(DEFAULT_DESCRIPTION_TEXT);
 
         if (attrs != null) {

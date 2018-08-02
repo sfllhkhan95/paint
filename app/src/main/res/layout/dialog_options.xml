@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:ads="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="320dp"
     android:layout_height="wrap_content">
 
@@ -27,9 +28,9 @@
                 android:id="@+id/title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Title"
+                android:text="@string/placeholder_title"
                 android:textAllCaps="true"
-                android:textColor="#FFF"
+                android:textColor="@color/colorWhite"
                 android:textSize="20sp"
                 android:textStyle="bold" />
 
@@ -38,8 +39,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="Dialog description comes here"
-                android:textColor="#EEE"
+                android:text="@string/placeholder_dialog_body"
+                android:textColor="@color/colorWhite"
                 android:textSize="12sp" />
 
         </LinearLayout>
@@ -63,7 +64,8 @@
                     android:id="@+id/op1_icon"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
-                    android:background="#0000"
+                    android:background="@android:color/transparent"
+                    android:contentDescription="@string/desc_icon"
                     android:scaleType="fitCenter"
                     android:src="@drawable/messenger_button_blue_bg_round" />
 
@@ -73,11 +75,12 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="2dp"
                     android:gravity="center"
-                    android:text="Option 1"
+                    android:text="@string/label_op1"
                     android:textAllCaps="true"
                     android:textColor="@color/colorAccent"
                     android:textSize="10sp"
-                    android:visibility="visible" />
+                    android:visibility="visible"
+                    tools:ignore="SmallSp" />
 
             </LinearLayout>
 
@@ -93,7 +96,8 @@
                     android:id="@+id/op2_icon"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
-                    android:background="#0000"
+                    android:background="@android:color/transparent"
+                    android:contentDescription="@string/desc_icon"
                     android:scaleType="fitCenter"
                     android:src="@drawable/ic_share" />
 
@@ -103,11 +107,12 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="2dp"
                     android:gravity="center"
-                    android:text="Option 2"
+                    android:text="@string/label_op2"
                     android:textAllCaps="true"
                     android:textColor="@color/colorAccent"
                     android:textSize="10sp"
-                    android:visibility="visible" />
+                    android:visibility="visible"
+                    tools:ignore="SmallSp" />
 
             </LinearLayout>
 
@@ -124,7 +129,8 @@
                     android:id="@+id/op3_icon"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
-                    android:background="#0000"
+                    android:background="@android:color/transparent"
+                    android:contentDescription="@string/desc_icon"
                     android:scaleType="fitCenter"
                     android:src="@drawable/ic_share" />
 
@@ -134,11 +140,12 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="2dp"
                     android:gravity="center"
-                    android:text="Option 3"
+                    android:text="@string/label_op3"
                     android:textAllCaps="true"
                     android:textColor="@color/colorAccent"
                     android:textSize="10sp"
-                    android:visibility="visible" />
+                    android:visibility="visible"
+                    tools:ignore="SmallSp" />
 
             </LinearLayout>
 
@@ -150,7 +157,7 @@
             android:layout_height="50dp"
             android:visibility="gone"
             ads:adSize="BANNER"
-            ads:adUnitId="ca-app-pub-6293532072634065/1203928393" />
+            ads:adUnitId="@string/admob_ad_banner" />
 
     </LinearLayout>
 
@@ -161,6 +168,7 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:background="@drawable/bg_options_icon"
+        android:contentDescription="@string/desc_icon"
         android:scaleType="centerInside"
         android:src="@drawable/ic_tool_shapes"
         android:tint="@color/colorPrimaryDark" />
