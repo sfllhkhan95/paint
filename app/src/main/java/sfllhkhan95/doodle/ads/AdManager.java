@@ -7,7 +7,11 @@ import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.MobileAds;
+import com.google.android.gms.ads.reward.RewardItem;
+import com.google.android.gms.ads.reward.RewardedVideoAd;
+import com.google.android.gms.ads.reward.RewardedVideoAdListener;
 
+import sfllhkhan95.doodle.R;
 import sfllhkhan95.doodle.billing.BillingManager;
 
 /**
@@ -26,9 +30,30 @@ public class AdManager {
     private final Activity mContext;
     private final BillingManager mBillingManager;
 
+    private RewardedVideoAd mRewardedVideoAd;
+
     public AdManager(Activity context) {
         this.mContext = context;
         this.mBillingManager = BillingManager.getInstance(context);
+
+        if (!hasRemovedAds()) {
+            loadRewardedAd();
+        }
+    }
+
+    /**
+     * Makes an asynchronous request for loading a banner ad into the target view
+     * and fires a callback when a response is received.
+     *
+     * @param target   the {@link AdView} into which the banner ad is to be displayed
+     * @param callback this {@link AdListener} listens for response to ad request
+     * @since 3.4.2
+     */
+    public static void loadBanner(AdView target, AdListener callback) {
+        MobileAds.initialize(target.getContext(), AdManager.ADMOB_APP_ID);
+
+        target.setAdListener(callback);
+        target.loadAd(new AdRequest.Builder().build());
     }
 
     /**
@@ -61,18 +86,60 @@ public class AdManager {
         return mBillingManager.getPrice(BillingManager.Products.AD_REMOVE);
     }
 
-    /**
-     * Makes an asynchronous request for loading a banner ad into the target view
-     * and fires a callback when a response is received.
-     *
-     * @param target   the {@link AdView} into which the banner ad is to be displayed
-     * @param callback this {@link AdListener} listens for response to ad request
-     * @since 3.4.2
-     */
-    public static void loadBanner(AdView target, AdListener callback) {
-        MobileAds.initialize(target.getContext(), AdManager.ADMOB_APP_ID);
+    private void loadRewardedAd() {
+        mRewardedVideoAd = MobileAds.getRewardedVideoAdInstance(mContext);
+        mRewardedVideoAd.loadAd(mContext.getString(R.string.admob_ad_rewarded),
+                new AdRequest.Builder().build());
+    }
 
-        target.setAdListener(callback);
-        target.loadAd(new AdRequest.Builder().build());
+    public boolean isVideoAdLoaded() {
+        return !hasRemovedAds() && mRewardedVideoAd.isLoaded();
+    }
+
+    public void showVideoAd() {
+        if (isVideoAdLoaded()) {
+            mRewardedVideoAd.setRewardedVideoAdListener(new RewardedVideoAdListener() {
+                @Override
+                public void onRewardedVideoAdLoaded() {
+
+                }
+
+                @Override
+                public void onRewardedVideoAdOpened() {
+
+                }
+
+                @Override
+                public void onRewardedVideoStarted() {
+
+                }
+
+                @Override
+                public void onRewardedVideoAdClosed() {
+                    mContext.finish();
+                }
+
+                @Override
+                public void onRewarded(RewardItem rewardItem) {
+
+                }
+
+                @Override
+                public void onRewardedVideoAdLeftApplication() {
+
+                }
+
+                @Override
+                public void onRewardedVideoAdFailedToLoad(int i) {
+
+                }
+
+                @Override
+                public void onRewardedVideoCompleted() {
+
+                }
+            });
+            mRewardedVideoAd.show();
+        }
     }
 }

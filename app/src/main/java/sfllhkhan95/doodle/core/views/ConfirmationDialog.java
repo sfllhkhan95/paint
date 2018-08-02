@@ -30,11 +30,11 @@ public class ConfirmationDialog extends Dialog {
     private int icon = -1;
 
     private View.OnClickListener positiveButtonListener;
-    private String positiveButtonLabel;
+    private String positiveButtonLabel = "";
     private boolean dismissAfterPositive = false;
 
     private View.OnClickListener negativeButtonListener;
-    private String negativeButtonLabel;
+    private String negativeButtonLabel = "";
     private boolean dismissAfterNegative = false;
 
     private boolean adsDisabled = true;

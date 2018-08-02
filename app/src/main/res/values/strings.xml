@@ -6,6 +6,7 @@
 
     <!-- API strings -->
     <string name="admob_ad_banner">ca-app-pub-6293532072634065/1203928393</string>
+    <string name="admob_ad_rewarded">ca-app-pub-6293532072634065/2952381497</string>
     <string name="fb_app_id">140472159955272</string>
     <string name="fb_login_protocol_scheme">fb140472159955272</string>
 

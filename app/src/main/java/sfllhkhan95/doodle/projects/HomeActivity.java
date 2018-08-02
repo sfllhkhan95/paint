@@ -5,7 +5,6 @@ import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
-import android.os.Handler;
 import android.provider.MediaStore;
 import android.support.v4.content.FileProvider;
 import android.support.v7.app.AppCompatActivity;
@@ -18,7 +17,6 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.ScrollView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.facebook.login.widget.LoginButton;
 import com.wangjie.rapidfloatingactionbutton.RapidFloatingActionButton;
@@ -34,12 +32,14 @@ import java.util.List;
 
 import sfllhkhan95.doodle.DoodleApplication;
 import sfllhkhan95.doodle.R;
+import sfllhkhan95.doodle.ads.AdManager;
 import sfllhkhan95.doodle.auth.SettingsActivity;
 import sfllhkhan95.doodle.auth.models.User;
 import sfllhkhan95.doodle.auth.utils.AuthHandler;
 import sfllhkhan95.doodle.auth.utils.OnUpdateListener;
 import sfllhkhan95.doodle.auth.views.UserView;
 import sfllhkhan95.doodle.core.MainActivity;
+import sfllhkhan95.doodle.core.views.ConfirmationDialog;
 import sfllhkhan95.doodle.projects.utils.DoodleDatabase;
 import sfllhkhan95.doodle.projects.utils.ThumbnailInflater;
 
@@ -59,10 +59,11 @@ public class HomeActivity extends AppCompatActivity implements OnUpdateListener,
     private UserView mUserView;
 
     private ThumbnailInflater thumbnailInflater;
-    private boolean backPressedOnce = false;
 
     private RapidFloatingActionHelper rfaHelper;
     private String mCameraPicturePath;
+
+    private AdManager mAdManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -176,20 +177,30 @@ public class HomeActivity extends AppCompatActivity implements OnUpdateListener,
 
     @Override
     public void onBackPressed() {
-        if (backPressedOnce) {
-            super.onBackPressed();
-            return;
+        ConfirmationDialog.Builder mBuilder = new ConfirmationDialog.Builder(this)
+                .setIcon(android.R.drawable.ic_menu_close_clear_cancel)
+                .setHeadline("Close")
+                .setTitle("Do you really wish to quit?")
+                .setMessage("Come back soon.\nHappy Doodling!")
+                .setPositiveButton("Exit", new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        HomeActivity.super.onBackPressed();
+                    }
+                }, true)
+                .setNegativeButton("Cancel", null, true);
+
+        if (mAdManager.isVideoAdLoaded()) {
+            mBuilder.setMessage("Doodle is a free, open-source project. Consider clicking on 'Watch Ad' below to see a video ad. This helps us generate revenue.\nHappy Doodling!")
+                    .setNegativeButton("Watch Ad", new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            mAdManager.showVideoAd();
+                        }
+                    }, false);
         }
 
-        this.backPressedOnce = true;
-        Toast.makeText(this, getString(R.string.confirm_exit), Toast.LENGTH_SHORT).show();
-
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                backPressedOnce = false;
-            }
-        }, 1000);
+        mBuilder.create().show();
     }
 
     @Override
@@ -331,5 +342,11 @@ public class HomeActivity extends AppCompatActivity implements OnUpdateListener,
     public void startActivity(Intent intent) {
         super.startActivity(intent);
         overridePendingTransition(0, 0);
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        mAdManager = new AdManager(this);
     }
 }
