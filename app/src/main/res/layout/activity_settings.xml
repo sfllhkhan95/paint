@@ -203,7 +203,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/activity_horizontal_margin"
                 android:layout_marginRight="@dimen/activity_horizontal_margin"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:visibility="gone">
 
                 <!-- Section Break -->
                 <RelativeLayout
@@ -518,7 +519,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/activity_horizontal_margin"
                 android:layout_marginRight="@dimen/activity_horizontal_margin"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:visibility="gone">
 
                 <!-- Section Break -->
                 <RelativeLayout
@@ -605,6 +607,47 @@
                         android:textStyle="bold" />
 
                 </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/activity_vertical_margin"
+                android:layout_marginTop="@dimen/activity_vertical_margin"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:paddingTop="@dimen/activity_vertical_margin">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/app_name"
+                    android:textAllCaps="false"
+                    android:textColor="@color/colorSectionBreak"
+                    android:textSize="10sp"
+                    android:textStyle="bold"
+                    tools:ignore="SmallSp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="  v"
+                    android:textAllCaps="false"
+                    android:textColor="@color/colorSectionBreak"
+                    android:textSize="10sp"
+                    android:textStyle="bold"
+                    tools:ignore="SmallSp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/app_version"
+                    android:textAllCaps="false"
+                    android:textColor="@color/colorSectionBreak"
+                    android:textSize="10sp"
+                    android:textStyle="bold"
+                    tools:ignore="SmallSp" />
 
             </LinearLayout>
 
