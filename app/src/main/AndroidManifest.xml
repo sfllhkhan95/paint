@@ -65,6 +65,17 @@
             </intent-filter>
         </activity>
 
+        <activity
+            android:name=".PrivacyPolicy"
+            android:parentActivityName=".auth.SettingsActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".FAQsActivity"
+            android:parentActivityName=".auth.SettingsActivity"
+            android:screenOrientation="portrait" />
+
+        <!-- For local file storage -->
         <provider
             android:name=".projects.utils.GenericFileProvider"
             android:authorities="${applicationId}.sfllhkhan95.doodle.provider"
@@ -75,15 +86,10 @@
                 android:resource="@xml/provider_paths" />
         </provider>
 
-        <activity
-            android:name=".PrivacyPolicy"
-            android:parentActivityName=".auth.SettingsActivity"
-            android:screenOrientation="portrait" />
-
-        <activity
-            android:name=".FAQsActivity"
-            android:parentActivityName=".auth.SettingsActivity"
-            android:screenOrientation="portrait" />
+        <!-- For Facebook sharing -->
+        <provider android:authorities="com.facebook.app.FacebookContentProvider140472159955272"
+            android:name="com.facebook.FacebookContentProvider"
+            android:exported="true"/>
 
         <!-- This is required if you want to do any message handling beyond receiving notifications
          on apps in the background. -->

@@ -28,6 +28,9 @@ import com.facebook.GraphRequest;
 import com.facebook.GraphResponse;
 import com.facebook.messenger.MessengerThreadParams;
 import com.facebook.messenger.MessengerUtils;
+import com.facebook.share.model.SharePhoto;
+import com.facebook.share.model.SharePhotoContent;
+import com.facebook.share.widget.ShareDialog;
 import com.google.firebase.analytics.FirebaseAnalytics;
 
 import org.json.JSONException;
@@ -560,6 +563,22 @@ public class MainActivity extends AppCompatActivity implements
             }
         }
         return false;
+    }
+
+    public void shareToFacebook() {
+        // Get the drawn bitmap from paint canvas
+        PaintCanvas canvas = paintView.getCanvas();
+        Bitmap bitmapToShare = canvas.getBitmap();
+
+        SharePhoto photo = new SharePhoto.Builder()
+                .setBitmap(bitmapToShare)
+                .build();
+
+        SharePhotoContent content = new SharePhotoContent.Builder()
+                .addPhoto(photo)
+                .build();
+
+        ShareDialog.show(this, content);
     }
 
     private class CustomToolbar {
