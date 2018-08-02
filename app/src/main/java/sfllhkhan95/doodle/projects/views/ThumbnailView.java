@@ -1,5 +1,7 @@
 package sfllhkhan95.doodle.projects.views;
 
+import android.widget.ImageView;
+
 import sfllhkhan95.doodle.projects.models.Thumbnail;
 
 /**
@@ -9,9 +11,9 @@ import sfllhkhan95.doodle.projects.models.Thumbnail;
  */
 public class ThumbnailView {
 
-    private final SquareImageView iconView;
+    private final ImageView iconView;
 
-    public ThumbnailView(SquareImageView iconView) {
+    public ThumbnailView(ImageView iconView) {
         this.iconView = iconView;
     }
 

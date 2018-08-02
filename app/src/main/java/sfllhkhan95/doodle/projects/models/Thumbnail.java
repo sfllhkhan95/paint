@@ -41,6 +41,7 @@ public class Thumbnail implements View.OnClickListener {
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.shareButton:
+                inflater.share(getName());
                 break;
 
             case R.id.deleteButton:

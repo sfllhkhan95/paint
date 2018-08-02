@@ -18,14 +18,11 @@ public class PaintCanvas extends Canvas {
     private static final int DEFAULT_BG_COLOR = R.color.defaultCanvasColor;
     private int bgColor;
 
-    private final Context context;
-
     private Bitmap bgImage;
     private Bitmap bitmap;
     private String projectName = null;
 
     public PaintCanvas(Context context, DisplayMetrics metrics) {
-        this.context = context;
         bgColor = context.getResources().getColor(DEFAULT_BG_COLOR);
 
         int height = metrics.heightPixels;

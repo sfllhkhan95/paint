@@ -327,4 +327,9 @@ public class HomeActivity extends AppCompatActivity implements OnUpdateListener,
         findViewById(R.id.loginButton).performClick();
     }
 
+    @Override
+    public void startActivity(Intent intent) {
+        super.startActivity(intent);
+        overridePendingTransition(0, 0);
+    }
 }

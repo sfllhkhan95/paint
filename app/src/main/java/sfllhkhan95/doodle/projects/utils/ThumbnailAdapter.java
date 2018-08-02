@@ -15,7 +15,6 @@ import sfllhkhan95.doodle.R;
 import sfllhkhan95.doodle.auth.utils.AuthHandler;
 import sfllhkhan95.doodle.auth.views.UserView;
 import sfllhkhan95.doodle.projects.models.Thumbnail;
-import sfllhkhan95.doodle.projects.views.SquareImageView;
 import sfllhkhan95.doodle.projects.views.ThumbnailView;
 
 public class ThumbnailAdapter extends ArrayAdapter<Thumbnail> {
@@ -45,7 +44,7 @@ public class ThumbnailAdapter extends ArrayAdapter<Thumbnail> {
             LayoutInflater inflater = context.getLayoutInflater();
             gridItem = inflater.inflate(gridLayoutId, parent, false);
 
-            thumbnailView = new ThumbnailView((SquareImageView) gridItem.findViewById(R.id.projectIcon));
+            thumbnailView = new ThumbnailView((ImageView) gridItem.findViewById(R.id.projectIcon));
 
             gridItem.setTag(thumbnailView);
         } else {

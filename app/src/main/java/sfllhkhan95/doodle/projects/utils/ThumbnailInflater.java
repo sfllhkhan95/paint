@@ -47,6 +47,21 @@ public class ThumbnailInflater implements Runnable, AdapterView.OnItemClickListe
         return thumbnails;
     }
 
+    @NonNull
+    private List<Thumbnail> getThumbnailsFull() {
+        List<Thumbnail> thumbnails = new ArrayList<>();
+        if (savedProjects != null) {
+            for (String projectName : savedProjects) {
+                Bitmap thumbnailBitmap;
+                if ((thumbnailBitmap = DoodleDatabase.loadDoodle(projectName)) != null) {
+                    Thumbnail thumbnail = new Thumbnail(this, thumbnailBitmap, projectName);
+                    thumbnails.add(thumbnail);
+                }
+            }
+        }
+        return thumbnails;
+    }
+
     private void inflateGrid() {
         List<Thumbnail> thumbnails = getThumbnails();
         ThumbnailAdapter adapter = new ThumbnailAdapter(
@@ -61,7 +76,7 @@ public class ThumbnailInflater implements Runnable, AdapterView.OnItemClickListe
     }
 
     private void inflateList() {
-        List<Thumbnail> thumbnails = getThumbnails();
+        List<Thumbnail> thumbnails = getThumbnailsFull();
         ThumbnailAdapter adapter = new ThumbnailAdapter(
                 activity,
                 R.layout.template_thumbnail_list,
@@ -84,10 +99,21 @@ public class ThumbnailInflater implements Runnable, AdapterView.OnItemClickListe
         Intent intent = new Intent(activity, MainActivity.class);
         Thumbnail item = (Thumbnail) parent.getItemAtPosition(position);
         intent.putExtra("DOODLE", item.getName());
+        intent.putExtra("READ_ONLY", true);
 
         if (!DoodleDatabase.contains(item.getName())) return;
 
         activity.startActivity(intent);
     }
 
+    public void share(String name) {
+        Intent intent = new Intent(activity, MainActivity.class);
+        intent.putExtra("DOODLE", name);
+        intent.putExtra("SHARE", true);
+        intent.putExtra("READ_ONLY", true);
+
+        if (!DoodleDatabase.contains(name)) return;
+
+        activity.startActivity(intent);
+    }
 }

@@ -62,8 +62,8 @@ public class PaintView extends View {
     }
 
     /**
-     * @since 3.4.3
      * @return
+     * @since 3.4.3
      */
     public Class<? extends Tool> getShapeType() {
         return shapeType;
@@ -87,7 +87,7 @@ public class PaintView extends View {
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-        if (shapeType == null) return false;
+        if (shapeType == null || !isEnabled()) return false;
         PointF touchAt = new PointF(event.getX(), event.getY());
 
         switch (event.getAction()) {

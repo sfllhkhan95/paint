@@ -87,4 +87,16 @@
         custom:actionText="Composing"
         custom:descriptionText="New Message" />
 
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/editButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_margin="22dp"
+        android:onClick="editMode"
+        android:src="@android:drawable/ic_menu_edit"
+        custom:rippleColor="@color/defaultBrushColor" />
+
 </RelativeLayout>

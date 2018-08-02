@@ -98,6 +98,9 @@ public class MainActivity extends AppCompatActivity implements
     // Is this a new or existing project?
     private boolean isExisting = false;
 
+    // Is the project opened in read-only mode?
+    private boolean isViewing = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -119,10 +122,12 @@ public class MainActivity extends AppCompatActivity implements
         DisplayMetrics metrics = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(metrics);
 
+        Intent intent = getIntent();
+        isViewing = intent.getBooleanExtra("READ_ONLY", false);
+
         // Initialize canvas where everything is drawn
         paintView = findViewById(R.id.canvas);
         paintView.setOnTouchListener(this);
-        Intent intent = getIntent();
         boolean messengerAction = intent.getBooleanExtra("MESSENGER", false);
         messengerShareButton = findViewById(R.id.messenger_share_button);
         if (Intent.ACTION_PICK.equals(intent.getAction()) || messengerAction) {
@@ -175,13 +180,31 @@ public class MainActivity extends AppCompatActivity implements
         // Add click event listeners to toolbox buttons
         toolbox = findViewById(R.id.toolbox);
         toolbox.updatePenColorPicker(paintView.getBrush().getStrokeColor());
+    }
 
-        // Start in windowed mode
-        this.isMaximized = false;
-        onMaximizeToggled(false);
+    @Override
+    protected void onResume() {
+        super.onResume();
+        onToggleReadMode(isViewing);
+        if (getIntent().getBooleanExtra("SHARE", false)) {
+            dialogFactory.shareDialog(this).show();
+        }
+    }
 
-        // Select pen
-        findViewById(R.id.pen).callOnClick();
+    private void onToggleReadMode(boolean isViewing) {
+        this.isViewing = isViewing;
+        setMaximized(isViewing);
+        if (isViewing) {
+            findViewById(R.id.editButton).setVisibility(View.VISIBLE);
+            paintView.setEnabled(false);
+            toolbar.secondary.setVisibility(View.GONE);
+        } else {
+            findViewById(R.id.editButton).setVisibility(View.GONE);
+            paintView.setEnabled(true);
+
+            // Select pen
+            findViewById(R.id.pen).performClick();
+        }
     }
 
     private void initCanvas(PaintCanvas canvas) {
@@ -368,6 +391,10 @@ public class MainActivity extends AppCompatActivity implements
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+        if (isViewing) {
+            return false;
+        }
+
         switch (item.getItemId()) {
             case android.R.id.home:
                 setMaximized(!isMaximized);
@@ -483,6 +510,10 @@ public class MainActivity extends AppCompatActivity implements
 
     @Override
     public void onToolSelected(boolean reset, int id) {
+        if (isViewing) {
+            return;
+        }
+
         if (reset) {
             paintView.setShapeType(null);
         }
@@ -579,6 +610,10 @@ public class MainActivity extends AppCompatActivity implements
                 .build();
 
         ShareDialog.show(this, content);
+    }
+
+    public void editMode(View view) {
+        onToggleReadMode(false);
     }
 
     private class CustomToolbar {
