@@ -183,8 +183,8 @@ public class MainActivity extends AppCompatActivity implements
     }
 
     @Override
-    protected void onResume() {
-        super.onResume();
+    protected void onStart() {
+        super.onStart();
         onToggleReadMode(isViewing);
         if (getIntent().getBooleanExtra("SHARE", false)) {
             dialogFactory.shareDialog(this).show();

@@ -101,7 +101,7 @@
         <provider
             android:name="com.facebook.FacebookContentProvider"
             android:authorities="com.facebook.app.FacebookContentProvider140472159955272"
-            android:exported="false" />
+            android:exported="true" />
 
         <!-- This service receives FCM messages and generates notifications -->
         <service android:name=".notifs.utils.NotificationService">
