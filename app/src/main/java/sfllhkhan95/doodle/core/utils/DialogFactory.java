@@ -17,12 +17,12 @@ import sfllhkhan95.doodle.core.views.PaintView;
 
 /**
  * @author saifkhichi96
- * @version 1.0.1
+ * @version 1.1.0
  * @since 3.4.2
  */
 public class DialogFactory {
 
-    private final AdManager mAdManager;
+    private final AdManager mAdManager = AdManager.getInstance();
 
     private final PaintView paintView;
     private final Activity activity;
@@ -30,8 +30,6 @@ public class DialogFactory {
     public DialogFactory(Activity activity, PaintView paintView) {
         this.activity = activity;
         this.paintView = paintView;
-
-        this.mAdManager = new AdManager(activity);
     }
 
     public Dialog revertConfirmationDialog(Context context) {
@@ -47,7 +45,6 @@ public class DialogFactory {
                     }
                 }, true)
                 .setNegativeButton("Cancel", null, true)
-                .setAdsDisabled(mAdManager.hasRemovedAds())
                 .create();
     }
 
@@ -56,25 +53,24 @@ public class DialogFactory {
                 .setIcon(R.drawable.ic_tool_shapes)
                 .setTitle("Share")
                 .setMessage("Post to Facebook, send Doodle in a Messenger conversation, or share through other applications")
-                .setOption1("Facebook", R.drawable.ic_facebook, new View.OnClickListener() {
+                /*.setOption1("Facebook", R.drawable.ic_facebook, new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
                         context.shareToFacebook();
                     }
-                })
-                .setOption2("Messenger", R.drawable.messenger_button_blue_bg_round, new View.OnClickListener() {
+                })*/
+                .setOption1("Messenger", R.drawable.messenger_button_blue_bg_round, new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
                         context.onShareClicked(true);
                     }
                 })
-                .setOption3("Default", R.drawable.ic_share, new View.OnClickListener() {
+                .setOption2("Default", R.drawable.ic_share, new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
                         context.onShareClicked(false);
                     }
                 })
-                .setAdsDisabled(mAdManager.hasRemovedAds())
                 .create();
     }
 
@@ -107,15 +103,14 @@ public class DialogFactory {
                     new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
-                            if (mAdManager.removeAds()) {
+                            if (mAdManager.removeAds(context)) {
                                 Toast.makeText(context, "Thank you for supporting Doodle! Ads will be removed when you launch the app again.", Toast.LENGTH_SHORT).show();
                             }
                         }
                     });
         }
 
-        return mBuilder.setAdsDisabled(mAdManager.hasRemovedAds())
-                .setLabelsEnabled(true)
+        return mBuilder.setLabelsEnabled(true)
                 .create();
     }
 
@@ -139,7 +134,6 @@ public class DialogFactory {
                         activity.finish();
                     }
                 }, true)
-                .setAdsDisabled(mAdManager.hasRemovedAds())
                 .create();
     }
 
@@ -157,7 +151,6 @@ public class DialogFactory {
                     }
                 }, true)
                 .setNegativeButton("Cancel", null, true)
-                .setAdsDisabled(mAdManager.hasRemovedAds())
                 .create();
     }
 
@@ -181,7 +174,6 @@ public class DialogFactory {
                         activity.finish();
                     }
                 }, true)
-                .setAdsDisabled(mAdManager.hasRemovedAds())
                 .create();
     }
 

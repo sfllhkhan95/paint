@@ -195,7 +195,7 @@ public class HomeActivity extends AppCompatActivity implements OnUpdateListener,
                     .setNegativeButton("Watch Ad", new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
-                            mAdManager.showVideoAd();
+                            mAdManager.showVideoAd(HomeActivity.this);
                         }
                     }, false);
         }
@@ -347,6 +347,6 @@ public class HomeActivity extends AppCompatActivity implements OnUpdateListener,
     @Override
     protected void onStart() {
         super.onStart();
-        mAdManager = new AdManager(this);
+        mAdManager = AdManager.getInstance();
     }
 }

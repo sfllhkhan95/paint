@@ -58,8 +58,6 @@ public class OptionsDialog extends Dialog {
 
     private boolean labelsEnabled = false;
 
-    private boolean adsDisabled = true;
-
     private OptionsDialog(@NonNull Context context) {
         super(context);
     }
@@ -131,16 +129,14 @@ public class OptionsDialog extends Dialog {
         }
 
         // Display ads if they are enabled
-        if (!adsDisabled) {
-            final AdView mAdView = this.findViewById(R.id.adView);
-            AdManager.loadBanner(mAdView, new AdListener() {
-                @Override
-                public void onAdLoaded() {
-                    super.onAdLoaded();
-                    mAdView.setVisibility(View.VISIBLE);
-                }
-            });
-        }
+        final AdView mAdView = this.findViewById(R.id.adView);
+        AdManager.getInstance().showBannerAd(mAdView, new AdListener() {
+            @Override
+            public void onAdLoaded() {
+                super.onAdLoaded();
+                mAdView.setVisibility(View.VISIBLE);
+            }
+        });
     }
 
     public void showLabels() {
@@ -208,9 +204,5 @@ public class OptionsDialog extends Dialog {
             return this;
         }
 
-        public Builder setAdsDisabled(boolean adsDisabled) {
-            optionsDialog.adsDisabled = adsDisabled;
-            return this;
-        }
     }
 }

@@ -37,8 +37,6 @@ public class ConfirmationDialog extends Dialog {
     private String negativeButtonLabel = "";
     private boolean dismissAfterNegative = false;
 
-    private boolean adsDisabled = true;
-
     public ConfirmationDialog(Context context) {
         super(context);
     }
@@ -100,16 +98,14 @@ public class ConfirmationDialog extends Dialog {
         }
 
         // Display ads if they are enabled
-        if (!adsDisabled) {
-            final AdView mAdView = this.findViewById(R.id.adView);
-            AdManager.loadBanner(mAdView, new AdListener() {
-                @Override
-                public void onAdLoaded() {
-                    super.onAdLoaded();
-                    mAdView.setVisibility(View.VISIBLE);
-                }
-            });
-        }
+        final AdView mAdView = this.findViewById(R.id.adView);
+        AdManager.getInstance().showBannerAd(mAdView, new AdListener() {
+            @Override
+            public void onAdLoaded() {
+                super.onAdLoaded();
+                mAdView.setVisibility(View.VISIBLE);
+            }
+        });
     }
 
     public static class Builder {
@@ -151,11 +147,6 @@ public class ConfirmationDialog extends Dialog {
             dialog.negativeButtonLabel = label;
             dialog.negativeButtonListener = listener;
             dialog.dismissAfterNegative = dismiss;
-            return this;
-        }
-
-        public Builder setAdsDisabled(boolean adsDisabled) {
-            dialog.adsDisabled = adsDisabled;
             return this;
         }
 

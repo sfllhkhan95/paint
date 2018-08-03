@@ -8,8 +8,8 @@ android {
         applicationId "sfllhkhan95.doodle"
         minSdkVersion 16
         targetSdkVersion 28
-        versionCode 21
-        versionName "3.4.3"
+        versionCode 23
+        versionName "3.5.1"
         multiDexEnabled true
     }
     buildTypes {

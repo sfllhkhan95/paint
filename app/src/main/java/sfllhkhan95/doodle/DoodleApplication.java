@@ -9,6 +9,7 @@ import com.facebook.appevents.AppEventsLogger;
 
 import io.fabric.sdk.android.Fabric;
 import pk.aspirasoft.core.db.PersistentStorage;
+import sfllhkhan95.doodle.ads.AdManager;
 
 /**
  * Doodle is the Application class which bootstraps everything and initializes the global
@@ -56,6 +57,9 @@ public class DoodleApplication extends Application {
          * UPDATE SDK v4.19+: It is automatically initialized unless disabled.
          * (i.e. the following line of code can be safely removed.) */
         AppEventsLogger.activateApp(this);
+
+        // Initialize Ad SDK
+        AdManager.initialize(this);
     }
 
 }
