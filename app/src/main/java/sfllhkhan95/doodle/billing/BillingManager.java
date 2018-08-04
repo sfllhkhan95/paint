@@ -22,7 +22,7 @@ import java.util.Map;
 
 /**
  * @author saifkhichi96
- * @version 1.0.1
+ * @version 1.0.2
  * @since 3.4.0
  * created on 04/06/2018 12:29 AM
  */
@@ -64,7 +64,7 @@ public class BillingManager implements PurchasesUpdatedListener, BillingClientSt
         mBillingClient.startConnection(this);
     }
 
-    public void syncInventory() {
+    private void syncInventory() {
         // Create a list of all products
         List<String> productIds = new ArrayList<>();
         productIds.add(Products.AD_REMOVE);

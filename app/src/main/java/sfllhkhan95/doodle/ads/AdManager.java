@@ -22,7 +22,7 @@ import sfllhkhan95.doodle.billing.BillingManager;
  * in this application.
  *
  * @author saifkhichi96
- * @version 1.2.1
+ * @version 1.2.2
  * @since 3.4.2
  * created on 04/06/2018 6:36 AM
  */
@@ -39,10 +39,7 @@ public class AdManager {
     private AdManager(@NonNull Context context) {
         MobileAds.initialize(context, AdManager.ADMOB_APP_ID);
         this.mBillingManager = BillingManager.getInstance(context);
-        this.mBillingManager.syncInventory();
-        if (!hasRemovedAds()) {
-            loadVideoAd(context);
-        }
+        loadVideoAd(context);
     }
 
     /**
