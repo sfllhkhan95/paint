@@ -1,6 +1,9 @@
 package sfllhkhan95.doodle.projects;
 
+import android.Manifest;
+import android.content.ActivityNotFoundException;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
@@ -8,6 +11,9 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.support.design.widget.Snackbar;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.content.FileProvider;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -195,7 +201,7 @@ public class HomeActivity extends AppCompatActivity implements OnUpdateListener,
                 }, true)
                 .setNegativeButton("Cancel", null, true);
 
-        if (mAdManager.isVideoAdLoaded()) {
+        if (mAdManager != null && mAdManager.isVideoAdLoaded()) {
             mBuilder.setMessage("Doodle is a free, open-source project. Consider clicking on 'Watch Ad' below to see a video ad. This helps us generate revenue.\nHappy Doodling!")
                     .setNegativeButton("Watch Ad", new View.OnClickListener() {
                         @Override
@@ -286,7 +292,11 @@ public class HomeActivity extends AppCompatActivity implements OnUpdateListener,
                         MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
 
                 if (pickPictureIntent.resolveActivity(getPackageManager()) != null) {
-                    startActivityForResult(pickPictureIntent, REQUEST_PICK_PHOTO);
+                    try {
+                        startActivityForResult(pickPictureIntent, REQUEST_PICK_PHOTO);
+                    } catch (ActivityNotFoundException ex) {
+                        Snackbar.make(mUserView, "No Gallery application found", Snackbar.LENGTH_LONG).show();
+                    }
                 }
                 break;
             case R.drawable.ic_open_camera:
@@ -301,9 +311,27 @@ public class HomeActivity extends AppCompatActivity implements OnUpdateListener,
                                 photoFile);
 
                         takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
-                        startActivityForResult(takePictureIntent, REQUEST_TAKE_PHOTO);
+                        try {
+                            startActivityForResult(takePictureIntent, REQUEST_TAKE_PHOTO);
+                        } catch (ActivityNotFoundException ex) {
+                            Snackbar.make(mUserView, "No Camera application found",
+                                    Snackbar.LENGTH_LONG).show();
+                        }
                     } catch (Exception ex) {
-                        // Error occurred while creating the File
+                        if (ContextCompat.checkSelfPermission(this,
+                                Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                                != PackageManager.PERMISSION_GRANTED) {
+                            Snackbar.make(mUserView, "Permission to perform storage operations required",
+                                    Snackbar.LENGTH_INDEFINITE)
+                                    .setAction("Grant", new View.OnClickListener() {
+                                        @Override
+                                        public void onClick(View view) {
+                                            ActivityCompat.requestPermissions(HomeActivity.this,
+                                                    new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
+                                                    100);
+                                        }
+                                    }).show();
+                        }
                     }
                 }
                 break;

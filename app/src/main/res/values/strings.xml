@@ -71,6 +71,7 @@
     <string name="settings_item_notifications">Push Notifications</string>
     <string name="settings_item_privacy">See Privacy Policy</string>
     <string name="settings_icon_support">Support Us</string>
+    <string name="settings_item_theme">Theme</string>
 
     <!-- Menu items -->
     <string name="menu_action_layers">Layers</string>

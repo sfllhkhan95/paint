@@ -50,6 +50,7 @@ import sfllhkhan95.doodle.core.models.tools.Line;
 import sfllhkhan95.doodle.core.models.tools.Pen;
 import sfllhkhan95.doodle.core.models.tools.Quad2D;
 import sfllhkhan95.doodle.core.models.tools.Quad3D;
+import sfllhkhan95.doodle.core.models.tools.Tool;
 import sfllhkhan95.doodle.core.utils.ActionBarManager;
 import sfllhkhan95.doodle.core.utils.DialogFactory;
 import sfllhkhan95.doodle.core.utils.OnColorPickedListener;
@@ -148,25 +149,27 @@ public class MainActivity extends AppCompatActivity implements
                 messengerShareButton.setDescriptionText("Messenger Conversation");
 
                 MessengerThreadParams mThreadParams = MessengerUtils.getMessengerThreadParamsForIntent(intent);
-                List<String> participantIds = mThreadParams.participants;
-                if (participantIds != null && participantIds.size() > 0) {
-                    String replyingTo = participantIds.get(0);
-                    GraphRequest request = GraphRequest.newGraphPathRequest(
-                            AccessToken.getCurrentAccessToken(),
-                            "/" + replyingTo,
-                            new GraphRequest.Callback() {
-                                @Override
-                                public void onCompleted(GraphResponse response) {
-                                    String recipientName;
-                                    try {
-                                        recipientName = response.getJSONObject().get("name").toString();
-                                        messengerShareButton.setDescriptionText(recipientName);
-                                    } catch (NullPointerException | JSONException ignored) {
+                if (mThreadParams != null) {
+                    List<String> participantIds = mThreadParams.participants;
+                    if (participantIds != null && participantIds.size() > 0) {
+                        String replyingTo = participantIds.get(0);
+                        GraphRequest request = GraphRequest.newGraphPathRequest(
+                                AccessToken.getCurrentAccessToken(),
+                                "/" + replyingTo,
+                                new GraphRequest.Callback() {
+                                    @Override
+                                    public void onCompleted(GraphResponse response) {
+                                        String recipientName;
+                                        try {
+                                            recipientName = response.getJSONObject().get("name").toString();
+                                            messengerShareButton.setDescriptionText(recipientName);
+                                        } catch (NullPointerException | JSONException ignored) {
 
+                                        }
                                     }
-                                }
-                            });
-                    request.executeAsync();
+                                });
+                        request.executeAsync();
+                    }
                 }
             }
 
@@ -575,10 +578,11 @@ public class MainActivity extends AppCompatActivity implements
 
     @Override
     public boolean onTouch(View view, MotionEvent motionEvent) {
-        if (!stickyMaximized) {
+        Class<? extends Tool> selected = paintView.getShapeType();
+        if (!stickyMaximized && selected != null) {
             switch (motionEvent.getAction()) {
                 case MotionEvent.ACTION_UP:
-                    if (!paintView.getShapeType().equals(sfllhkhan95.doodle.core.models.tools.ColorPicker.class)) {
+                    if (!selected.equals(sfllhkhan95.doodle.core.models.tools.ColorPicker.class)) {
                         setMaximized(false);
                     } else {
                         findViewById(R.id.pen).performClick();
@@ -586,7 +590,7 @@ public class MainActivity extends AppCompatActivity implements
                     break;
 
                 case MotionEvent.ACTION_DOWN:
-                    if (!paintView.getShapeType().equals(sfllhkhan95.doodle.core.models.tools.ColorPicker.class)) {
+                    if (!selected.equals(sfllhkhan95.doodle.core.models.tools.ColorPicker.class)) {
                         setMaximized(true);
                     }
 

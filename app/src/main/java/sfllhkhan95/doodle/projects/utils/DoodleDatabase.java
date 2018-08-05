@@ -108,22 +108,6 @@ public class DoodleDatabase {
      * Opens a project as a Bitmap image of specified size.
      *
      * @param projectName name of the project to open
-     * @return the Bitmap image of the project, or null
-     */
-    @Nullable
-    public static Bitmap loadDoodle(String projectName) {
-        File file = new File(rootDir, projectName);
-        if (file.exists()) {
-            return DoodleFactory.loadFromPath(rootDirPath + projectName);
-        } else {
-            return null;
-        }
-    }
-
-    /**
-     * Opens a project as a Bitmap image of specified size.
-     *
-     * @param projectName name of the project to open
      * @param wd          width of the opened image
      * @param ht          height of the opened image
      * @return the Bitmap image of the project, or null
@@ -132,7 +116,11 @@ public class DoodleDatabase {
     public static Bitmap loadDoodle(String projectName, int wd, int ht) {
         File file = new File(rootDir, projectName);
         if (file.exists()) {
-            return DoodleFactory.loadFromPath(rootDirPath + projectName, wd, ht);
+            try {
+                return DoodleFactory.loadFromPath(rootDirPath + projectName, wd, ht);
+            } catch (OutOfMemoryError ex) {
+                return null;
+            }
         } else {
             return null;
         }
