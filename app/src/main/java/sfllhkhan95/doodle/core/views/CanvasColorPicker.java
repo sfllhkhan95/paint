@@ -11,6 +11,7 @@ import com.flask.colorpicker.builder.ColorPickerDialogBuilder;
 
 import java.util.Random;
 
+import sfllhkhan95.doodle.R;
 import sfllhkhan95.doodle.core.utils.OnColorPickedListener;
 
 public class CanvasColorPicker implements ColorPickerClickListener {
@@ -21,7 +22,7 @@ public class CanvasColorPicker implements ColorPickerClickListener {
 
     public CanvasColorPicker(Context context, int color) {
         this.pickerModern = ColorPickerDialogBuilder
-                .with(context)
+                .with(context, R.style.DialogTheme)
                 .setTitle("Canvas Color")
                 .initialColor(color)
                 .showAlphaSlider(false)

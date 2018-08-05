@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorPrimaryDark"
+    android:background="?attr/colorPrimaryDark"
     android:orientation="vertical"
     android:weightSum="3"
     tools:context=".LaunchScreen">
@@ -63,7 +63,7 @@
                 android:padding="10dp"
                 android:scaleType="fitCenter"
                 android:src="@drawable/paintbrush"
-                android:tint="@color/colorWhite" />
+                android:tint="@color/white" />
 
         </RelativeLayout>
 

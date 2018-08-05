@@ -3,9 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorPrimaryLighter"
-    android:orientation="vertical"
-    android:theme="@style/AppTheme.Light">
+    android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -22,7 +20,7 @@
             android:innerRadius="0dp"
             android:shape="ring"
             android:thicknessRatio="1.0"
-            app:cardBackgroundColor="@color/overlayNight"
+            app:cardBackgroundColor="@color/slate_translucent"
             app:cardCornerRadius="12dp">
 
             <ImageView
@@ -42,7 +40,8 @@
             android:layout_marginLeft="10dp"
             android:layout_marginStart="10dp"
             android:text="@string/placeholder_username"
-            android:textAppearance="@style/TextAppearance.AppCompat.Caption" />
+            android:textAppearance="@style/TextAppearance.AppCompat.Caption"
+            android:textColor="@color/black" />
 
     </LinearLayout>
 
@@ -50,7 +49,7 @@
         android:id="@+id/projectIcon"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/overlayNight"
+        android:background="@color/slate_translucent"
         android:contentDescription="@string/desc_thumbnail"
         android:scaleType="centerCrop"
         android:src="@drawable/avatar_placeholder" />
@@ -70,7 +69,7 @@
             android:contentDescription="@string/desc_delete_button"
             android:scaleType="centerInside"
             android:src="@drawable/ic_action_share"
-            android:tint="@color/colorSectionHeading" />
+            android:tint="@color/charcoal" />
 
         <ImageView
             android:id="@+id/deleteButton"
@@ -79,7 +78,7 @@
             android:contentDescription="@string/desc_delete_button"
             android:scaleType="centerInside"
             android:src="@drawable/ic_action_delete"
-            android:tint="@color/colorSectionHeading" />
+            android:tint="@color/charcoal" />
 
     </LinearLayout>
 

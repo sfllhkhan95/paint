@@ -3,14 +3,14 @@
     xmlns:ads="http://schemas.android.com/apk/res-auto"
     android:layout_width="320dp"
     android:layout_height="wrap_content"
-    android:background="@color/colorPrimaryLight"
+    android:background="?attr/colorPrimary"
     android:gravity="center_horizontal"
     android:orientation="vertical">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="150dp"
-        android:background="@color/colorPrimaryDark"
+        android:background="?attr/colorPrimaryDark"
         android:padding="5dp">
 
         <ImageView
@@ -21,7 +21,7 @@
             android:layout_centerHorizontal="true"
             android:layout_marginTop="25dp"
             android:contentDescription="@string/desc_icon"
-            android:tint="@color/colorWhite" />
+            android:tint="@color/white" />
 
         <TextView
             android:id="@+id/headline"
@@ -31,7 +31,7 @@
             android:layout_centerHorizontal="true"
             android:layout_marginTop="80dp"
             android:textAllCaps="true"
-            android:textColor="@color/colorWhite"
+            android:textColor="@color/white"
             android:textSize="20sp"
             android:textStyle="bold" />
 
@@ -40,7 +40,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/colorPrimaryLight"
+        android:background="?attr/colorPrimary"
         android:gravity="center"
         android:orientation="vertical"
         android:padding="16dp">
@@ -50,7 +50,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="start"
-            android:textColor="@color/colorSectionHeading"
+            android:textColor="@color/charcoal"
             android:textSize="14sp"
             android:textStyle="bold" />
 
@@ -61,7 +61,7 @@
             android:layout_marginBottom="5dp"
             android:layout_marginTop="5dp"
             android:gravity="start"
-            android:textColor="@color/colorSectionBreak"
+            android:textColor="@color/gray"
             android:textSize="14sp"
             android:textStyle="bold" />
 
@@ -80,7 +80,7 @@
                 android:layout_marginRight="35dp"
                 android:background="@android:color/transparent"
                 android:textAllCaps="true"
-                android:textColor="@color/colorPrimaryDark"
+                android:textColor="?attr/colorPrimaryDark"
                 android:textSize="12sp"
                 android:visibility="gone" />
 
@@ -91,9 +91,9 @@
                 android:layout_height="30dp"
                 android:layout_marginLeft="35dp"
                 android:layout_marginStart="35dp"
-                android:background="@color/colorPrimaryDark"
+                android:background="?attr/colorPrimaryDark"
                 android:textAllCaps="true"
-                android:textColor="@color/colorWhite"
+                android:textColor="@color/white"
                 android:textSize="12sp"
                 android:visibility="gone" />
 

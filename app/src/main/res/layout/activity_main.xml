@@ -19,7 +19,7 @@
         android:layout_width="match_parent"
         android:layout_height="?actionBarSize"
         android:layout_alignParentTop="true"
-        android:background="@color/overlayNight"
+        android:background="@color/slate_translucent"
         android:gravity="center_vertical"
         android:paddingLeft="10dp"
         android:paddingRight="10dp" />
@@ -97,6 +97,6 @@
         android:layout_margin="22dp"
         android:onClick="editMode"
         android:src="@android:drawable/ic_menu_edit"
-        custom:rippleColor="@color/defaultBrushColor" />
+        custom:rippleColor="@color/blood" />
 
 </RelativeLayout>

@@ -9,14 +9,14 @@
         android:layout_width="320dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="35dp"
-        android:background="@color/colorPrimaryLight"
+        android:background="?attr/colorPrimary"
         android:gravity="center_horizontal"
         android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/colorPrimaryDark"
+            android:background="?attr/colorPrimaryDark"
             android:gravity="center"
             android:orientation="vertical"
             android:paddingBottom="24dp"
@@ -30,7 +30,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/placeholder_title"
                 android:textAllCaps="true"
-                android:textColor="@color/colorWhite"
+                android:textColor="@color/white"
                 android:textSize="20sp"
                 android:textStyle="bold" />
 
@@ -40,7 +40,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:text="@string/placeholder_dialog_body"
-                android:textColor="@color/colorWhite"
+                android:textColor="@color/white"
                 android:textSize="12sp" />
 
         </LinearLayout>
@@ -48,7 +48,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/colorPrimaryLight"
+            android:background="?attr/colorPrimary"
             android:gravity="center_horizontal|top"
             android:orientation="horizontal">
 
@@ -77,7 +77,7 @@
                     android:gravity="center"
                     android:text="@string/label_op1"
                     android:textAllCaps="true"
-                    android:textColor="@color/colorAccent"
+                    android:textColor="?attr/colorAccent"
                     android:textSize="10sp"
                     android:visibility="visible"
                     tools:ignore="SmallSp" />
@@ -109,7 +109,7 @@
                     android:gravity="center"
                     android:text="@string/label_op2"
                     android:textAllCaps="true"
-                    android:textColor="@color/colorAccent"
+                    android:textColor="?attr/colorAccent"
                     android:textSize="10sp"
                     android:visibility="visible"
                     tools:ignore="SmallSp" />
@@ -142,7 +142,7 @@
                     android:gravity="center"
                     android:text="@string/label_op3"
                     android:textAllCaps="true"
-                    android:textColor="@color/colorAccent"
+                    android:textColor="?attr/colorAccent"
                     android:textSize="10sp"
                     android:visibility="visible"
                     tools:ignore="SmallSp" />
@@ -171,6 +171,6 @@
         android:contentDescription="@string/desc_icon"
         android:scaleType="centerInside"
         android:src="@drawable/ic_tool_shapes"
-        android:tint="@color/colorPrimaryDark" />
+        android:tint="?attr/colorPrimaryDark" />
 
 </RelativeLayout>

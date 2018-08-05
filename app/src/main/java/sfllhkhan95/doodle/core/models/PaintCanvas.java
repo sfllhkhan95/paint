@@ -15,7 +15,7 @@ import sfllhkhan95.doodle.projects.utils.DoodleDatabase;
  */
 public class PaintCanvas extends Canvas {
 
-    private static final int DEFAULT_BG_COLOR = R.color.defaultCanvasColor;
+    private static final int DEFAULT_BG_COLOR = R.color.slate;
     private int bgColor;
 
     private Bitmap bgImage;

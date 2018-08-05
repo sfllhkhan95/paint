@@ -10,8 +10,8 @@ import sfllhkhan95.doodle.R;
  */
 public class PaintBrush extends Paint implements Cloneable {
 
-    private static final int DEFAULT_STROKE_COLOR = R.color.defaultBrushColor;
-    private static final int DEFAULT_FILL_COLOR = R.color.defaultShapeColor;
+    private static final int DEFAULT_STROKE_COLOR = R.color.blood;
+    private static final int DEFAULT_FILL_COLOR = R.color.blood_translucent;
     private static final int DEFAULT_SIZE = 5;
 
     private final Context context;

@@ -4,33 +4,18 @@
     android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorPrimaryLight"
     android:orientation="vertical"
-    android:theme="@style/AppTheme.Light"
-    tools:context="sfllhkhan95.doodle.auth.SettingsActivity">
+    tools:context=".auth.SettingsActivity">
 
-    <!-- Header -->
-    <RelativeLayout
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/colorPrimaryDark"
-        android:elevation="4dp"
-        tools:targetApi="lollipop">
-
-        <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="?actionBarSize"
-            android:background="@color/colorPrimaryDark"
-            android:theme="@style/AppTheme"
-            tools:targetApi="lollipop" />
-
-    </RelativeLayout>
+        android:layout_height="?actionBarSize"
+        android:background="?attr/colorPrimaryDark" />
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/colorPrimaryLight"
         android:scrollbars="none">
 
         <LinearLayout
@@ -46,7 +31,7 @@
                 android:layout_marginLeft="@dimen/activity_horizontal_margin"
                 android:layout_marginRight="@dimen/activity_horizontal_margin"
                 android:orientation="vertical"
-                android:visibility="gone">
+                android:visibility="visible">
 
                 <View
                     android:layout_width="match_parent"
@@ -57,14 +42,13 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@color/colorSectionBreak"
+                    android:background="@color/gray"
                     android:orientation="vertical">
 
                     <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="35dp"
-                        android:layout_marginBottom="1dp"
-                        android:background="@color/colorWhite"
+                        android:background="?attr/colorPrimary"
                         android:paddingLeft="10dp"
                         android:paddingRight="10dp">
 
@@ -76,7 +60,8 @@
                             android:background="@android:color/transparent"
                             android:gravity="start|center_vertical"
                             android:text="@string/settings_item_notifications"
-                            android:textAllCaps="false" />
+                            android:textAllCaps="false"
+                            android:textColor="@color/black" />
 
                         <Switch
                             android:id="@+id/notification_switch"
@@ -85,6 +70,41 @@
                             android:layout_alignParentEnd="true"
                             android:layout_alignParentRight="true"
                             android:background="@android:color/transparent" />
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="35dp"
+                        android:background="?attr/colorPrimary"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp">
+
+                        <android.support.v7.widget.AppCompatButton
+                            android:id="@+id/theme"
+                            android:layout_width="match_parent"
+                            android:layout_height="35dp"
+                            android:layout_toLeftOf="@id/theme_selected"
+                            android:layout_toStartOf="@id/theme_selected"
+                            android:background="@android:color/transparent"
+                            android:gravity="start|center_vertical"
+                            android:text="@string/default_theme"
+                            android:textAllCaps="false"
+                            android:textColor="@color/black" />
+
+                        <android.support.v7.widget.AppCompatButton
+                            android:id="@+id/theme_selected"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_alignParentEnd="true"
+                            android:layout_alignParentRight="true"
+                            android:background="@android:color/transparent"
+                            android:drawableEnd="@drawable/ic_action_more"
+                            android:drawableRight="@drawable/ic_action_more"
+                            android:gravity="end|center_vertical"
+                            android:text="@string/default_theme"
+                            android:textAllCaps="false"
+                            android:textColor="@color/gray" />
 
                     </RelativeLayout>
 
@@ -109,7 +129,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@color/colorSectionBreak"
+                    android:background="@color/gray"
                     android:orientation="vertical">
 
                     <android.support.v7.widget.AppCompatButton
@@ -117,42 +137,45 @@
                         android:layout_width="match_parent"
                         android:layout_height="35dp"
                         android:layout_marginBottom="1dp"
-                        android:background="@color/colorWhite"
+                        android:background="?attr/colorPrimary"
                         android:drawableEnd="@drawable/ic_action_more"
                         android:drawableRight="@drawable/ic_action_more"
                         android:gravity="start|center_vertical"
                         android:paddingLeft="10dp"
                         android:paddingRight="10dp"
                         android:text="@string/settings_item_privacy"
-                        android:textAllCaps="false" />
+                        android:textAllCaps="false"
+                        android:textColor="@color/black" />
 
                     <android.support.v7.widget.AppCompatButton
                         android:id="@+id/faqs"
                         android:layout_width="match_parent"
                         android:layout_height="35dp"
                         android:layout_marginBottom="1dp"
-                        android:background="@color/colorWhite"
+                        android:background="?attr/colorPrimary"
                         android:drawableEnd="@drawable/ic_action_more"
                         android:drawableRight="@drawable/ic_action_more"
                         android:gravity="start|center_vertical"
                         android:paddingLeft="10dp"
                         android:paddingRight="10dp"
                         android:text="@string/settings_item_help"
-                        android:textAllCaps="false" />
+                        android:textAllCaps="false"
+                        android:textColor="@color/black" />
 
                     <android.support.v7.widget.AppCompatButton
-                        android:id="@+id/about_developer"
+                        android:id="@+id/support"
                         android:layout_width="match_parent"
                         android:layout_height="35dp"
                         android:layout_marginBottom="1dp"
-                        android:background="@color/colorWhite"
+                        android:background="?attr/colorPrimary"
                         android:drawableEnd="@drawable/ic_action_link"
                         android:drawableRight="@drawable/ic_action_link"
                         android:gravity="start|center_vertical"
                         android:paddingLeft="10dp"
                         android:paddingRight="10dp"
                         android:text="@string/settings_icon_support"
-                        android:textAllCaps="false" />
+                        android:textAllCaps="false"
+                        android:textColor="@color/black" />
 
                 </LinearLayout>
 
@@ -172,7 +195,7 @@
                     android:layout_height="wrap_content"
                     android:text="@string/app_name_v"
                     android:textAllCaps="false"
-                    android:textColor="@color/colorSectionBreak"
+                    android:textColor="@color/gray"
                     android:textSize="10sp"
                     android:textStyle="bold"
                     tools:ignore="SmallSp" />
@@ -182,7 +205,7 @@
                     android:layout_height="wrap_content"
                     android:text="@string/app_version"
                     android:textAllCaps="false"
-                    android:textColor="@color/colorSectionBreak"
+                    android:textColor="@color/gray"
                     android:textSize="10sp"
                     android:textStyle="bold"
                     tools:ignore="SmallSp" />

@@ -1,6 +1,8 @@
 package sfllhkhan95.doodle;
 
+import android.app.Activity;
 import android.app.Application;
+import android.support.annotation.NonNull;
 
 import com.crashlytics.android.Crashlytics;
 import com.crashlytics.android.core.CrashlyticsCore;
@@ -10,6 +12,10 @@ import com.facebook.appevents.AppEventsLogger;
 import io.fabric.sdk.android.Fabric;
 import pk.aspirasoft.core.db.PersistentStorage;
 import sfllhkhan95.doodle.ads.AdManager;
+
+import static sfllhkhan95.doodle.core.utils.ThemeAttrs.THEME_DEFAULT;
+import static sfllhkhan95.doodle.core.utils.ThemeAttrs.THEME_OCEAN;
+import static sfllhkhan95.doodle.core.utils.ThemeAttrs.THEME_SUNLIGHT;
 
 /**
  * Doodle is the Application class which bootstraps everything and initializes the global
@@ -21,7 +27,46 @@ import sfllhkhan95.doodle.ads.AdManager;
  */
 public class DoodleApplication extends Application {
 
-    public static String TAG = "DoodleLogs";
+    public final static String TAG = "DoodleLogs";
+
+    private final static String THEME = "APP_THEME";
+
+    private String getCurrentTheme() {
+        String currentTheme = PersistentStorage.get(THEME, String.class);
+        if (currentTheme == null) currentTheme = THEME_DEFAULT;
+        return currentTheme;
+    }
+
+    public int setActivityTheme(Activity activity) {
+        switch (getCurrentTheme()) {
+            case THEME_OCEAN:
+                activity.setTheme(R.style.AppTheme_Ocean);
+                return 1;
+            case THEME_SUNLIGHT:
+                activity.setTheme(R.style.AppTheme_Sunlight);
+                return 2;
+            case THEME_DEFAULT:
+            default:
+                activity.setTheme(R.style.AppTheme);
+                return 0;
+        }
+    }
+
+    public void changeTheme(Activity activity, @NonNull String currentTheme) {
+        switch (currentTheme) {
+            case THEME_OCEAN:
+                PersistentStorage.put(THEME, THEME_OCEAN);
+                break;
+            case THEME_SUNLIGHT:
+                PersistentStorage.put(THEME, THEME_SUNLIGHT);
+                break;
+            case THEME_DEFAULT:
+            default:
+                PersistentStorage.put(THEME, THEME_DEFAULT);
+                break;
+        }
+        activity.recreate();
+    }
 
     /**
      * Called when the application is starting, before any other application objects

@@ -4,8 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorPrimaryLighter"
-    android:theme="@style/AppTheme.Light"
     tools:context=".projects.HomeActivity">
 
     <LinearLayout
@@ -17,9 +15,10 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?actionBarSize"
-            android:background="@color/colorPrimaryLight"
+            android:background="?attr/colorPrimary"
             android:elevation="4dp"
             android:gravity="center"
+            app:titleTextColor="?attr/colorPrimaryDark"
             tools:targetApi="lollipop" />
 
         <ScrollView
@@ -49,7 +48,7 @@
                         android:innerRadius="0dp"
                         android:shape="ring"
                         android:thicknessRatio="1.0"
-                        app:cardBackgroundColor="@color/overlayNight"
+                        app:cardBackgroundColor="@color/slate_translucent"
                         app:cardCornerRadius="40dp">
 
                         <ImageView
@@ -88,14 +87,16 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="@string/default_value"
-                                    android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+                                    android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                                    android:textColor="@color/charcoal" />
 
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:maxLines="1"
                                     android:text="@string/label_posts"
-                                    android:textAppearance="@style/TextAppearance.AppCompat.Caption" />
+                                    android:textAppearance="@style/TextAppearance.AppCompat.Caption"
+                                    android:textColor="@color/charcoal" />
 
                             </LinearLayout>
 
@@ -111,14 +112,16 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="@string/default_value"
-                                    android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+                                    android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                                    android:textColor="@color/charcoal" />
 
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:maxLines="1"
                                     android:text="@string/label_friends"
-                                    android:textAppearance="@style/TextAppearance.AppCompat.Caption" />
+                                    android:textAppearance="@style/TextAppearance.AppCompat.Caption"
+                                    android:textColor="@color/charcoal" />
 
                             </LinearLayout>
 
@@ -135,6 +138,7 @@
                             android:paddingRight="@dimen/activity_horizontal_margin"
                             android:text="@string/connected"
                             android:textAllCaps="true"
+                            android:textColor="@color/charcoal"
                             android:visibility="gone" />
 
                         <!-- Login Button -->
@@ -145,7 +149,6 @@
                             android:layout_marginBottom="12dp"
                             android:paddingLeft="@dimen/activity_horizontal_margin"
                             android:paddingRight="@dimen/activity_horizontal_margin"
-                            android:textColor="@color/colorWhite"
                             android:visibility="gone" />
 
                         <LinearLayout
@@ -157,8 +160,7 @@
                             android:gravity="center_vertical"
                             android:orientation="horizontal"
                             android:paddingLeft="5dp"
-                            android:paddingRight="5dp"
-                            android:theme="@style/AppTheme">
+                            android:paddingRight="5dp">
 
                             <ImageView
                                 android:layout_width="15dp"
@@ -186,7 +188,7 @@
                                 android:layout_marginStart="@dimen/activity_horizontal_margin"
                                 android:gravity="end"
                                 android:text="@string/connection_no"
-                                android:textColor="@color/colorSectionHeading"
+                                android:textColor="@color/charcoal"
                                 android:textSize="12sp" />
 
                         </LinearLayout>
@@ -198,7 +200,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
-                    android:background="@color/colorPrimaryLight"
+                    android:background="?attr/colorPrimary"
                     android:baselineAligned="false"
                     android:elevation="4dp"
                     android:orientation="horizontal"
@@ -219,7 +221,7 @@
                             android:onClick="showGrid"
                             android:scaleType="centerInside"
                             android:src="@drawable/ic_action_grid_on"
-                            android:tint="@color/colorPrimary" />
+                            android:tint="?attr/colorPrimaryDark" />
 
                     </LinearLayout>
 
@@ -237,7 +239,7 @@
                             android:onClick="showList"
                             android:scaleType="centerInside"
                             android:src="@drawable/ic_action_view_list"
-                            android:tint="@color/colorWhite" />
+                            android:tint="@color/white" />
 
                     </LinearLayout>
 
@@ -255,7 +257,7 @@
                             android:contentDescription="@string/desc_notifications"
                             android:scaleType="centerInside"
                             android:src="@drawable/ic_action_notifications"
-                            android:tint="@color/colorWhite" />
+                            android:tint="@color/white" />
 
                     </LinearLayout>
 
@@ -302,10 +304,10 @@
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
             android:layout_margin="15dp"
-            rfab:rfab_color_normal="@color/colorPrimaryDark"
-            rfab:rfab_color_pressed="@color/colorPrimary"
+            rfab:rfab_color_normal="?attr/colorPrimaryDark"
+            rfab:rfab_color_pressed="?attr/colorPrimaryDark"
             rfab:rfab_drawable="@drawable/rfab__drawable_rfab_default"
-            rfab:rfab_shadow_color="@color/overlayNight"
+            rfab:rfab_shadow_color="@color/slate_translucent"
             rfab:rfab_shadow_dx="0dp"
             rfab:rfab_shadow_dy="2dp"
             rfab:rfab_shadow_radius="5dp"

@@ -15,6 +15,7 @@ public class PrivacyPolicy extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        ((DoodleApplication) getApplication()).setActivityTheme(this);
         super.onCreate(savedInstanceState);
 
         WebView webView = new WebView(this);

@@ -2,6 +2,8 @@ package sfllhkhan95.doodle.projects;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -18,6 +20,7 @@ import android.widget.ImageView;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
+import com.crashlytics.android.Crashlytics;
 import com.facebook.login.widget.LoginButton;
 import com.wangjie.rapidfloatingactionbutton.RapidFloatingActionButton;
 import com.wangjie.rapidfloatingactionbutton.RapidFloatingActionHelper;
@@ -39,6 +42,7 @@ import sfllhkhan95.doodle.auth.utils.AuthHandler;
 import sfllhkhan95.doodle.auth.utils.OnUpdateListener;
 import sfllhkhan95.doodle.auth.views.UserView;
 import sfllhkhan95.doodle.core.MainActivity;
+import sfllhkhan95.doodle.core.utils.ThemeAttrs;
 import sfllhkhan95.doodle.core.views.ConfirmationDialog;
 import sfllhkhan95.doodle.projects.utils.DoodleDatabase;
 import sfllhkhan95.doodle.projects.utils.ThumbnailInflater;
@@ -67,6 +71,7 @@ public class HomeActivity extends AppCompatActivity implements OnUpdateListener,
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        ((DoodleApplication) getApplication()).setActivityTheme(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
@@ -85,30 +90,30 @@ public class HomeActivity extends AppCompatActivity implements OnUpdateListener,
         items.add(new RFACLabelItem<Integer>()
                 .setLabel("Camera")
                 .setResId(R.drawable.ic_open_camera)
-                .setIconNormalColor(getResources().getColor(R.color.colorAccentDark))
-                .setIconPressedColor(getResources().getColor(R.color.overlayNight))
-                .setLabelColor(getResources().getColor(R.color.colorAccentDark))
+                .setIconNormalColor(getResources().getColor(R.color.orange))
+                .setIconPressedColor(getResources().getColor(R.color.slate_translucent))
+                .setLabelColor(getResources().getColor(R.color.orange))
                 .setWrapper(0)
         );
         items.add(new RFACLabelItem<Integer>()
                 .setLabel("Gallery")
                 .setResId(R.drawable.ic_open_gallery)
-                .setIconNormalColor(getResources().getColor(R.color.defaultBrushColor))
-                .setIconPressedColor(getResources().getColor(R.color.overlayNight))
-                .setLabelColor(getResources().getColor(R.color.defaultBrushColor))
+                .setIconNormalColor(getResources().getColor(R.color.blood))
+                .setIconPressedColor(getResources().getColor(R.color.slate_translucent))
+                .setLabelColor(getResources().getColor(R.color.blood))
                 .setWrapper(1)
         );
         items.add(new RFACLabelItem<Integer>()
                 .setLabel("Blank Project")
                 .setResId(R.drawable.ic_open_blank)
-                .setIconNormalColor(getResources().getColor(R.color.defaultCanvasColor))
-                .setIconPressedColor(getResources().getColor(R.color.overlayNight))
-                .setLabelColor(getResources().getColor(R.color.defaultCanvasColor))
+                .setIconNormalColor(getResources().getColor(R.color.slate))
+                .setIconPressedColor(getResources().getColor(R.color.slate_translucent))
+                .setLabelColor(getResources().getColor(R.color.slate))
                 .setWrapper(2)
         );
 
         composeList.setItems(items)
-                .setIconShadowColor(R.color.overlayNight);
+                .setIconShadowColor(R.color.slate_translucent);
 
         rfaHelper = new RapidFloatingActionHelper(
                 this,
@@ -242,6 +247,18 @@ public class HomeActivity extends AppCompatActivity implements OnUpdateListener,
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.home, menu);
+
+        // Try to tint the action bar icon
+        try {
+            MenuItem menuItem = menu.findItem(R.id.settings);
+            Drawable drawable = menuItem.getIcon();
+            drawable.mutate();
+            drawable.setColorFilter(ThemeAttrs.colorPrimaryDark(this),
+                    PorterDuff.Mode.SRC_IN);
+        } catch (NullPointerException ex) {
+            Crashlytics.logException(ex);
+        }
+
         return super.onCreateOptionsMenu(menu);
     }
 
@@ -313,9 +330,9 @@ public class HomeActivity extends AppCompatActivity implements OnUpdateListener,
     }
 
     public void showList(View view) {
-        ((ImageView) findViewById(R.id.gridButton)).setColorFilter(getResources().getColor(R.color.colorWhite));
-        ((ImageView) findViewById(R.id.listButton)).setColorFilter(getResources().getColor(R.color.colorPrimary));
-        ((ImageView) findViewById(R.id.notificationsButton)).setColorFilter(getResources().getColor(R.color.colorWhite));
+        ((ImageView) findViewById(R.id.gridButton)).setColorFilter(getResources().getColor(R.color.white));
+        ((ImageView) findViewById(R.id.listButton)).setColorFilter(ThemeAttrs.colorPrimaryDark(this));
+        ((ImageView) findViewById(R.id.notificationsButton)).setColorFilter(getResources().getColor(R.color.white));
 
         findViewById(R.id.savedProjectsGrid).setVisibility(View.GONE);
         findViewById(R.id.savedProjectsList).setVisibility(View.VISIBLE);
@@ -324,9 +341,9 @@ public class HomeActivity extends AppCompatActivity implements OnUpdateListener,
     }
 
     public void showGrid(View view) {
-        ((ImageView) findViewById(R.id.gridButton)).setColorFilter(getResources().getColor(R.color.colorPrimary));
-        ((ImageView) findViewById(R.id.listButton)).setColorFilter(getResources().getColor(R.color.colorWhite));
-        ((ImageView) findViewById(R.id.notificationsButton)).setColorFilter(getResources().getColor(R.color.colorWhite));
+        ((ImageView) findViewById(R.id.gridButton)).setColorFilter(ThemeAttrs.colorPrimaryDark(this));
+        ((ImageView) findViewById(R.id.listButton)).setColorFilter(getResources().getColor(R.color.white));
+        ((ImageView) findViewById(R.id.notificationsButton)).setColorFilter(getResources().getColor(R.color.white));
 
         findViewById(R.id.savedProjectsGrid).setVisibility(View.VISIBLE);
         findViewById(R.id.savedProjectsList).setVisibility(View.GONE);

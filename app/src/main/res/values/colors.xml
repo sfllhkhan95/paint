@@ -1,23 +1,21 @@
 <!--?xml version="1.0" encoding="UTF-8"?-->
 <resources>
-    <color name="colorPrimaryLighter">#fdf1ff</color>
-    <color name="colorPrimaryLight">#f8D4ff</color>
-    <color name="colorPrimary">#ba68c8</color>
-    <color name="colorPrimaryDark">#883997</color>
-    <color name="colorAccent">#ff6e40</color>
-    <color name="colorAccentDark">#d75c35</color>
-
-    <color name="overlayNight">#AA130416</color>
-
-    <!-- Shades of Grey -->
-    <color name="colorSectionBreak">#b0b0b0</color>
-    <color name="colorSectionHeading">#565656</color>
-    <color name="colorBlack">#000000</color>
-    <color name="colorWhite">#FFF</color>
-    <color name="colorGrayish">#EEE</color>
-
-    <!-- Defaults -->
-    <color name="defaultBrushColor">#8A0707</color>
-    <color name="defaultShapeColor">#888A0707</color>
-    <color name="defaultCanvasColor">#708090</color>
+    <color name="black">#000000</color>
+    <color name="blood">#b71c1c</color>
+    <color name="blood_translucent">#b71c1c</color>
+    <color name="blue_light">#e3f2fd</color>
+    <color name="blue_navy">#1a237e</color>
+    <color name="blue_sky">#90caf9</color>
+    <color name="charcoal">#37474f</color>
+    <color name="gray">#757575</color>
+    <color name="slate_translucent">#88607d8b</color>
+    <color name="orange">#ef5350</color>
+    <color name="pink">#f3e5f5</color>
+    <color name="pink_light">#fafafa</color>
+    <color name="purple">#8e24aa</color>
+    <color name="silver">#bdbdbd</color>
+    <color name="slate">#607d8b</color>
+    <color name="white">#FFFFFF</color>
+    <color name="yellow">#ffe082</color>
+    <color name="yellow_light">#fff3e0</color>
 </resources>

@@ -3,7 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorPrimaryLight"
     android:orientation="vertical"
     tools:context=".FAQsActivity">
 
@@ -11,14 +10,12 @@
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="?actionBarSize"
-        android:background="@color/colorPrimaryDark"
-        android:elevation="4dp"
-        tools:targetApi="lollipop" />
+        android:background="?attr/colorPrimaryDark" />
 
     <us.feras.mdv.MarkdownView
         android:id="@+id/markdownView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/colorPrimaryLight" />
+        android:background="?attr/colorPrimary" />
 
 </LinearLayout>
