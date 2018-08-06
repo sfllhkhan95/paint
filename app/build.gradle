@@ -8,8 +8,8 @@ android {
         applicationId "sfllhkhan95.doodle"
         minSdkVersion 16
         targetSdkVersion 28
-        versionCode 23
-        versionName "3.5.1"
+        versionCode 24
+        versionName "3.5.2"
         multiDexEnabled true
     }
     buildTypes {
@@ -43,6 +43,7 @@ dependencies {
     implementation 'com.facebook.android:facebook-android-sdk:4.29.0'
     implementation 'com.facebook.android:facebook-messenger:4.29.0'
 
+    implementation 'com.github.apl-devs:appintro:v4.2.3'
     implementation 'com.github.QuadFlask:colorpicker:0.0.13'
     implementation 'com.github.wangjiegulu:rfab:2.0.0'
     implementation 'com.github.yukuku:ambilwarna:2.0.1'

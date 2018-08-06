@@ -4,8 +4,6 @@ import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 
@@ -15,6 +13,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import pk.aspirasoft.core.db.PersistentStorage;
 import sfllhkhan95.doodle.projects.HomeActivity;
 
 /**
@@ -25,8 +24,6 @@ import sfllhkhan95.doodle.projects.HomeActivity;
  */
 public class LaunchScreen extends AppCompatActivity {
 
-    private static final int STORAGE_PERMISSION_REQUEST = 200;
-
     private final long delay = 1500L;
     private final Timer timer = new Timer();
 
@@ -36,23 +33,23 @@ public class LaunchScreen extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
 
-        int permissionCheck = ContextCompat.checkSelfPermission(this,
+        final int permissionCheck = ContextCompat.checkSelfPermission(this,
                 Manifest.permission.WRITE_EXTERNAL_STORAGE);
 
-        if (permissionCheck != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(this,
-                    new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
-                    STORAGE_PERMISSION_REQUEST);
-        } else {
-            timer.schedule(new TimerTask() {
-                @Override
-                public void run() {
-                    startActivity(new Intent(getApplicationContext(), HomeActivity.class));
-                    overridePendingTransition(0, 0);
-                    finish();
-                }
-            }, delay);
-        }
+        Boolean introSeen = PersistentStorage.get("INTRO_SEEN", Boolean.class);
+        if (introSeen == null) introSeen = false;
+        final Boolean finalIntroSeen = introSeen;
+        timer.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                startActivity(new Intent(getApplicationContext(), !finalIntroSeen
+                        || permissionCheck != PackageManager.PERMISSION_GRANTED
+                        ? IntroActivity.class
+                        : HomeActivity.class));
+                overridePendingTransition(0, 0);
+                finish();
+            }
+        }, delay);
     }
 
     @Override
@@ -67,29 +64,6 @@ public class LaunchScreen extends AppCompatActivity {
             Crashlytics.logException(ex);
         }
 
-    }
-
-    @Override
-    public void onRequestPermissionsResult(int requestCode,
-                                           @NonNull String permissions[],
-                                           @NonNull int[] grantResults) {
-        switch (requestCode) {
-            case STORAGE_PERMISSION_REQUEST: {
-                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    timer.schedule(new TimerTask() {
-                        @Override
-                        public void run() {
-                            startActivity(new Intent(getApplicationContext(), HomeActivity.class));
-                            overridePendingTransition(0, 0);
-                            finish();
-                        }
-                    }, delay);
-
-                } else {
-                    finish();
-                }
-            }
-        }
     }
 
     @Override

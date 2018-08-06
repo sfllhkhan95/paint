@@ -1,23 +1,23 @@
 <resources>
     <!-- App details -->
-    <string name="app_name">Doodle</string>
-    <string name="app_name_v">Doodle  v</string>
-    <string name="company_name">AspiraSoft</string>
+    <string name="app_name" translatable="false">Doodle</string>
+    <string name="app_name_v" translatable="false">Doodle  v</string>
+    <string name="company_name" translatable="false">AspiraSoft</string>
 
     <!-- API strings -->
-    <string name="admob_ad_banner">ca-app-pub-6293532072634065/1203928393</string>
-    <string name="admob_ad_rewarded">ca-app-pub-6293532072634065/2952381497</string>
-    <string name="fb_app_id">140472159955272</string>
-    <string name="fb_login_protocol_scheme">fb140472159955272</string>
+    <string name="admob_ad_banner" translatable="false">ca-app-pub-6293532072634065/1203928393</string>
+    <string name="admob_ad_rewarded" translatable="false">ca-app-pub-6293532072634065/2952381497</string>
+    <string name="fb_app_id" translatable="false">140472159955272</string>
+    <string name="fb_login_protocol_scheme" translatable="false">fb140472159955272</string>
+
+    <!-- URLs -->
+    <string name="privacy_policy_url" translatable="false">https://www.iubenda.com/privacy-policy/35502767</string>
+    <string name="url_faqs" translatable="false">file:///android_asset/FAQ.md</string>
+    <string name="url_faqs_css" translatable="false">file:///android_asset/FAQ.css</string>
 
     <!-- Notification channels -->
     <string name="notifications_main_channel_name">Primary notification channel</string>
     <string name="notifications_main_channel_description">This is the main notifications channel.</string>
-
-    <!-- URLs -->
-    <string name="privacy_policy_url">https://www.iubenda.com/privacy-policy/35502767</string>
-    <string name="url_faqs">file:///android_asset/FAQ.md</string>
-    <string name="url_faqs_css">file:///android_asset/FAQ.css</string>
 
     <!-- Error messages -->
     <string name="error_no_internet">Check your internet connection</string>
@@ -27,23 +27,22 @@
     <!-- Confirmation and Status messages -->
     <string name="confirm_delete_title">Are you sure?</string>
     <string name="confirm_delete_body">This action will permanently delete the project. Do you really wish to continue?</string>
-    <string name="confirm_exit">Press back twice to exit!</string>
 
     <!-- Content descriptions (for Accessibility) -->
-    <string name="desc_avatar">User avatar</string>
-    <string name="desc_brush_size_icon">Brush size selector</string>
-    <string name="desc_delete_button">Delete button</string>
+    <string name="desc_avatar">User photo</string>
+    <string name="desc_brush_size_icon">Select brush size</string>
+    <string name="desc_delete_button">Delete</string>
     <string name="desc_grid_view">Grid View</string>
     <string name="desc_icon">Icon</string>
     <string name="desc_list_view">List View</string>
     <string name="desc_logo">Logo</string>
-    <string name="desc_messenger_share_button">Share button</string>
+    <string name="desc_messenger_share_button">Share to Messenger</string>
     <string name="desc_notifications">Notifications</string>
     <string name="desc_thumbnail">Project icon</string>
 
     <!-- Placeholders -->
     <string name="default_theme">Default</string>
-    <string name="default_value">0</string>
+    <string name="default_value" translatable="false">0</string>
     <string name="placeholder_dialog_body">Dialog description comes here</string>
     <string name="placeholder_name">First M. Last</string>
     <string name="placeholder_title">Title</string>
@@ -92,4 +91,21 @@
     <string name="menu_tools_pen">Pen</string>
     <string name="menu_tools_rect">Rectangle</string>
     <string name="menu_tools_shape">Shapes</string>
+
+    <!-- Intro Slides -->
+    <string name="label_intro_done_permission">Allow</string>
+    <string name="label_intro_end_normal">Start</string>
+
+    <string name="slide1_title">Welcome</string>
+    <string name="slide1_description">Doodle is your art-companion which you can use for anything from casual doodling to more serious drawings.</string>
+
+    <string name="slide2_title">Shapes &amp; Colours</string>
+    <string name="slide2_description">In addition to free-form doodling, Doodle allows you to draw predefined geometric shapes in colours of your choice.</string>
+
+    <string name="slide3_title">Doodle with Friends</string>
+    <string name="slide3_description">Send your creations to your friends on Facebook Messenger, and reply to their Doodle messages with your own Doodle without leaving Messenger.</string>
+
+    <string name="slide4_title">Grant Access</string>
+    <string name="slide4_description_permissions">Doodle requires storage and camera permissions to let you start a project with a Gallery image or from Camera.</string>
+    <string name="slide3_description_normal">Start with a blank project, or choose an image from Gallery or Camera.</string>
 </resources>

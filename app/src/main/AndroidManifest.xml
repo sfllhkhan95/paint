@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="sfllhkhan95.doodle">
 
+    <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
@@ -84,6 +85,10 @@
             android:name=".FAQsActivity"
             android:label="Doodle FAQs"
             android:parentActivityName=".auth.SettingsActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".IntroActivity"
             android:screenOrientation="portrait" />
 
         <!-- For local file storage -->
