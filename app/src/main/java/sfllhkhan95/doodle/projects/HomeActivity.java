@@ -94,7 +94,7 @@ public class HomeActivity extends AppCompatActivity implements OnUpdateListener,
         composeList.setOnRapidFloatingActionContentLabelListListener(this);
         List<RFACLabelItem> items = new ArrayList<>();
         items.add(new RFACLabelItem<Integer>()
-                .setLabel("Camera")
+                .setLabel(getString(R.string.label_camera))
                 .setResId(R.drawable.ic_open_camera)
                 .setIconNormalColor(getResources().getColor(R.color.orange))
                 .setIconPressedColor(getResources().getColor(R.color.slate_translucent))
@@ -102,7 +102,7 @@ public class HomeActivity extends AppCompatActivity implements OnUpdateListener,
                 .setWrapper(0)
         );
         items.add(new RFACLabelItem<Integer>()
-                .setLabel("Gallery")
+                .setLabel(getString(R.string.label_gallery))
                 .setResId(R.drawable.ic_open_gallery)
                 .setIconNormalColor(getResources().getColor(R.color.blood))
                 .setIconPressedColor(getResources().getColor(R.color.slate_translucent))
@@ -110,7 +110,7 @@ public class HomeActivity extends AppCompatActivity implements OnUpdateListener,
                 .setWrapper(1)
         );
         items.add(new RFACLabelItem<Integer>()
-                .setLabel("Blank Project")
+                .setLabel(getString(R.string.label_blank))
                 .setResId(R.drawable.ic_open_blank)
                 .setIconNormalColor(getResources().getColor(R.color.slate))
                 .setIconPressedColor(getResources().getColor(R.color.slate_translucent))
@@ -190,20 +190,20 @@ public class HomeActivity extends AppCompatActivity implements OnUpdateListener,
     public void onBackPressed() {
         ConfirmationDialog.Builder mBuilder = new ConfirmationDialog.Builder(this)
                 .setIcon(android.R.drawable.ic_menu_close_clear_cancel)
-                .setHeadline("Close")
-                .setTitle("Do you really wish to quit?")
-                .setMessage("Come back soon.\nHappy Doodling!")
-                .setPositiveButton("Exit", new View.OnClickListener() {
+                .setHeadline(getString(R.string.label_exit))
+                .setTitle(getString(R.string.confirm_quit))
+                .setMessage(getString(R.string.description_quit))
+                .setPositiveButton(getString(android.R.string.yes), new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
                         HomeActivity.super.onBackPressed();
                     }
                 }, true)
-                .setNegativeButton("Cancel", null, true);
+                .setNegativeButton(getString(android.R.string.cancel), null, true);
 
         if (mAdManager != null && mAdManager.isVideoAdLoaded()) {
-            mBuilder.setMessage("Doodle is a free, open-source project. Consider clicking on 'Watch Ad' below to see a video ad. This helps us generate revenue.\nHappy Doodling!")
-                    .setNegativeButton("Watch Ad", new View.OnClickListener() {
+            mBuilder.setMessage(getString(R.string.description_watch_ad))
+                    .setNegativeButton(getString(R.string.label_watch_ad), new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
                             mAdManager.showVideoAd(HomeActivity.this);

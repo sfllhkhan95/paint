@@ -34,26 +34,26 @@ public class DialogFactory {
 
     public Dialog revertConfirmationDialog(Context context) {
         return new ConfirmationDialog.Builder(context)
-                .setHeadline("Revert")
+                .setHeadline(context.getString(R.string.menu_action_revert))
                 .setIcon(R.drawable.ic_action_revert)
                 .setTitle("Reset to original?")
                 .setMessage("This action will erase all unsaved changes. It cannot be reversed. Do you really wish to proceed?")
-                .setPositiveButton("Reset", new View.OnClickListener() {
+                .setPositiveButton(context.getString(android.R.string.yes), new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         paintView.clear();
                     }
                 }, true)
-                .setNegativeButton("Cancel", null, true)
+                .setNegativeButton(context.getString(android.R.string.cancel), null, true)
                 .create();
     }
 
     public Dialog shareDialog(final MainActivity context) {
         return new OptionsDialog.Builder(context)
                 .setIcon(R.drawable.ic_tool_shapes)
-                .setTitle("Share")
-                .setMessage("Post to Facebook, send Doodle in a Messenger conversation, or share through other applications")
-                .setOption1("Facebook", R.drawable.ic_facebook, new View.OnClickListener() {
+                .setTitle(context.getString(R.string.menu_action_share))
+                .setMessage(context.getString(R.string.description_share))
+                .setOption1(context.getString(R.string.label_facebook), R.drawable.ic_facebook, new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
                         context.shareToFacebook();
@@ -77,7 +77,7 @@ public class DialogFactory {
     public Dialog supportDialog(final Activity context) {
         OptionsDialog.Builder mBuilder = new OptionsDialog.Builder(context)
                 .setIcon(R.drawable.ic_action_review)
-                .setTitle("Support Us")
+                .setTitle(context.getString(R.string.settings_icon_support))
                 .setMessage(mAdManager.hasRemovedAds()
                         ? "Thank you for supporting Doodle!\n\nDoodle is a free-of-charge, open-source project. Our team is hard at work to bring you the best product. You can support Doodle by reviewing it on Play Store or contributing to its source."
                         : "Doodle is a free-of-charge, open-source project. Our team is hard at work to bring you the best product. Minimal ads are the only income source from this app. You can support Doodle by reviewing it on Play Store, contributing to its source, or donating a one-time amount to remove all ads from the app.")
@@ -116,18 +116,18 @@ public class DialogFactory {
 
     public Dialog saveAsConfirmationDialog(Context context) {
         return new ConfirmationDialog.Builder(context)
-                .setHeadline("Save")
+                .setHeadline(context.getString(R.string.menu_action_save))
                 .setIcon(R.drawable.ic_action_save_as)
-                .setTitle("Save the updated Doodle?")
-                .setMessage("Your existing project will be updated in Gallery, and you can continue editing it later.")
-                .setPositiveButton("Save", new View.OnClickListener() {
+                .setTitle(context.getString(R.string.confirm_save))
+                .setMessage(context.getString(R.string.description_save))
+                .setPositiveButton(context.getString(R.string.menu_action_save), new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
                         paintView.save();
                         activity.finish();
                     }
                 }, true)
-                .setNegativeButton("Save Copy", new View.OnClickListener() {
+                .setNegativeButton(context.getString(android.R.string.copy), new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
                         paintView.saveAs();
@@ -139,35 +139,35 @@ public class DialogFactory {
 
     public Dialog saveConfirmationDialog(Context context) {
         return new ConfirmationDialog.Builder(context)
-                .setHeadline("Save")
+                .setHeadline(context.getString(R.string.menu_action_save))
                 .setIcon(R.drawable.ic_action_save)
-                .setTitle("Save the current Doodle?")
-                .setMessage("Your project will be saved to Gallery, and you can continue editing it later.")
-                .setPositiveButton("Save", new View.OnClickListener() {
+                .setTitle(context.getString(R.string.confirm_save))
+                .setMessage(context.getString(R.string.description_save))
+                .setPositiveButton(context.getString(android.R.string.yes), new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
                         paintView.save();
                         activity.finish();
                     }
                 }, true)
-                .setNegativeButton("Cancel", null, true)
+                .setNegativeButton(context.getString(android.R.string.cancel), null, true)
                 .create();
     }
 
     public Dialog exitConfirmationDialog(Context context) {
         return new ConfirmationDialog.Builder(context)
-                .setHeadline("Exit")
+                .setHeadline(context.getString(R.string.label_exit))
                 .setIcon(R.drawable.ic_action_info)
-                .setTitle("Exit without saving?")
-                .setMessage("All unsaved changes would be discarded. Do you really wish to proceed?")
-                .setPositiveButton("Discard", new View.OnClickListener() {
+                .setTitle(context.getString(R.string.confirm_exit))
+                .setMessage(context.getString(R.string.description_exit))
+                .setPositiveButton(context.getString(android.R.string.yes), new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         activity.finish();
                     }
                 }, true)
                 .setIcon(R.drawable.ic_tool_eraser)
-                .setNegativeButton("Save", new View.OnClickListener() {
+                .setNegativeButton(context.getString(R.string.menu_action_save), new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
                         paintView.save();

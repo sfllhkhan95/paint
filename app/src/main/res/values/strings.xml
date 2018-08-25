@@ -27,6 +27,9 @@
     <!-- Confirmation and Status messages -->
     <string name="confirm_delete_title">Are you sure?</string>
     <string name="confirm_delete_body">This action will permanently delete the project. Do you really wish to continue?</string>
+    <string name="confirm_exit">Exit without saving?</string>
+    <string name="confirm_save">Save the current Doodle?</string>
+    <string name="confirm_quit">Do you really wish to quit?</string>
 
     <!-- Content descriptions (for Accessibility) -->
     <string name="desc_avatar">User photo</string>
@@ -39,6 +42,11 @@
     <string name="desc_messenger_share_button">Share to Messenger</string>
     <string name="desc_notifications">Notifications</string>
     <string name="desc_thumbnail">Project icon</string>
+    <string name="description_save">Your project will be saved to Gallery, and you can continue editing it later.</string>
+    <string name="description_exit">All unsaved changes would be discarded. Do you really wish to proceed?</string>
+    <string name="description_share">Post to Facebook, send Doodle in a Messenger conversation, or share through other applications</string>
+    <string name="description_watch_ad">Doodle is a free, open-source project. Consider clicking on \'Watch Ad\' below to see a video ad. This helps us generate revenue. Happy Doodling!</string>
+    <string name="description_quit">Come back soon.\nHappy Doodling!</string>
 
     <!-- Placeholders -->
     <string name="default_theme">Default</string>
@@ -58,6 +66,12 @@
     <string name="label_op2">Option 2</string>
     <string name="label_op3">Option 3</string>
     <string name="label_posts">Posts</string>
+    <string name="label_exit">Close</string>
+    <string name="label_watch_ad">Watch Ad</string>
+    <string name="label_camera">Camera</string>
+    <string name="label_gallery">Gallery</string>
+    <string name="label_blank">Blank Project</string>
+    <string name="label_delete">Delete</string>
 
     <!-- Authentications strings -->
     <string name="connected">Sign Out</string>

@@ -46,18 +46,20 @@ public class Thumbnail implements View.OnClickListener {
 
             case R.id.deleteButton:
                 new ConfirmationDialog.Builder(view.getContext())
-                        .setHeadline("Delete")
+                        .setHeadline(view.getContext().getString(R.string.label_delete))
                         .setIcon(R.drawable.ic_action_delete)
                         .setTitle(view.getContext().getResources().getString(R.string.confirm_delete_title))
                         .setMessage(view.getContext().getResources().getString(R.string.confirm_delete_body))
-                        .setPositiveButton("Delete", new View.OnClickListener() {
-                            @Override
-                            public void onClick(View view) {
-                                DoodleDatabase.removeDoodle(Thumbnail.this.getName());
-                                inflater.run();
-                            }
-                        }, true)
-                        .setNegativeButton("Cancel", null, true)
+                        .setPositiveButton(view.getContext().getString(android.R.string.ok),
+                                new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View view) {
+                                        DoodleDatabase.removeDoodle(Thumbnail.this.getName());
+                                        inflater.run();
+                                    }
+                                }, true)
+                        .setNegativeButton(view.getContext().getString(android.R.string.cancel),
+                                null, true)
                         .create()
                         .show();
                 break;
