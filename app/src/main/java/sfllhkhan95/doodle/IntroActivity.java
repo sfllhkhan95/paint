@@ -15,6 +15,7 @@ import com.github.paolorotolo.appintro.AppIntro;
 import com.github.paolorotolo.appintro.AppIntroFragment;
 import com.github.paolorotolo.appintro.model.SliderPage;
 
+import pk.aspirasoft.core.db.PersistentStorage;
 import sfllhkhan95.doodle.core.utils.ThemeAttrs;
 import sfllhkhan95.doodle.projects.HomeActivity;
 
@@ -78,7 +79,6 @@ public class IntroActivity extends AppIntro {
                 : getString(R.string.label_intro_end_normal));
     }
 
-
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String permissions[],
                                            @NonNull int[] grantResults) {
@@ -107,9 +107,17 @@ public class IntroActivity extends AppIntro {
 
     @Override
     public void onDonePressed(Fragment currentFragment) {
+        PersistentStorage.put("INTRO_SEEN", true);
+
         startActivity(new Intent(getApplicationContext(), HomeActivity.class));
         overridePendingTransition(0, 0);
         finish();
+    }
+
+    @Override
+    public void startActivity(Intent intent) {
+        super.startActivity(intent);
+        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
     }
 
     private class SlideFragmentBuilder {

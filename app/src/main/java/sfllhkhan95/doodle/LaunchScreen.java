@@ -46,7 +46,6 @@ public class LaunchScreen extends AppCompatActivity {
                         || permissionCheck != PackageManager.PERMISSION_GRANTED
                         ? IntroActivity.class
                         : HomeActivity.class));
-                overridePendingTransition(0, 0);
                 finish();
             }
         }, delay);
@@ -67,6 +66,12 @@ public class LaunchScreen extends AppCompatActivity {
     }
 
     @Override
+    public void startActivity(Intent intent) {
+        super.startActivity(intent);
+        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+    }
+
+    @Override
     protected void onDestroy() {
         try {
             timer.cancel();
@@ -74,4 +79,5 @@ public class LaunchScreen extends AppCompatActivity {
             super.onDestroy();
         }
     }
+
 }
