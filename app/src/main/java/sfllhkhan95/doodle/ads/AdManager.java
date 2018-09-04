@@ -39,7 +39,6 @@ public class AdManager {
     private AdManager(@NonNull Context context) {
         MobileAds.initialize(context, AdManager.ADMOB_APP_ID);
         this.mBillingManager = BillingManager.getInstance(context);
-        loadVideoAd(context);
     }
 
     /**
@@ -179,7 +178,7 @@ public class AdManager {
      * @param context the {@link Context} which is used to create this ad
      * @since 3.5.0
      */
-    private void loadVideoAd(@NonNull Context context) {
+    public void loadVideoAd(@NonNull Context context) {
         mVideoAd = MobileAds.getRewardedVideoAdInstance(context);
         if (mVideoAd != null) {
             mVideoAd.loadAd(context.getString(R.string.admob_ad_rewarded),

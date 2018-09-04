@@ -156,6 +156,13 @@ public class HomeActivity extends AppCompatActivity implements OnUpdateListener,
     }
 
     @Override
+    protected void onStart() {
+        super.onStart();
+        mAdManager = AdManager.getInstance();
+        mAdManager.loadVideoAd(this);
+    }
+
+    @Override
     protected void onResume() {
         super.onResume();
         // Inflate thumbnails of saved projects
@@ -212,6 +219,12 @@ public class HomeActivity extends AppCompatActivity implements OnUpdateListener,
         }
 
         mBuilder.create().show();
+    }
+
+    @Override
+    public void startActivity(Intent intent) {
+        super.startActivity(intent);
+        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
     }
 
     @Override
@@ -383,15 +396,4 @@ public class HomeActivity extends AppCompatActivity implements OnUpdateListener,
         findViewById(R.id.loginButton).performClick();
     }
 
-    @Override
-    public void startActivity(Intent intent) {
-        super.startActivity(intent);
-        overridePendingTransition(0, 0);
-    }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-        mAdManager = AdManager.getInstance();
-    }
 }
