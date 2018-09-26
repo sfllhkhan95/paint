@@ -104,7 +104,7 @@ public class DoodleApplication extends Application {
         AppEventsLogger.activateApp(this);
 
         // Initialize Ad SDK
-        AdManager.initialize(this);
+        AdManager.Companion.initialize(this);
     }
 
 }

@@ -130,7 +130,7 @@ public class OptionsDialog extends Dialog {
 
         // Display ads if they are enabled
         final AdView mAdView = this.findViewById(R.id.adView);
-        AdManager.getInstance().showBannerAd(mAdView, new AdListener() {
+        AdManager.Companion.getInstance().showBannerAd(mAdView, new AdListener() {
             @Override
             public void onAdLoaded() {
                 super.onAdLoaded();

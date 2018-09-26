@@ -22,7 +22,7 @@ import sfllhkhan95.doodle.core.views.PaintView;
  */
 public class DialogFactory {
 
-    private final AdManager mAdManager = AdManager.getInstance();
+    private final AdManager mAdManager = AdManager.Companion.getInstance();
 
     private final PaintView paintView;
     private final Activity activity;

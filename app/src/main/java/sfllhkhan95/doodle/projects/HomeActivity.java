@@ -158,7 +158,7 @@ public class HomeActivity extends AppCompatActivity implements OnUpdateListener,
     @Override
     protected void onStart() {
         super.onStart();
-        mAdManager = AdManager.getInstance();
+        mAdManager = AdManager.Companion.getInstance();
         mAdManager.loadVideoAd(this);
     }
 
