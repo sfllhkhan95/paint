@@ -179,7 +179,7 @@ public class HomeActivity extends AppCompatActivity implements OnUpdateListener,
             mUserView.showUser(mAuthHandler.getCurrentUser());
             findViewById(R.id.facebookConnectButton).setVisibility(View.GONE);
             findViewById(R.id.signOutButton).setVisibility(View.VISIBLE);
-            if (getSupportActionBar() != null) {
+            if (getSupportActionBar() != null && mAuthHandler.getCurrentUser() != null) {
                 getSupportActionBar().setTitle(mAuthHandler.getCurrentUser().getFirstName());
             }
         } else {
@@ -206,7 +206,12 @@ public class HomeActivity extends AppCompatActivity implements OnUpdateListener,
                         HomeActivity.super.onBackPressed();
                     }
                 }, true)
-                .setNegativeButton(getString(android.R.string.cancel), null, true);
+                .setNegativeButton(getString(android.R.string.cancel), new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+
+                    }
+                }, true);
 
         if (mAdManager != null && mAdManager.isVideoAdLoaded()) {
             mBuilder.setMessage(getString(R.string.description_watch_ad))
