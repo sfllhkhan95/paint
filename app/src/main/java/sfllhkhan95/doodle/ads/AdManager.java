@@ -38,7 +38,7 @@ public class AdManager {
 
     private AdManager(@NonNull Context context) {
         MobileAds.initialize(context, AdManager.ADMOB_APP_ID);
-        this.mBillingManager = BillingManager.getInstance(context);
+        this.mBillingManager = BillingManager.Companion.getInstance(context);
     }
 
     /**
