@@ -72,7 +72,7 @@ class NotificationsDatabase private constructor() : Serializable {
                     db!!.value = NotificationsDatabase()
                 }
 
-                return db!!.value
+                return db!!.value!!
             }
     }
 

@@ -11,7 +11,11 @@ class PersistentValue<T : Any> {
     private val tag: String
     private val defValue: T?
 
-    private var value: T? = null
+    var value: T? = null
+        set(value) {
+            field = value
+            save()
+        }
 
     constructor(tag: String, type: Class<T>) {
         this.tag = tag
@@ -38,15 +42,6 @@ class PersistentValue<T : Any> {
 
     fun reset() {
         this.value = defValue
-        save()
-    }
-
-    fun getValue(): T? {
-        return value
-    }
-
-    fun setValue(value: T) {
-        this.value = value
         save()
     }
 

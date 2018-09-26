@@ -2,10 +2,7 @@ package pk.aspirasoft.core.db
 
 import android.content.Context
 import android.content.SharedPreferences
-
 import com.google.gson.Gson
-
-import java.lang.reflect.Type
 
 /**
  * PersistentStorage defines and provides a local storage space for saving application's persistent
@@ -21,16 +18,13 @@ object PersistentStorage {
         preferences = context.getSharedPreferences(key, Context.MODE_PRIVATE)
     }
 
+
     operator fun <T> get(key: String, type: Class<T>): T? {
         val gson = Gson()
-        val json = preferences!!.getString(key, "")
-        return type.cast(gson.fromJson(json, type))
-    }
-
-    fun <T> getGeneric(key: String, type: Type): T {
-        val gson = Gson()
-        val json = preferences!!.getString(key, "")
-        return gson.fromJson<Any>(json, type) as T
+        val json = preferences!!.getString(key, null)
+        return json?.let {
+            gson.fromJson(it, type)
+        }
     }
 
     fun put(key: String, value: Any) {

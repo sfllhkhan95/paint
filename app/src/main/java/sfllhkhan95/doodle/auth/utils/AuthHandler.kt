@@ -150,7 +150,7 @@ class AuthHandler(private val context: Context) : FacebookCallback<LoginResult>,
     }
 
     private inner class FBProfileTracker : ProfileTracker() {
-        override fun onCurrentProfileChanged(oldProfile: Profile, currentProfile: Profile) {
+        override fun onCurrentProfileChanged(oldProfile: Profile?, currentProfile: Profile?) {
             fbProfile = currentProfile
             if (fbProfile == null) {
                 signOut()

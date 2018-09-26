@@ -50,11 +50,12 @@ class PaintView : View {
 
     override fun onDraw(canvas: Canvas) {
         canvas.save()
+        this.canvas?.let {
+            it.drawBackground()
+            it.drawShapes(tools)
 
-        this.canvas!!.drawBackground()
-        this.canvas!!.drawShapes(tools)
-
-        canvas.drawBitmap(this.canvas!!.bitmap, 0f, 0f, null)
+            canvas.drawBitmap(it.bitmap, 0f, 0f, null)
+        }
         canvas.restore()
     }
 
@@ -92,11 +93,11 @@ class PaintView : View {
 
     private fun touchStart(touchAt: PointF) {
         if (this.shapeType == ColorPicker::class.java) {
-            val color = canvas!!.getColor(touchAt)
-            if (this.onColorPickedListener != null) {
-                this.onColorPickedListener!!.onColorPicked(color)
+            canvas?.let {
+                val color = it.getColor(touchAt)
+                this.onColorPickedListener?.onColorPicked(color)
+                return
             }
-            return
         }
 
         iTouch.set(touchAt)
@@ -105,11 +106,11 @@ class PaintView : View {
 
     private fun touchMove(touchAt: PointF) {
         if (this.shapeType == ColorPicker::class.java) {
-            val color = canvas!!.getColor(touchAt)
-            if (this.onColorPickedListener != null) {
-                this.onColorPickedListener!!.onColorPicked(color)
+            canvas?.let {
+                val color = it.getColor(touchAt)
+                this.onColorPickedListener?.onColorPicked(color)
+                return
             }
-            return
         }
 
 
@@ -124,41 +125,40 @@ class PaintView : View {
             tools.add(tool)
         }
 
-        val dx = Math.abs(touchAt.x - fTouch!!.x)
-        val dy = Math.abs(touchAt.y - fTouch!!.y)
-        if (dx < TOUCH_TOLERANCE && dy < TOUCH_TOLERANCE) {
-            return
-        }
+        fTouch?.let {
+            val dx = Math.abs(touchAt.x - it.x)
+            val dy = Math.abs(touchAt.y - it.y)
+            if (dx < TOUCH_TOLERANCE && dy < TOUCH_TOLERANCE) {
+                return
+            }
 
-        fTouch!!.set(touchAt)
-        val currentTool = tools.current
-        currentTool?.draw(iTouch, fTouch!!)
+            it.set(touchAt)
+            tools.current?.draw(iTouch, it)
+        }
     }
 
     private fun touchUp(touchAt: PointF) {
-        if (this.shapeType == ColorPicker::class.java) {
-            val color = canvas!!.getColor(touchAt)
-            if (this.onColorPickedListener != null) {
-                this.onColorPickedListener!!.onColorPicked(color)
+        canvas?.let {
+            if (this.shapeType == ColorPicker::class.java) {
+                val color = it.getColor(touchAt)
+                this.onColorPickedListener?.onColorPicked(color)
+                return
             }
-            return
-        }
 
-        if (fTouch == null) {
-            fTouch = touchAt
-            val tool = ToolFactory[shapeType!!, brush]
-            tool!!.moveTo(touchAt.x, touchAt.y)
-            if (tool.javaClass == Eraser::class.java) {
-                (tool as Eraser).initEraser(canvas!!)
+            if (fTouch == null) {
+                fTouch = touchAt
+                val tool = ToolFactory[shapeType!!, brush]
+                tool!!.moveTo(touchAt.x, touchAt.y)
+                if (tool.javaClass == Eraser::class.java) {
+                    (tool as Eraser).initEraser(it)
+                }
+                tools.add(tool)
             }
-            tools.add(tool)
-        }
 
-        val currentTool = tools.current
-        if (currentTool != null) {
-            currentTool.draw(iTouch, fTouch!!)
-            if (canvasActionListener != null) {
-                canvasActionListener!!.onDrawPath()
+            fTouch?.let {
+                val currentTool = tools.current
+                currentTool?.draw(iTouch, it)
+                canvasActionListener?.onDrawPath()
             }
         }
     }
@@ -167,36 +167,30 @@ class PaintView : View {
         tools.clear()
         invalidate()
 
-        if (canvasActionListener != null) {
-            canvasActionListener!!.onRevert()
-        }
+        canvasActionListener?.onRevert()
     }
 
     fun redo() {
         val canRedo = tools.redo()
         invalidate()
 
-        if (canvasActionListener != null) {
-            canvasActionListener!!.onRedo(canRedo)
-        }
+        canvasActionListener?.onRedo(canRedo)
     }
 
     fun undo() {
         val canUndo = tools.undo()
         invalidate()
 
-        if (canvasActionListener != null) {
-            canvasActionListener!!.onUndo(canUndo)
-        }
+        canvasActionListener?.onUndo(canUndo)
     }
 
     fun save() {
-        canvas!!.saveProject()
+        canvas?.saveProject()
     }
 
     fun saveAs() {
-        canvas!!.clearProjectName()
-        canvas!!.saveProject()
+        canvas?.clearProjectName()
+        canvas?.saveProject()
     }
 
     fun setCanvasActionListener(canvasActionListener: CanvasActionListener) {

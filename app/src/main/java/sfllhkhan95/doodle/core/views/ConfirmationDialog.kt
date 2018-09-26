@@ -37,11 +37,9 @@ class ConfirmationDialog(context: Context) : Dialog(context) {
     private var negativeButtonLabel = ""
     private var dismissAfterNegative = false
 
-    override fun onCreate(savedInstanceState: Bundle) {
+    override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        if (window != null) {
-            window!!.setBackgroundDrawableResource(android.R.color.transparent)
-        }
+        window?.setBackgroundDrawableResource(android.R.color.transparent)
         setContentView(R.layout.dialog_confirmation)
 
         val titleView = findViewById<TextView>(R.id.title)
@@ -62,9 +60,7 @@ class ConfirmationDialog(context: Context) : Dialog(context) {
             val positiveButton = findViewById<Button>(R.id.positiveButton)
             positiveButton.text = positiveButtonLabel
             positiveButton.setOnClickListener {
-                if (positiveButtonListener != null) {
-                    positiveButtonListener!!.onClick(positiveButton)
-                }
+                positiveButtonListener?.onClick(positiveButton)
                 if (dismissAfterPositive) {
                     dismiss()
                 }
@@ -76,9 +72,7 @@ class ConfirmationDialog(context: Context) : Dialog(context) {
             val negativeButton = findViewById<Button>(R.id.negativeButton)
             negativeButton.text = negativeButtonLabel
             negativeButton.setOnClickListener {
-                if (negativeButtonListener != null) {
-                    negativeButtonListener!!.onClick(negativeButton)
-                }
+                negativeButtonListener?.onClick(negativeButton)
                 if (dismissAfterNegative) {
                     dismiss()
                 }

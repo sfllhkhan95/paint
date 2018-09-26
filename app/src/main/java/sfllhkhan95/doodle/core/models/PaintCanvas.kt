@@ -54,7 +54,7 @@ class PaintCanvas(context: Context, metrics: DisplayMetrics) : Canvas() {
         if (projectName == null) {
             DoodleDatabase.saveDoodle(bitmap)
         } else {
-            DoodleDatabase.saveDoodle(bitmap, projectName)
+            DoodleDatabase.saveDoodle(bitmap, projectName!!)
         }
     }
 

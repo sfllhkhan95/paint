@@ -16,7 +16,7 @@ class Thumbnail(
 
     override fun onClick(view: View) {
         when (view.id) {
-            R.id.shareButton -> inflater.share(name)
+            R.id.shareButton -> name?.let { inflater.share(name!!) }
 
             R.id.deleteButton -> ConfirmationDialog.Builder(view.context)
                     .setHeadline(view.context.getString(R.string.label_delete))
@@ -24,12 +24,14 @@ class Thumbnail(
                     .setTitle(view.context.resources.getString(R.string.confirm_delete_title))
                     .setMessage(view.context.resources.getString(R.string.confirm_delete_body))
                     .setPositiveButton(view.context.getString(android.R.string.ok),
-                            {
-                                DoodleDatabase.removeDoodle(this@Thumbnail.name)
+                            View.OnClickListener {
+                                name?.let {
+                                    DoodleDatabase.removeDoodle(name!!)
+                                }
                                 inflater.run()
                             }, true)
                     .setNegativeButton(view.context.getString(android.R.string.cancel),
-                            null, true)
+                            View.OnClickListener { }, true)
                     .create()
                     .show()
         }

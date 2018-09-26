@@ -57,11 +57,9 @@ class OptionsDialog private constructor(context: Context) : Dialog(context) {
 
     private var labelsEnabled = false
 
-    override fun onCreate(savedInstanceState: Bundle) {
+    override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        if (window != null) {
-            window!!.setBackgroundDrawableResource(android.R.color.transparent)
-        }
+        window?.setBackgroundDrawableResource(android.R.color.transparent)
         setContentView(R.layout.dialog_options)
 
         // Get UI elements
@@ -80,10 +78,10 @@ class OptionsDialog private constructor(context: Context) : Dialog(context) {
 
         // Configure UI elements
         if (iconId != -1) {
-            dialogIcon!!.setImageResource(iconId)
+            dialogIcon?.setImageResource(iconId)
         }
-        titleView!!.text = title
-        messageView!!.text = message
+        titleView?.text = title
+        messageView?.text = message
 
         findViewById<View>(R.id.op1).visibility = View.GONE
         findViewById<View>(R.id.op2).visibility = View.GONE
@@ -91,29 +89,29 @@ class OptionsDialog private constructor(context: Context) : Dialog(context) {
 
         if (iconOp1Id != -1) {
             findViewById<View>(R.id.op1).visibility = View.VISIBLE
-            option1Icon!!.setImageResource(iconOp1Id)
-            option1Label!!.text = option1
+            option1Icon?.setImageResource(iconOp1Id)
+            option1Label?.text = option1
 
-            option1Icon!!.setOnClickListener(op1Listener)
-            option1Label!!.setOnClickListener(op1Listener)
+            option1Icon?.setOnClickListener(op1Listener)
+            option1Label?.setOnClickListener(op1Listener)
         }
 
         if (iconOp2Id != -1) {
             findViewById<View>(R.id.op2).visibility = View.VISIBLE
-            option2Icon!!.setImageResource(iconOp2Id)
-            option2Label!!.text = option2
+            option2Icon?.setImageResource(iconOp2Id)
+            option2Label?.text = option2
 
-            option2Icon!!.setOnClickListener(op2Listener)
-            option2Label!!.setOnClickListener(op2Listener)
+            option2Icon?.setOnClickListener(op2Listener)
+            option2Label?.setOnClickListener(op2Listener)
         }
 
         if (iconOp3Id != -1) {
             findViewById<View>(R.id.op3).visibility = View.VISIBLE
-            option3Icon!!.setImageResource(iconOp3Id)
-            option3Label!!.text = option3
+            option3Icon?.setImageResource(iconOp3Id)
+            option3Label?.text = option3
 
-            option3Icon!!.setOnClickListener(op3Listener)
-            option3Label!!.setOnClickListener(op3Listener)
+            option3Icon?.setOnClickListener(op3Listener)
+            option3Label?.setOnClickListener(op3Listener)
         }
 
         if (labelsEnabled) {
@@ -133,15 +131,15 @@ class OptionsDialog private constructor(context: Context) : Dialog(context) {
     }
 
     private fun showLabels() {
-        option1Label!!.visibility = View.VISIBLE
-        option2Label!!.visibility = View.VISIBLE
-        option3Label!!.visibility = View.VISIBLE
+        option1Label?.visibility = View.VISIBLE
+        option2Label?.visibility = View.VISIBLE
+        option3Label?.visibility = View.VISIBLE
     }
 
     private fun hideLabels() {
-        option1Label!!.visibility = View.GONE
-        option2Label!!.visibility = View.GONE
-        option3Label!!.visibility = View.GONE
+        option1Label?.visibility = View.GONE
+        option2Label?.visibility = View.GONE
+        option3Label?.visibility = View.GONE
     }
 
     class Builder(context: Context) {
