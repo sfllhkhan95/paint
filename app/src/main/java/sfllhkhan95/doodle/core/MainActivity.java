@@ -257,7 +257,7 @@ public class MainActivity extends AppCompatActivity implements
             cursor.close();
 
             Bitmap bitmapFromFile = DoodleFactory.loadFromPath(picturePath, metrics.widthPixels, metrics.heightPixels);
-            canvas = PaintCanvas.loadFromBitmap(this, metrics, bitmapFromFile);
+            canvas = PaintCanvas.Companion.loadFromBitmap(this, metrics, bitmapFromFile);
 
             success = true;
         } catch (Exception ex) {
@@ -276,7 +276,7 @@ public class MainActivity extends AppCompatActivity implements
         PaintCanvas canvas;
         try {
             Bitmap bitmapFromFile = DoodleFactory.loadFromPath(cameraImage, metrics.widthPixels, metrics.heightPixels);
-            canvas = PaintCanvas.loadFromBitmap(this, metrics, bitmapFromFile);
+            canvas = PaintCanvas.Companion.loadFromBitmap(this, metrics, bitmapFromFile);
 
             success = true;
         } catch (Exception ex) {
@@ -301,7 +301,7 @@ public class MainActivity extends AppCompatActivity implements
 
     private PaintCanvas resumeProject(DisplayMetrics metrics, String savedDoodle) {
         isExisting = true;
-        return PaintCanvas.loadFromPath(this, metrics, savedDoodle);
+        return PaintCanvas.Companion.loadFromPath(this, metrics, savedDoodle);
     }
 
     private void share(File tempFile) {

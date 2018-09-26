@@ -137,7 +137,7 @@ public class PaintView extends View {
         if (fTouch == null) {
             fTouch = new PointF();
 
-            Tool tool = ToolFactory.get(shapeType, mBrush);
+            Tool tool = ToolFactory.INSTANCE.get(shapeType, mBrush);
             tool.moveTo(iTouch.x, iTouch.y);
             if (tool.getClass().equals(Eraser.class)) {
                 ((Eraser) tool).initEraser(mCanvas);
@@ -170,7 +170,7 @@ public class PaintView extends View {
         if (iTouch == null) return;
         if (fTouch == null) {
             fTouch = touchAt;
-            Tool tool = ToolFactory.get(shapeType, mBrush);
+            Tool tool = ToolFactory.INSTANCE.get(shapeType, mBrush);
             tool.moveTo(touchAt.x, touchAt.y);
             if (tool.getClass().equals(Eraser.class)) {
                 ((Eraser) tool).initEraser(mCanvas);

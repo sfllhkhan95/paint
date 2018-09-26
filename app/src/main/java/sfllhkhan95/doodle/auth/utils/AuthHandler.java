@@ -109,7 +109,7 @@ public class AuthHandler implements FacebookCallback<LoginResult>, OnCompleteLis
 
     private void onFirebaseSignedIn(FirebaseUser firebaseUser) {
         if (currentUser == null) {
-            currentUser = User.from(firebaseUser);
+            currentUser = User.Companion.from(firebaseUser);
         } else {
             currentUser.updateWith(firebaseUser);
         }
@@ -144,7 +144,7 @@ public class AuthHandler implements FacebookCallback<LoginResult>, OnCompleteLis
 
     private void onFacebookSignedIn(Profile fbProfile) {
         if (currentUser == null) {
-            currentUser = User.from(fbProfile);
+            currentUser = User.Companion.from(fbProfile);
         } else {
             currentUser.updateWith(fbProfile);
         }

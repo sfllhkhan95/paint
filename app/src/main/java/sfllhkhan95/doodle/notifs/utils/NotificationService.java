@@ -30,7 +30,7 @@ public class NotificationService extends FirebaseMessagingService {
         RemoteMessage.Notification notification = remoteMessage.getNotification();
         if (notification != null) {
             pushNotif(notification);
-            NotificationsDatabase.getInstance().add(notification);
+            NotificationsDatabase.Companion.getInstance().add(notification);
         }
     }
 

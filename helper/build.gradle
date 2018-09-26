@@ -1,8 +1,9 @@
 apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
 
 android {
     compileSdkVersion 28
-    buildToolsVersion '28.0.1'
+    buildToolsVersion '28.0.2'
     defaultConfig {
         minSdkVersion 14
         targetSdkVersion 28
@@ -19,6 +20,10 @@ android {
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-    implementation 'com.google.code.gson:gson:2.8.4'
+    implementation 'com.google.code.gson:gson:2.8.5'
     implementation 'org.jetbrains:annotations-java5:15.0'
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+}
+repositories {
+    mavenCentral()
 }
