@@ -1,6 +1,11 @@
 package sfllhkhan95.doodle.projects.views;
 
+import android.graphics.Bitmap;
 import android.widget.ImageView;
+
+import com.bumptech.glide.Glide;
+
+import java.io.ByteArrayOutputStream;
 
 import sfllhkhan95.doodle.projects.models.Thumbnail;
 
@@ -18,7 +23,12 @@ public class ThumbnailView {
     }
 
     public void setThumbnail(Thumbnail thumbnail) {
-        iconView.setImageBitmap(thumbnail.getIcon());
+        Bitmap mBitmap = thumbnail.getIcon();
+        ByteArrayOutputStream stream = new ByteArrayOutputStream();
+        mBitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
+        Glide.with(iconView.getContext())
+                .load(stream.toByteArray())
+                .into(iconView);
     }
 
 }

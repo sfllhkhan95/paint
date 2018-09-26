@@ -8,26 +8,23 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import pk.aspirasoft.core.io.OnCompleteListener;
+import com.bumptech.glide.Glide;
+
 import sfllhkhan95.doodle.R;
 import sfllhkhan95.doodle.auth.models.User;
-import sfllhkhan95.doodle.auth.utils.FacebookUserPhotoDownloader;
 
 /**
  * @author saifkhichi96
- * @version 2.0.0
+ * @version 3.0.0
  * created on 23/10/2017 2:28 AM
  */
-public class UserView extends View implements OnCompleteListener<Bitmap> {
+public class UserView extends View {
 
     private final Bitmap DEFAULT_AVATAR;
 
     private TextView mUserNameView;
     private TextView mUserEmailView;
     private ImageView mAvatarView;
-
-    private static Bitmap mUserAvatar;
-    private static boolean isDownloading;
 
     public UserView(Context context) {
         super(context);
@@ -72,34 +69,16 @@ public class UserView extends View implements OnCompleteListener<Bitmap> {
         showEmail(user.getEmail());
         if (user.getUid() == null || user.getUid().isEmpty()) {
             showAvatar(DEFAULT_AVATAR);
-        } else if (mUserAvatar != null) {
-            onSuccess(mUserAvatar);
-        } else {
-            showAvatar(DEFAULT_AVATAR);
-            downloadUserPhoto(user.getUid());
         }
+
+        downloadUserPhoto(user.getUid());
     }
 
     private void downloadUserPhoto(String uid) {
-        if (!isDownloading) {
-            FacebookUserPhotoDownloader downloadTask = new FacebookUserPhotoDownloader(uid, 150, 150);
-            downloadTask.setPhotoTracker(this);
-            downloadTask.execute();
-
-            isDownloading = true;
-        }
+        Glide.with(this)
+                .load("https://graph.facebook.com/" + uid +
+                        "/picture?width=150&height=150")
+                .into(mAvatarView);
     }
 
-    @Override
-    public void onSuccess(@NonNull Bitmap userAvatar) {
-        mUserAvatar = userAvatar;
-        showAvatar(userAvatar);
-
-        isDownloading = false;
-    }
-
-    @Override
-    public void onFailure(@NonNull Exception ex) {
-        isDownloading = false;
-    }
 }
