@@ -31,7 +31,7 @@ public class IntroActivity extends AppIntro {
         super.onCreate(savedInstanceState);
         addSlide(new SlideFragmentBuilder()
                 .image(R.drawable.paintbrush)
-                .backgroundColor(ThemeAttrs.colorPrimaryDark(this))
+                .backgroundColor(ThemeAttrs.INSTANCE.colorPrimaryDark(this))
                 .title(getString(R.string.slide1_title))
                 .description(getString(R.string.slide1_description))
                 .build());

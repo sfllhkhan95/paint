@@ -272,7 +272,7 @@ public class HomeActivity extends AppCompatActivity implements OnUpdateListener,
             MenuItem menuItem = menu.findItem(R.id.settings);
             Drawable drawable = menuItem.getIcon();
             drawable.mutate();
-            drawable.setColorFilter(ThemeAttrs.colorPrimaryDark(this),
+            drawable.setColorFilter(ThemeAttrs.INSTANCE.colorPrimaryDark(this),
                     PorterDuff.Mode.SRC_IN);
         } catch (NullPointerException ex) {
             Crashlytics.logException(ex);
@@ -372,7 +372,7 @@ public class HomeActivity extends AppCompatActivity implements OnUpdateListener,
 
     public void showList(View view) {
         ((ImageView) findViewById(R.id.gridButton)).setColorFilter(getResources().getColor(R.color.white));
-        ((ImageView) findViewById(R.id.listButton)).setColorFilter(ThemeAttrs.colorPrimaryDark(this));
+        ((ImageView) findViewById(R.id.listButton)).setColorFilter(ThemeAttrs.INSTANCE.colorPrimaryDark(this));
         ((ImageView) findViewById(R.id.notificationsButton)).setColorFilter(getResources().getColor(R.color.white));
 
         findViewById(R.id.savedProjectsGrid).setVisibility(View.GONE);
@@ -382,7 +382,7 @@ public class HomeActivity extends AppCompatActivity implements OnUpdateListener,
     }
 
     public void showGrid(View view) {
-        ((ImageView) findViewById(R.id.gridButton)).setColorFilter(ThemeAttrs.colorPrimaryDark(this));
+        ((ImageView) findViewById(R.id.gridButton)).setColorFilter(ThemeAttrs.INSTANCE.colorPrimaryDark(this));
         ((ImageView) findViewById(R.id.listButton)).setColorFilter(getResources().getColor(R.color.white));
         ((ImageView) findViewById(R.id.notificationsButton)).setColorFilter(getResources().getColor(R.color.white));
 
