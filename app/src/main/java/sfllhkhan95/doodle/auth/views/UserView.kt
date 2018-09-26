@@ -42,37 +42,39 @@ class UserView(context: Context) : View(context) {
 
     private fun showName(name: String?) {
         if (mUserNameView != null && name != null && !name.isEmpty()) {
-            mUserNameView!!.text = name
+            mUserNameView?.text = name
         }
     }
 
     private fun showEmail(email: String?) {
         if (mUserEmailView != null && email != null && !email.isEmpty()) {
-            mUserEmailView!!.text = email.split("@".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()[0]
+            mUserEmailView?.text = email.split("@".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()[0]
         }
     }
 
     private fun showAvatar(avatar: Bitmap?) {
-        if (mAvatarView != null && avatar != null) {
-            mAvatarView!!.setImageBitmap(avatar)
+        avatar?.let {
+            mAvatarView?.setImageBitmap(avatar)
         }
     }
 
-    fun showUser(user: User) {
-        showName(user.firstName)
-        showEmail(user.email)
-        if (user.uid == null || user.uid!!.isEmpty()) {
+    fun showUser(user: User?) {
+        showName(user?.firstName)
+        showEmail(user?.email)
+        if (user?.uid == null || user.uid!!.isEmpty()) {
             showAvatar(DEFAULT_AVATAR)
         }
 
-        downloadUserPhoto(user.uid)
+        downloadUserPhoto(user?.uid)
     }
 
     private fun downloadUserPhoto(uid: String?) {
-        Glide.with(this)
-                .load("https://graph.facebook.com/" + uid +
-                        "/picture?width=150&height=150")
-                .into(mAvatarView!!)
+        mAvatarView?.let {
+            Glide.with(this)
+                    .load("https://graph.facebook.com/" + uid +
+                            "/picture?width=150&height=150")
+                    .into(it)
+        }
     }
 
 }

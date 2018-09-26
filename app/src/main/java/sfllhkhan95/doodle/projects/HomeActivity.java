@@ -166,7 +166,7 @@ public class HomeActivity extends AppCompatActivity implements OnUpdateListener,
     protected void onResume() {
         super.onResume();
         // Inflate thumbnails of saved projects
-        thumbnailInflater.setSavedProjects(DoodleDatabase.listDoodles());
+        thumbnailInflater.setSavedProjects(DoodleDatabase.INSTANCE.listDoodles());
         runOnUiThread(thumbnailInflater);
 
         // Update UI

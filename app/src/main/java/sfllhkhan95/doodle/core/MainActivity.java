@@ -256,7 +256,7 @@ public class MainActivity extends AppCompatActivity implements
             String picturePath = cursor.getString(columnIndex);
             cursor.close();
 
-            Bitmap bitmapFromFile = DoodleFactory.loadFromPath(picturePath, metrics.widthPixels, metrics.heightPixels);
+            Bitmap bitmapFromFile = DoodleFactory.INSTANCE.loadFromPath(picturePath, metrics.widthPixels, metrics.heightPixels);
             canvas = PaintCanvas.Companion.loadFromBitmap(this, metrics, bitmapFromFile);
 
             success = true;
@@ -275,7 +275,7 @@ public class MainActivity extends AppCompatActivity implements
 
         PaintCanvas canvas;
         try {
-            Bitmap bitmapFromFile = DoodleFactory.loadFromPath(cameraImage, metrics.widthPixels, metrics.heightPixels);
+            Bitmap bitmapFromFile = DoodleFactory.INSTANCE.loadFromPath(cameraImage, metrics.widthPixels, metrics.heightPixels);
             canvas = PaintCanvas.Companion.loadFromBitmap(this, metrics, bitmapFromFile);
 
             success = true;
