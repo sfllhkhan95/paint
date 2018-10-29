@@ -76,7 +76,7 @@ class AuthHandler(private val context: Context) : FacebookCallback<LoginResult>,
     override fun onComplete(task: Task<AuthResult>) {
         if (task.isSuccessful) {
             val authResult = task.result
-            firebaseUser = authResult.user
+            firebaseUser = authResult?.user
             onFirebaseSignedIn(firebaseUser)
         }
     }
