@@ -1,195 +1,122 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
     tools:context=".projects.HomeActivity">
 
-    <LinearLayout
+    <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="wrap_content"
+        android:layout_gravity="top"
+        android:background="?attr/colorPrimaryDark">
 
-        <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar"
+        <!-- Collapsible User View -->
+        <android.support.design.widget.CollapsingToolbarLayout
             android:layout_width="match_parent"
-            android:layout_height="?actionBarSize"
-            android:background="?attr/colorPrimary"
-            android:elevation="4dp"
-            android:gravity="center"
-            app:titleTextColor="?attr/colorPrimaryDark"
-            tools:targetApi="lollipop" />
+            android:layout_height="wrap_content"
+            android:background="?attr/colorPrimaryDark"
+            android:fitsSystemWindows="true"
+            android:padding="@dimen/activity_horizontal_margin"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
-        <ScrollView
-            android:id="@+id/scrollView"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <LinearLayout
+            <android.support.v7.widget.LinearLayoutCompat
+                android:id="@+id/userView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:paddingBottom="?actionBarSize">
+                android:orientation="horizontal"
+                app:layout_collapseMode="parallax">
+
+                <android.support.design.card.MaterialCardView
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:innerRadius="0dp"
+                    android:shape="ring"
+                    android:thicknessRatio="1.0"
+                    app:cardBackgroundColor="@color/black"
+                    app:cardCornerRadius="40dp">
+
+                    <ImageView
+                        android:id="@+id/userAvatar"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:contentDescription="@string/desc_avatar"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/avatar_placeholder" />
+
+                </android.support.design.card.MaterialCardView>
 
                 <LinearLayout
-                    android:layout_width="match_parent"
+                    android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/activity_vertical_margin"
                     android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                    android:layout_marginRight="@dimen/activity_horizontal_margin"
-                    android:layout_marginTop="@dimen/activity_vertical_margin"
-                    android:gravity="top"
-                    android:orientation="horizontal">
+                    android:layout_marginStart="@dimen/activity_horizontal_margin"
+                    android:orientation="vertical">
 
-                    <android.support.v7.widget.CardView
-                        android:layout_width="80dp"
-                        android:layout_height="80dp"
-                        android:innerRadius="0dp"
-                        android:shape="ring"
-                        android:thicknessRatio="1.0"
-                        app:cardBackgroundColor="@color/slate_translucent"
-                        app:cardCornerRadius="40dp">
-
-                        <ImageView
-                            android:id="@+id/userAvatar"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:contentDescription="@string/desc_avatar"
-                            android:scaleType="centerCrop"
-                            android:src="@drawable/avatar_placeholder" />
-
-                    </android.support.v7.widget.CardView>
+                    <TextView
+                        android:id="@+id/nameView"
+                        style="@style/TextAppearance.AppCompat.Widget.ActionBar.Title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="First M. Last"
+                        android:textColor="@color/white"
+                        android:textStyle="bold" />
 
                     <LinearLayout
-                        android:layout_width="fill_parent"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginStart="10dp"
-                        android:gravity="center"
-                        android:orientation="vertical">
+                        android:baselineAligned="false"
+                        android:orientation="horizontal">
 
                         <LinearLayout
-                            android:layout_width="match_parent"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:baselineAligned="false"
-                            android:weightSum="2">
+                            android:layout_marginEnd="@dimen/activity_horizontal_margin"
+                            android:layout_marginRight="@dimen/activity_horizontal_margin"
+                            android:gravity="center"
+                            android:orientation="vertical">
 
-                            <LinearLayout
-                                android:layout_width="0dp"
+                            <TextView
+                                android:id="@+id/postCount"
+                                android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:gravity="center"
-                                android:orientation="vertical">
-
-                                <TextView
-                                    android:id="@+id/postCount"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="@string/default_value"
-                                    android:textAppearance="@style/TextAppearance.AppCompat.Large"
-                                    android:textColor="@color/charcoal" />
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:maxLines="1"
-                                    android:text="@string/label_posts"
-                                    android:textAppearance="@style/TextAppearance.AppCompat.Caption"
-                                    android:textColor="@color/charcoal" />
-
-                            </LinearLayout>
-
-                            <LinearLayout
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:gravity="center"
-                                android:orientation="vertical">
-
-                                <TextView
-                                    android:id="@+id/friendCount"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="@string/default_value"
-                                    android:textAppearance="@style/TextAppearance.AppCompat.Large"
-                                    android:textColor="@color/charcoal" />
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:maxLines="1"
-                                    android:text="@string/label_friends"
-                                    android:textAppearance="@style/TextAppearance.AppCompat.Caption"
-                                    android:textColor="@color/charcoal" />
-
-                            </LinearLayout>
-
-                        </LinearLayout>
-
-                        <Button
-                            android:id="@+id/signOutButton"
-                            android:layout_width="match_parent"
-                            android:layout_height="25dp"
-                            android:layout_margin="10dp"
-                            android:background="@drawable/bg_button"
-                            android:onClick="signOut"
-                            android:paddingLeft="@dimen/activity_horizontal_margin"
-                            android:paddingRight="@dimen/activity_horizontal_margin"
-                            android:text="@string/connected"
-                            android:textAllCaps="true"
-                            android:textColor="@color/charcoal"
-                            android:visibility="gone" />
-
-                        <!-- Login Button -->
-                        <com.facebook.login.widget.LoginButton
-                            android:id="@+id/loginButton"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="12dp"
-                            android:paddingLeft="@dimen/activity_horizontal_margin"
-                            android:paddingRight="@dimen/activity_horizontal_margin"
-                            android:visibility="gone" />
-
-                        <LinearLayout
-                            android:id="@+id/facebookConnectButton"
-                            android:layout_width="match_parent"
-                            android:layout_height="25dp"
-                            android:layout_margin="10dp"
-                            android:background="@drawable/bg_button"
-                            android:gravity="center_vertical"
-                            android:orientation="horizontal"
-                            android:paddingLeft="5dp"
-                            android:paddingRight="5dp">
-
-                            <ImageView
-                                android:layout_width="15dp"
-                                android:layout_height="15dp"
-                                android:contentDescription="@string/label_facebook"
-                                android:scaleType="fitCenter"
-                                android:src="@drawable/com_facebook_button_icon_blue" />
+                                android:text="@string/default_value"
+                                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                                android:textColor="@color/white" />
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginLeft="5dp"
-                                android:layout_marginStart="5dp"
-                                android:text="@string/label_facebook"
-                                android:textAllCaps="false"
-                                android:textColor="@color/com_facebook_blue"
-                                android:textSize="14sp"
-                                android:textStyle="bold" />
+                                android:maxLines="1"
+                                android:text="@string/label_posts"
+                                android:textAppearance="@style/TextAppearance.AppCompat.Caption"
+                                android:textColor="@color/white" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:orientation="vertical">
 
                             <TextView
-                                android:id="@+id/facebookConnectionStatus"
-                                android:layout_width="match_parent"
+                                android:id="@+id/friendCount"
+                                android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                                android:layout_marginStart="@dimen/activity_horizontal_margin"
-                                android:gravity="end"
-                                android:text="@string/connection_no"
-                                android:textColor="@color/charcoal"
-                                android:textSize="12sp" />
+                                android:text="@string/default_value"
+                                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                                android:textColor="@color/white" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:maxLines="1"
+                                android:text="@string/label_friends"
+                                android:textAppearance="@style/TextAppearance.AppCompat.Caption"
+                                android:textColor="@color/white" />
 
                         </LinearLayout>
 
@@ -197,99 +124,75 @@
 
                 </LinearLayout>
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:background="?attr/colorPrimary"
-                    android:baselineAligned="false"
-                    android:elevation="4dp"
-                    android:orientation="horizontal"
-                    android:weightSum="2"
-                    tools:targetApi="lollipop">
+            </android.support.v7.widget.LinearLayoutCompat>
 
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:gravity="center">
+        </android.support.design.widget.CollapsingToolbarLayout>
 
-                        <ImageView
-                            android:id="@+id/gridButton"
-                            android:layout_width="?actionBarSize"
-                            android:layout_height="?actionBarSize"
-                            android:contentDescription="@string/desc_grid_view"
-                            android:onClick="showGrid"
-                            android:scaleType="centerInside"
-                            android:src="@drawable/ic_action_grid_on"
-                            android:tint="?attr/colorPrimaryDark" />
+        <!-- Fixed Action Bar -->
+        <android.support.v7.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="end|bottom"
+            android:orientation="horizontal"
+            app:layout_collapseMode="pin">
 
-                    </LinearLayout>
+            <com.facebook.login.widget.LoginButton
+                android:id="@+id/loginButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone" />
 
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:gravity="center">
+            <android.support.v7.widget.AppCompatButton
+                android:id="@+id/signInButton"
+                style="@style/Widget.MaterialComponents.Button.TextButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/label_sign_in"
+                android:textAllCaps="true"
+                android:textColor="@color/white" />
 
-                        <ImageView
-                            android:id="@+id/listButton"
-                            android:layout_width="?actionBarSize"
-                            android:layout_height="?actionBarSize"
-                            android:contentDescription="@string/desc_list_view"
-                            android:onClick="showList"
-                            android:scaleType="centerInside"
-                            android:src="@drawable/ic_action_view_list"
-                            android:tint="@color/white" />
+            <android.support.v7.widget.AppCompatButton
+                android:id="@+id/signOutButton"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton.Icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="signOut"
+                android:text="@string/connected"
+                android:textAllCaps="true"
+                android:textColor="@color/white"
+                android:visibility="gone" />
 
-                    </LinearLayout>
+            <android.support.v7.widget.AppCompatButton
+                android:id="@+id/settingsButton"
+                style="@style/Widget.MaterialComponents.Button.TextButton.Dialog.Icon"
+                android:layout_width="40dp"
+                android:layout_height="wrap_content"
+                android:drawableEnd="@drawable/ic_action_settings"
+                android:drawableRight="@drawable/ic_action_settings" />
 
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:visibility="gone">
+        </android.support.v7.widget.LinearLayoutCompat>
 
-                        <ImageView
-                            android:id="@+id/notificationsButton"
-                            android:layout_width="?actionBarSize"
-                            android:layout_height="?actionBarSize"
-                            android:contentDescription="@string/desc_notifications"
-                            android:scaleType="centerInside"
-                            android:src="@drawable/ic_action_notifications"
-                            android:tint="@color/white" />
+    </android.support.design.widget.AppBarLayout>
 
-                    </LinearLayout>
+    <android.support.v4.widget.NestedScrollView
+        android:id="@+id/scrollView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-                </LinearLayout>
+        <sfllhkhan95.doodle.projects.views.ExpandableGridView
+            android:id="@+id/savedProjectsGrid"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:focusable="true"
+            android:gravity="center"
+            android:horizontalSpacing="1dp"
+            android:numColumns="3"
+            android:stretchMode="columnWidth"
+            android:verticalSpacing="1dp" />
 
-                <sfllhkhan95.doodle.projects.views.ExpandableGridView
-                    android:id="@+id/savedProjectsGrid"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:gravity="center"
-                    android:horizontalSpacing="1dp"
-                    android:numColumns="3"
-                    android:padding="-1dp"
-                    android:stretchMode="columnWidth"
-                    android:verticalSpacing="1dp" />
-
-                <sfllhkhan95.doodle.projects.views.ExpandableListView
-                    android:id="@+id/savedProjectsList"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:gravity="center"
-                    android:visibility="gone" />
-
-            </LinearLayout>
-
-        </ScrollView>
-
-    </LinearLayout>
+    </android.support.v4.widget.NestedScrollView>
 
     <com.wangjie.rapidfloatingactionbutton.RapidFloatingActionLayout
         android:id="@+id/compose_list"
@@ -312,6 +215,7 @@
             rfab:rfab_shadow_dy="2dp"
             rfab:rfab_shadow_radius="5dp"
             rfab:rfab_size="normal" />
+
     </com.wangjie.rapidfloatingactionbutton.RapidFloatingActionLayout>
 
-</RelativeLayout>
+</android.support.design.widget.CoordinatorLayout>

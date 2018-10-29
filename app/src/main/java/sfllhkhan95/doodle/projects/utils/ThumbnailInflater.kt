@@ -7,7 +7,6 @@ import android.util.DisplayMetrics
 import android.view.View
 import android.widget.AdapterView
 import android.widget.GridView
-import android.widget.ListView
 import android.widget.TextView
 import sfllhkhan95.doodle.R
 import sfllhkhan95.doodle.core.MainActivity
@@ -69,22 +68,9 @@ class ThumbnailInflater(private val activity: Activity) : Runnable, AdapterView.
         projectGrid.onItemClickListener = this
     }
 
-    private fun inflateList() {
-        val thumbnails = thumbnailsFull
-        val adapter = ThumbnailAdapter(
-                activity,
-                R.layout.template_thumbnail_list,
-                thumbnails)
-
-        val projectList = activity.findViewById<ListView>(R.id.savedProjectsList)
-        projectList.adapter = adapter
-        projectList.onItemClickListener = this
-    }
-
     override fun run() {
         (activity.findViewById<View>(R.id.postCount) as TextView).text = thumbnails.size.toString()
         inflateGrid()
-        inflateList()
     }
 
     override fun onItemClick(parent: AdapterView<*>, view: View, position: Int, id: Long) {

@@ -5,8 +5,6 @@ import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
-import android.graphics.PorterDuff;
-import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -16,17 +14,11 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.content.FileProvider;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.ScrollView;
 import android.widget.TextView;
 
-import com.crashlytics.android.Crashlytics;
 import com.facebook.login.widget.LoginButton;
 import com.wangjie.rapidfloatingactionbutton.RapidFloatingActionButton;
 import com.wangjie.rapidfloatingactionbutton.RapidFloatingActionHelper;
@@ -43,12 +35,10 @@ import sfllhkhan95.doodle.DoodleApplication;
 import sfllhkhan95.doodle.R;
 import sfllhkhan95.doodle.ads.AdManager;
 import sfllhkhan95.doodle.auth.SettingsActivity;
-import sfllhkhan95.doodle.auth.models.User;
 import sfllhkhan95.doodle.auth.utils.AuthHandler;
 import sfllhkhan95.doodle.auth.utils.OnUpdateListener;
 import sfllhkhan95.doodle.auth.views.UserView;
 import sfllhkhan95.doodle.core.MainActivity;
-import sfllhkhan95.doodle.core.utils.ThemeAttrs;
 import sfllhkhan95.doodle.core.views.ConfirmationDialog;
 import sfllhkhan95.doodle.projects.utils.DoodleDatabase;
 import sfllhkhan95.doodle.projects.utils.ThumbnailInflater;
@@ -64,7 +54,6 @@ public class HomeActivity extends AppCompatActivity implements OnUpdateListener,
     private static final int REQUEST_TAKE_PHOTO = 100;
     private static final int REQUEST_PICK_PHOTO = 200;
 
-    private final User DEFAULT_USER = new User();
     private AuthHandler mAuthHandler;
     private UserView mUserView;
 
@@ -82,9 +71,6 @@ public class HomeActivity extends AppCompatActivity implements OnUpdateListener,
         setContentView(R.layout.activity_home);
 
         thumbnailInflater = new ThumbnailInflater(this);
-
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
 
         // Build floating actions
         RapidFloatingActionButton composeButton = findViewById(R.id.compose_button);
@@ -128,19 +114,23 @@ public class HomeActivity extends AppCompatActivity implements OnUpdateListener,
                 composeList
         ).build();
 
-        findViewById(R.id.facebookConnectButton).setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.signInButton).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (!mAuthHandler.isSignedIn()) {
-                    ((TextView) findViewById(R.id.facebookConnectionStatus)).setText(R.string.connecting);
-                }
-
                 findViewById(R.id.loginButton).performClick();
+            }
+        });
+
+        findViewById(R.id.settingsButton).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(HomeActivity.this, SettingsActivity.class));
             }
         });
 
         // Assign views
         mUserView = new UserView(this)
+                .setNameView((TextView) findViewById(R.id.nameView))
                 .setAvatarView((ImageView) findViewById(R.id.userAvatar));
 
         // Configure authentication
@@ -175,21 +165,15 @@ public class HomeActivity extends AppCompatActivity implements OnUpdateListener,
 
     @Override
     public void onUpdate() {
-        if (mAuthHandler.isSignedIn()) {
+        // Is a user authenticated?
+        boolean authenticated = mAuthHandler.isSignedIn() && mAuthHandler.getCurrentUser() != null;
+
+        // Show respective layout
+        findViewById(R.id.userView).setVisibility(authenticated ? View.VISIBLE : View.GONE);
+        findViewById(R.id.signInButton).setVisibility(authenticated ? View.GONE : View.VISIBLE);
+        findViewById(R.id.signOutButton).setVisibility(authenticated ? View.VISIBLE : View.GONE);
+        if (authenticated) {
             mUserView.showUser(mAuthHandler.getCurrentUser());
-            findViewById(R.id.facebookConnectButton).setVisibility(View.GONE);
-            findViewById(R.id.signOutButton).setVisibility(View.VISIBLE);
-            if (getSupportActionBar() != null && mAuthHandler.getCurrentUser() != null) {
-                getSupportActionBar().setTitle(mAuthHandler.getCurrentUser().getFirstName());
-            }
-        } else {
-            mUserView.showUser(DEFAULT_USER);
-            ((TextView) findViewById(R.id.facebookConnectionStatus)).setText(R.string.connection_no);
-            findViewById(R.id.facebookConnectButton).setVisibility(View.VISIBLE);
-            findViewById(R.id.signOutButton).setVisibility(View.GONE);
-            if (getSupportActionBar() != null) {
-                getSupportActionBar().setTitle(getString(R.string.app_name));
-            }
         }
     }
 
@@ -209,7 +193,7 @@ public class HomeActivity extends AppCompatActivity implements OnUpdateListener,
                 .setNegativeButton(getString(android.R.string.cancel), new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-
+                        /* no-op */
                     }
                 }, true);
 
@@ -265,36 +249,6 @@ public class HomeActivity extends AppCompatActivity implements OnUpdateListener,
                 }
                 break;
         }
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.home, menu);
-
-        // Try to tint the action bar icon
-        try {
-            MenuItem menuItem = menu.findItem(R.id.settings);
-            Drawable drawable = menuItem.getIcon();
-            drawable.mutate();
-            drawable.setColorFilter(ThemeAttrs.INSTANCE.colorPrimaryDark(this),
-                    PorterDuff.Mode.SRC_IN);
-        } catch (NullPointerException ex) {
-            Crashlytics.logException(ex);
-        }
-
-        return super.onCreateOptionsMenu(menu);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.settings:
-                startActivity(new Intent(this, SettingsActivity.class));
-                overridePendingTransition(0, 0);
-                return true;
-        }
-        return false;
     }
 
     @Override
@@ -373,28 +327,6 @@ public class HomeActivity extends AppCompatActivity implements OnUpdateListener,
         // Save a file: path for use with ACTION_VIEW intents
         mCameraPicturePath = image.getAbsolutePath();
         return image;
-    }
-
-    public void showList(View view) {
-        ((ImageView) findViewById(R.id.gridButton)).setColorFilter(getResources().getColor(R.color.white));
-        ((ImageView) findViewById(R.id.listButton)).setColorFilter(ThemeAttrs.INSTANCE.colorPrimaryDark(this));
-        ((ImageView) findViewById(R.id.notificationsButton)).setColorFilter(getResources().getColor(R.color.white));
-
-        findViewById(R.id.savedProjectsGrid).setVisibility(View.GONE);
-        findViewById(R.id.savedProjectsList).setVisibility(View.VISIBLE);
-
-        ((ScrollView) findViewById(R.id.scrollView)).smoothScrollTo(0, 0);
-    }
-
-    public void showGrid(View view) {
-        ((ImageView) findViewById(R.id.gridButton)).setColorFilter(ThemeAttrs.INSTANCE.colorPrimaryDark(this));
-        ((ImageView) findViewById(R.id.listButton)).setColorFilter(getResources().getColor(R.color.white));
-        ((ImageView) findViewById(R.id.notificationsButton)).setColorFilter(getResources().getColor(R.color.white));
-
-        findViewById(R.id.savedProjectsGrid).setVisibility(View.VISIBLE);
-        findViewById(R.id.savedProjectsList).setVisibility(View.GONE);
-
-        ((ScrollView) findViewById(R.id.scrollView)).smoothScrollTo(0, 0);
     }
 
     public void signOut(View view) {
