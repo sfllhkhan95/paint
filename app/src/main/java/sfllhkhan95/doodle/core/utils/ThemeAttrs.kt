@@ -15,6 +15,8 @@ object ThemeAttrs {
     const val THEME_DEFAULT = "DEFAULT"
     const val THEME_SUNLIGHT = "SUNLIGHT"
     const val THEME_OCEAN = "OCEAN"
+    const val THEME_FOREST = "FOREST"
+    const val THEME_CHOCOLATE = "CHOCOLATE"
 
     fun colorPrimary(context: Context): Int {
         return getColor(context, R.attr.colorPrimary)

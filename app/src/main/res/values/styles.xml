@@ -1,27 +1,41 @@
 <resources>
 
-    <style name="AppTheme" parent="Theme.AppCompat.NoActionBar">
+    <style name="AppTheme" parent="Theme.MaterialComponents.NoActionBar">
         <item name="colorPrimary">@color/pink</item>
         <item name="colorPrimaryDark">@color/purple</item>
         <item name="colorAccent">@color/purple</item>
         <item name="android:windowBackground">@color/pink_light</item>
     </style>
 
-    <style name="AppTheme.Ocean" parent="Theme.AppCompat.NoActionBar">
+    <style name="AppTheme.Ocean" parent="Theme.MaterialComponents.NoActionBar">
         <item name="colorPrimary">@color/blue_sky</item>
         <item name="colorPrimaryDark">@color/blue_navy</item>
         <item name="colorAccent">@color/blue_navy</item>
         <item name="android:windowBackground">@color/blue_light</item>
     </style>
 
-    <style name="AppTheme.Sunlight" parent="Theme.AppCompat.NoActionBar">
+    <style name="AppTheme.Sunlight" parent="Theme.MaterialComponents.NoActionBar">
         <item name="colorPrimary">@color/yellow</item>
         <item name="colorPrimaryDark">@color/orange</item>
         <item name="colorAccent">@color/orange</item>
         <item name="android:windowBackground">@color/yellow_light</item>
     </style>
 
-    <style name="DialogTheme" parent="Theme.AppCompat.Light.Dialog.Alert">
+    <style name="AppTheme.Forest" parent="Theme.MaterialComponents.NoActionBar">
+        <item name="colorPrimary">@color/mint</item>
+        <item name="colorPrimaryDark">@color/moss</item>
+        <item name="colorAccent">@color/moss</item>
+        <item name="android:windowBackground">@color/pink_light</item>
+    </style>
+
+    <style name="AppTheme.Chocolate" parent="Theme.MaterialComponents.NoActionBar">
+        <item name="colorPrimary">@color/peach</item>
+        <item name="colorPrimaryDark">@color/chocolate</item>
+        <item name="colorAccent">@color/chocolate</item>
+        <item name="android:windowBackground">@color/pink_light</item>
+    </style>
+
+    <style name="DialogTheme" parent="Theme.MaterialComponents.Light.Dialog.Alert">
         <item name="android:windowBackground">@color/slate_translucent</item>
         <item name="colorAccent">@color/white</item>
     </style>

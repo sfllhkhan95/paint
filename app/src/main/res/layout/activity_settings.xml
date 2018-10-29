@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/container"
     android:layout_width="match_parent"
@@ -30,87 +31,30 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/activity_horizontal_margin"
                 android:layout_marginRight="@dimen/activity_horizontal_margin"
+                android:layout_marginTop="@dimen/activity_vertical_margin"
                 android:orientation="vertical">
 
-                <View
-                    android:layout_width="match_parent"
+                <android.support.design.button.MaterialButton
+                    android:id="@+id/theme"
+                    style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/activity_vertical_margin"
-                    android:layout_marginTop="@dimen/activity_vertical_margin" />
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginRight="8dp"
+                    android:text="@string/settings_item_theme"
+                    android:textAllCaps="false"
+                    app:cornerRadius="16dp" />
 
-                <LinearLayout
-                    android:layout_width="match_parent"
+                <android.support.design.button.MaterialButton
+                    android:id="@+id/notification_switch"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@color/gray"
-                    android:orientation="vertical">
-
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="35dp"
-                        android:layout_marginBottom="1dp"
-                        android:background="?attr/colorPrimary"
-                        android:paddingLeft="10dp"
-                        android:paddingRight="10dp"
-                        android:visibility="gone">
-
-                        <android.support.v7.widget.AppCompatButton
-                            android:layout_width="match_parent"
-                            android:layout_height="35dp"
-                            android:layout_toLeftOf="@id/notification_switch"
-                            android:layout_toStartOf="@id/notification_switch"
-                            android:background="@android:color/transparent"
-                            android:gravity="start|center_vertical"
-                            android:text="@string/settings_item_notifications"
-                            android:textAllCaps="false"
-                            android:textColor="@color/black" />
-
-                        <Switch
-                            android:id="@+id/notification_switch"
-                            android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
-                            android:layout_alignParentEnd="true"
-                            android:layout_alignParentRight="true"
-                            android:background="@android:color/transparent" />
-
-                    </RelativeLayout>
-
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="35dp"
-                        android:layout_marginBottom="1dp"
-                        android:background="?attr/colorPrimary"
-                        android:paddingLeft="10dp"
-                        android:paddingRight="10dp">
-
-                        <android.support.v7.widget.AppCompatButton
-                            android:id="@+id/theme"
-                            android:layout_width="match_parent"
-                            android:layout_height="35dp"
-                            android:layout_toLeftOf="@id/theme_selected"
-                            android:layout_toStartOf="@id/theme_selected"
-                            android:background="@android:color/transparent"
-                            android:gravity="start|center_vertical"
-                            android:text="@string/settings_item_theme"
-                            android:textAllCaps="false"
-                            android:textColor="@color/black" />
-
-                        <android.support.v7.widget.AppCompatButton
-                            android:id="@+id/theme_selected"
-                            android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
-                            android:layout_alignParentEnd="true"
-                            android:layout_alignParentRight="true"
-                            android:background="@android:color/transparent"
-                            android:drawableEnd="@drawable/ic_action_more"
-                            android:drawableRight="@drawable/ic_action_more"
-                            android:gravity="end|center_vertical"
-                            android:text="@string/default_theme"
-                            android:textAllCaps="false"
-                            android:textColor="@color/gray" />
-
-                    </RelativeLayout>
-
-                </LinearLayout>
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginRight="8dp"
+                    android:text="@string/settings_item_notifications"
+                    android:textAllCaps="false"
+                    app:cornerRadius="16dp" />
 
             </LinearLayout>
 
@@ -120,66 +64,48 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/activity_horizontal_margin"
                 android:layout_marginRight="@dimen/activity_horizontal_margin"
+                android:layout_marginTop="@dimen/activity_vertical_margin"
                 android:orientation="vertical">
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/activity_vertical_margin"
-                    android:layout_marginTop="@dimen/activity_vertical_margin" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@color/gray"
-                    android:orientation="vertical">
+                    android:orientation="horizontal">
 
-                    <android.support.v7.widget.AppCompatButton
-                        android:id="@+id/privacy_policy"
-                        android:layout_width="match_parent"
-                        android:layout_height="35dp"
-                        android:layout_marginBottom="1dp"
-                        android:background="?attr/colorPrimary"
-                        android:drawableEnd="@drawable/ic_action_more"
-                        android:drawableRight="@drawable/ic_action_more"
-                        android:gravity="start|center_vertical"
-                        android:paddingLeft="10dp"
-                        android:paddingRight="10dp"
-                        android:text="@string/settings_item_privacy"
-                        android:textAllCaps="false"
-                        android:textColor="@color/black" />
-
-                    <android.support.v7.widget.AppCompatButton
+                    <android.support.design.button.MaterialButton
                         android:id="@+id/faqs"
-                        android:layout_width="match_parent"
-                        android:layout_height="35dp"
-                        android:layout_marginBottom="1dp"
-                        android:background="?attr/colorPrimary"
-                        android:drawableEnd="@drawable/ic_action_more"
-                        android:drawableRight="@drawable/ic_action_more"
-                        android:gravity="start|center_vertical"
-                        android:paddingLeft="10dp"
-                        android:paddingRight="10dp"
+                        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginRight="8dp"
                         android:text="@string/settings_item_help"
                         android:textAllCaps="false"
-                        android:textColor="@color/black" />
+                        app:cornerRadius="16dp" />
 
-                    <android.support.v7.widget.AppCompatButton
-                        android:id="@+id/support"
-                        android:layout_width="match_parent"
-                        android:layout_height="35dp"
-                        android:layout_marginBottom="1dp"
-                        android:background="?attr/colorPrimary"
-                        android:drawableEnd="@drawable/ic_action_link"
-                        android:drawableRight="@drawable/ic_action_link"
-                        android:gravity="start|center_vertical"
-                        android:paddingLeft="10dp"
-                        android:paddingRight="10dp"
-                        android:text="@string/settings_icon_support"
+                    <android.support.design.button.MaterialButton
+                        android:id="@+id/privacy_policy"
+                        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginRight="8dp"
+                        android:text="@string/settings_item_privacy"
                         android:textAllCaps="false"
-                        android:textColor="@color/black" />
+                        app:cornerRadius="16dp" />
 
                 </LinearLayout>
+
+                <android.support.design.button.MaterialButton
+                    android:id="@+id/support"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginRight="8dp"
+                    android:text="@string/settings_icon_support"
+                    android:textAllCaps="false"
+                    app:cornerRadius="16dp" />
 
             </LinearLayout>
 

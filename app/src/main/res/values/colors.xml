@@ -2,19 +2,24 @@
 <resources>
     <color name="black">#000000</color>
     <color name="blood">#b71c1c</color>
-    <color name="blood_translucent">#b71c1c</color>
+    <color name="blood_translucent">#88b71c1c</color>
     <color name="blue_light">#e3f2fd</color>
     <color name="blue_navy">#1a237e</color>
     <color name="blue_sky">#90caf9</color>
     <color name="charcoal">#37474f</color>
+    <color name="chocolate">#5d4037</color>
     <color name="gray">#757575</color>
     <color name="slate_translucent">#88607d8b</color>
+    <color name="mint">#c8e6c9</color>
+    <color name="moss">#558b2f</color>
     <color name="orange">#ef5350</color>
+    <color name="peach">#ffe0b2</color>
     <color name="pink">#f3e5f5</color>
     <color name="pink_light">#fafafa</color>
     <color name="purple">#8e24aa</color>
     <color name="silver">#bdbdbd</color>
     <color name="slate">#607d8b</color>
+    <color name="seashell">#fbe9e7</color>
     <color name="white">#FFFFFF</color>
     <color name="yellow">#ffe082</color>
     <color name="yellow_light">#fff3e0</color>

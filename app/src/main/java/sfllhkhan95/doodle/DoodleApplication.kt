@@ -11,8 +11,10 @@ import com.facebook.appevents.AppEventsLogger
 import io.fabric.sdk.android.Fabric
 import pk.aspirasoft.core.db.PersistentStorage
 import sfllhkhan95.doodle.ads.AdManager
+import sfllhkhan95.doodle.core.utils.ThemeAttrs.THEME_CHOCOLATE
 
 import sfllhkhan95.doodle.core.utils.ThemeAttrs.THEME_DEFAULT
+import sfllhkhan95.doodle.core.utils.ThemeAttrs.THEME_FOREST
 import sfllhkhan95.doodle.core.utils.ThemeAttrs.THEME_OCEAN
 import sfllhkhan95.doodle.core.utils.ThemeAttrs.THEME_SUNLIGHT
 
@@ -43,6 +45,14 @@ class DoodleApplication : Application() {
                 activity.setTheme(R.style.AppTheme_Sunlight)
                 return 2
             }
+            THEME_FOREST -> {
+                activity.setTheme(R.style.AppTheme_Forest)
+                return 3
+            }
+            THEME_CHOCOLATE -> {
+                activity.setTheme(R.style.AppTheme_Chocolate)
+                return 4
+            }
             THEME_DEFAULT -> {
                 activity.setTheme(R.style.AppTheme)
                 return 0
@@ -58,6 +68,8 @@ class DoodleApplication : Application() {
         when (currentTheme) {
             THEME_OCEAN -> PersistentStorage.put(THEME, THEME_OCEAN)
             THEME_SUNLIGHT -> PersistentStorage.put(THEME, THEME_SUNLIGHT)
+            THEME_FOREST -> PersistentStorage.put(THEME, THEME_FOREST)
+            THEME_CHOCOLATE -> PersistentStorage.put(THEME, THEME_CHOCOLATE)
             THEME_DEFAULT -> PersistentStorage.put(THEME, THEME_DEFAULT)
             else -> PersistentStorage.put(THEME, THEME_DEFAULT)
         }

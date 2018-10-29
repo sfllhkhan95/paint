@@ -2,11 +2,11 @@ package sfllhkhan95.doodle.auth
 
 import android.content.Intent
 import android.os.Bundle
+import android.support.design.button.MaterialButton
 import android.support.v4.app.NavUtils
 import android.support.v7.app.AlertDialog
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.view.ContextThemeWrapper
-import android.support.v7.widget.AppCompatButton
 import android.support.v7.widget.Toolbar
 import android.view.View
 import sfllhkhan95.doodle.DoodleApplication
@@ -14,7 +14,9 @@ import sfllhkhan95.doodle.FAQsActivity
 import sfllhkhan95.doodle.PrivacyPolicy
 import sfllhkhan95.doodle.R
 import sfllhkhan95.doodle.core.utils.DialogFactory
+import sfllhkhan95.doodle.core.utils.ThemeAttrs.THEME_CHOCOLATE
 import sfllhkhan95.doodle.core.utils.ThemeAttrs.THEME_DEFAULT
+import sfllhkhan95.doodle.core.utils.ThemeAttrs.THEME_FOREST
 import sfllhkhan95.doodle.core.utils.ThemeAttrs.THEME_OCEAN
 import sfllhkhan95.doodle.core.utils.ThemeAttrs.THEME_SUNLIGHT
 
@@ -25,8 +27,8 @@ import sfllhkhan95.doodle.core.utils.ThemeAttrs.THEME_SUNLIGHT
  */
 class SettingsActivity : AppCompatActivity(), View.OnClickListener {
 
-    private var themeButton: AppCompatButton? = null
-    private val themes = arrayOf<CharSequence>("Default", "Ocean", "Sunlight")
+    private var themeButton: MaterialButton? = null
+    private val themes = arrayOf<CharSequence>("Default", "Ocean", "Sunlight", "Forest", "Chocolate")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         val which = (application as DoodleApplication).setActivityTheme(this)
@@ -40,11 +42,9 @@ class SettingsActivity : AppCompatActivity(), View.OnClickListener {
             supportActionBar!!.setDisplayHomeAsUpEnabled(true)
         }
 
-        themeButton = findViewById(R.id.theme_selected)
-        themeButton!!.text = themes[which]
+        themeButton = findViewById(R.id.theme)
         themeButton!!.setOnClickListener(this)
 
-        findViewById<View>(R.id.theme).setOnClickListener(this)
         findViewById<View>(R.id.support).setOnClickListener(this)
         findViewById<View>(R.id.privacy_policy).setOnClickListener(this)
         findViewById<View>(R.id.faqs).setOnClickListener(this)
@@ -52,14 +52,15 @@ class SettingsActivity : AppCompatActivity(), View.OnClickListener {
 
     override fun onClick(view: View) {
         when (view.id) {
-            R.id.theme_selected, R.id.theme -> AlertDialog.Builder(ContextThemeWrapper(this, R.style.DialogTheme))
+            R.id.theme -> AlertDialog.Builder(ContextThemeWrapper(this, R.style.DialogTheme))
                     .setTitle("Choose Theme")
                     .setItems(themes) { dialogInterface, which ->
-                        themeButton!!.text = themes[which]
                         var theme = THEME_DEFAULT
                         when (which) {
                             1 -> theme = THEME_OCEAN
                             2 -> theme = THEME_SUNLIGHT
+                            3 -> theme = THEME_FOREST
+                            4 -> theme = THEME_CHOCOLATE
                         }
                         (application as DoodleApplication)
                                 .changeTheme(this@SettingsActivity, theme)
