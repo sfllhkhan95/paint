@@ -35,7 +35,7 @@ class IntroActivity : AppIntro() {
 
         addSlide(SlideFragmentBuilder()
                 .image(R.drawable.palette)
-                .backgroundColor(resources.getColor(R.color.charcoal))
+                .backgroundColor(resources.getColor(R.color.grey_800))
                 .title(getString(R.string.slide2_title))
                 .description(getString(R.string.slide2_description))
                 .build())
@@ -55,7 +55,7 @@ class IntroActivity : AppIntro() {
 
         addSlide(SlideFragmentBuilder()
                 .image(R.drawable.permissions)
-                .backgroundColor(resources.getColor(R.color.blood))
+                .backgroundColor(resources.getColor(R.color.red_900))
                 .title(getString(R.string.slide4_title))
                 .description(if (!storagePermissionGranted || !cameraPermissionGranted)
                     getString(R.string.slide4_description_permissions)

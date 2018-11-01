@@ -70,7 +70,7 @@ class PaintCanvas(context: Context, metrics: DisplayMetrics) : Canvas() {
 
     companion object {
 
-        private val DEFAULT_BG_COLOR = R.color.slate
+        private val DEFAULT_BG_COLOR = R.color.blue_grey_500
 
         fun loadFromBitmap(context: Context, metrics: DisplayMetrics, srcBmp: Bitmap): PaintCanvas {
             var srcBmp = srcBmp

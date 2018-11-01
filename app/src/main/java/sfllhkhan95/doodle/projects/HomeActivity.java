@@ -82,30 +82,30 @@ public class HomeActivity extends AppCompatActivity implements OnUpdateListener,
         items.add(new RFACLabelItem<Integer>()
                 .setLabel(getString(R.string.label_camera))
                 .setResId(R.drawable.ic_open_camera)
-                .setIconNormalColor(getResources().getColor(R.color.orange))
-                .setIconPressedColor(getResources().getColor(R.color.slate_translucent))
-                .setLabelColor(getResources().getColor(R.color.orange))
+                .setIconNormalColor(getResources().getColor(R.color.red_900))
+                .setIconPressedColor(getResources().getColor(R.color.blue_grey_500a))
+                .setLabelColor(getResources().getColor(R.color.red_900))
                 .setWrapper(0)
         );
         items.add(new RFACLabelItem<Integer>()
                 .setLabel(getString(R.string.label_gallery))
                 .setResId(R.drawable.ic_open_gallery)
-                .setIconNormalColor(getResources().getColor(R.color.blood))
-                .setIconPressedColor(getResources().getColor(R.color.slate_translucent))
-                .setLabelColor(getResources().getColor(R.color.blood))
+                .setIconNormalColor(getResources().getColor(R.color.red_900))
+                .setIconPressedColor(getResources().getColor(R.color.blue_grey_500a))
+                .setLabelColor(getResources().getColor(R.color.red_900))
                 .setWrapper(1)
         );
         items.add(new RFACLabelItem<Integer>()
                 .setLabel(getString(R.string.label_blank))
                 .setResId(R.drawable.ic_open_blank)
-                .setIconNormalColor(getResources().getColor(R.color.slate))
-                .setIconPressedColor(getResources().getColor(R.color.slate_translucent))
-                .setLabelColor(getResources().getColor(R.color.slate))
+                .setIconNormalColor(getResources().getColor(R.color.blue_grey_500))
+                .setIconPressedColor(getResources().getColor(R.color.blue_grey_500a))
+                .setLabelColor(getResources().getColor(R.color.blue_grey_500))
                 .setWrapper(2)
         );
 
         composeList.setItems(items)
-                .setIconShadowColor(R.color.slate_translucent);
+                .setIconShadowColor(R.color.blue_grey_500a);
 
         rfaHelper = new RapidFloatingActionHelper(
                 this,

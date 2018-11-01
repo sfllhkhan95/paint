@@ -210,7 +210,7 @@
             rfab:rfab_color_normal="?attr/colorPrimaryDark"
             rfab:rfab_color_pressed="?attr/colorPrimaryDark"
             rfab:rfab_drawable="@drawable/rfab__drawable_rfab_default"
-            rfab:rfab_shadow_color="@color/slate_translucent"
+            rfab:rfab_shadow_color="@color/blue_grey_500a"
             rfab:rfab_shadow_dx="0dp"
             rfab:rfab_shadow_dy="2dp"
             rfab:rfab_shadow_radius="5dp"

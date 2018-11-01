@@ -50,6 +50,7 @@
     <string name="placeholder_dialog_body">Dialog description comes here</string>
     <string name="placeholder_name">First M. Last</string>
     <string name="placeholder_title">Title</string>
+    <string name="placeholder_username">guest</string>
 
     <!-- Labels -->
     <string name="label_compose">Compose</string>

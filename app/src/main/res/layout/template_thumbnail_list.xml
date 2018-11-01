@@ -20,7 +20,7 @@
             android:innerRadius="0dp"
             android:shape="ring"
             android:thicknessRatio="1.0"
-            app:cardBackgroundColor="@color/slate_translucent"
+            app:cardBackgroundColor="@color/blue_grey_500a"
             app:cardCornerRadius="12dp">
 
             <ImageView
@@ -49,7 +49,7 @@
         android:id="@+id/projectIcon"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/slate_translucent"
+        android:background="@color/blue_grey_500a"
         android:contentDescription="@string/desc_thumbnail"
         android:scaleType="centerCrop"
         android:src="@drawable/avatar_placeholder" />
@@ -69,7 +69,7 @@
             android:contentDescription="@string/desc_delete_button"
             android:scaleType="centerInside"
             android:src="@drawable/ic_action_share"
-            android:tint="@color/charcoal" />
+            android:tint="@color/grey_800" />
 
         <ImageView
             android:id="@+id/deleteButton"
@@ -78,7 +78,7 @@
             android:contentDescription="@string/desc_delete_button"
             android:scaleType="centerInside"
             android:src="@drawable/ic_action_delete"
-            android:tint="@color/charcoal" />
+            android:tint="@color/grey_800" />
 
     </LinearLayout>
 

@@ -54,7 +54,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="start"
-                android:textColor="@color/charcoal"
+                android:textColor="@color/grey_800"
                 android:textSize="14sp"
                 android:textStyle="bold" />
 
@@ -65,7 +65,7 @@
                 android:layout_marginBottom="5dp"
                 android:layout_marginTop="5dp"
                 android:gravity="start"
-                android:textColor="@color/gray"
+                android:textColor="@color/grey_600"
                 android:textSize="14sp"
                 android:textStyle="bold" />
 

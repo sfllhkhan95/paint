@@ -41,8 +41,8 @@ class PaintBrush(val context: Context) : Paint(), Cloneable {
 
     companion object {
 
-        private const val DEFAULT_STROKE_COLOR = R.color.blood
-        private const val DEFAULT_FILL_COLOR = R.color.blood_translucent
+        private const val DEFAULT_STROKE_COLOR = R.color.red_900
+        private const val DEFAULT_FILL_COLOR = R.color.red_900a
         private const val DEFAULT_SIZE = 5
     }
 
