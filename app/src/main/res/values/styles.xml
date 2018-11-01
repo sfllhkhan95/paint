@@ -36,7 +36,37 @@
     </style>
 
     <style name="DialogTheme" parent="Theme.MaterialComponents.Light.Dialog.Alert">
-        <item name="android:windowBackground">@color/blue_grey_500a</item>
-        <item name="colorAccent">@color/white</item>
+        <item name="colorPrimary">@color/purple_100</item>
+        <item name="colorPrimaryDark">@color/purple_900</item>
+        <item name="colorAccent">@color/purple_900</item>
+        <item name="android:windowBackground">@color/deep_purple_50</item>
+    </style>
+
+    <style name="DialogTheme.Ocean" parent="Theme.MaterialComponents.Light.Dialog.Alert">
+        <item name="colorPrimary">@color/blue_100</item>
+        <item name="colorPrimaryDark">@color/blue_900</item>
+        <item name="colorAccent">@color/blue_900</item>
+        <item name="android:windowBackground">@color/blue_grey_50</item>
+    </style>
+
+    <style name="DialogTheme.Sunlight" parent="Theme.MaterialComponents.Light.Dialog.Alert">
+        <item name="colorPrimary">@color/yellow_100</item>
+        <item name="colorPrimaryDark">@color/yellow_900</item>
+        <item name="colorAccent">@color/yellow_900</item>
+        <item name="android:windowBackground">@color/orange_50</item>
+    </style>
+
+    <style name="DialogTheme.Forest" parent="Theme.MaterialComponents.Light.Dialog.Alert">
+        <item name="colorPrimary">@color/green_100</item>
+        <item name="colorPrimaryDark">@color/green_900</item>
+        <item name="colorAccent">@color/green_900</item>
+        <item name="android:windowBackground">@color/light_green_50</item>
+    </style>
+
+    <style name="DialogTheme.Chocolate" parent="Theme.MaterialComponents.Light.Dialog.Alert">
+        <item name="colorPrimary">@color/brown_100</item>
+        <item name="colorPrimaryDark">@color/brown_900</item>
+        <item name="colorAccent">@color/brown_900</item>
+        <item name="android:windowBackground">@color/deep_orange_50</item>
     </style>
 </resources>

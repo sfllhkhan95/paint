@@ -9,6 +9,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
@@ -19,7 +20,6 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.facebook.login.widget.LoginButton;
 import com.wangjie.rapidfloatingactionbutton.RapidFloatingActionButton;
 import com.wangjie.rapidfloatingactionbutton.RapidFloatingActionHelper;
 import com.wangjie.rapidfloatingactionbutton.RapidFloatingActionLayout;
@@ -35,8 +35,8 @@ import sfllhkhan95.doodle.DoodleApplication;
 import sfllhkhan95.doodle.R;
 import sfllhkhan95.doodle.ads.AdManager;
 import sfllhkhan95.doodle.auth.SettingsActivity;
-import sfllhkhan95.doodle.auth.utils.AuthHandler;
 import sfllhkhan95.doodle.auth.utils.OnUpdateListener;
+import sfllhkhan95.doodle.auth.views.LoginDialog;
 import sfllhkhan95.doodle.auth.views.UserView;
 import sfllhkhan95.doodle.core.MainActivity;
 import sfllhkhan95.doodle.core.views.ConfirmationDialog;
@@ -54,7 +54,7 @@ public class HomeActivity extends AppCompatActivity implements OnUpdateListener,
     private static final int REQUEST_TAKE_PHOTO = 100;
     private static final int REQUEST_PICK_PHOTO = 200;
 
-    private AuthHandler mAuthHandler;
+    private LoginDialog mLoginDialog;
     private UserView mUserView;
 
     private ThumbnailInflater thumbnailInflater;
@@ -114,10 +114,12 @@ public class HomeActivity extends AppCompatActivity implements OnUpdateListener,
                 composeList
         ).build();
 
+        mLoginDialog = new LoginDialog(this, ((DoodleApplication) getApplication()).getDialogTheme());
+        mLoginDialog.setOnUpdateListener(this);
         findViewById(R.id.signInButton).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                findViewById(R.id.loginButton).performClick();
+                mLoginDialog.show();
             }
         });
 
@@ -132,17 +134,6 @@ public class HomeActivity extends AppCompatActivity implements OnUpdateListener,
         mUserView = new UserView(this)
                 .setNameView((TextView) findViewById(R.id.nameView))
                 .setAvatarView((ImageView) findViewById(R.id.userAvatar));
-
-        // Configure authentication
-        mAuthHandler = new AuthHandler(this);
-        mAuthHandler.setOnUpdateListener(this);
-        if (!mAuthHandler.isSignedIn()) {
-            mAuthHandler.signIn();
-        }
-
-        // Set up Facebook login button
-        LoginButton mLoginButton = findViewById(R.id.loginButton);
-        mAuthHandler.registerFacebookLoginButton(mLoginButton);
     }
 
     @Override
@@ -165,15 +156,20 @@ public class HomeActivity extends AppCompatActivity implements OnUpdateListener,
 
     @Override
     public void onUpdate() {
+        // Dismiss login dialog if showing
+        if (mLoginDialog.isShowing()) {
+            mLoginDialog.dismiss();
+        }
+
         // Is a user authenticated?
-        boolean authenticated = mAuthHandler.isSignedIn() && mAuthHandler.getCurrentUser() != null;
+        boolean authenticated = mLoginDialog.isAuthenticated();
 
         // Show respective layout
         findViewById(R.id.userView).setVisibility(authenticated ? View.VISIBLE : View.GONE);
         findViewById(R.id.signInButton).setVisibility(authenticated ? View.GONE : View.VISIBLE);
         findViewById(R.id.signOutButton).setVisibility(authenticated ? View.VISIBLE : View.GONE);
         if (authenticated) {
-            mUserView.showUser(mAuthHandler.getCurrentUser());
+            mUserView.showUser(mLoginDialog.getCurrentUser());
         }
     }
 
@@ -219,19 +215,18 @@ public class HomeActivity extends AppCompatActivity implements OnUpdateListener,
     @Override
     public void onDestroy() {
         super.onDestroy();
-        if (mAuthHandler != null) {
-            mAuthHandler.stopTracking();
+        if (mLoginDialog != null) {
+            mLoginDialog.onDestroy();
         }
     }
 
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        try {
-            mAuthHandler.getCallbackManager().onActivityResult(requestCode, resultCode, data);
-        } catch (NullPointerException ignored) {
-            //
+        if (mLoginDialog != null) {
+            mLoginDialog.onActivityResult(requestCode, resultCode, data);
         }
+
         if (resultCode != RESULT_OK) return;
         switch (requestCode) {
             case REQUEST_PICK_PHOTO:
@@ -330,7 +325,26 @@ public class HomeActivity extends AppCompatActivity implements OnUpdateListener,
     }
 
     public void signOut(View view) {
-        findViewById(R.id.loginButton).performClick();
+        if (mLoginDialog.getCurrentUser() != null)
+            new ConfirmationDialog.Builder(this)
+                    .setHeadline(getString(R.string.connected))
+                    .setIcon(R.drawable.ic_password)
+                    .setTitle("Sign out of Doodle?")
+                    .setMessage("You are currently logged in as " + mLoginDialog.getCurrentUser().getEmail())
+                    .setPositiveButton(getString(android.R.string.yes), new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            mLoginDialog.signOut();
+                        }
+                    }, true)
+                    .setNegativeButton(getString(android.R.string.cancel), new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+
+                        }
+                    }, true)
+                    .create()
+                    .show();
     }
 
 }

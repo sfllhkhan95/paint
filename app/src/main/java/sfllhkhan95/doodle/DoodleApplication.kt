@@ -2,17 +2,14 @@ package sfllhkhan95.doodle
 
 import android.app.Activity
 import android.app.Application
-
 import com.crashlytics.android.Crashlytics
 import com.crashlytics.android.core.CrashlyticsCore
 import com.facebook.FacebookSdk
 import com.facebook.appevents.AppEventsLogger
-
 import io.fabric.sdk.android.Fabric
 import pk.aspirasoft.core.db.PersistentStorage
 import sfllhkhan95.doodle.ads.AdManager
 import sfllhkhan95.doodle.core.utils.ThemeAttrs.THEME_CHOCOLATE
-
 import sfllhkhan95.doodle.core.utils.ThemeAttrs.THEME_DEFAULT
 import sfllhkhan95.doodle.core.utils.ThemeAttrs.THEME_FOREST
 import sfllhkhan95.doodle.core.utils.ThemeAttrs.THEME_OCEAN
@@ -34,6 +31,17 @@ class DoodleApplication : Application() {
             if (currentTheme == null) currentTheme = THEME_DEFAULT
             return currentTheme
         }
+
+    fun getDialogTheme(): Int {
+        return when (currentTheme) {
+            THEME_OCEAN -> R.style.DialogTheme_Ocean
+            THEME_SUNLIGHT -> R.style.DialogTheme_Sunlight
+            THEME_FOREST -> R.style.DialogTheme_Forest
+            THEME_CHOCOLATE -> R.style.DialogTheme_Chocolate
+            THEME_DEFAULT -> R.style.DialogTheme
+            else -> R.style.DialogTheme
+        }
+    }
 
     fun setActivityTheme(activity: Activity): Int {
         when (currentTheme) {

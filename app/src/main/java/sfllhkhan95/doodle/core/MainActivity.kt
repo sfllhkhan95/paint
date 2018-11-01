@@ -366,7 +366,7 @@ class MainActivity : AppCompatActivity(), SeekBar.OnSeekBarChangeListener, OnToo
             }
 
             R.id.canvas -> {
-                val canvasColorPicker = CanvasColorPicker(this, paintView!!.canvas!!.color)
+                val canvasColorPicker = CanvasColorPicker(this, paintView!!.canvas!!.color, (application as DoodleApplication).getDialogTheme())
                 canvasColorPicker.setOnColorPickedListener(object : OnColorPickedListener {
                     override fun onColorPicked(color: Int) {
                         paintView!!.canvas!!.color = color

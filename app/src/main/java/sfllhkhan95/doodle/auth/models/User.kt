@@ -1,6 +1,7 @@
 package sfllhkhan95.doodle.auth.models
 
 import com.facebook.Profile
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.firebase.auth.FirebaseUser
 import java.text.SimpleDateFormat
 import java.util.*
@@ -73,9 +74,19 @@ class User {
     }
 
     fun updateWith(facebookProfile: Profile) {
-        uid = facebookProfile.id
+        uid = "https://graph.facebook.com/" + facebookProfile.id +
+                "/picture?width=150&height=150"
         firstName = facebookProfile.firstName
         lastName = facebookProfile.lastName
+    }
+
+    fun updateWith(googleSignInAccount: GoogleSignInAccount) {
+        uid = googleSignInAccount.photoUrl.toString()
+        if (googleSignInAccount.givenName != null)
+            firstName = googleSignInAccount.givenName!!
+
+        if (googleSignInAccount.familyName != null)
+            lastName = googleSignInAccount.familyName!!
     }
 
     private fun setCreationTime(creationTime: Long) {
@@ -100,6 +111,12 @@ class User {
         fun from(facebookProfile: Profile): User {
             val user = User()
             user.updateWith(facebookProfile)
+            return user
+        }
+
+        fun from(googleSignInAccount: GoogleSignInAccount): User {
+            val user = User()
+            user.updateWith(googleSignInAccount)
             return user
         }
 

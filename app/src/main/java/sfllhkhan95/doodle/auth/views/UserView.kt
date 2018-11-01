@@ -71,8 +71,7 @@ class UserView(context: Context) : View(context) {
     private fun downloadUserPhoto(uid: String?) {
         mAvatarView?.let {
             Glide.with(this)
-                    .load("https://graph.facebook.com/" + uid +
-                            "/picture?width=150&height=150")
+                    .load(uid)
                     .into(it)
         }
     }

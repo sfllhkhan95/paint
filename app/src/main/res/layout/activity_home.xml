@@ -136,12 +136,6 @@
             android:orientation="horizontal"
             app:layout_collapseMode="pin">
 
-            <com.facebook.login.widget.LoginButton
-                android:id="@+id/loginButton"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:visibility="gone" />
-
             <android.support.v7.widget.AppCompatButton
                 android:id="@+id/signInButton"
                 style="@style/Widget.MaterialComponents.Button.TextButton"
