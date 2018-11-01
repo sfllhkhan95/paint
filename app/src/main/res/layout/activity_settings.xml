@@ -54,6 +54,7 @@
                     android:layout_marginRight="8dp"
                     android:text="@string/settings_item_notifications"
                     android:textAllCaps="false"
+                    android:visibility="gone"
                     app:cornerRadius="16dp" />
 
             </LinearLayout>

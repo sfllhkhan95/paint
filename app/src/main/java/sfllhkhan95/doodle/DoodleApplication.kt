@@ -28,7 +28,7 @@ import sfllhkhan95.doodle.core.utils.ThemeAttrs.THEME_SUNLIGHT
  */
 class DoodleApplication : Application() {
 
-    private val currentTheme: String
+    val currentTheme: String
         get() {
             var currentTheme: String? = PersistentStorage.get(THEME, String::class.java)
             if (currentTheme == null) currentTheme = THEME_DEFAULT

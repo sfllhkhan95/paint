@@ -4,9 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.support.design.button.MaterialButton
 import android.support.v4.app.NavUtils
-import android.support.v7.app.AlertDialog
 import android.support.v7.app.AppCompatActivity
-import android.support.v7.view.ContextThemeWrapper
 import android.support.v7.widget.Toolbar
 import android.view.View
 import sfllhkhan95.doodle.DoodleApplication
@@ -14,11 +12,7 @@ import sfllhkhan95.doodle.FAQsActivity
 import sfllhkhan95.doodle.PrivacyPolicy
 import sfllhkhan95.doodle.R
 import sfllhkhan95.doodle.core.utils.DialogFactory
-import sfllhkhan95.doodle.core.utils.ThemeAttrs.THEME_CHOCOLATE
-import sfllhkhan95.doodle.core.utils.ThemeAttrs.THEME_DEFAULT
-import sfllhkhan95.doodle.core.utils.ThemeAttrs.THEME_FOREST
-import sfllhkhan95.doodle.core.utils.ThemeAttrs.THEME_OCEAN
-import sfllhkhan95.doodle.core.utils.ThemeAttrs.THEME_SUNLIGHT
+import sfllhkhan95.doodle.core.views.ThemeSelector
 
 /**
  * @author saifkhichi96
@@ -52,22 +46,7 @@ class SettingsActivity : AppCompatActivity(), View.OnClickListener {
 
     override fun onClick(view: View) {
         when (view.id) {
-            R.id.theme -> AlertDialog.Builder(ContextThemeWrapper(this, R.style.DialogTheme))
-                    .setTitle("Choose Theme")
-                    .setItems(themes) { dialogInterface, which ->
-                        var theme = THEME_DEFAULT
-                        when (which) {
-                            1 -> theme = THEME_OCEAN
-                            2 -> theme = THEME_SUNLIGHT
-                            3 -> theme = THEME_FOREST
-                            4 -> theme = THEME_CHOCOLATE
-                        }
-                        (application as DoodleApplication)
-                                .changeTheme(this@SettingsActivity, theme)
-                        dialogInterface.dismiss()
-                    }
-                    .create()
-                    .show()
+            R.id.theme -> ThemeSelector(this).show()
 
             R.id.privacy_policy -> startActivity(Intent(this, PrivacyPolicy::class.java))
 

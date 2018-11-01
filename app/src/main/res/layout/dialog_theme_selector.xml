@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="320dp"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <android.support.v7.widget.Toolbar
+            android:layout_width="match_parent"
+            android:layout_height="?actionBarSize"
+            android:background="?attr/colorPrimaryDark"
+            app:title="Choose Theme" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/grey_400"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:padding="8dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/activity_horizontal_margin"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/actionbar"
+                    style="@style/TextAppearance.AppCompat.Title"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:background="?attr/colorAccent"
+                    android:gravity="center_vertical"
+                    android:padding="8dp"
+                    android:text="Default Theme" />
+
+                <LinearLayout
+                    android:id="@+id/window"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="?android:attr/windowBackground"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:padding="@dimen/activity_horizontal_margin">
+
+                    <TextView
+                        android:id="@+id/body"
+                        android:layout_width="match_parent"
+                        android:layout_height="80dp"
+                        android:layout_marginBottom="8dp"
+                        android:background="?attr/colorPrimary"
+                        android:padding="8dp"
+                        android:text="Hello, World!"
+                        android:textColor="@color/black" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="end|center_vertical"
+                        android:orientation="horizontal">
+
+                        <android.support.v7.widget.AppCompatButton
+                            android:id="@+id/negativeButton"
+                            android:layout_width="wrap_content"
+                            android:layout_height="30dp"
+                            android:layout_gravity="end"
+                            android:layout_marginEnd="8dp"
+                            android:layout_marginRight="8dp"
+                            android:background="#0000"
+                            android:clickable="false"
+                            android:focusable="false"
+                            android:text="CANCEL"
+                            android:textColor="?attr/colorPrimaryDark" />
+
+                        <android.support.v7.widget.AppCompatButton
+                            android:id="@+id/positiveButton"
+                            android:layout_width="70dp"
+                            android:layout_height="30dp"
+                            android:background="?attr/colorPrimaryDark"
+                            android:clickable="false"
+                            android:focusable="false"
+                            android:text="OK" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:paddingTop="8dp">
+
+                <android.support.design.card.MaterialCardView
+                    android:id="@+id/defaultTheme"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:layout_margin="8dp"
+                    app:cardBackgroundColor="@color/purple_900"
+                    app:cardCornerRadius="10dp" />
+
+                <android.support.design.card.MaterialCardView
+                    android:id="@+id/oceanTheme"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:layout_margin="8dp"
+                    app:cardBackgroundColor="@color/blue_900"
+                    app:cardCornerRadius="10dp" />
+
+                <android.support.design.card.MaterialCardView
+                    android:id="@+id/sunlightTheme"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:layout_margin="8dp"
+                    app:cardBackgroundColor="@color/yellow_900"
+                    app:cardCornerRadius="10dp" />
+
+                <android.support.design.card.MaterialCardView
+                    android:id="@+id/forestTheme"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:layout_margin="8dp"
+                    app:cardBackgroundColor="@color/green_900"
+                    app:cardCornerRadius="10dp" />
+
+                <android.support.design.card.MaterialCardView
+                    android:id="@+id/chocolateTheme"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:layout_margin="8dp"
+                    app:cardBackgroundColor="@color/brown_900"
+                    app:cardCornerRadius="10dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:paddingBottom="8dp">
+
+                <android.support.design.card.MaterialCardView
+                    android:id="@+id/defaultThemeSelected"
+                    android:layout_width="4dp"
+                    android:layout_height="4dp"
+                    android:layout_marginLeft="22dp"
+                    android:layout_marginRight="22dp"
+                    app:cardBackgroundColor="@color/blue_grey_500a" />
+
+                <android.support.design.card.MaterialCardView
+                    android:id="@+id/oceanThemeSelected"
+                    android:layout_width="4dp"
+                    android:layout_height="4dp"
+                    android:layout_marginLeft="22dp"
+                    android:layout_marginRight="22dp"
+                    app:cardBackgroundColor="@color/blue_grey_500a" />
+
+                <android.support.design.card.MaterialCardView
+                    android:id="@+id/sunlightThemeSelected"
+                    android:layout_width="4dp"
+                    android:layout_height="4dp"
+                    android:layout_marginLeft="22dp"
+                    android:layout_marginRight="22dp"
+                    app:cardBackgroundColor="@color/blue_grey_500a" />
+
+                <android.support.design.card.MaterialCardView
+                    android:id="@+id/forestThemeSelected"
+                    android:layout_width="4dp"
+                    android:layout_height="4dp"
+                    android:layout_marginLeft="22dp"
+                    android:layout_marginRight="22dp"
+                    app:cardBackgroundColor="@color/blue_grey_500a" />
+
+                <android.support.design.card.MaterialCardView
+                    android:id="@+id/chocolateThemeSelected"
+                    android:layout_width="4dp"
+                    android:layout_height="4dp"
+                    android:layout_marginLeft="22dp"
+                    android:layout_marginRight="22dp"
+                    app:cardBackgroundColor="@color/blue_grey_500a" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="end"
+                android:orientation="horizontal">
+
+                <android.support.design.button.MaterialButton
+                    android:id="@+id/cancel_button"
+                    style="@style/Widget.MaterialComponents.Button.TextButton.Dialog"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/activity_horizontal_margin"
+                    android:layout_marginRight="@dimen/activity_horizontal_margin"
+                    android:text="Cancel" />
+
+                <android.support.design.button.MaterialButton
+                    android:id="@+id/ok_button"
+                    style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Set" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</android.support.design.card.MaterialCardView>
