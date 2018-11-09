@@ -11,6 +11,7 @@ import sfllhkhan95.doodle.DoodleApplication
 import sfllhkhan95.doodle.R
 
 import sfllhkhan95.doodle.core.utils.ThemeAttrs.THEME_CHOCOLATE
+import sfllhkhan95.doodle.core.utils.ThemeAttrs.THEME_DARK
 import sfllhkhan95.doodle.core.utils.ThemeAttrs.THEME_DEFAULT
 import sfllhkhan95.doodle.core.utils.ThemeAttrs.THEME_FOREST
 import sfllhkhan95.doodle.core.utils.ThemeAttrs.THEME_OCEAN
@@ -52,6 +53,7 @@ class ThemeSelector(context: Activity) : Dialog(context), View.OnClickListener {
         findViewById<View>(R.id.sunlightTheme).setOnClickListener(this)
         findViewById<View>(R.id.forestTheme).setOnClickListener(this)
         findViewById<View>(R.id.chocolateTheme).setOnClickListener(this)
+        findViewById<View>(R.id.darkTheme).setOnClickListener(this)
 
         findViewById<View>(R.id.cancel_button).setOnClickListener { cancel() }
 
@@ -71,6 +73,7 @@ class ThemeSelector(context: Activity) : Dialog(context), View.OnClickListener {
         findViewById<View>(R.id.sunlightThemeSelected).visibility = View.INVISIBLE
         findViewById<View>(R.id.forestThemeSelected).visibility = View.INVISIBLE
         findViewById<View>(R.id.chocolateThemeSelected).visibility = View.INVISIBLE
+        findViewById<View>(R.id.darkThemeSelected).visibility = View.INVISIBLE
         negativeButton!!.setBackgroundColor(context.resources.getColor(android.R.color.transparent))
 
         actionbar!!.text = theme
@@ -124,6 +127,16 @@ class ThemeSelector(context: Activity) : Dialog(context), View.OnClickListener {
                 findViewById<View>(R.id.chocolateThemeSelected).visibility = View.VISIBLE
                 selectedTheme = THEME_CHOCOLATE
             }
+
+            THEME_DARK -> {
+                actionbar!!.setBackgroundColor(context.resources.getColor(R.color.grey_900))
+                window!!.setBackgroundColor(context.resources.getColor(R.color.grey_600))
+                body!!.setBackgroundColor(context.resources.getColor(R.color.grey_400))
+                positiveButton!!.setBackgroundColor(context.resources.getColor(R.color.grey_900))
+                negativeButton!!.setTextColor(context.resources.getColor(R.color.grey_900))
+                findViewById<View>(R.id.darkThemeSelected).visibility = View.VISIBLE
+                selectedTheme = THEME_DARK
+            }
         }
     }
 
@@ -138,6 +151,8 @@ class ThemeSelector(context: Activity) : Dialog(context), View.OnClickListener {
             R.id.forestTheme -> updateUI(THEME_FOREST)
 
             R.id.chocolateTheme -> updateUI(THEME_CHOCOLATE)
+
+            R.id.darkTheme -> updateUI(THEME_DARK)
         }
     }
 }

@@ -35,6 +35,13 @@
         <item name="android:windowBackground">@color/deep_orange_50</item>
     </style>
 
+    <style name="AppTheme.Dark" parent="Theme.MaterialComponents.NoActionBar">
+        <item name="colorPrimary">@color/grey_400</item>
+        <item name="colorPrimaryDark">@color/grey_900</item>
+        <item name="colorAccent">@color/grey_900</item>
+        <item name="android:windowBackground">@color/grey_600</item>
+    </style>
+
     <style name="DialogTheme" parent="Theme.MaterialComponents.Light.Dialog.Alert">
         <item name="colorPrimary">@color/purple_100</item>
         <item name="colorPrimaryDark">@color/purple_900</item>

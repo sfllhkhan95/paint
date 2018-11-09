@@ -22,7 +22,7 @@ import sfllhkhan95.doodle.core.views.ThemeSelector
 class SettingsActivity : AppCompatActivity(), View.OnClickListener {
 
     private var themeButton: MaterialButton? = null
-    private val themes = arrayOf<CharSequence>("Default", "Ocean", "Sunlight", "Forest", "Chocolate")
+    private val themes = arrayOf<CharSequence>("Default", "Ocean", "Sunlight", "Forest", "Chocolate", "Dark")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         val which = (application as DoodleApplication).setActivityTheme(this)

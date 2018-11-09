@@ -25,13 +25,16 @@
     <color name="brown_100">#d7ccc8</color>
     <color name="brown_900">#3e2723</color>
 
+    <!-- Dark colors -->
+    <color name="grey_400">#bdbdbd</color>
+    <color name="grey_600">#757575</color>
+    <color name="grey_900">#212121</color>
+
     <!-- Other colors -->
     <color name="black">#000000</color>
     <color name="blue_grey_500">#607d8b</color>
     <color name="blue_grey_500a">#88607d8b</color>
-    <color name="grey_400">#bdbdbd</color>
-    <color name="grey_600">#757575</color>
-    <color name="grey_800">#37474f</color>
+    <color name="blue_grey_800">#37474f</color>
     <color name="red_900">#b71c1c</color>
     <color name="red_900a">#88b71c1c</color>
     <color name="white">#FFFFFF</color>

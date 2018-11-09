@@ -35,7 +35,7 @@ class IntroActivity : AppIntro() {
 
         addSlide(SlideFragmentBuilder()
                 .image(R.drawable.palette)
-                .backgroundColor(resources.getColor(R.color.grey_800))
+                .backgroundColor(resources.getColor(R.color.blue_grey_800))
                 .title(getString(R.string.slide2_title))
                 .description(getString(R.string.slide2_description))
                 .build())

@@ -138,6 +138,14 @@
                     android:layout_margin="8dp"
                     app:cardBackgroundColor="@color/brown_900"
                     app:cardCornerRadius="10dp" />
+
+                <android.support.design.card.MaterialCardView
+                    android:id="@+id/darkTheme"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:layout_margin="8dp"
+                    app:cardBackgroundColor="@color/grey_900"
+                    app:cardCornerRadius="10dp" />
             </LinearLayout>
 
             <LinearLayout
@@ -181,6 +189,14 @@
 
                 <android.support.design.card.MaterialCardView
                     android:id="@+id/chocolateThemeSelected"
+                    android:layout_width="4dp"
+                    android:layout_height="4dp"
+                    android:layout_marginLeft="22dp"
+                    android:layout_marginRight="22dp"
+                    app:cardBackgroundColor="@color/blue_grey_500a" />
+
+                <android.support.design.card.MaterialCardView
+                    android:id="@+id/darkThemeSelected"
                     android:layout_width="4dp"
                     android:layout_height="4dp"
                     android:layout_marginLeft="22dp"

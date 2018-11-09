@@ -69,7 +69,7 @@
             android:contentDescription="@string/desc_delete_button"
             android:scaleType="centerInside"
             android:src="@drawable/ic_action_share"
-            android:tint="@color/grey_800" />
+            android:tint="@color/blue_grey_800" />
 
         <ImageView
             android:id="@+id/deleteButton"
@@ -78,7 +78,7 @@
             android:contentDescription="@string/desc_delete_button"
             android:scaleType="centerInside"
             android:src="@drawable/ic_action_delete"
-            android:tint="@color/grey_800" />
+            android:tint="@color/blue_grey_800" />
 
     </LinearLayout>
 

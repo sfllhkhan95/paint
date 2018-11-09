@@ -10,6 +10,7 @@ import io.fabric.sdk.android.Fabric
 import pk.aspirasoft.core.db.PersistentStorage
 import sfllhkhan95.doodle.ads.AdManager
 import sfllhkhan95.doodle.core.utils.ThemeAttrs.THEME_CHOCOLATE
+import sfllhkhan95.doodle.core.utils.ThemeAttrs.THEME_DARK
 import sfllhkhan95.doodle.core.utils.ThemeAttrs.THEME_DEFAULT
 import sfllhkhan95.doodle.core.utils.ThemeAttrs.THEME_FOREST
 import sfllhkhan95.doodle.core.utils.ThemeAttrs.THEME_OCEAN
@@ -27,7 +28,7 @@ class DoodleApplication : Application() {
 
     val currentTheme: String
         get() {
-            var currentTheme: String? = PersistentStorage.get(THEME, String::class.java)
+            var currentTheme: String? = PersistentStorage[THEME, String::class.java]
             if (currentTheme == null) currentTheme = THEME_DEFAULT
             return currentTheme
         }
@@ -61,6 +62,10 @@ class DoodleApplication : Application() {
                 activity.setTheme(R.style.AppTheme_Chocolate)
                 return 4
             }
+            THEME_DARK -> {
+                activity.setTheme(R.style.AppTheme_Dark)
+                return 5
+            }
             THEME_DEFAULT -> {
                 activity.setTheme(R.style.AppTheme)
                 return 0
@@ -78,6 +83,7 @@ class DoodleApplication : Application() {
             THEME_SUNLIGHT -> PersistentStorage.put(THEME, THEME_SUNLIGHT)
             THEME_FOREST -> PersistentStorage.put(THEME, THEME_FOREST)
             THEME_CHOCOLATE -> PersistentStorage.put(THEME, THEME_CHOCOLATE)
+            THEME_DARK -> PersistentStorage.put(THEME, THEME_DARK)
             THEME_DEFAULT -> PersistentStorage.put(THEME, THEME_DEFAULT)
             else -> PersistentStorage.put(THEME, THEME_DEFAULT)
         }
