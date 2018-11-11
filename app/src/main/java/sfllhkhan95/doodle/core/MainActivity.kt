@@ -25,7 +25,7 @@ import com.google.firebase.analytics.FirebaseAnalytics
 import org.json.JSONException
 import sfllhkhan95.doodle.DoodleApplication
 import sfllhkhan95.doodle.R
-import sfllhkhan95.doodle.auth.views.MessengerShareButton
+import sfllhkhan95.doodle.core.views.MessengerShareButton
 import sfllhkhan95.doodle.core.models.PaintCanvas
 import sfllhkhan95.doodle.core.models.tools.*
 import sfllhkhan95.doodle.core.utils.ActionBarManager

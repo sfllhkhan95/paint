@@ -42,7 +42,7 @@
             android:screenOrientation="portrait" />
 
         <activity
-            android:name=".auth.SettingsActivity"
+            android:name=".core.SettingsActivity"
             android:label="Settings"
             android:parentActivityName=".projects.HomeActivity"
             android:screenOrientation="portrait" />
@@ -79,13 +79,13 @@
         <activity
             android:name=".PrivacyPolicy"
             android:label="Privacy Policy"
-            android:parentActivityName=".auth.SettingsActivity"
+            android:parentActivityName=".core.SettingsActivity"
             android:screenOrientation="portrait" />
 
         <activity
             android:name=".FAQsActivity"
             android:label="Doodle FAQs"
-            android:parentActivityName=".auth.SettingsActivity"
+            android:parentActivityName=".core.SettingsActivity"
             android:screenOrientation="portrait" />
 
         <activity

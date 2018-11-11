@@ -116,4 +116,14 @@
     <string name="slide4_title">Grant Access</string>
     <string name="slide4_description_permissions">Doodle requires storage and camera permissions to let you start a project with a Gallery image or from Camera.</string>
     <string name="slide3_description_normal">Start with a blank project, or choose an image from Gallery or Camera.</string>
+    <string name="connect_facebook">Continue with Facebook</string>
+    <string name="connect_google">Continue with Google</string>
+    <string name="reset_password">Forgot password?</string>
+    <string name="or">or</string>
+    <string name="hint_password">Password</string>
+    <string name="hint_email">Email</string>
+    <string name="sign_in">Sign In</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="hint_confirm_password">Confirm Password</string>
+    <string name="have_account">Already have an account?</string>
 </resources>

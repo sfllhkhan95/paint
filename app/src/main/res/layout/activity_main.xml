@@ -77,7 +77,7 @@
 
     </LinearLayout>
 
-    <sfllhkhan95.doodle.auth.views.MessengerShareButton
+    <sfllhkhan95.doodle.core.views.MessengerShareButton
         android:id="@+id/messenger_share_button"
         android:layout_width="match_parent"
         android:layout_height="?actionBarSize"

@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="320dp"
-    android:layout_height="wrap_content"
+    android:layout_height="500dp"
     android:orientation="vertical"
     android:padding="16dp">
 
@@ -12,44 +13,40 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginBottom="16dp"
-        android:text="Sign In"
+        android:text="@string/sign_in"
         android:textColor="?attr/colorPrimaryDark"
         android:textStyle="bold" />
 
     <android.support.design.widget.TextInputLayout
         android:id="@+id/emailWrapper"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+        style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Email"
+        android:hint="@string/hint_email"
         app:boxCornerRadiusBottomEnd="0dp"
-        app:boxCornerRadiusBottomStart="0dp"
-        app:boxCornerRadiusTopEnd="@dimen/activity_horizontal_margin"
-        app:boxCornerRadiusTopStart="@dimen/activity_horizontal_margin">
+        app:boxCornerRadiusBottomStart="0dp">
 
         <android.support.design.widget.TextInputEditText
             android:id="@+id/emailField"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:drawableStart="@drawable/ic_email"
             android:drawableLeft="@drawable/ic_email"
             android:drawablePadding="4dp"
-            android:drawableStart="@drawable/ic_email"
             android:inputType="textEmailAddress"
-            android:textColor="@color/black" />
+            android:textColor="@color/black"
+            tools:text="@tools:sample/full_names" />
 
     </android.support.design.widget.TextInputLayout>
 
     <android.support.design.widget.TextInputLayout
         android:id="@+id/passwordWrapper"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+        style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Password"
-        app:boxCornerRadiusBottomEnd="@dimen/activity_horizontal_margin"
-        app:boxCornerRadiusBottomStart="@dimen/activity_horizontal_margin"
+        android:hint="@string/hint_password"
         app:boxCornerRadiusTopEnd="0dp"
         app:boxCornerRadiusTopStart="0dp"
-        app:passwordToggleContentDescription="Show password"
         app:passwordToggleDrawable="@drawable/ic_action_visible"
         app:passwordToggleEnabled="true">
 
@@ -57,41 +54,42 @@
             android:id="@+id/passwordField"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:drawableStart="@drawable/ic_password"
             android:drawableLeft="@drawable/ic_password"
             android:drawablePadding="4dp"
-            android:drawableStart="@drawable/ic_password"
-            android:inputType="textPassword" />
+            android:inputType="textPassword"
+            tools:text="@tools:sample/last_names" />
 
     </android.support.design.widget.TextInputLayout>
 
-    <android.support.design.button.MaterialButton
-        android:id="@+id/signInButton"
-        style="@style/Widget.MaterialComponents.Button.TextButton.Dialog.Icon"
-        android:layout_width="wrap_content"
+    <RelativeLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="end"
-        app:icon="@drawable/ic_arrow_forward_white" />
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:gravity="center"
-        android:orientation="vertical">
-
-        <TextView
+        <android.support.design.button.MaterialButton
+            android:id="@+id/signInButton"
+            style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Don't have an account? " />
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:text="@string/sign_in" />
 
-        <TextView
-            android:id="@+id/signUpButton"
-            android:layout_width="wrap_content"
+        <android.support.design.button.MaterialButton
+            android:id="@+id/resetButton"
+            style="@style/Widget.MaterialComponents.Button.TextButton.Dialog"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Register Now"
+            android:layout_toStartOf="@id/signInButton"
+            android:layout_toLeftOf="@id/signInButton"
+            android:gravity="start"
+            android:text="@string/reset_password"
+            android:textAllCaps="false"
             android:textColor="?attr/colorPrimaryDark" />
 
-    </LinearLayout>
+    </RelativeLayout>
 
     <TextView
         style="@style/TextAppearance.AppCompat.Caption"
@@ -99,14 +97,14 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_margin="@dimen/activity_horizontal_margin"
-        android:text="or" />
+        android:text="@string/or" />
 
     <android.support.design.button.MaterialButton
         android:id="@+id/facebookSignInButton"
         style="@style/Widget.MaterialComponents.Button.UnelevatedButton.Icon"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Continue with Facebook"
+        android:text="@string/connect_facebook"
         android:textAllCaps="false"
         app:backgroundTint="@color/com_facebook_blue"
         app:cornerRadius="@dimen/activity_horizontal_margin"
@@ -117,7 +115,7 @@
         style="@style/Widget.MaterialComponents.Button.UnelevatedButton.Icon"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Continue with Google"
+        android:text="@string/connect_google"
         android:textAllCaps="false"
         app:backgroundTint="#db4139"
         app:cornerRadius="@dimen/activity_horizontal_margin"

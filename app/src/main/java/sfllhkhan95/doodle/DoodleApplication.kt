@@ -39,6 +39,7 @@ class DoodleApplication : Application() {
             THEME_SUNLIGHT -> R.style.DialogTheme_Sunlight
             THEME_FOREST -> R.style.DialogTheme_Forest
             THEME_CHOCOLATE -> R.style.DialogTheme_Chocolate
+            THEME_DARK -> R.style.DialogTheme_Dark
             THEME_DEFAULT -> R.style.DialogTheme
             else -> R.style.DialogTheme
         }

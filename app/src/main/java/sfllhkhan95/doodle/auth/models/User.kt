@@ -25,6 +25,8 @@ class User {
         private set
     var email: String? = DEFAULT_EMAIL
         private set
+    var photoUrl: String? = null
+        private set
 
     private var creationTime = DEFAULT_CREATION_TIME
     private var loginTime = DEFAULT_LOGIN_TIME
@@ -64,6 +66,7 @@ class User {
         }
 
     fun updateWith(firebaseUser: FirebaseUser) {
+        uid = firebaseUser.uid
         email = firebaseUser.email
 
         val metadata = firebaseUser.metadata
@@ -74,14 +77,14 @@ class User {
     }
 
     fun updateWith(facebookProfile: Profile) {
-        uid = "https://graph.facebook.com/" + facebookProfile.id +
+        photoUrl = "https://graph.facebook.com/" + facebookProfile.id +
                 "/picture?width=150&height=150"
         firstName = facebookProfile.firstName
         lastName = facebookProfile.lastName
     }
 
     fun updateWith(googleSignInAccount: GoogleSignInAccount) {
-        uid = googleSignInAccount.photoUrl.toString()
+        photoUrl = googleSignInAccount.photoUrl.toString()
         if (googleSignInAccount.givenName != null)
             firstName = googleSignInAccount.givenName!!
 

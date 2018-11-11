@@ -34,11 +34,11 @@ import java.util.List;
 import sfllhkhan95.doodle.DoodleApplication;
 import sfllhkhan95.doodle.R;
 import sfllhkhan95.doodle.ads.AdManager;
-import sfllhkhan95.doodle.auth.SettingsActivity;
-import sfllhkhan95.doodle.auth.utils.OnUpdateListener;
-import sfllhkhan95.doodle.auth.views.LoginDialog;
+import sfllhkhan95.doodle.auth.utils.LoginController;
 import sfllhkhan95.doodle.auth.views.UserView;
 import sfllhkhan95.doodle.core.MainActivity;
+import sfllhkhan95.doodle.core.SettingsActivity;
+import sfllhkhan95.doodle.core.utils.OnUpdateListener;
 import sfllhkhan95.doodle.core.views.ConfirmationDialog;
 import sfllhkhan95.doodle.projects.utils.DoodleDatabase;
 import sfllhkhan95.doodle.projects.utils.ThumbnailInflater;
@@ -54,7 +54,7 @@ public class HomeActivity extends AppCompatActivity implements OnUpdateListener,
     private static final int REQUEST_TAKE_PHOTO = 100;
     private static final int REQUEST_PICK_PHOTO = 200;
 
-    private LoginDialog mLoginDialog;
+    private LoginController mLoginController;
     private UserView mUserView;
 
     private ThumbnailInflater thumbnailInflater;
@@ -114,12 +114,12 @@ public class HomeActivity extends AppCompatActivity implements OnUpdateListener,
                 composeList
         ).build();
 
-        mLoginDialog = new LoginDialog(this, ((DoodleApplication) getApplication()).getDialogTheme());
-        mLoginDialog.setOnUpdateListener(this);
+        mLoginController = new LoginController(this, ((DoodleApplication) getApplication()).getDialogTheme());
+        mLoginController.setOnUpdateListener(this);
         findViewById(R.id.signInButton).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mLoginDialog.show();
+                mLoginController.show();
             }
         });
 
@@ -157,19 +157,19 @@ public class HomeActivity extends AppCompatActivity implements OnUpdateListener,
     @Override
     public void onUpdate() {
         // Dismiss login dialog if showing
-        if (mLoginDialog.isShowing()) {
-            mLoginDialog.dismiss();
+        if (mLoginController.isShowing()) {
+            mLoginController.dismiss();
         }
 
         // Is a user authenticated?
-        boolean authenticated = mLoginDialog.isAuthenticated();
+        boolean authenticated = mLoginController.isSignedIn();
 
         // Show respective layout
         findViewById(R.id.userView).setVisibility(authenticated ? View.VISIBLE : View.GONE);
         findViewById(R.id.signInButton).setVisibility(authenticated ? View.GONE : View.VISIBLE);
         findViewById(R.id.signOutButton).setVisibility(authenticated ? View.VISIBLE : View.GONE);
         if (authenticated) {
-            mUserView.showUser(mLoginDialog.getCurrentUser());
+            mUserView.showUser(mLoginController.getCurrentUser());
         }
     }
 
@@ -215,16 +215,16 @@ public class HomeActivity extends AppCompatActivity implements OnUpdateListener,
     @Override
     public void onDestroy() {
         super.onDestroy();
-        if (mLoginDialog != null) {
-            mLoginDialog.onDestroy();
+        if (mLoginController != null) {
+            mLoginController.onDestroy();
         }
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (mLoginDialog != null) {
-            mLoginDialog.onActivityResult(requestCode, resultCode, data);
+        if (mLoginController != null) {
+            mLoginController.onActivityResult(requestCode, resultCode, data);
         }
 
         if (resultCode != RESULT_OK) return;
@@ -325,16 +325,16 @@ public class HomeActivity extends AppCompatActivity implements OnUpdateListener,
     }
 
     public void signOut(View view) {
-        if (mLoginDialog.getCurrentUser() != null)
+        if (mLoginController.getCurrentUser() != null)
             new ConfirmationDialog.Builder(this)
                     .setHeadline(getString(R.string.connected))
                     .setIcon(R.drawable.ic_password)
                     .setTitle("Sign out of Doodle?")
-                    .setMessage("You are currently logged in as " + mLoginDialog.getCurrentUser().getEmail())
+                    .setMessage("You are currently logged in as " + mLoginController.getCurrentUser().getEmail())
                     .setPositiveButton(getString(android.R.string.yes), new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
-                            mLoginDialog.signOut();
+                            mLoginController.signOut();
                         }
                     }, true)
                     .setNegativeButton(getString(android.R.string.cancel), new View.OnClickListener() {

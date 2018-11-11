@@ -1,4 +1,4 @@
-package sfllhkhan95.doodle.auth.views
+package sfllhkhan95.doodle.core.views
 
 import android.app.Activity
 import android.content.Context

@@ -1,4 +1,4 @@
-package sfllhkhan95.doodle.auth
+package sfllhkhan95.doodle.core
 
 import android.content.Intent
 import android.os.Bundle

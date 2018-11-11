@@ -61,11 +61,11 @@ class UserView(context: Context) : View(context) {
     fun showUser(user: User?) {
         showName(user?.firstName)
         showEmail(user?.email)
-        if (user?.uid == null || user.uid!!.isEmpty()) {
+        if (user?.photoUrl == null || user.photoUrl!!.isEmpty()) {
             showAvatar(DEFAULT_AVATAR)
         }
 
-        downloadUserPhoto(user?.uid)
+        downloadUserPhoto(user?.photoUrl)
     }
 
     private fun downloadUserPhoto(uid: String?) {
