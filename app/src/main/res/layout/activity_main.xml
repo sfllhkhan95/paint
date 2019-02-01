@@ -21,8 +21,8 @@
         android:layout_alignParentTop="true"
         android:background="@color/blue_grey_500a"
         android:gravity="center_vertical"
-        android:paddingLeft="10dp"
-        android:paddingRight="10dp" />
+        android:paddingStart="10dp"
+        android:paddingEnd="10dp" />
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/secondaryToolbar"
@@ -65,7 +65,7 @@
             android:layout_weight="1"
             android:contentDescription="@string/desc_brush_size_icon"
             android:scaleType="centerInside"
-            android:src="@drawable/ic_brush_size" />
+            custom:srcCompat="@drawable/ic_brush_size" />
 
         <SeekBar
             android:id="@+id/brushController"

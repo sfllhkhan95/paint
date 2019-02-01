@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center"
@@ -14,6 +15,6 @@
         android:contentDescription="@string/messenger_send_button_text"
         android:padding="10dp"
         android:scaleType="centerInside"
-        android:src="@drawable/ic_action_send" />
+        app:srcCompat="@drawable/ic_action_send" />
 
 </LinearLayout>

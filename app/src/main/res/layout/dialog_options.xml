@@ -20,8 +20,8 @@
             android:gravity="center"
             android:orientation="vertical"
             android:paddingBottom="24dp"
-            android:paddingLeft="24dp"
-            android:paddingRight="24dp"
+            android:paddingStart="24dp"
+            android:paddingEnd="24dp"
             android:paddingTop="45dp">
 
             <TextView
@@ -67,7 +67,7 @@
                     android:background="@android:color/transparent"
                     android:contentDescription="@string/desc_icon"
                     android:scaleType="fitCenter"
-                    android:src="@drawable/messenger_button_blue_bg_round" />
+                    ads:srcCompat="@drawable/messenger_button_blue_bg_round" />
 
                 <TextView
                     android:id="@+id/op1_label"
@@ -99,7 +99,7 @@
                     android:background="@android:color/transparent"
                     android:contentDescription="@string/desc_icon"
                     android:scaleType="fitCenter"
-                    android:src="@drawable/ic_share" />
+                    ads:srcCompat="@drawable/ic_share" />
 
                 <TextView
                     android:id="@+id/op2_label"
@@ -132,7 +132,7 @@
                     android:background="@android:color/transparent"
                     android:contentDescription="@string/desc_icon"
                     android:scaleType="fitCenter"
-                    android:src="@drawable/ic_share" />
+                    ads:srcCompat="@drawable/ic_share" />
 
                 <TextView
                     android:id="@+id/op3_label"
@@ -170,7 +170,7 @@
         android:background="@drawable/bg_options_icon"
         android:contentDescription="@string/desc_icon"
         android:scaleType="centerInside"
-        android:src="@drawable/ic_tool_shapes"
+        ads:srcCompat="@drawable/ic_tool_shapes"
         android:tint="?attr/colorPrimaryDark" />
 
 </RelativeLayout>

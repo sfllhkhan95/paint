@@ -40,8 +40,8 @@
             android:layout_toRightOf="@id/messenger_icon"
             android:layout_toStartOf="@id/share_button"
             android:orientation="vertical"
-            android:paddingLeft="10dp"
-            android:paddingRight="10dp">
+            android:paddingStart="10dp"
+            android:paddingEnd="10dp">
 
             <TextView
                 android:id="@+id/action"

@@ -159,48 +159,48 @@
                     android:id="@+id/defaultThemeSelected"
                     android:layout_width="4dp"
                     android:layout_height="4dp"
-                    android:layout_marginLeft="22dp"
-                    android:layout_marginRight="22dp"
+                    android:layout_marginStart="22dp"
+                    android:layout_marginEnd="22dp"
                     app:cardBackgroundColor="@color/blue_grey_500a" />
 
                 <android.support.design.card.MaterialCardView
                     android:id="@+id/oceanThemeSelected"
                     android:layout_width="4dp"
                     android:layout_height="4dp"
-                    android:layout_marginLeft="22dp"
-                    android:layout_marginRight="22dp"
+                    android:layout_marginStart="22dp"
+                    android:layout_marginEnd="22dp"
                     app:cardBackgroundColor="@color/blue_grey_500a" />
 
                 <android.support.design.card.MaterialCardView
                     android:id="@+id/sunlightThemeSelected"
                     android:layout_width="4dp"
                     android:layout_height="4dp"
-                    android:layout_marginLeft="22dp"
-                    android:layout_marginRight="22dp"
+                    android:layout_marginStart="22dp"
+                    android:layout_marginEnd="22dp"
                     app:cardBackgroundColor="@color/blue_grey_500a" />
 
                 <android.support.design.card.MaterialCardView
                     android:id="@+id/forestThemeSelected"
                     android:layout_width="4dp"
                     android:layout_height="4dp"
-                    android:layout_marginLeft="22dp"
-                    android:layout_marginRight="22dp"
+                    android:layout_marginStart="22dp"
+                    android:layout_marginEnd="22dp"
                     app:cardBackgroundColor="@color/blue_grey_500a" />
 
                 <android.support.design.card.MaterialCardView
                     android:id="@+id/chocolateThemeSelected"
                     android:layout_width="4dp"
                     android:layout_height="4dp"
-                    android:layout_marginLeft="22dp"
-                    android:layout_marginRight="22dp"
+                    android:layout_marginStart="22dp"
+                    android:layout_marginEnd="22dp"
                     app:cardBackgroundColor="@color/blue_grey_500a" />
 
                 <android.support.design.card.MaterialCardView
                     android:id="@+id/darkThemeSelected"
                     android:layout_width="4dp"
                     android:layout_height="4dp"
-                    android:layout_marginLeft="22dp"
-                    android:layout_marginRight="22dp"
+                    android:layout_marginStart="22dp"
+                    android:layout_marginEnd="22dp"
                     app:cardBackgroundColor="@color/blue_grey_500a" />
             </LinearLayout>
 
