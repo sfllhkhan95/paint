@@ -1,6 +1,6 @@
 package sfllhkhan95.doodle.core.views
 
-import android.app.Activity
+import android.support.v7.app.AppCompatActivity
 import android.content.Context
 import android.net.Uri
 import android.util.AttributeSet
@@ -101,7 +101,7 @@ class MessengerShareButton : RelativeLayout {
      * @param contentType the MIME type of the content being shared
      * @param contentUri  contentUri points to the content being shared to Messenger
      */
-    fun sendReply(requestFrom: Activity, contentType: String, contentUri: Uri) {
+    fun sendReply(requestFrom: AppCompatActivity, contentType: String, contentUri: Uri) {
         val shareParams = ShareToMessengerParams.newBuilder(contentUri, contentType)
                 .build()
 
@@ -119,7 +119,7 @@ class MessengerShareButton : RelativeLayout {
      * @param requestCode this request code can be used to perform action on request completion
      * in the requesting activity's Activity#onActivityResult method
      */
-    fun sendMessage(requestFrom: Activity, contentType: String,
+    fun sendMessage(requestFrom: AppCompatActivity, contentType: String,
                     contentUri: Uri, requestCode: Int) {
         val shareParams = ShareToMessengerParams.newBuilder(contentUri, contentType)
                 .build()

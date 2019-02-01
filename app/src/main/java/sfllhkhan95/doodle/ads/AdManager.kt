@@ -1,6 +1,6 @@
 package sfllhkhan95.doodle.ads
 
-import android.app.Activity
+import android.support.v7.app.AppCompatActivity
 import android.content.Context
 
 import com.google.android.gms.ads.AdListener
@@ -60,7 +60,7 @@ class AdManager private constructor(context: Context) {
      * @return boolean value indicating the status of ad removal
      * @since 3.4.2
      */
-    fun removeAds(activity: Activity): Boolean {
+    fun removeAds(activity: AppCompatActivity): Boolean {
         // If user has not already made this purchase, start the purchase sequence
         if (!hasRemovedAds()) {
             mBillingManager.purchaseProduct(activity, BillingManager.Products.AD_REMOVE)
@@ -103,7 +103,7 @@ class AdManager private constructor(context: Context) {
      * @param target the [Activity] where the video should be played
      * @since 3.5.0
      */
-    fun showVideoAd(target: Activity?) {
+    fun showVideoAd(target: AppCompatActivity?) {
         if (isVideoAdLoaded && mVideoAd != null) {
             mVideoAd!!.rewardedVideoAdListener = object : RewardedVideoAdListener {
                 override fun onRewardedVideoAdLoaded() {

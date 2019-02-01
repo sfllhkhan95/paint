@@ -1,6 +1,6 @@
 package sfllhkhan95.doodle.core.utils
 
-import android.app.Activity
+import android.support.v7.app.AppCompatActivity
 import android.app.Dialog
 import android.content.Context
 import android.content.Intent
@@ -19,7 +19,7 @@ import sfllhkhan95.doodle.core.views.PaintView
  * @version 1.1.0
  * @since 3.4.2
  */
-class DialogFactory(private val activity: Activity, private val paintView: PaintView?) {
+class DialogFactory(private val activity: AppCompatActivity, private val paintView: PaintView?) {
 
     private val mAdManager = AdManager.instance
 
@@ -45,7 +45,7 @@ class DialogFactory(private val activity: Activity, private val paintView: Paint
                 .create()
     }
 
-    fun supportDialog(context: Activity): Dialog {
+    fun supportDialog(context: AppCompatActivity): Dialog {
         val mBuilder = OptionsDialog.Builder(context)
                 .setIcon(R.drawable.ic_action_review)
                 .setTitle(context.getString(R.string.settings_icon_support))

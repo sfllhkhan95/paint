@@ -1,6 +1,6 @@
 package sfllhkhan95.doodle.billing
 
-import android.app.Activity
+import android.support.v7.app.AppCompatActivity
 import android.content.Context
 import android.os.Handler
 import com.android.billingclient.api.*
@@ -104,7 +104,7 @@ class BillingManager private constructor(context: Context) :
      * @return [com.android.billingclient.api.BillingClient.BillingResponse] indicating status
      * of the purchase request
      */
-    fun purchaseProduct(context: Activity, productId: String): Int {
+    fun purchaseProduct(context: AppCompatActivity, productId: String): Int {
         // If the specified product is not in inventory, return proper error code
         if (!allProducts.containsKey(productId)) {
             return BillingClient.BillingResponse.ITEM_UNAVAILABLE

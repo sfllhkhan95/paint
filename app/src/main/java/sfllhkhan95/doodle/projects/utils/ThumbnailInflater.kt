@@ -1,6 +1,6 @@
 package sfllhkhan95.doodle.projects.utils
 
-import android.app.Activity
+import android.support.v7.app.AppCompatActivity
 import android.content.Intent
 import android.support.annotation.UiThread
 import android.util.DisplayMetrics
@@ -13,7 +13,7 @@ import sfllhkhan95.doodle.projects.models.Thumbnail
 import java.util.*
 
 @UiThread
-class ThumbnailInflater(private val activity: Activity) : Runnable, AdapterView.OnItemClickListener {
+class ThumbnailInflater(private val activity: AppCompatActivity) : Runnable, AdapterView.OnItemClickListener {
     private var savedProjects: Array<String>? = null
 
     private val thumbnails: List<Thumbnail>

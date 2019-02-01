@@ -1,6 +1,6 @@
 package sfllhkhan95.doodle.core.views
 
-import android.app.Activity
+import android.support.v7.app.AppCompatActivity
 import android.app.Dialog
 import android.os.Bundle
 import android.view.View
@@ -24,7 +24,7 @@ import sfllhkhan95.doodle.core.utils.ThemeAttrs.THEME_SUNLIGHT
  * @version 1.0.0
  * @since 1.0.0 01/11/2018 3:46 PM
  */
-class ThemeSelector(context: Activity) : Dialog(context), View.OnClickListener {
+class ThemeSelector(context: AppCompatActivity) : Dialog(context), View.OnClickListener {
 
     private var actionbar: TextView? = null
     private var window: View? = null

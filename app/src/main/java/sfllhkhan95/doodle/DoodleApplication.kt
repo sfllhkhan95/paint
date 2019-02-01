@@ -1,6 +1,6 @@
 package sfllhkhan95.doodle
 
-import android.app.Activity
+import android.support.v7.app.AppCompatActivity
 import android.app.Application
 import com.crashlytics.android.Crashlytics
 import com.crashlytics.android.core.CrashlyticsCore
@@ -45,7 +45,7 @@ class DoodleApplication : Application() {
         }
     }
 
-    fun setActivityTheme(activity: Activity): Int {
+    fun setActivityTheme(activity: AppCompatActivity): Int {
         when (currentTheme) {
             THEME_OCEAN -> {
                 activity.setTheme(R.style.AppTheme_Ocean)
@@ -78,7 +78,7 @@ class DoodleApplication : Application() {
         }
     }
 
-    fun changeTheme(activity: Activity, currentTheme: String) {
+    fun changeTheme(activity: AppCompatActivity, currentTheme: String) {
         when (currentTheme) {
             THEME_OCEAN -> PersistentStorage.put(THEME, THEME_OCEAN)
             THEME_SUNLIGHT -> PersistentStorage.put(THEME, THEME_SUNLIGHT)
