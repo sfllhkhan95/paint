@@ -25,17 +25,15 @@ import com.google.firebase.analytics.FirebaseAnalytics
 import org.json.JSONException
 import sfllhkhan95.doodle.DoodleApplication
 import sfllhkhan95.doodle.R
-import sfllhkhan95.doodle.core.views.MessengerShareButton
 import sfllhkhan95.doodle.core.models.PaintCanvas
 import sfllhkhan95.doodle.core.models.tools.*
 import sfllhkhan95.doodle.core.utils.ActionBarManager
 import sfllhkhan95.doodle.core.utils.DialogFactory
 import sfllhkhan95.doodle.core.utils.OnColorPickedListener
 import sfllhkhan95.doodle.core.utils.OnToolSelectedListener
-import sfllhkhan95.doodle.core.views.CanvasColorPicker
+import sfllhkhan95.doodle.core.views.*
 import sfllhkhan95.doodle.core.views.ColorPicker
-import sfllhkhan95.doodle.core.views.PaintView
-import sfllhkhan95.doodle.core.views.ToolboxView
+import sfllhkhan95.doodle.projects.utils.DoodleDatabase
 import sfllhkhan95.doodle.projects.utils.DoodleFactory
 import java.io.ByteArrayOutputStream
 import java.io.File
@@ -77,6 +75,8 @@ class MainActivity : AppCompatActivity(), SeekBar.OnSeekBarChangeListener, OnToo
 
     // Is the project opened in read-only mode?
     private var isViewing = false
+
+    private var projectName: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         (application as DoodleApplication).setActivityTheme(this)
@@ -167,10 +167,12 @@ class MainActivity : AppCompatActivity(), SeekBar.OnSeekBarChangeListener, OnToo
         setMaximized(isViewing)
         if (isViewing) {
             findViewById<View>(R.id.editButton).visibility = View.VISIBLE
+            findViewById<View>(R.id.deleteButton).visibility = View.VISIBLE
             paintView?.isEnabled = false
             toolbar?.secondary?.visibility = View.GONE
         } else {
             findViewById<View>(R.id.editButton).visibility = View.GONE
+            findViewById<View>(R.id.deleteButton).visibility = View.GONE
             paintView?.isEnabled = true
 
             // Select pen
@@ -192,10 +194,12 @@ class MainActivity : AppCompatActivity(), SeekBar.OnSeekBarChangeListener, OnToo
         val galleryImage = intent.getParcelableExtra<Intent>("FROM_GALLERY")
 
         return if (savedDoodle != null && !savedDoodle.isEmpty()) {
+            projectName = savedDoodle
             resumeProject(metrics, savedDoodle)
         } else if (galleryImage != null) {
             startFromGallery(metrics, galleryImage)
         } else if (cameraImage != null) {
+            projectName = cameraImage
             startFromCamera(metrics, cameraImage)
         } else {
             startFromScratch(metrics)
@@ -224,6 +228,7 @@ class MainActivity : AppCompatActivity(), SeekBar.OnSeekBarChangeListener, OnToo
             val bitmapFromFile = DoodleFactory.loadFromPath(picturePath, metrics.widthPixels, metrics.heightPixels)
             canvas = PaintCanvas.loadFromBitmap(this, metrics, bitmapFromFile)
 
+            projectName = picturePath
             success = true
         } catch (ex: Exception) {
             canvas = startFromScratch(metrics)
@@ -561,6 +566,27 @@ class MainActivity : AppCompatActivity(), SeekBar.OnSeekBarChangeListener, OnToo
                 .build()
 
         ShareDialog.show(this, content)
+    }
+
+    fun deleteProject(view: View) {
+        projectName?.let {
+            ConfirmationDialog.Builder(view.context)
+                    .setHeadline(view.context.getString(R.string.label_delete))
+                    .setIcon(R.drawable.ic_action_delete)
+                    .setTitle(view.context.resources.getString(R.string.confirm_delete_title))
+                    .setMessage(view.context.resources.getString(R.string.confirm_delete_body))
+                    .setPositiveButton(view.context.getString(android.R.string.ok),
+                            View.OnClickListener {
+                                projectName?.let {
+                                    DoodleDatabase.removeDoodle(projectName!!)
+                                }
+                                this.finish()
+                            }, true)
+                    .setNegativeButton(view.context.getString(android.R.string.cancel),
+                            View.OnClickListener { }, true)
+                    .create()
+                    .show()
+        }
     }
 
     fun editMode(view: View) {
