@@ -35,9 +35,7 @@ class PersistentValue<T : Any> {
     }
 
     fun save() {
-        value?.let {
-            PersistentStorage.put(tag, value!!)
-        }
+        PersistentStorage.put(tag, value)
     }
 
     fun reset() {

@@ -27,7 +27,7 @@ object PersistentStorage {
         }
     }
 
-    fun put(key: String, value: Any) {
+    fun put(key: String, value: Any?) {
         val editor = preferences!!.edit()
         val gson = Gson()
         editor.putString(key, gson.toJson(value))
