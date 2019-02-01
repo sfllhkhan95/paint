@@ -17,8 +17,6 @@ import android.support.v4.content.FileProvider;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
-import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.wangjie.rapidfloatingactionbutton.RapidFloatingActionButton;
 import com.wangjie.rapidfloatingactionbutton.RapidFloatingActionHelper;
@@ -34,11 +32,8 @@ import java.util.List;
 import sfllhkhan95.doodle.DoodleApplication;
 import sfllhkhan95.doodle.R;
 import sfllhkhan95.doodle.ads.AdManager;
-import sfllhkhan95.doodle.auth.utils.LoginController;
-import sfllhkhan95.doodle.auth.views.UserView;
 import sfllhkhan95.doodle.core.MainActivity;
 import sfllhkhan95.doodle.core.SettingsActivity;
-import sfllhkhan95.doodle.core.utils.OnUpdateListener;
 import sfllhkhan95.doodle.core.views.ConfirmationDialog;
 import sfllhkhan95.doodle.projects.utils.DoodleDatabase;
 import sfllhkhan95.doodle.projects.utils.ThumbnailInflater;
@@ -48,14 +43,11 @@ import sfllhkhan95.doodle.projects.utils.ThumbnailInflater;
  * @version 1.0
  * created on 16/06/2018 12:10 AM
  */
-public class HomeActivity extends AppCompatActivity implements OnUpdateListener,
+public class HomeActivity extends AppCompatActivity implements
         RapidFloatingActionContentLabelList.OnRapidFloatingActionContentLabelListListener {
 
     private static final int REQUEST_TAKE_PHOTO = 100;
     private static final int REQUEST_PICK_PHOTO = 200;
-
-    private LoginController mLoginController;
-    private UserView mUserView;
 
     private ThumbnailInflater thumbnailInflater;
 
@@ -63,6 +55,7 @@ public class HomeActivity extends AppCompatActivity implements OnUpdateListener,
     private String mCameraPicturePath;
 
     private AdManager mAdManager;
+    private View settingsButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -114,26 +107,13 @@ public class HomeActivity extends AppCompatActivity implements OnUpdateListener,
                 composeList
         ).build();
 
-        mLoginController = new LoginController(this, ((DoodleApplication) getApplication()).getDialogTheme());
-        mLoginController.setOnUpdateListener(this);
-        findViewById(R.id.signInButton).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                mLoginController.show();
-            }
-        });
-
-        findViewById(R.id.settingsButton).setOnClickListener(new View.OnClickListener() {
+        settingsButton = findViewById(R.id.settingsButton);
+        settingsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(HomeActivity.this, SettingsActivity.class));
             }
         });
-
-        // Assign views
-        mUserView = new UserView(this)
-                .setNameView((TextView) findViewById(R.id.nameView))
-                .setAvatarView((ImageView) findViewById(R.id.userAvatar));
     }
 
     @Override
@@ -149,28 +129,6 @@ public class HomeActivity extends AppCompatActivity implements OnUpdateListener,
         // Inflate thumbnails of saved projects
         thumbnailInflater.setSavedProjects(DoodleDatabase.INSTANCE.listDoodles());
         runOnUiThread(thumbnailInflater);
-
-        // Update UI
-        onUpdate();
-    }
-
-    @Override
-    public void onUpdate() {
-        // Dismiss login dialog if showing
-        if (mLoginController.isShowing()) {
-            mLoginController.dismiss();
-        }
-
-        // Is a user authenticated?
-        boolean authenticated = mLoginController.isSignedIn();
-
-        // Show respective layout
-        findViewById(R.id.userView).setVisibility(authenticated ? View.VISIBLE : View.GONE);
-        findViewById(R.id.signInButton).setVisibility(authenticated ? View.GONE : View.VISIBLE);
-        findViewById(R.id.signOutButton).setVisibility(authenticated ? View.VISIBLE : View.GONE);
-        if (authenticated) {
-            mUserView.showUser(mLoginController.getCurrentUser());
-        }
     }
 
     @Override
@@ -213,20 +171,8 @@ public class HomeActivity extends AppCompatActivity implements OnUpdateListener,
     }
 
     @Override
-    public void onDestroy() {
-        super.onDestroy();
-        if (mLoginController != null) {
-            mLoginController.onDestroy();
-        }
-    }
-
-    @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (mLoginController != null) {
-            mLoginController.onActivityResult(requestCode, resultCode, data);
-        }
-
         if (resultCode != RESULT_OK) return;
         switch (requestCode) {
             case REQUEST_PICK_PHOTO:
@@ -262,7 +208,7 @@ public class HomeActivity extends AppCompatActivity implements OnUpdateListener,
                     try {
                         startActivityForResult(pickPictureIntent, REQUEST_PICK_PHOTO);
                     } catch (ActivityNotFoundException ex) {
-                        Snackbar.make(mUserView, "No Gallery application found", Snackbar.LENGTH_LONG).show();
+                        Snackbar.make(settingsButton, "No Gallery application found", Snackbar.LENGTH_LONG).show();
                     }
                 }
                 break;
@@ -281,14 +227,14 @@ public class HomeActivity extends AppCompatActivity implements OnUpdateListener,
                         try {
                             startActivityForResult(takePictureIntent, REQUEST_TAKE_PHOTO);
                         } catch (ActivityNotFoundException ex) {
-                            Snackbar.make(mUserView, "No Camera application found",
+                            Snackbar.make(settingsButton, "No Camera application found",
                                     Snackbar.LENGTH_LONG).show();
                         }
                     } catch (Exception ex) {
                         if (ContextCompat.checkSelfPermission(this,
                                 Manifest.permission.WRITE_EXTERNAL_STORAGE)
                                 != PackageManager.PERMISSION_GRANTED) {
-                            Snackbar.make(mUserView, "Permission to perform storage operations required",
+                            Snackbar.make(settingsButton, "Permission to perform storage operations required",
                                     Snackbar.LENGTH_INDEFINITE)
                                     .setAction("Grant", new View.OnClickListener() {
                                         @Override
@@ -322,29 +268,6 @@ public class HomeActivity extends AppCompatActivity implements OnUpdateListener,
         // Save a file: path for use with ACTION_VIEW intents
         mCameraPicturePath = image.getAbsolutePath();
         return image;
-    }
-
-    public void signOut(View view) {
-        if (mLoginController.getCurrentUser() != null)
-            new ConfirmationDialog.Builder(this)
-                    .setHeadline(getString(R.string.connected))
-                    .setIcon(R.drawable.ic_password)
-                    .setTitle("Sign out of Doodle?")
-                    .setMessage("You are currently logged in as " + mLoginController.getCurrentUser().getEmail())
-                    .setPositiveButton(getString(android.R.string.yes), new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-                            mLoginController.signOut();
-                        }
-                    }, true)
-                    .setNegativeButton(getString(android.R.string.cancel), new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-
-                        }
-                    }, true)
-                    .create()
-                    .show();
     }
 
 }

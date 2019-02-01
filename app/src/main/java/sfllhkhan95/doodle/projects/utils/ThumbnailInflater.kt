@@ -7,7 +7,6 @@ import android.util.DisplayMetrics
 import android.view.View
 import android.widget.AdapterView
 import android.widget.GridView
-import android.widget.TextView
 import sfllhkhan95.doodle.R
 import sfllhkhan95.doodle.core.MainActivity
 import sfllhkhan95.doodle.projects.models.Thumbnail
@@ -24,7 +23,7 @@ class ThumbnailInflater(private val activity: Activity) : Runnable, AdapterView.
                 for (projectName in savedProjects!!) {
                     val thumbnailBitmap = DoodleDatabase.loadDoodle(projectName, 200, 200)
                     if (thumbnailBitmap != null) {
-                        val thumbnail = Thumbnail(this, thumbnailBitmap, projectName)
+                        val thumbnail = Thumbnail(thumbnailBitmap, projectName)
                         thumbnails.add(thumbnail)
                     }
                 }
@@ -43,7 +42,7 @@ class ThumbnailInflater(private val activity: Activity) : Runnable, AdapterView.
 
                     val thumbnailBitmap = DoodleDatabase.loadDoodle(projectName, metrics.widthPixels / 2, metrics.heightPixels / 2)
                     if (thumbnailBitmap != null) {
-                        val thumbnail = Thumbnail(this, thumbnailBitmap, projectName)
+                        val thumbnail = Thumbnail(thumbnailBitmap, projectName)
                         thumbnails.add(thumbnail)
                     }
                 }
@@ -69,7 +68,6 @@ class ThumbnailInflater(private val activity: Activity) : Runnable, AdapterView.
     }
 
     override fun run() {
-        (activity.findViewById<View>(R.id.postCount) as TextView).text = thumbnails.size.toString()
         inflateGrid()
     }
 
