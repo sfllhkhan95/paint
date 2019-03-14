@@ -1,5 +1,5 @@
 # Doodle - Frequently Asked Questions (FAQs)
-This "Frequently Asked Questions" document will be updated continually to accomodate new information with respect to new updates and changes on the app and will be used in the app to help users find answers to their questions.
+This "Frequently Asked Questions" document will be updated continually to accommodate new information with respect to new updates and changes on the app and will be used in the app to help users find answers to their questions.
 
 ## What is Doodle?
 Doodle is a lightweight, open-source application which with its wide range of features, allows you to express yourself without limits. A good number of tools having a variety of brush sizes are available to suit your creative needs. An extensive set of vibrant colours are ever ready, to aid you in actualizing your creative ideas.

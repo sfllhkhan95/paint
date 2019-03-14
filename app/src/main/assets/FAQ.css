@@ -9,3 +9,9 @@ body {
 h1 {
     display: none;
 }
+
+h2 {
+    border-color: gray;
+    border-style: solid;
+    border-radius: 16px;
+}

@@ -1,15 +1,13 @@
 package sfllhkhan95.doodle.core.views
 
-import android.support.v7.app.AppCompatActivity
 import android.app.Dialog
 import android.os.Bundle
+import android.support.v7.app.AppCompatActivity
 import android.view.View
 import android.widget.Button
 import android.widget.TextView
-
 import sfllhkhan95.doodle.DoodleApplication
 import sfllhkhan95.doodle.R
-
 import sfllhkhan95.doodle.core.utils.ThemeAttrs.THEME_CHOCOLATE
 import sfllhkhan95.doodle.core.utils.ThemeAttrs.THEME_DARK
 import sfllhkhan95.doodle.core.utils.ThemeAttrs.THEME_DEFAULT
@@ -60,7 +58,7 @@ class ThemeSelector(context: AppCompatActivity) : Dialog(context), View.OnClickL
         findViewById<View>(R.id.ok_button).setOnClickListener {
             dismiss()
             (ownerActivity!!.application as DoodleApplication)
-                    .changeTheme(ownerActivity!!, selectedTheme!!)
+                    .changeTheme(ownerActivity as AppCompatActivity, selectedTheme!!)
         }
 
         selectedTheme = (ownerActivity!!.application as DoodleApplication).currentTheme
