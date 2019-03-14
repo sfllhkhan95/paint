@@ -18,16 +18,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 
-import com.wangjie.rapidfloatingactionbutton.RapidFloatingActionButton;
-import com.wangjie.rapidfloatingactionbutton.RapidFloatingActionHelper;
-import com.wangjie.rapidfloatingactionbutton.RapidFloatingActionLayout;
-import com.wangjie.rapidfloatingactionbutton.contentimpl.labellist.RFACLabelItem;
-import com.wangjie.rapidfloatingactionbutton.contentimpl.labellist.RapidFloatingActionContentLabelList;
+import com.leinardi.android.speeddial.SpeedDialActionItem;
+import com.leinardi.android.speeddial.SpeedDialView;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 import sfllhkhan95.doodle.DoodleApplication;
 import sfllhkhan95.doodle.R;
@@ -43,15 +38,13 @@ import sfllhkhan95.doodle.projects.utils.ThumbnailInflater;
  * @version 1.0
  * created on 16/06/2018 12:10 AM
  */
-public class HomeActivity extends AppCompatActivity implements
-        RapidFloatingActionContentLabelList.OnRapidFloatingActionContentLabelListListener {
+public class HomeActivity extends AppCompatActivity implements SpeedDialView.OnActionSelectedListener {
 
     private static final int REQUEST_TAKE_PHOTO = 100;
     private static final int REQUEST_PICK_PHOTO = 200;
 
     private ThumbnailInflater thumbnailInflater;
 
-    private RapidFloatingActionHelper rfaHelper;
     private String mCameraPicturePath;
 
     private AdManager mAdManager;
@@ -66,46 +59,27 @@ public class HomeActivity extends AppCompatActivity implements
         thumbnailInflater = new ThumbnailInflater(this);
 
         // Build floating actions
-        RapidFloatingActionButton composeButton = findViewById(R.id.compose_button);
-        RapidFloatingActionLayout composeMenu = findViewById(R.id.compose_list);
+        SpeedDialView composeButton = findViewById(R.id.compose_button);
+        composeButton.setOnActionSelectedListener(this);
 
-        RapidFloatingActionContentLabelList composeList = new RapidFloatingActionContentLabelList(this);
-        composeList.setOnRapidFloatingActionContentLabelListListener(this);
-        List<RFACLabelItem> items = new ArrayList<>();
-        items.add(new RFACLabelItem<Integer>()
+        composeButton.addActionItem(new SpeedDialActionItem.Builder(R.id.link_camera, R.drawable.ic_open_camera)
                 .setLabel(getString(R.string.label_camera))
-                .setResId(R.drawable.ic_open_camera)
-                .setIconNormalColor(getResources().getColor(R.color.red_900))
-                .setIconPressedColor(getResources().getColor(R.color.blue_grey_500a))
+                .setFabBackgroundColor(getResources().getColor(R.color.red_900))
                 .setLabelColor(getResources().getColor(R.color.red_900))
-                .setWrapper(0)
+                .create()
         );
-        items.add(new RFACLabelItem<Integer>()
+        composeButton.addActionItem(new SpeedDialActionItem.Builder(R.id.link_gallery, R.drawable.ic_open_gallery)
                 .setLabel(getString(R.string.label_gallery))
-                .setResId(R.drawable.ic_open_gallery)
-                .setIconNormalColor(getResources().getColor(R.color.red_900))
-                .setIconPressedColor(getResources().getColor(R.color.blue_grey_500a))
+                .setFabBackgroundColor(getResources().getColor(R.color.red_900))
                 .setLabelColor(getResources().getColor(R.color.red_900))
-                .setWrapper(1)
+                .create()
         );
-        items.add(new RFACLabelItem<Integer>()
+        composeButton.addActionItem(new SpeedDialActionItem.Builder(R.id.link_blank, R.drawable.ic_open_blank)
                 .setLabel(getString(R.string.label_blank))
-                .setResId(R.drawable.ic_open_blank)
-                .setIconNormalColor(getResources().getColor(R.color.blue_grey_500))
-                .setIconPressedColor(getResources().getColor(R.color.blue_grey_500a))
+                .setFabBackgroundColor(getResources().getColor(R.color.blue_grey_500))
                 .setLabelColor(getResources().getColor(R.color.blue_grey_500))
-                .setWrapper(2)
+                .create()
         );
-
-        composeList.setItems(items)
-                .setIconShadowColor(R.color.blue_grey_500a);
-
-        rfaHelper = new RapidFloatingActionHelper(
-                this,
-                composeMenu,
-                composeButton,
-                composeList
-        ).build();
 
         settingsButton = findViewById(R.id.settingsButton);
         settingsButton.setOnClickListener(new View.OnClickListener() {
@@ -193,14 +167,14 @@ public class HomeActivity extends AppCompatActivity implements
     }
 
     @Override
-    public void onRFACItemLabelClick(int position, RFACLabelItem item) {
-        switch (item.getResId()) {
-            case R.drawable.ic_open_blank:
+    public boolean onActionSelected(SpeedDialActionItem speedDialActionItem) {
+        switch (speedDialActionItem.getId()) {
+            case R.id.link_blank:
                 Intent blankProjectIntent = new Intent(this, MainActivity.class);
                 blankProjectIntent.putExtra("BG_COLOR", Color.BLACK);
                 startActivity(blankProjectIntent);
-                break;
-            case R.drawable.ic_open_gallery:
+                return true;
+            case R.id.link_gallery:
                 Intent pickPictureIntent = new Intent(Intent.ACTION_PICK,
                         MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
 
@@ -211,8 +185,8 @@ public class HomeActivity extends AppCompatActivity implements
                         Snackbar.make(settingsButton, "No Gallery application found", Snackbar.LENGTH_LONG).show();
                     }
                 }
-                break;
-            case R.drawable.ic_open_camera:
+                return true;
+            case R.id.link_camera:
                 Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
                 if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
                     // Create the File where the photo should go
@@ -247,14 +221,10 @@ public class HomeActivity extends AppCompatActivity implements
                         }
                     }
                 }
-                break;
+                return true;
         }
-        rfaHelper.toggleContent();
-    }
 
-    @Override
-    public void onRFACItemIconClick(int position, RFACLabelItem item) {
-        onRFACItemLabelClick(position, item);
+        return false;
     }
 
     private File createImageFile() throws IOException {

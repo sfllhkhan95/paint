@@ -53,28 +53,11 @@
 
     </android.support.v4.widget.NestedScrollView>
 
-    <com.wangjie.rapidfloatingactionbutton.RapidFloatingActionLayout
-        android:id="@+id/compose_list"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <com.wangjie.rapidfloatingactionbutton.RapidFloatingActionButton xmlns:rfab="http://schemas.android.com/apk/res-auto"
-            android:id="@+id/compose_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
-            android:layout_margin="15dp"
-            rfab:rfab_color_normal="?attr/colorPrimaryDark"
-            rfab:rfab_color_pressed="?attr/colorPrimaryDark"
-            rfab:rfab_drawable="@drawable/rfab__drawable_rfab_default"
-            rfab:rfab_shadow_color="@color/blue_grey_500a"
-            rfab:rfab_shadow_dx="0dp"
-            rfab:rfab_shadow_dy="2dp"
-            rfab:rfab_shadow_radius="5dp"
-            rfab:rfab_size="normal" />
-
-    </com.wangjie.rapidfloatingactionbutton.RapidFloatingActionLayout>
+    <com.leinardi.android.speeddial.SpeedDialView
+        android:id="@+id/compose_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        app:sdMainFabClosedSrc="@drawable/ic_action_add" />
 
 </android.support.design.widget.CoordinatorLayout>
