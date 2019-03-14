@@ -1,23 +1,31 @@
 package sfllhkhan95.doodle.core.views
 
 import android.content.Context
-
+import android.support.v7.app.AlertDialog
+import com.rarepebble.colorpicker.ColorObserver
+import com.rarepebble.colorpicker.ColorPickerView
+import com.rarepebble.colorpicker.ObservableColor
 import sfllhkhan95.doodle.core.utils.OnColorPickedListener
-import yuku.ambilwarna.AmbilWarnaDialog
 
-class ColorPicker(context: Context, color: Int) : AmbilWarnaDialog.OnAmbilWarnaListener {
+open class ColorPicker(val context: Context, color: Int, val dialogTheme: Int) : ColorObserver {
 
-    private val dialog: AmbilWarnaDialog = AmbilWarnaDialog(context, color, true, this)
+    protected val picker: ColorPickerView = ColorPickerView(context)
+
+    init {
+        picker.color = color
+        picker.showAlpha(true)
+        picker.showHex(false)
+        picker.showPreview(true)
+        picker.addColorObserver(this)
+    }
 
     private var onColorPickedListener: OnColorPickedListener? = null
 
-    override fun onCancel(dialog: AmbilWarnaDialog) {
-
-    }
-
-    override fun onOk(dialog: AmbilWarnaDialog, color: Int) {
-        if (onColorPickedListener != null) {
-            onColorPickedListener!!.onColorPicked(color)
+    override fun updateColor(observableColor: ObservableColor?) {
+        observableColor?.let {
+            if (onColorPickedListener != null) {
+                onColorPickedListener!!.onColorPicked(it.color)
+            }
         }
     }
 
@@ -26,6 +34,6 @@ class ColorPicker(context: Context, color: Int) : AmbilWarnaDialog.OnAmbilWarnaL
     }
 
     fun show() {
-        this.dialog.show()
+        AlertDialog.Builder(context, dialogTheme).setView(picker).show()
     }
 }

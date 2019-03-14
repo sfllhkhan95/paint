@@ -503,12 +503,12 @@ class MainActivity : AppCompatActivity(), SeekBar.OnSeekBarChangeListener, OnToo
             R.id.circle -> paintView!!.shapeType = Circle::class.java
 
             R.id.penColorPicker -> {
-                val strokePicker = ColorPicker(this, paintView!!.brush.strokeColor)
+                val strokePicker = ColorPicker(this, paintView!!.brush.strokeColor, (application as DoodleApplication).getDialogTheme())
                 strokePicker.setOnColorPickedListener(this)
                 strokePicker.show()
             }
             R.id.fillColorPicker -> {
-                val fillPicker = ColorPicker(this, paintView!!.brush.fillColor)
+                val fillPicker = ColorPicker(this, paintView!!.brush.fillColor, (application as DoodleApplication).getDialogTheme())
                 fillPicker.setOnColorPickedListener(object : OnColorPickedListener {
                     override fun onColorPicked(color: Int) {
                         paintView!!.brush.fillColor = color

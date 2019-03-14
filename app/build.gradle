@@ -52,9 +52,8 @@ dependencies {
     annotationProcessor 'com.github.bumptech.glide:compiler:4.8.0'
 
     implementation 'com.github.apl-devs:appintro:v4.2.3'
-    implementation 'com.github.QuadFlask:colorpicker:0.0.13'
     implementation 'com.github.wangjiegulu:rfab:2.0.0'
-    implementation 'com.github.yukuku:ambilwarna:2.0.1'
+    implementation 'com.rarepebble:colorpicker:2.4.2'
 
     implementation 'com.google.android.gms:play-services-auth:16.0.1'
     implementation 'com.google.firebase:firebase-ads:17.1.2'
