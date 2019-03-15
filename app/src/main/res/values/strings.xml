@@ -1,8 +1,8 @@
 <resources>
     <!-- App details -->
-    <string name="app_name" translatable="false">Doodle</string>
-    <string name="app_name_v" translatable="false">Doodle  v</string>
-    <string name="company_name" translatable="false">AspiraSoft</string>
+    <string name="app_name">Doodle</string>
+    <string name="app_name_v">Doodle  v</string>
+    <string name="company_name">AspiraSoft</string>
 
     <!-- API strings -->
     <string name="admob_ad_banner" translatable="false">ca-app-pub-6293532072634065/1203928393</string>
@@ -12,6 +12,8 @@
 
     <!-- URLs -->
     <string name="privacy_policy_url" translatable="false">https://www.iubenda.com/privacy-policy/35502767</string>
+    <string name="url_doodle" translatable="false">https://play.google.com/store/apps/details?id=sfllhkhan95.doodle</string>
+    <string name="url_doodle_source" translatable="false">https://github.com/sfllhkhan95/paint</string>
     <string name="url_faqs" translatable="false">file:///android_asset/FAQ.md</string>
     <string name="url_faqs_css" translatable="false">file:///android_asset/FAQ.css</string>
 
@@ -28,6 +30,7 @@
     <string name="confirm_delete_title">Are you sure?</string>
     <string name="confirm_delete_body">This action will permanently delete the project. Do you really wish to continue?</string>
     <string name="confirm_exit">Exit without saving?</string>
+    <string name="confirm_revert">Reset to original?</string>
     <string name="confirm_save">Save the current Doodle?</string>
     <string name="confirm_quit">Do you really wish to quit?</string>
 
@@ -35,44 +38,58 @@
     <string name="desc_avatar">User photo</string>
     <string name="desc_brush_size_icon">Select brush size</string>
     <string name="desc_delete_button">Delete</string>
+    <string name="desc_donated">Thank you for supporting Doodle! Ads will be removed when you launch the app again.</string>
     <string name="desc_icon">Icon</string>
     <string name="desc_logo">Logo</string>
     <string name="desc_messenger_share_button">Share to Messenger</string>
     <string name="desc_thumbnail">Project icon</string>
-    <string name="description_save">Your project will be saved to Gallery, and you can continue editing it later.</string>
-    <string name="description_exit">All unsaved changes would be discarded. Do you really wish to proceed?</string>
-    <string name="description_share">Post to Facebook, send Doodle in a Messenger conversation, or share through other applications</string>
-    <string name="description_watch_ad">Doodle is a free, open-source project. Consider clicking on \'Watch Ad\' below to see a video ad. This helps us generate revenue. Happy Doodling!</string>
-    <string name="description_quit">Come back soon.\nHappy Doodling!</string>
+
+    <!-- Prompt descriptions -->
+    <string name="desc_prompt_save">Your project will be saved to Gallery, and you can continue editing it later.</string>
+    <string name="desc_prompt_exit">All unsaved changes would be discarded. Do you really wish to proceed?</string>
+    <string name="desc_prompt_revert">This action will erase all unsaved changes. It cannot be reversed. Do you really wish to proceed?</string>
+    <string name="desc_prompt_share">Post to Facebook, send Doodle in a Messenger conversation, or share through other applications</string>
+    <string name="desc_prompt_support">Doodle is a free-of-charge, open-source project. Our team is hard at work to bring you the best product. Minimal ads are the only income source from this app. You can support Doodle by reviewing it on Play Store, contributing to its source, or donating a one-time amount to remove all ads from the app.</string>
+    <string name="desc_prompt_supported">Thank you for supporting Doodle!  Doodle is a free-of-charge, open-source project. Our team is hard at work to bring you the best product. You can support Doodle by reviewing it on Play Store or contributing to its source.</string>
+    <string name="desc_prompt_watch_ad">Doodle is a free, open-source project. Consider clicking on \'Watch Ad\' below to see a video ad. This helps us generate revenue. Happy Doodling!</string>
+    <string name="desc_prompt_quit">Come back soon.\nHappy Doodling!</string>
 
     <!-- Placeholders -->
-    <string name="default_value" translatable="false">0</string>
+    <string name="placeholder_default_theme">Default Theme</string>
     <string name="placeholder_dialog_body">Dialog description comes here</string>
+    <string name="placeholder_hello_world">Hello, World!</string>
     <string name="placeholder_name">First M. Last</string>
     <string name="placeholder_title">Title</string>
-    <string name="placeholder_username">guest</string>
 
     <!-- Labels -->
+    <string name="label_blank">Blank Project</string>
+    <string name="label_camera">Camera</string>
     <string name="label_compose">Compose</string>
-    <string name="label_facebook">Facebook</string>
+    <string name="label_choose_theme">Choose Theme</string>
+    <string name="label_delete">Delete</string>
+    <string name="label_faqs">Doodle FAQs</string>
     <string name="label_friends">Friends</string>
+    <string name="label_gallery">Gallery</string>
     <string name="label_messenger_action">Replying to</string>
     <string name="label_new_message">New Message</string>
     <string name="label_op1">Option 1</string>
     <string name="label_op2">Option 2</string>
     <string name="label_op3">Option 3</string>
     <string name="label_posts">Posts</string>
+    <string name="label_privacy">Privacy Policy</string>
+    <string name="label_set">Set</string>
+    <string name="label_settings">Settings</string>
+
+    <string name="label_share_facebook">Facebook</string>
+    <string name="label_share_messenger">Messenger</string>
+    <string name="label_share_default">Default</string>
+
+    <string name="label_support_contribute">Contribute</string>
+    <string name="label_support_donate">Donate</string>
+    <string name="label_support_review">Review</string>
+
     <string name="label_exit">Close</string>
     <string name="label_watch_ad">Watch Ad</string>
-    <string name="label_camera">Camera</string>
-    <string name="label_gallery">Gallery</string>
-    <string name="label_blank">Blank Project</string>
-    <string name="label_delete">Delete</string>
-
-    <!-- Authentications strings -->
-    <string name="connected">Sign Out</string>
-    <string name="signed_in">Sign in successful!</string>
-    <string name="label_sign_in">Sign In</string>
 
     <!-- Settings screen options -->
     <string name="settings_item_help">Get Help</string>
@@ -80,6 +97,7 @@
     <string name="settings_item_privacy">See Privacy Policy</string>
     <string name="settings_icon_support">Support Us</string>
     <string name="settings_item_theme">Choose Theme</string>
+    <string name="settings_item_intro">See Intro</string>
 
     <!-- Menu items -->
     <string name="menu_action_layers">Layers</string>
@@ -115,15 +133,5 @@
 
     <string name="slide4_title">Grant Access</string>
     <string name="slide4_description_permissions">Doodle requires storage and camera permissions to let you start a project with a Gallery image or from Camera.</string>
-    <string name="slide3_description_normal">Start with a blank project, or choose an image from Gallery or Camera.</string>
-    <string name="connect_facebook">Continue with Facebook</string>
-    <string name="connect_google">Continue with Google</string>
-    <string name="reset_password">Forgot password?</string>
-    <string name="or">or</string>
-    <string name="hint_password">Password</string>
-    <string name="hint_email">Email</string>
-    <string name="sign_in">Sign In</string>
-    <string name="sign_up">Sign Up</string>
-    <string name="hint_confirm_password">Confirm Password</string>
-    <string name="have_account">Already have an account?</string>
+    <string name="slide4_description_normal">Start with a blank project, or choose an image from Gallery or Camera.</string>
 </resources>

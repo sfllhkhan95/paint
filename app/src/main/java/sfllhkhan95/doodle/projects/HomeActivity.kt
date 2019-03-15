@@ -101,13 +101,13 @@ class HomeActivity : AppCompatActivity(), SpeedDialView.OnActionSelectedListener
                 .setIcon(android.R.drawable.ic_menu_close_clear_cancel)
                 .setHeadline(getString(R.string.label_exit))
                 .setTitle(getString(R.string.confirm_quit))
-                .setMessage(getString(R.string.description_quit))
+                .setMessage(getString(R.string.desc_prompt_quit))
                 .setPositiveButton(getString(android.R.string.yes), View.OnClickListener { super@HomeActivity.onBackPressed() }, true)
                 .setNegativeButton(getString(android.R.string.cancel), View.OnClickListener { /* no-op */ }, true)
 
         mAdManager?.let { ads ->
             if (ads.isVideoAdLoaded) {
-                mBuilder.setMessage(getString(R.string.description_watch_ad))
+                mBuilder.setMessage(getString(R.string.desc_prompt_watch_ad))
                         .setNegativeButton(getString(R.string.label_watch_ad), View.OnClickListener { ads.showVideoAd(this@HomeActivity) }, false)
             }
         }

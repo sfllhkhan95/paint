@@ -7,10 +7,7 @@ import android.support.v4.app.NavUtils
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.Toolbar
 import android.view.View
-import sfllhkhan95.doodle.DoodleApplication
-import sfllhkhan95.doodle.FAQsActivity
-import sfllhkhan95.doodle.PrivacyPolicy
-import sfllhkhan95.doodle.R
+import sfllhkhan95.doodle.*
 import sfllhkhan95.doodle.core.utils.DialogFactory
 import sfllhkhan95.doodle.core.views.ThemeSelector
 
@@ -22,7 +19,6 @@ import sfllhkhan95.doodle.core.views.ThemeSelector
 class SettingsActivity : AppCompatActivity(), View.OnClickListener {
 
     private var themeButton: MaterialButton? = null
-    private val themes = arrayOf<CharSequence>("Default", "Ocean", "Sunlight", "Forest", "Chocolate", "Dark")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         val which = (application as DoodleApplication).setActivityTheme(this)
@@ -37,11 +33,12 @@ class SettingsActivity : AppCompatActivity(), View.OnClickListener {
         }
 
         themeButton = findViewById(R.id.theme)
-        themeButton!!.setOnClickListener(this)
+        themeButton?.setOnClickListener(this)
 
-        findViewById<View>(R.id.support).setOnClickListener(this)
-        findViewById<View>(R.id.privacy_policy).setOnClickListener(this)
-        findViewById<View>(R.id.faqs).setOnClickListener(this)
+        findViewById<View>(R.id.support)?.setOnClickListener(this)
+        findViewById<View>(R.id.privacy_policy)?.setOnClickListener(this)
+        findViewById<View>(R.id.faqs)?.setOnClickListener(this)
+        findViewById<View>(R.id.intro)?.setOnClickListener(this)
     }
 
     override fun onClick(view: View) {
@@ -53,6 +50,8 @@ class SettingsActivity : AppCompatActivity(), View.OnClickListener {
             R.id.faqs -> startActivity(Intent(this, FAQsActivity::class.java))
 
             R.id.support -> DialogFactory(this, null).supportDialog(this).show()
+
+            R.id.intro -> startActivity(Intent(this@SettingsActivity, IntroActivity::class.java))
         }
     }
 
