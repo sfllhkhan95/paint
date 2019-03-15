@@ -3,12 +3,15 @@ package sfllhkhan95.doodle.core.views
 import android.content.Context
 import android.graphics.Color
 import android.util.AttributeSet
+import android.util.TypedValue
 import android.view.*
 import android.widget.ImageButton
 import android.widget.LinearLayout
 import sfllhkhan95.doodle.R
 import sfllhkhan95.doodle.core.utils.OnToolSelectedListener
 import java.util.*
+
+
 
 /**
  * @author saifkhichi96
@@ -177,6 +180,17 @@ class ToolboxView : LinearLayout {
 
     }
 
+    private fun fetchAccentColor(): Int {
+        val typedValue = TypedValue()
+
+        val a = context.obtainStyledAttributes(typedValue.data, intArrayOf(R.attr.colorAccent))
+        val color = a.getColor(0, 0)
+
+        a.recycle()
+
+        return color
+    }
+
     private fun selectTool(root: LinearLayout, id: Int) {
         if (nonSticky.contains(id)) return
 
@@ -184,7 +198,7 @@ class ToolboxView : LinearLayout {
         if (root == primaryToolbox)
             primarySelected = id
 
-        setToolColor(id, Color.parseColor("#883997"))
+        setToolColor(id, fetchAccentColor())
     }
 
     private fun deselectAll(root: LinearLayout) {
