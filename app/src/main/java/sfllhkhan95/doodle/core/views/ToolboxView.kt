@@ -3,14 +3,15 @@ package sfllhkhan95.doodle.core.views
 import android.content.Context
 import android.graphics.Color
 import android.util.AttributeSet
-import android.util.TypedValue
 import android.view.*
 import android.widget.ImageButton
 import android.widget.LinearLayout
+import android.widget.PopupMenu
+import android.widget.TextView
 import sfllhkhan95.doodle.R
 import sfllhkhan95.doodle.core.utils.OnToolSelectedListener
+import sfllhkhan95.doodle.core.utils.ThemeAttrs
 import java.util.*
-
 
 
 /**
@@ -33,8 +34,10 @@ class ToolboxView : LinearLayout {
         primaryToolbox = LinearLayout(context, attrs)
         primaryToolbox.layoutParams = params
 
-        secondaryToolbox = LinearLayout(context, attrs)
-        secondaryToolbox.layoutParams = params
+        val scrollView = View.inflate(context, R.layout.popup_shapes, null)
+        scrollView.layoutParams = params
+
+        secondaryToolbox = scrollView.findViewById(R.id.shapes_container)
 
         val p = LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
                 ViewGroup.LayoutParams.WRAP_CONTENT)
@@ -43,7 +46,7 @@ class ToolboxView : LinearLayout {
         this.orientation = LinearLayout.VERTICAL
         this.weightSum = 2f
 
-        addView(secondaryToolbox)
+        addView(scrollView)
         addView(primaryToolbox)
         init()
 
@@ -63,8 +66,10 @@ class ToolboxView : LinearLayout {
         primaryToolbox = LinearLayout(context, attrs, defStyleAttr)
         primaryToolbox.layoutParams = params
 
-        secondaryToolbox = LinearLayout(context, attrs, defStyleAttr)
-        secondaryToolbox.layoutParams = params
+        val scrollView = View.inflate(context, R.layout.popup_shapes, null)
+        scrollView.layoutParams = params
+
+        secondaryToolbox = scrollView.findViewById(R.id.shapes_container)
 
         val p = LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
                 ViewGroup.LayoutParams.WRAP_CONTENT)
@@ -73,7 +78,7 @@ class ToolboxView : LinearLayout {
         this.orientation = LinearLayout.VERTICAL
         this.weightSum = 2f
 
-        addView(secondaryToolbox)
+        addView(scrollView)
         addView(primaryToolbox)
         init()
 
@@ -98,8 +103,12 @@ class ToolboxView : LinearLayout {
         toolView.layoutParams = params
 
         val itemView = toolView.findViewById<ImageButton>(R.id.icon)
-        itemView.id = item.itemId
-        itemView.setImageDrawable(item.icon)
+        itemView?.id = item.itemId
+        itemView?.setImageDrawable(item.icon)
+
+        val labelView = toolView.findViewById<TextView>(R.id.label)
+        labelView?.text = item.title
+        if (root.equals(secondaryToolbox)) labelView.visibility = View.GONE
 
         itemView.setOnClickListener { v ->
             for (i in 0 until root.childCount) {
@@ -157,9 +166,8 @@ class ToolboxView : LinearLayout {
 
     private fun init() {
         try {
-            val menuBuilderClass = Class.forName("com.android.internal.view.menu.MenuBuilder")
-            val constructor = menuBuilderClass.getDeclaredConstructor(Context::class.java)
-            val menu = constructor.newInstance(context) as Menu
+            val popupMenu = PopupMenu(context, null)
+            val menu = popupMenu.menu
 
             val inflater = MenuInflater(context)
             inflater.inflate(R.menu.tools, menu)
@@ -180,17 +188,6 @@ class ToolboxView : LinearLayout {
 
     }
 
-    private fun fetchAccentColor(): Int {
-        val typedValue = TypedValue()
-
-        val a = context.obtainStyledAttributes(typedValue.data, intArrayOf(R.attr.colorAccent))
-        val color = a.getColor(0, 0)
-
-        a.recycle()
-
-        return color
-    }
-
     private fun selectTool(root: LinearLayout, id: Int) {
         if (nonSticky.contains(id)) return
 
@@ -198,7 +195,7 @@ class ToolboxView : LinearLayout {
         if (root == primaryToolbox)
             primarySelected = id
 
-        setToolColor(id, fetchAccentColor())
+        setToolColor(id, ThemeAttrs.colorPrimaryDark(context))
     }
 
     private fun deselectAll(root: LinearLayout) {

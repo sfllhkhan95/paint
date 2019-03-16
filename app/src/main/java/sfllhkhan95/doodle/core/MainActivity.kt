@@ -500,6 +500,9 @@ class MainActivity : AppCompatActivity(), SeekBar.OnSeekBarChangeListener, OnToo
             R.id.rect -> paintView!!.shapeType = Quad2D::class.java
             R.id.box -> paintView!!.shapeType = Quad3D::class.java
             R.id.circle -> paintView!!.shapeType = Circle::class.java
+            R.id.triangle -> paintView!!.shapeType = Triangle::class.java
+            R.id.diamond -> paintView!!.shapeType = Diamond::class.java
+            R.id.star -> paintView!!.shapeType = Star::class.java
 
             R.id.penColorPicker -> {
                 val strokePicker = ColorPicker(this, paintView!!.brush.strokeColor, (application as DoodleApplication).getDialogTheme())

@@ -21,14 +21,29 @@
                 android:title="@string/menu_tools_rect" />
 
             <item
-                android:id="@+id/box"
-                android:icon="@drawable/ic_shape_box"
-                android:title="@string/menu_tools_box" />
+                android:id="@+id/triangle"
+                android:icon="@drawable/ic_shape_triangle"
+                android:title="@string/menu_tools_triangle" />
 
             <item
                 android:id="@+id/circle"
                 android:icon="@drawable/ic_shape_circle"
                 android:title="@string/menu_tools_circle" />
+
+            <item
+                android:id="@+id/diamond"
+                android:icon="@drawable/ic_shape_diamond"
+                android:title="@string/menu_tools_diamond" />
+
+            <item
+                android:id="@+id/star"
+                android:icon="@drawable/ic_shape_star"
+                android:title="@string/menu_tools_star" />
+
+            <item
+                android:id="@+id/box"
+                android:icon="@drawable/ic_shape_box"
+                android:title="@string/menu_tools_box" />
 
             <item
                 android:id="@+id/fillColorPicker"
@@ -37,7 +52,6 @@
                 android:title="@string/menu_tools_color_fill" />
         </menu>
     </item>
-
 
     <item
         android:id="@+id/colorPicker"

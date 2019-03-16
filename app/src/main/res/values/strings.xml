@@ -106,17 +106,22 @@
     <string name="menu_action_save">Save</string>
     <string name="menu_action_share">Share</string>
     <string name="menu_action_undo">Undo</string>
-    <string name="menu_tools_box">Cube</string>
+
+    <string name="menu_tools_box">Box</string>
     <string name="menu_tools_canvas">Canvas Color</string>
     <string name="menu_tools_circle">Circle</string>
-    <string name="menu_tools_color_fill">Select fill color</string>
-    <string name="menu_tools_color_stroke">Select stroke color</string>
+    <string name="menu_tools_colors">Colors</string>
+    <string name="menu_tools_color_fill">Fill Color</string>
+    <string name="menu_tools_color_stroke">Pen Color</string>
+    <string name="menu_tools_diamond">Diamond</string>
     <string name="menu_tools_eraser">Eraser</string>
-    <string name="menu_tools_eyedrop">Color picker</string>
+    <string name="menu_tools_eyedrop">Color Picker</string>
     <string name="menu_tools_line">Line</string>
     <string name="menu_tools_pen">Pen</string>
-    <string name="menu_tools_rect">Rectangle</string>
+    <string name="menu_tools_rect">Quad</string>
     <string name="menu_tools_shape">Shapes</string>
+    <string name="menu_tools_star">Star</string>
+    <string name="menu_tools_triangle">Triangle</string>
 
     <!-- Intro Slides -->
     <string name="label_intro_done_permission">Allow</string>
