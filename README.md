@@ -10,23 +10,37 @@ Got something you want to base your drawings on? Think no further as Doodle lets
 Please visit our [FAQs page](https://github.com/sfllhkhan95/paint/tree/master/app/src/main/assets/FAQ.md) to find out more.
 
 ## Features
-- Load and save projects to Gallery
-- Set brush size and colour
-- Draw freeform doodles
-- Draw basic shapes (e.g. lines, quads, cubes, circles, etc.)
-- Fill shapes with a colour
-- Set different stroke and fill colours
-- Beautiful colours with transparency channel
+### Tools
+- Brush (for freeform doodling)
+- Shapes
+  - Line
+  - Quad (Square/Rectangle)
+  - Triangle
+  - Circle
+  - Diamond (Rhombus)
+  - 5-Pointed Star
+  - Cube
+- Eraser
+- Eyedropper (for picking color from image pixel)
+### Other Features
+- Change brush size
+- Individually set stroke and fill colors
+  - Hundreds of colors (transparency supported)
+- Multiple ways to create doodles
+  - On blank canvas (can choose your own canvas color)
+  - On an image from Gallery
+  - On an image from Camera
 - Share doodles with friends
-- Undo
-- Redo
-- Revert
-- Login with Facebook
-- Make your Messenger conversations richer with content created in Doodle
-- Supports Messenger Expressions
+  - Facebook
+  - Messenger Expressions
+     - Make your Messenger conversations richer with content created in Doodle
+  - Default share
+- Undo/Redo
+- Revert all changes
+- Districation-free mode
 
 ## Platforms
-- Android (Supports v4.0.3 onwards)
+- Android (Supports v4.1.0 onwards)
 
 With its light, easy-to-use and intuitive design, Doodle is the perfect choice for artists and art lovers.
 Stand by for new stuff as the app will be consistently updated with more features and tools.
