@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    app:cardBackgroundColor="@color/blue_grey_500a"
+    app:cardBackgroundColor="?attr/colorSecondary"
     app:cardCornerRadius="16dp">
 
     <RelativeLayout
@@ -27,7 +27,7 @@
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
-            android:background="#0000"
+            android:background="@android:color/transparent"
             android:contentDescription="@string/desc_messenger_share_button"
             android:drawableEnd="@drawable/ic_action_send"
             android:drawableRight="@drawable/ic_action_send" />

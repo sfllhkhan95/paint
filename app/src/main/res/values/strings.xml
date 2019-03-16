@@ -58,6 +58,7 @@
     <string name="placeholder_default_theme">Default Theme</string>
     <string name="placeholder_dialog_body">Dialog description comes here</string>
     <string name="placeholder_hello_world">Hello, World!</string>
+    <string name="placeholder_messenger_recipient">Messenger Conversation</string>
     <string name="placeholder_name">First M. Last</string>
     <string name="placeholder_title">Title</string>
 

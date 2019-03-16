@@ -1,8 +1,10 @@
 package sfllhkhan95.doodle.core.views
 
-import android.support.v7.app.AppCompatActivity
 import android.content.Context
 import android.net.Uri
+import android.support.v4.text.TextUtilsCompat
+import android.support.v4.view.ViewCompat
+import android.support.v7.app.AppCompatActivity
 import android.util.AttributeSet
 import android.view.View
 import android.widget.RelativeLayout
@@ -10,6 +12,7 @@ import android.widget.TextView
 import com.facebook.messenger.MessengerUtils
 import com.facebook.messenger.ShareToMessengerParams
 import sfllhkhan95.doodle.R
+import java.util.*
 
 /**
  * A button which can be used to share content to Messenger.
@@ -47,6 +50,13 @@ class MessengerShareButton : RelativeLayout {
         mActionStringView = findViewById(R.id.action)
         mDescriptionStringView = findViewById(R.id.recipient)
         mActionButton = findViewById(R.id.share_button)
+
+        // Flip view in RTL layout
+        mActionButton?.let {
+            if (TextUtilsCompat.getLayoutDirectionFromLocale(Locale.getDefault()) == ViewCompat.LAYOUT_DIRECTION_RTL) {
+                it.scaleX = -1.0F;
+            }
+        }
 
         val DEFAULT_ACTION_TEXT = context.getString(R.string.label_compose)
         setActionText(DEFAULT_ACTION_TEXT)

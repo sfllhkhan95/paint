@@ -44,6 +44,7 @@
     <string name="placeholder_default_theme">منتخب کردہ رنگ</string>
     <string name="placeholder_dialog_body">ڈائیلاگ کی تفصیل یہاں آتی ہے</string>
     <string name="placeholder_hello_world">ہیلو، ورلڈ!</string>
+    <string name="placeholder_messenger_recipient">میسنجر پر گفتگو</string>
     <string name="placeholder_name">نام</string>
     <string name="placeholder_title">عنوان</string>
 

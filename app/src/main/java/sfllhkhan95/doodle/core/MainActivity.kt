@@ -114,8 +114,8 @@ class MainActivity : AppCompatActivity(), SeekBar.OnSeekBarChangeListener, OnToo
                 mFirebaseAnalytics!!.logEvent("reply_messenger", logParams)
 
                 mReplying = true
-                messengerShareButton!!.setActionText("Replying to")
-                messengerShareButton!!.setDescriptionText("Messenger Conversation")
+                messengerShareButton!!.setActionText(resources.getString(R.string.label_messenger_action))
+                messengerShareButton!!.setDescriptionText(resources.getString(R.string.placeholder_messenger_recipient))
 
                 val mThreadParams = MessengerUtils.getMessengerThreadParamsForIntent(intent)
                 if (mThreadParams != null) {
@@ -286,7 +286,7 @@ class MainActivity : AppCompatActivity(), SeekBar.OnSeekBarChangeListener, OnToo
         share.type = contentType
         share.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
         share.putExtra(Intent.EXTRA_STREAM, contentUri)
-        startActivityForResult(Intent.createChooser(share, "Share Doodle"), REQUEST_CODE_SHARE)
+        startActivityForResult(Intent.createChooser(share, resources.getString(R.string.menu_action_share)), REQUEST_CODE_SHARE)
     }
 
     private fun shareOnMessenger(tempFile: File) {
