@@ -1,11 +1,9 @@
 package sfllhkhan95.doodle
 
-import android.support.v7.app.AppCompatActivity
 import android.app.Application
+import android.support.v7.app.AppCompatActivity
 import com.crashlytics.android.Crashlytics
 import com.crashlytics.android.core.CrashlyticsCore
-import com.facebook.FacebookSdk
-import com.facebook.appevents.AppEventsLogger
 import io.fabric.sdk.android.Fabric
 import pk.aspirasoft.core.db.PersistentStorage
 import sfllhkhan95.doodle.ads.AdManager
@@ -100,12 +98,9 @@ class DoodleApplication : Application() {
         PersistentStorage.init(this, "DDODLE_PREFS")
 
         // Disable crash reporting in DEBUG mode
-        val crashlytics = Crashlytics.Builder()
-                .core(CrashlyticsCore.Builder()
-                        .disabled(BuildConfig.DEBUG)
-                        .build())
-                .build()
-        Fabric.with(this, crashlytics)
+        Fabric.with(this, Crashlytics.Builder()
+                .core(CrashlyticsCore.Builder().disabled(BuildConfig.DEBUG).build())
+                .build())
 
         /* The following method call initializes the Facebook SDK, and is recommended to
          * be called as early as possible. The behavior of Facebook SDK functions is
@@ -116,14 +111,14 @@ class DoodleApplication : Application() {
          * initialization completion you can now remove calls to FacebookSDK.sdkInitialize.
          * If you do need a callback, you should manually invoke the callback in your code.
          * (i.e. the following line of code can be safely removed.) */
-        FacebookSdk.sdkInitialize(applicationContext)
+        // FacebookSdk.sdkInitialize(applicationContext)
 
         /* Activating Facebook SDK's app event logging is required for the app to be
          * eligible for Facebook's App Review submission.
          *
          * UPDATE SDK v4.19+: It is automatically initialized unless disabled.
          * (i.e. the following line of code can be safely removed.) */
-        AppEventsLogger.activateApp(this)
+        // AppEventsLogger.activateApp(this)
 
         // Initialize Ad SDK
         AdManager.initialize(this)

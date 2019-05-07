@@ -46,7 +46,7 @@ object DoodleFactory {
         // Decode bitmap with inSampleSize set
         options.inJustDecodeBounds = false
         options.inPreferredConfig = Bitmap.Config.RGB_565
-        options.inDither = true
+        // options.inDither = true
         return BitmapFactory.decodeFile(path, options)
     }
 

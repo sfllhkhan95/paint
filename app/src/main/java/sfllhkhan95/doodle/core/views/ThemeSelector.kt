@@ -2,6 +2,7 @@ package sfllhkhan95.doodle.core.views
 
 import android.app.Dialog
 import android.os.Bundle
+import android.support.v4.content.ContextCompat
 import android.support.v7.app.AppCompatActivity
 import android.view.View
 import android.widget.Button
@@ -72,66 +73,66 @@ class ThemeSelector(context: AppCompatActivity) : Dialog(context), View.OnClickL
         findViewById<View>(R.id.forestThemeSelected).visibility = View.INVISIBLE
         findViewById<View>(R.id.chocolateThemeSelected).visibility = View.INVISIBLE
         findViewById<View>(R.id.darkThemeSelected).visibility = View.INVISIBLE
-        negativeButton!!.setBackgroundColor(context.resources.getColor(android.R.color.transparent))
+        negativeButton!!.setBackgroundColor(ContextCompat.getColor(context, android.R.color.transparent))
 
         actionbar!!.text = theme
         when (theme) {
             THEME_DEFAULT -> {
-                actionbar!!.setBackgroundColor(context.resources.getColor(R.color.purple_900))
-                window!!.setBackgroundColor(context.resources.getColor(R.color.deep_purple_50))
-                body!!.setBackgroundColor(context.resources.getColor(R.color.purple_100))
-                positiveButton!!.setBackgroundColor(context.resources.getColor(R.color.purple_900))
-                negativeButton!!.setTextColor(context.resources.getColor(R.color.purple_900))
+                actionbar!!.setBackgroundColor(ContextCompat.getColor(context, R.color.purple_900))
+                window!!.setBackgroundColor(ContextCompat.getColor(context, R.color.deep_purple_50))
+                body!!.setBackgroundColor(ContextCompat.getColor(context, R.color.purple_100))
+                positiveButton!!.setBackgroundColor(ContextCompat.getColor(context, R.color.purple_900))
+                negativeButton!!.setTextColor(ContextCompat.getColor(context, R.color.purple_900))
                 findViewById<View>(R.id.defaultThemeSelected).visibility = View.VISIBLE
                 selectedTheme = THEME_DEFAULT
             }
 
             THEME_OCEAN -> {
-                actionbar!!.setBackgroundColor(context.resources.getColor(R.color.blue_900))
-                window!!.setBackgroundColor(context.resources.getColor(R.color.blue_grey_50))
-                body!!.setBackgroundColor(context.resources.getColor(R.color.blue_100))
-                positiveButton!!.setBackgroundColor(context.resources.getColor(R.color.blue_900))
-                negativeButton!!.setTextColor(context.resources.getColor(R.color.blue_900))
+                actionbar!!.setBackgroundColor(ContextCompat.getColor(context, R.color.blue_900))
+                window!!.setBackgroundColor(ContextCompat.getColor(context, R.color.blue_grey_50))
+                body!!.setBackgroundColor(ContextCompat.getColor(context, R.color.blue_100))
+                positiveButton!!.setBackgroundColor(ContextCompat.getColor(context, R.color.blue_900))
+                negativeButton!!.setTextColor(ContextCompat.getColor(context, R.color.blue_900))
                 findViewById<View>(R.id.oceanThemeSelected).visibility = View.VISIBLE
                 selectedTheme = THEME_OCEAN
             }
 
             THEME_SUNLIGHT -> {
-                actionbar!!.setBackgroundColor(context.resources.getColor(R.color.yellow_900))
-                window!!.setBackgroundColor(context.resources.getColor(R.color.orange_50))
-                body!!.setBackgroundColor(context.resources.getColor(R.color.yellow_100))
-                positiveButton!!.setBackgroundColor(context.resources.getColor(R.color.yellow_900))
-                negativeButton!!.setTextColor(context.resources.getColor(R.color.yellow_900))
+                actionbar!!.setBackgroundColor(ContextCompat.getColor(context, R.color.yellow_900))
+                window!!.setBackgroundColor(ContextCompat.getColor(context, R.color.orange_50))
+                body!!.setBackgroundColor(ContextCompat.getColor(context, R.color.yellow_100))
+                positiveButton!!.setBackgroundColor(ContextCompat.getColor(context, R.color.yellow_900))
+                negativeButton!!.setTextColor(ContextCompat.getColor(context, R.color.yellow_900))
                 findViewById<View>(R.id.sunlightThemeSelected).visibility = View.VISIBLE
                 selectedTheme = THEME_SUNLIGHT
             }
 
             THEME_FOREST -> {
-                actionbar!!.setBackgroundColor(context.resources.getColor(R.color.green_900))
-                window!!.setBackgroundColor(context.resources.getColor(R.color.light_green_50))
-                body!!.setBackgroundColor(context.resources.getColor(R.color.green_100))
-                positiveButton!!.setBackgroundColor(context.resources.getColor(R.color.green_900))
-                negativeButton!!.setTextColor(context.resources.getColor(R.color.green_900))
+                actionbar!!.setBackgroundColor(ContextCompat.getColor(context, R.color.green_900))
+                window!!.setBackgroundColor(ContextCompat.getColor(context, R.color.light_green_50))
+                body!!.setBackgroundColor(ContextCompat.getColor(context, R.color.green_100))
+                positiveButton!!.setBackgroundColor(ContextCompat.getColor(context, R.color.green_900))
+                negativeButton!!.setTextColor(ContextCompat.getColor(context, R.color.green_900))
                 findViewById<View>(R.id.forestThemeSelected).visibility = View.VISIBLE
                 selectedTheme = THEME_FOREST
             }
 
             THEME_CHOCOLATE -> {
-                actionbar!!.setBackgroundColor(context.resources.getColor(R.color.brown_900))
-                window!!.setBackgroundColor(context.resources.getColor(R.color.deep_orange_50))
-                body!!.setBackgroundColor(context.resources.getColor(R.color.brown_100))
-                positiveButton!!.setBackgroundColor(context.resources.getColor(R.color.brown_900))
-                negativeButton!!.setTextColor(context.resources.getColor(R.color.brown_900))
+                actionbar!!.setBackgroundColor(ContextCompat.getColor(context, R.color.brown_900))
+                window!!.setBackgroundColor(ContextCompat.getColor(context, R.color.deep_orange_50))
+                body!!.setBackgroundColor(ContextCompat.getColor(context, R.color.brown_100))
+                positiveButton!!.setBackgroundColor(ContextCompat.getColor(context, R.color.brown_900))
+                negativeButton!!.setTextColor(ContextCompat.getColor(context, R.color.brown_900))
                 findViewById<View>(R.id.chocolateThemeSelected).visibility = View.VISIBLE
                 selectedTheme = THEME_CHOCOLATE
             }
 
             THEME_DARK -> {
-                actionbar!!.setBackgroundColor(context.resources.getColor(R.color.grey_900))
-                window!!.setBackgroundColor(context.resources.getColor(R.color.grey_600))
-                body!!.setBackgroundColor(context.resources.getColor(R.color.grey_400))
-                positiveButton!!.setBackgroundColor(context.resources.getColor(R.color.grey_900))
-                negativeButton!!.setTextColor(context.resources.getColor(R.color.grey_900))
+                actionbar!!.setBackgroundColor(ContextCompat.getColor(context, R.color.grey_900))
+                window!!.setBackgroundColor(ContextCompat.getColor(context, R.color.grey_600))
+                body!!.setBackgroundColor(ContextCompat.getColor(context, R.color.grey_400))
+                positiveButton!!.setBackgroundColor(ContextCompat.getColor(context, R.color.grey_900))
+                negativeButton!!.setTextColor(ContextCompat.getColor(context, R.color.grey_900))
                 findViewById<View>(R.id.darkThemeSelected).visibility = View.VISIBLE
                 selectedTheme = THEME_DARK
             }

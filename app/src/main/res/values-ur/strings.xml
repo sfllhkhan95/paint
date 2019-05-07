@@ -9,8 +9,6 @@
     <string name="notifications_main_channel_description">This is the main notifications channel.</string>
 
     <!-- Error messages -->
-    <string name="error_no_internet">اپنا انترنیٹ کنیکشن چیک کریں</string>
-    <string name="error_sign_in_cancelled">سائن ان منسوخ کر دیا گیا</string>
     <string name="error_unknown">اوہ ہو! تازہ ترین ورژن پر اپ ڈیٹ کر کے دوبارہ کوشش کریں۔ مسلۂ برقرار رہنے کی صورت میں ہم سے رابطہ کریں۔</string>
 
     <!-- Confirmation and Status messages -->
@@ -22,9 +20,7 @@
     <string name="confirm_save">پروجیکٹ محفوظ کریں؟</string>
 
     <!-- Content descriptions (for Accessibility) -->
-    <string name="desc_avatar">صارف کی تصویر</string>
     <string name="desc_brush_size_icon">برش سائز کا انتخاب کریں</string>
-    <string name="desc_delete_button">حذف کریں</string>
     <string name="desc_donated">ہمارے ساتھ تعاون کرنے کا شکریہ! دوبارہ ڈُوڈل چلانے پر تمام اشتہارات مٹا دیے جائں گے۔</string>
     <string name="desc_icon">آئکن</string>
     <string name="desc_logo">لوگو</string>
@@ -56,14 +52,12 @@
     <string name="label_delete">مٹائیں</string>
     <string name="label_exit">بند کریں</string>
     <string name="label_faqs">امدادی سوالات</string>
-    <string name="label_friends">دوست</string>
     <string name="label_gallery">گیلری</string>
     <string name="label_messenger_action">جواب دیں</string>
     <string name="label_new_message">نیا پیغام</string>
     <string name="label_op1">اختیار ۱</string>
     <string name="label_op2">اختیار ۲</string>
     <string name="label_op3">اختیار ۳</string>
-    <string name="label_posts">پروجیکٹ</string>
     <string name="label_privacy">رازداری پالیسی</string>
     <string name="label_watch_ad">اشتہار دیکھیں</string>
     <string name="label_set">لگائیں</string>
@@ -96,7 +90,6 @@
     <string name="menu_tools_box">ڈبہ</string>
     <string name="menu_tools_canvas">کینوس کا رنگ</string>
     <string name="menu_tools_circle">دائرہ</string>
-    <string name="menu_tools_colors">رنگ</string>
     <string name="menu_tools_color_fill">شکلوں کا رنگ</string>
     <string name="menu_tools_color_stroke">برش کا رنگ</string>
     <string name="menu_tools_diamond">معین</string>

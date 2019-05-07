@@ -1,8 +1,8 @@
 package sfllhkhan95.doodle.billing
 
-import android.support.v7.app.AppCompatActivity
 import android.content.Context
 import android.os.Handler
+import android.support.v7.app.AppCompatActivity
 import com.android.billingclient.api.*
 import java.util.*
 

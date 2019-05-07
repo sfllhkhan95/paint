@@ -4,6 +4,7 @@ import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.Canvas
 import android.graphics.PointF
+import android.support.v4.content.ContextCompat
 import android.util.DisplayMetrics
 
 import sfllhkhan95.doodle.R
@@ -21,7 +22,7 @@ class PaintCanvas(context: Context, metrics: DisplayMetrics) : Canvas() {
     private var projectName: String? = null
 
     init {
-        color = context.resources.getColor(DEFAULT_BG_COLOR)
+        color = ContextCompat.getColor(context, DEFAULT_BG_COLOR)
 
         val height = metrics.heightPixels
         val width = metrics.widthPixels

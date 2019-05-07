@@ -2,6 +2,7 @@ package sfllhkhan95.doodle.core.models
 
 import android.content.Context
 import android.graphics.Paint
+import android.support.v4.content.ContextCompat
 
 import sfllhkhan95.doodle.R
 
@@ -19,8 +20,8 @@ class PaintBrush(val context: Context) : Paint(), Cloneable {
         }
 
     init {
-        strokeColor = context.resources.getColor(DEFAULT_STROKE_COLOR)
-        fillColor = context.resources.getColor(DEFAULT_FILL_COLOR)
+        strokeColor = ContextCompat.getColor(context, DEFAULT_STROKE_COLOR)
+        fillColor = ContextCompat.getColor(context, DEFAULT_FILL_COLOR)
 
         this.color = strokeColor
         this.style = Paint.Style.STROKE

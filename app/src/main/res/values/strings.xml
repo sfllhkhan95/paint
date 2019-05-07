@@ -14,16 +14,12 @@
     <string name="privacy_policy_url" translatable="false">https://www.iubenda.com/privacy-policy/35502767</string>
     <string name="url_doodle" translatable="false">https://play.google.com/store/apps/details?id=sfllhkhan95.doodle</string>
     <string name="url_doodle_source" translatable="false">https://github.com/sfllhkhan95/paint</string>
-    <string name="url_faqs" translatable="false">file:///android_asset/FAQ.md</string>
-    <string name="url_faqs_css" translatable="false">file:///android_asset/FAQ.css</string>
 
     <!-- Notification channels -->
     <string name="notifications_main_channel_name">Primary notification channel</string>
     <string name="notifications_main_channel_description">This is the main notifications channel.</string>
 
     <!-- Error messages -->
-    <string name="error_no_internet">Check your internet connection</string>
-    <string name="error_sign_in_cancelled">Sign in cancelled!</string>
     <string name="error_unknown">Unknown error. Upgrade application to latest version or contact support if error persists.</string>
 
     <!-- Confirmation and Status messages -->
@@ -35,9 +31,7 @@
     <string name="confirm_quit">Do you really wish to quit?</string>
 
     <!-- Content descriptions (for Accessibility) -->
-    <string name="desc_avatar">User photo</string>
     <string name="desc_brush_size_icon">Select brush size</string>
-    <string name="desc_delete_button">Delete</string>
     <string name="desc_donated">Thank you for supporting Doodle! Ads will be removed when you launch the app again.</string>
     <string name="desc_icon">Icon</string>
     <string name="desc_logo">Logo</string>
@@ -69,14 +63,12 @@
     <string name="label_choose_theme">Choose Theme</string>
     <string name="label_delete">Delete</string>
     <string name="label_faqs">Doodle FAQs</string>
-    <string name="label_friends">Friends</string>
     <string name="label_gallery">Gallery</string>
     <string name="label_messenger_action">Replying to</string>
     <string name="label_new_message">New Message</string>
     <string name="label_op1">Option 1</string>
     <string name="label_op2">Option 2</string>
     <string name="label_op3">Option 3</string>
-    <string name="label_posts">Posts</string>
     <string name="label_privacy">Privacy Policy</string>
     <string name="label_set">Set</string>
     <string name="label_settings">Settings</string>
@@ -111,7 +103,6 @@
     <string name="menu_tools_box">Box</string>
     <string name="menu_tools_canvas">Canvas Color</string>
     <string name="menu_tools_circle">Circle</string>
-    <string name="menu_tools_colors">Colors</string>
     <string name="menu_tools_color_fill">Fill Color</string>
     <string name="menu_tools_color_stroke">Pen Color</string>
     <string name="menu_tools_diamond">Diamond</string>

@@ -21,7 +21,7 @@ class SettingsActivity : AppCompatActivity(), View.OnClickListener {
     private var themeButton: MaterialButton? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        val which = (application as DoodleApplication).setActivityTheme(this)
+        (application as DoodleApplication).setActivityTheme(this)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_settings)
 

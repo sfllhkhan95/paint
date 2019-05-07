@@ -63,8 +63,8 @@
                 android:contentDescription="@string/desc_logo"
                 android:padding="10dp"
                 android:scaleType="fitCenter"
-                app:srcCompat="@drawable/paintbrush"
-                android:tint="@color/white" />
+                android:tint="@color/white"
+                app:srcCompat="@drawable/paintbrush" />
 
         </RelativeLayout>
 

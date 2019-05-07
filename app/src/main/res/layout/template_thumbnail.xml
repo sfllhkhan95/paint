@@ -9,6 +9,6 @@
         android:layout_height="match_parent"
         android:contentDescription="@string/desc_thumbnail"
         android:scaleType="centerCrop"
-        android:src="@drawable/avatar_placeholder" />
+        android:src="@drawable/paintbrush" />
 
 </RelativeLayout>
