@@ -39,9 +39,9 @@ class DialogFactory(private val activity: AppCompatActivity, private val paintVi
                 .setIcon(R.drawable.ic_tool_shapes)
                 .setTitle(context.getString(R.string.menu_action_share))
                 .setMessage(context.getString(R.string.desc_prompt_share))
-                .setOption1(context.getString(R.string.label_share_facebook), R.drawable.ic_facebook, View.OnClickListener { context.shareToFacebook() })
-                .setOption2(context.getString(R.string.label_share_messenger), R.drawable.messenger_button_blue_bg_round, View.OnClickListener { context.onShareClicked(true) })
-                .setOption3(context.getString(R.string.label_share_default), R.drawable.ic_share, View.OnClickListener { context.onShareClicked(false) })
+                .setOption1(context.getString(R.string.label_share_whatsapp), R.drawable.ic_whatsapp, View.OnClickListener { context.onShareClicked(MainActivity.ShareMethod.WHATSAPP) })
+                .setOption2(context.getString(R.string.label_share_messenger), R.drawable.messenger_button_blue_bg_round, View.OnClickListener { context.onShareClicked(MainActivity.ShareMethod.MESSENGER) })
+                .setOption3(context.getString(R.string.label_share_default), R.drawable.ic_share, View.OnClickListener { context.onShareClicked(MainActivity.ShareMethod.DEFAULT) })
                 .create()
     }
 

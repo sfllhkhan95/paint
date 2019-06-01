@@ -7,7 +7,10 @@ import android.support.v4.app.NavUtils
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.Toolbar
 import android.view.View
+import com.google.android.gms.ads.AdListener
+import com.google.android.gms.ads.AdView
 import sfllhkhan95.doodle.*
+import sfllhkhan95.doodle.ads.AdManager
 import sfllhkhan95.doodle.core.utils.DialogFactory
 import sfllhkhan95.doodle.core.views.ThemeSelector
 
@@ -39,6 +42,19 @@ class SettingsActivity : AppCompatActivity(), View.OnClickListener {
         findViewById<View>(R.id.privacy_policy)?.setOnClickListener(this)
         findViewById<View>(R.id.faqs)?.setOnClickListener(this)
         findViewById<View>(R.id.intro)?.setOnClickListener(this)
+    }
+
+    override fun onStart() {
+        super.onStart()
+
+        // Display ads if they are enabled
+        val mAdView = this.findViewById<AdView>(R.id.adView)
+        AdManager.instance.showBannerAd(mAdView, object : AdListener() {
+            override fun onAdLoaded() {
+                super.onAdLoaded()
+                mAdView.visibility = View.VISIBLE
+            }
+        })
     }
 
     override fun onClick(view: View) {

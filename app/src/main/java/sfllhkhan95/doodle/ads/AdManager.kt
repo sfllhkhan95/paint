@@ -1,5 +1,6 @@
 package sfllhkhan95.doodle.ads
 
+import android.app.Activity
 import android.content.Context
 import android.support.v7.app.AppCompatActivity
 import com.google.android.gms.ads.AdListener
@@ -47,7 +48,7 @@ class AdManager private constructor(context: Context) {
         get() = !hasRemovedAds() && mVideoAd != null && mVideoAd!!.isLoaded
 
     init {
-        MobileAds.initialize(context, AdManager.ADMOB_APP_ID)
+        MobileAds.initialize(context, ADMOB_APP_ID)
         this.mBillingManager = BillingManager.getInstance(context)
     }
 
@@ -97,46 +98,11 @@ class AdManager private constructor(context: Context) {
 
     /**
      * Displays a video ad if one has been loaded.
-     *
-     * @param target the [Activity] where the video should be played
      * @since 3.5.0
      */
-    fun showVideoAd(target: AppCompatActivity?) {
-        if (isVideoAdLoaded && mVideoAd != null) {
-            mVideoAd!!.rewardedVideoAdListener = object : RewardedVideoAdListener {
-                override fun onRewardedVideoAdLoaded() {
-
-                }
-
-                override fun onRewardedVideoAdOpened() {
-
-                }
-
-                override fun onRewardedVideoStarted() {
-
-                }
-
-                override fun onRewardedVideoAdClosed() {
-                    target?.finish()
-                }
-
-                override fun onRewarded(rewardItem: RewardItem) {
-
-                }
-
-                override fun onRewardedVideoAdLeftApplication() {
-
-                }
-
-                override fun onRewardedVideoAdFailedToLoad(i: Int) {
-
-                }
-
-                override fun onRewardedVideoCompleted() {
-
-                }
-            }
-            mVideoAd!!.show()
+    fun showVideoAd() {
+        if (isVideoAdLoaded) {
+            mVideoAd?.show()
         }
     }
 
@@ -146,12 +112,43 @@ class AdManager private constructor(context: Context) {
      * @param context the [Context] which is used to create this ad
      * @since 3.5.0
      */
-    fun loadVideoAd(context: Context) {
+    fun loadVideoAd(context: Activity) {
         mVideoAd = MobileAds.getRewardedVideoAdInstance(context)
-        if (mVideoAd != null) {
-            mVideoAd!!.loadAd(context.getString(R.string.admob_ad_rewarded),
-                    AdRequest.Builder().build())
+        mVideoAd?.rewardedVideoAdListener = object : RewardedVideoAdListener {
+            override fun onRewardedVideoAdLoaded() {
+
+            }
+
+            override fun onRewardedVideoAdOpened() {
+
+            }
+
+            override fun onRewardedVideoStarted() {
+
+            }
+
+            override fun onRewardedVideoAdClosed() {
+                context.finish()
+            }
+
+            override fun onRewarded(rewardItem: RewardItem) {
+
+            }
+
+            override fun onRewardedVideoAdLeftApplication() {
+
+            }
+
+            override fun onRewardedVideoAdFailedToLoad(i: Int) {
+
+            }
+
+            override fun onRewardedVideoCompleted() {
+
+            }
         }
+        mVideoAd?.loadAd(context.getString(R.string.admob_ad_rewarded),
+                AdRequest.Builder().build())
     }
 
     companion object {

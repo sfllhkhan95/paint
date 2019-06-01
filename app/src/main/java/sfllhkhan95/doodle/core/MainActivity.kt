@@ -5,7 +5,6 @@ import android.graphics.Bitmap
 import android.os.Bundle
 import android.os.Environment
 import android.provider.MediaStore
-import android.support.design.widget.BaseTransientBottomBar
 import android.support.design.widget.Snackbar
 import android.support.v4.content.FileProvider
 import android.support.v7.app.AppCompatActivity
@@ -21,9 +20,6 @@ import com.crashlytics.android.Crashlytics
 import com.facebook.AccessToken
 import com.facebook.GraphRequest
 import com.facebook.messenger.MessengerUtils
-import com.facebook.share.model.SharePhoto
-import com.facebook.share.model.SharePhotoContent
-import com.facebook.share.widget.ShareDialog
 import com.google.firebase.analytics.FirebaseAnalytics
 import org.json.JSONException
 import sfllhkhan95.doodle.DoodleApplication
@@ -108,7 +104,7 @@ class MainActivity : AppCompatActivity(), SeekBar.OnSeekBarChangeListener, OnToo
         messengerShareButton = findViewById(R.id.messenger_share_button)
         if (Intent.ACTION_PICK == intent.action || messengerAction) {
             messengerShareButton!!.visibility = View.VISIBLE
-            messengerShareButton!!.setOnClickListener { onShareClicked(true) }
+            messengerShareButton!!.setOnClickListener { onShareClicked(ShareMethod.MESSENGER) }
             if (Intent.ACTION_PICK == intent.action) {
                 val logParams = Bundle()
                 mFirebaseAnalytics!!.logEvent("reply_messenger", logParams)
@@ -166,11 +162,13 @@ class MainActivity : AppCompatActivity(), SeekBar.OnSeekBarChangeListener, OnToo
         setMaximized(isViewing)
         if (isViewing) {
             findViewById<View>(R.id.editButton).visibility = View.VISIBLE
+            findViewById<View>(R.id.shareButton).visibility = View.VISIBLE
             findViewById<View>(R.id.deleteButton).visibility = View.VISIBLE
             paintView?.isEnabled = false
             toolbar?.secondary?.visibility = View.GONE
         } else {
             findViewById<View>(R.id.editButton).visibility = View.GONE
+            findViewById<View>(R.id.shareButton).visibility = View.GONE
             findViewById<View>(R.id.deleteButton).visibility = View.GONE
             paintView?.isEnabled = true
 
@@ -273,13 +271,13 @@ class MainActivity : AppCompatActivity(), SeekBar.OnSeekBarChangeListener, OnToo
         return PaintCanvas.loadFromPath(this, metrics, savedDoodle)
     }
 
-    private fun share(tempFile: File) {
+    private fun share(imageFile: File) {
         // Get a shareable file URI
         val contentType = "image/jpeg"
         val contentUri = FileProvider.getUriForFile(
                 this,
                 applicationContext.packageName + ".sfllhkhan95.doodle.provider",
-                tempFile)
+                imageFile)
 
         // Start share sequence
         val share = Intent(Intent.ACTION_SEND)
@@ -289,13 +287,30 @@ class MainActivity : AppCompatActivity(), SeekBar.OnSeekBarChangeListener, OnToo
         startActivityForResult(Intent.createChooser(share, resources.getString(R.string.menu_action_share)), REQUEST_CODE_SHARE)
     }
 
-    private fun shareOnMessenger(tempFile: File) {
+    private fun shareOnWhatsApp(imageFile: File) {
         // Get a shareable file URI
         val contentType = "image/jpeg"
         val contentUri = FileProvider.getUriForFile(
                 this,
                 applicationContext.packageName + ".sfllhkhan95.doodle.provider",
-                tempFile
+                imageFile)
+
+        // Start share sequence
+        val share = Intent(Intent.ACTION_SEND)
+        share.type = contentType
+        share.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
+        share.putExtra(Intent.EXTRA_STREAM, contentUri)
+        share.setPackage("com.whatsapp")
+        startActivityForResult(Intent.createChooser(share, resources.getString(R.string.menu_action_share)), REQUEST_CODE_SHARE)
+    }
+
+    private fun shareOnMessenger(imageFile: File) {
+        // Get a shareable file URI
+        val contentType = "image/jpeg"
+        val contentUri = FileProvider.getUriForFile(
+                this,
+                applicationContext.packageName + ".sfllhkhan95.doodle.provider",
+                imageFile
         )
 
         // Start share sequence
@@ -417,44 +432,51 @@ class MainActivity : AppCompatActivity(), SeekBar.OnSeekBarChangeListener, OnToo
         return false
     }
 
-    fun onShareClicked(messengerExpression: Boolean) {
+    private fun getTempFileFromCanvas(): File? {
+        return try {
+            // Get the drawn bitmap from paint canvas
+            val canvas = paintView!!.canvas
+            val bitmapToShare = canvas!!.bitmap
+
+            // Compress bitmap
+            val bytes = ByteArrayOutputStream()
+            bitmapToShare.compress(Bitmap.CompressFormat.JPEG, 100, bytes)
+
+            // Write to a temporary file
+            val storageDir = getExternalFilesDir(Environment.DIRECTORY_PICTURES)
+            val path = storageDir!!.toString() + File.separator + "SHARE_IMAGE.jpg"
+            val tempFile = File(path)
+            val created = tempFile.createNewFile()
+            Log.i(DoodleApplication.TAG, if (created) "New temporary file created." else "Temporary file already exists. Overwriting!")
+
+            val fo = FileOutputStream(tempFile)
+            fo.write(bytes.toByteArray())
+
+            tempFile
+        } catch (ex: Exception) {
+            // Log exception for error tracking
+            Crashlytics.logException(ex)
+
+            // Display a nice error message to the user
+            Snackbar.make(
+                    messengerShareButton!!,
+                    getString(R.string.error_unknown),
+                    Snackbar.LENGTH_INDEFINITE
+            ).show()
+
+            null
+        }
+    }
+
+    fun onShareClicked(method: ShareMethod) {
         if (isExisting || paintView!!.isModified) {
-            try {
-                // Get the drawn bitmap from paint canvas
-                val canvas = paintView!!.canvas
-                val bitmapToShare = canvas!!.bitmap
-
-                // Compress bitmap
-                val bytes = ByteArrayOutputStream()
-                bitmapToShare.compress(Bitmap.CompressFormat.JPEG, 100, bytes)
-
-                // Write to a temporary file
-                val storageDir = getExternalFilesDir(Environment.DIRECTORY_PICTURES)
-                val path = storageDir!!.toString() + File.separator + "SHARE_IMAGE.jpg"
-                val tempFile = File(path)
-                val created = tempFile.createNewFile()
-                Log.i(DoodleApplication.TAG, if (created) "New temporary file created." else "Temporary file already exists. Overwriting!")
-
-                val fo = FileOutputStream(tempFile)
-                fo.write(bytes.toByteArray())
-
-                if (messengerExpression) {
-                    shareOnMessenger(tempFile)
-                } else {
-                    share(tempFile)
+            getTempFileFromCanvas()?.let { tempFile ->
+                when (method) {
+                    ShareMethod.DEFAULT -> share(tempFile)
+                    ShareMethod.MESSENGER -> shareOnMessenger(tempFile)
+                    ShareMethod.WHATSAPP -> shareOnWhatsApp(tempFile)
                 }
-            } catch (e: Exception) { // If, for some reason, sharing fails
-                // Log exception for error tracking
-                Crashlytics.logException(e)
-
-                // Display a nice error message to the user
-                Snackbar.make(
-                        messengerShareButton!!,
-                        getString(R.string.error_unknown),
-                        BaseTransientBottomBar.LENGTH_INDEFINITE
-                ).show()
             }
-
         }
     }
 
@@ -554,22 +576,6 @@ class MainActivity : AppCompatActivity(), SeekBar.OnSeekBarChangeListener, OnToo
         return false
     }
 
-    fun shareToFacebook() {
-        // Get the drawn bitmap from paint canvas
-        val canvas = paintView!!.canvas
-        val bitmapToShare = canvas!!.bitmap
-
-        val photo = SharePhoto.Builder()
-                .setBitmap(bitmapToShare)
-                .build()
-
-        val content = SharePhotoContent.Builder()
-                .addPhoto(photo)
-                .build()
-
-        ShareDialog.show(this, content)
-    }
-
     fun deleteProject(view: View) {
         projectName?.let {
             ConfirmationDialog.Builder(view.context)
@@ -589,6 +595,10 @@ class MainActivity : AppCompatActivity(), SeekBar.OnSeekBarChangeListener, OnToo
                     .create()
                     .show()
         }
+    }
+
+    fun shareProject(view: View) {
+        dialogFactory?.shareDialog(this)?.show()
     }
 
     fun editMode(view: View) {
@@ -626,4 +636,11 @@ class MainActivity : AppCompatActivity(), SeekBar.OnSeekBarChangeListener, OnToo
         private const val REQUEST_CODE_SHARE = 100
         private const val REQUEST_CODE_SHARE_TO_MESSENGER = 200
     }
+
+    enum class ShareMethod {
+        DEFAULT,
+        MESSENGER,
+        WHATSAPP
+    }
+
 }

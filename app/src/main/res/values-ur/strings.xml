@@ -30,7 +30,7 @@
     <string name="desc_prompt_exit">تمام غیر محفوظ تبدیلیاں ضائع ہو جائیں گی۔ کیا آپ واقعی یہ کرنا چاہتے ہیں؟</string>
     <string name="desc_prompt_revert">یہ عمل تمام غیر محفوظ تبدیلیاں ختم کر دے گا. یہ واپس نہیں کیا جا سکتا. کیا آپ واقعی ایسا کرنا چاہتے ہیں؟</string>
     <string name="desc_prompt_save">آپ کا پروجیکٹ محفوظ کر لیا جائے گا جسے آپ بعد میں تبدیل بھی کر سکیں گے۔</string>
-    <string name="desc_prompt_share">فیس بک پر لگائیں، فیس بک میسینجر میں دوستوں کو بھیجیں، یا کسی اور طرح سے شیئر کریں۔</string>
+    <string name="desc_prompt_share">واٹس ایپ پر بھیجیں، فیس بک میسینجر میں دوستوں کو بھیجیں، یا کسی اور طرح سے شیئر کریں۔</string>
     <string name="desc_prompt_support">ڈوڈل ایک مفت اور کھلا پروجیکٹ ہے. ہماری ٹیم آپ کو بہترین تجربات  دینے کیلئے  محرک ہے. اس اپلی کیشن سے آمدنی کا ذریعہ صرف چند اشتہارات  ہیں. ہماری حوصلہ افضائی کیلئے Play Store پراپنی رائے سے، اس کے کوڈ میں حصہ ڈال کر، یا تمام اشتھارات کو مٹانے کیلئے ایک بار کی رقم کا عطیہ دے کر ہمیں سپورٹ کرسکتے ہیں.</string>
     <string name="desc_prompt_supported">ڈُوڈل کی حمایت کے لئے آپ کا شکریہ! ڈوڈل ایک مفت اور کھلا پروجیکٹ ہے. ہماری ٹیم آپ کو بہترین تجربات دینے کیلئے محرک ہے. ہماری حوصلہ افضائی کیلئے Play Store پراپنی رائے سے یا اس کے کوڈ میں حصہ ڈال کر ہمیں سپورٹ کرسکتے ہیں.</string>
     <string name="desc_prompt_watch_ad">ڈوڈل ایک مفت، open-source ایپ ہے. ویڈیو اشتہار دیکھنے کیلئے ذیل میں .اشتھار دیکھں. پر کلک کریں. یہ ہمیں آمدنی پیدا کرنے میں مدد دیتا ہے.</string>
@@ -68,7 +68,7 @@
     <string name="label_support_contribute">حصہ ڈالیں</string>
 
     <string name="label_share_default">بانٹیں</string>
-    <string name="label_share_facebook">فیس بک</string>
+    <string name="label_share_whatsapp">واٹس ایپ</string>
     <string name="label_share_messenger">میسنجر</string>
 
     <!-- Settings screen options -->

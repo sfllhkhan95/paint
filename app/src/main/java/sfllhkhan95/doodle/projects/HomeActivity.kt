@@ -16,6 +16,8 @@ import android.support.v4.content.FileProvider
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import android.view.View
+import com.google.android.gms.ads.AdListener
+import com.google.android.gms.ads.AdView
 import com.leinardi.android.speeddial.SpeedDialActionItem
 import com.leinardi.android.speeddial.SpeedDialView
 import sfllhkhan95.doodle.DoodleApplication
@@ -82,8 +84,17 @@ class HomeActivity : AppCompatActivity(), SpeedDialView.OnActionSelectedListener
     override fun onStart() {
         super.onStart()
 
+        // Display ads if they are enabled
         mAdManager = AdManager.instance
         mAdManager?.loadVideoAd(this)
+
+        val mAdView = this.findViewById<AdView>(R.id.adView)
+        AdManager.instance.showBannerAd(mAdView, object : AdListener() {
+            override fun onAdLoaded() {
+                super.onAdLoaded()
+                mAdView.visibility = View.VISIBLE
+            }
+        })
     }
 
     override fun onResume() {
@@ -108,7 +119,7 @@ class HomeActivity : AppCompatActivity(), SpeedDialView.OnActionSelectedListener
         mAdManager?.let { ads ->
             if (ads.isVideoAdLoaded) {
                 mBuilder.setMessage(getString(R.string.desc_prompt_watch_ad))
-                        .setNegativeButton(getString(R.string.label_watch_ad), View.OnClickListener { ads.showVideoAd(this@HomeActivity) }, false)
+                        .setNegativeButton(getString(R.string.label_watch_ad), View.OnClickListener { ads.showVideoAd() }, false)
             }
         }
 
@@ -129,7 +140,7 @@ class HomeActivity : AppCompatActivity(), SpeedDialView.OnActionSelectedListener
                 openGalleryImage.putExtra("FROM_GALLERY", data)
                 startActivity(openGalleryImage)
             }
-            REQUEST_TAKE_PHOTO -> if (mCameraPicturePath != null && !mCameraPicturePath!!.isEmpty()) {
+            REQUEST_TAKE_PHOTO -> if (mCameraPicturePath != null && mCameraPicturePath!!.isNotEmpty()) {
                 val openCameraImage = Intent(applicationContext, MainActivity::class.java)
                 openCameraImage.putExtra("FROM_CAMERA", mCameraPicturePath)
                 startActivity(openCameraImage)
