@@ -2,7 +2,7 @@ package sfllhkhan95.doodle.bo
 
 import android.content.Context
 import android.os.Handler
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
 import com.android.billingclient.api.*
 import java.util.*
 

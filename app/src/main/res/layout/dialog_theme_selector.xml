@@ -48,7 +48,7 @@
                     android:textColor="@color/white"
                     android:textSize="12sp" />
 
-                <android.support.design.card.MaterialCardView
+                <com.google.android.material.card.MaterialCardView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/activity_horizontal_margin"
@@ -80,7 +80,7 @@
                             android:gravity="end|center_vertical"
                             android:orientation="horizontal">
 
-                            <android.support.v7.widget.AppCompatButton
+                            <androidx.appcompat.widget.AppCompatButton
                                 android:id="@+id/negativeButton"
                                 android:layout_width="wrap_content"
                                 android:layout_height="match_parent"
@@ -94,7 +94,7 @@
                                 android:textColor="?attr/colorPrimaryDark"
                                 android:textSize="12sp" />
 
-                            <android.support.v7.widget.AppCompatButton
+                            <androidx.appcompat.widget.AppCompatButton
                                 android:id="@+id/positiveButton"
                                 android:layout_width="70dp"
                                 android:layout_height="match_parent"
@@ -108,7 +108,7 @@
 
                     </LinearLayout>
 
-                </android.support.design.card.MaterialCardView>
+                </com.google.android.material.card.MaterialCardView>
 
             </LinearLayout>
 
@@ -126,7 +126,7 @@
                     android:gravity="center_horizontal|top"
                     android:orientation="horizontal">
 
-                    <android.support.design.card.MaterialCardView
+                    <com.google.android.material.card.MaterialCardView
                         android:id="@+id/defaultTheme"
                         android:layout_width="32dp"
                         android:layout_height="32dp"
@@ -134,7 +134,7 @@
                         app:cardBackgroundColor="@color/purple_900"
                         app:cardCornerRadius="10dp" />
 
-                    <android.support.design.card.MaterialCardView
+                    <com.google.android.material.card.MaterialCardView
                         android:id="@+id/oceanTheme"
                         android:layout_width="32dp"
                         android:layout_height="32dp"
@@ -142,7 +142,7 @@
                         app:cardBackgroundColor="@color/blue_900"
                         app:cardCornerRadius="10dp" />
 
-                    <android.support.design.card.MaterialCardView
+                    <com.google.android.material.card.MaterialCardView
                         android:id="@+id/sunlightTheme"
                         android:layout_width="32dp"
                         android:layout_height="32dp"
@@ -150,7 +150,7 @@
                         app:cardBackgroundColor="@color/yellow_900"
                         app:cardCornerRadius="10dp" />
 
-                    <android.support.design.card.MaterialCardView
+                    <com.google.android.material.card.MaterialCardView
                         android:id="@+id/forestTheme"
                         android:layout_width="32dp"
                         android:layout_height="32dp"
@@ -158,7 +158,7 @@
                         app:cardBackgroundColor="@color/green_900"
                         app:cardCornerRadius="10dp" />
 
-                    <android.support.design.card.MaterialCardView
+                    <com.google.android.material.card.MaterialCardView
                         android:id="@+id/chocolateTheme"
                         android:layout_width="32dp"
                         android:layout_height="32dp"
@@ -166,7 +166,7 @@
                         app:cardBackgroundColor="@color/brown_900"
                         app:cardCornerRadius="10dp" />
 
-                    <android.support.design.card.MaterialCardView
+                    <com.google.android.material.card.MaterialCardView
                         android:id="@+id/darkTheme"
                         android:layout_width="32dp"
                         android:layout_height="32dp"
@@ -182,7 +182,7 @@
                     android:orientation="horizontal"
                     android:paddingBottom="8dp">
 
-                    <android.support.design.card.MaterialCardView
+                    <com.google.android.material.card.MaterialCardView
                         android:id="@+id/defaultThemeSelected"
                         android:layout_width="4dp"
                         android:layout_height="4dp"
@@ -190,7 +190,7 @@
                         android:layout_marginEnd="22dp"
                         app:cardBackgroundColor="@color/blue_grey_500a" />
 
-                    <android.support.design.card.MaterialCardView
+                    <com.google.android.material.card.MaterialCardView
                         android:id="@+id/oceanThemeSelected"
                         android:layout_width="4dp"
                         android:layout_height="4dp"
@@ -198,7 +198,7 @@
                         android:layout_marginEnd="22dp"
                         app:cardBackgroundColor="@color/blue_grey_500a" />
 
-                    <android.support.design.card.MaterialCardView
+                    <com.google.android.material.card.MaterialCardView
                         android:id="@+id/sunlightThemeSelected"
                         android:layout_width="4dp"
                         android:layout_height="4dp"
@@ -206,7 +206,7 @@
                         android:layout_marginEnd="22dp"
                         app:cardBackgroundColor="@color/blue_grey_500a" />
 
-                    <android.support.design.card.MaterialCardView
+                    <com.google.android.material.card.MaterialCardView
                         android:id="@+id/forestThemeSelected"
                         android:layout_width="4dp"
                         android:layout_height="4dp"
@@ -214,7 +214,7 @@
                         android:layout_marginEnd="22dp"
                         app:cardBackgroundColor="@color/blue_grey_500a" />
 
-                    <android.support.design.card.MaterialCardView
+                    <com.google.android.material.card.MaterialCardView
                         android:id="@+id/chocolateThemeSelected"
                         android:layout_width="4dp"
                         android:layout_height="4dp"
@@ -222,7 +222,7 @@
                         android:layout_marginEnd="22dp"
                         app:cardBackgroundColor="@color/blue_grey_500a" />
 
-                    <android.support.design.card.MaterialCardView
+                    <com.google.android.material.card.MaterialCardView
                         android:id="@+id/darkThemeSelected"
                         android:layout_width="4dp"
                         android:layout_height="4dp"
@@ -237,7 +237,7 @@
                     android:gravity="end"
                     android:orientation="horizontal">
 
-                    <android.support.design.button.MaterialButton
+                    <com.google.android.material.button.MaterialButton
                         android:id="@+id/cancel_button"
                         style="@style/Widget.MaterialComponents.Button.TextButton.Dialog"
                         android:layout_width="wrap_content"
@@ -246,7 +246,7 @@
                         android:layout_marginRight="@dimen/activity_horizontal_margin"
                         android:text="@android:string/cancel" />
 
-                    <android.support.design.button.MaterialButton
+                    <com.google.android.material.button.MaterialButton
                         android:id="@+id/ok_button"
                         style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
                         android:layout_width="wrap_content"

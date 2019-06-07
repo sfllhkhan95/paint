@@ -8,4 +8,5 @@ class CanvasColorPicker(context: Context, color: Int, dialogTheme: Int) : ColorP
         picker.showPreview(false)
         picker.showAlpha(false)
     }
+
 }

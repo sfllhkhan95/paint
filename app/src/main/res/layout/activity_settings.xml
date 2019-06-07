@@ -10,7 +10,7 @@
     android:orientation="vertical"
     tools:context=".views.activity.SettingsActivity">
 
-    <android.support.v7.widget.Toolbar
+    <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="?actionBarSize"
@@ -36,7 +36,7 @@
                 android:layout_marginEnd="@dimen/activity_horizontal_margin"
                 android:orientation="vertical">
 
-                <android.support.design.button.MaterialButton
+                <com.google.android.material.button.MaterialButton
                     android:id="@+id/theme"
                     style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
                     android:layout_width="wrap_content"
@@ -63,7 +63,7 @@
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
 
-                    <android.support.design.button.MaterialButton
+                    <com.google.android.material.button.MaterialButton
                         android:id="@+id/faqs"
                         style="@style/Widget.MaterialComponents.Button.OutlinedButton"
                         android:layout_width="wrap_content"
@@ -74,7 +74,7 @@
                         android:textAllCaps="false"
                         app:cornerRadius="16dp" />
 
-                    <android.support.design.button.MaterialButton
+                    <com.google.android.material.button.MaterialButton
                         android:id="@+id/intro"
                         style="@style/Widget.MaterialComponents.Button.OutlinedButton"
                         android:layout_width="wrap_content"
@@ -87,7 +87,7 @@
 
                 </LinearLayout>
 
-                <android.support.design.button.MaterialButton
+                <com.google.android.material.button.MaterialButton
                     android:id="@+id/privacy_policy"
                     style="@style/Widget.MaterialComponents.Button.OutlinedButton"
                     android:layout_width="wrap_content"
@@ -98,7 +98,7 @@
                     android:textAllCaps="false"
                     app:cornerRadius="16dp" />
 
-                <android.support.design.button.MaterialButton
+                <com.google.android.material.button.MaterialButton
                     android:id="@+id/support"
                     style="@style/Widget.MaterialComponents.Button.OutlinedButton"
                     android:layout_width="wrap_content"

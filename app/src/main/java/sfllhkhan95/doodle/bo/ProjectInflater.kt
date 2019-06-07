@@ -1,8 +1,8 @@
 package sfllhkhan95.doodle.bo
 
 import android.content.Intent
-import android.support.annotation.UiThread
-import android.support.v7.app.AppCompatActivity
+import androidx.annotation.UiThread
+import androidx.appcompat.app.AppCompatActivity
 import android.view.View
 import android.widget.AdapterView
 import android.widget.GridView

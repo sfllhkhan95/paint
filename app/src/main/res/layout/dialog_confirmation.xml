@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:gravity="center">
 
-    <android.support.design.card.MaterialCardView
+    <com.google.android.material.card.MaterialCardView
         android:layout_width="320dp"
         android:layout_height="wrap_content">
 
@@ -80,7 +80,7 @@
                     android:gravity="center"
                     android:orientation="horizontal">
 
-                    <android.support.design.button.MaterialButton
+                    <com.google.android.material.button.MaterialButton
                         android:id="@+id/negativeButton"
                         style="@style/Widget.MaterialComponents.Button.TextButton.Dialog"
                         android:layout_width="wrap_content"
@@ -89,7 +89,7 @@
                         android:layout_marginRight="35dp"
                         android:visibility="gone" />
 
-                    <android.support.design.button.MaterialButton
+                    <com.google.android.material.button.MaterialButton
                         android:id="@+id/positiveButton"
                         style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
                         android:layout_width="wrap_content"
@@ -112,6 +112,6 @@
 
         </LinearLayout>
 
-    </android.support.design.card.MaterialCardView>
+    </com.google.android.material.card.MaterialCardView>
 
 </LinearLayout>

@@ -1,25 +1,24 @@
 package sfllhkhan95.doodle.views.activity
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.Color
 import android.net.Uri
 import android.os.Bundle
-import android.support.design.widget.Snackbar
-import android.support.v4.content.ContextCompat
-import android.support.v4.content.FileProvider
-import android.support.v4.view.MenuItemCompat
-import android.support.v7.app.AppCompatActivity
-import android.support.v7.widget.ShareActionProvider
-import android.support.v7.widget.Toolbar
 import android.util.DisplayMetrics
 import android.view.Menu
 import android.view.MenuItem
 import android.view.MotionEvent
 import android.view.View
 import android.widget.SeekBar
+import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
+import androidx.core.content.ContextCompat
+import androidx.core.content.FileProvider
 import com.crashlytics.android.Crashlytics
 import com.google.android.gms.tasks.OnSuccessListener
+import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.analytics.FirebaseAnalytics
 import sfllhkhan95.doodle.DoodleApplication.Companion.ACTION_SHARE
 import sfllhkhan95.doodle.DoodleApplication.Companion.EVENT_MESSENGER_REPLY
@@ -57,8 +56,6 @@ import java.io.File
 class MainActivity : AppCompatActivity(), SeekBar.OnSeekBarChangeListener, OnToolSelectedListener,
         OnColorPickedListener, View.OnTouchListener {
 
-    private var shareActionProvider: ShareActionProvider? = null
-
     // Brush controller
     private var brushController: SeekBar? = null
 
@@ -93,6 +90,7 @@ class MainActivity : AppCompatActivity(), SeekBar.OnSeekBarChangeListener, OnToo
 
     private var projectName: String? = null
 
+    @SuppressLint("ClickableViewAccessibility")
     override fun onCreate(savedInstanceState: Bundle?) {
         ThemeUtils.setActivityTheme(this)
         super.onCreate(savedInstanceState)
@@ -172,11 +170,6 @@ class MainActivity : AppCompatActivity(), SeekBar.OnSeekBarChangeListener, OnToo
         if (!isMaximized) {
             val inflater = menuInflater
             inflater.inflate(R.menu.menu_main, menu)
-            menu.findItem(R.id.share).also { menuItem ->
-                shareActionProvider = MenuItemCompat.getActionProvider(menuItem) as ShareActionProvider?
-            }
-
-            menu.findItem(R.id.share).isVisible = !mReplying
             menu.findItem(R.id.canvas).isVisible = !isExisting
 
             val mActionBarManager = ActionBarManager(menu)
@@ -189,8 +182,6 @@ class MainActivity : AppCompatActivity(), SeekBar.OnSeekBarChangeListener, OnToo
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if (isViewing) return false
-
-
         when (item.itemId) {
             android.R.id.home -> {
                 isMaximized = !isMaximized
@@ -245,11 +236,6 @@ class MainActivity : AppCompatActivity(), SeekBar.OnSeekBarChangeListener, OnToo
                         ).show()
                     }
                 }
-                return true
-            }
-
-            R.id.share -> {
-                shareProject()
                 return true
             }
         }
@@ -482,8 +468,6 @@ class MainActivity : AppCompatActivity(), SeekBar.OnSeekBarChangeListener, OnToo
     private fun share(imageFile: File, targetPackage: String? = null) {
         val intent = ShareUtils.createShareIntent(applicationContext, imageFile, EXT_IMAGE_MIME)
         intent.setPackage(targetPackage)
-
-        shareActionProvider?.setShareIntent(intent)
         startActivityForResult(
                 Intent.createChooser(intent, resources.getString(R.string.menu_action_share)),
                 REQUEST_SHARE_DOODLE

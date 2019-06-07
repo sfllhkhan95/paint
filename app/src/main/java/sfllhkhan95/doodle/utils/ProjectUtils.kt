@@ -88,7 +88,7 @@ object ProjectUtils {
         try {
             FileUtils.writeToFile(Gson().toJson(project).toByteArray(), file)
         } catch (ignored: Exception) {
-            // TODO:
+
         }
     }
 

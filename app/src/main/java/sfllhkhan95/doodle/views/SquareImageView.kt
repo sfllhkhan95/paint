@@ -1,8 +1,8 @@
 package sfllhkhan95.doodle.views
 
 import android.content.Context
-import android.support.v7.widget.AppCompatImageView
 import android.util.AttributeSet
+import androidx.appcompat.widget.AppCompatImageView
 
 class SquareImageView : AppCompatImageView {
     constructor(context: Context) : super(context)

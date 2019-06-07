@@ -1,10 +1,10 @@
 package sfllhkhan95.doodle.views
 
 import android.graphics.Bitmap
-import android.support.v7.widget.RecyclerView
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import sfllhkhan95.doodle.R
 import sfllhkhan95.doodle.models.Project
@@ -14,8 +14,8 @@ import java.io.ByteArrayOutputStream
 
 /**
  * @author saifkhichi96
- * @version 1.0
- * created on 23/10/2017 2:27 AM
+ * @version 1.0.0
+ * @since 23/10/2017 2:27 AM
  */
 class ProjectView(itemView: View) : RecyclerView.ViewHolder(itemView) {
 

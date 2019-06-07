@@ -1,8 +1,8 @@
 package sfllhkhan95.doodle.utils
 
 import android.content.Context
-import android.support.annotation.AttrRes
-import android.support.v7.app.AppCompatActivity
+import androidx.annotation.AttrRes
+import androidx.appcompat.app.AppCompatActivity
 import android.util.TypedValue
 import com.orhanobut.hawk.Hawk
 import sfllhkhan95.doodle.DoodleApplication

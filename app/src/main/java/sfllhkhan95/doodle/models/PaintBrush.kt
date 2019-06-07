@@ -2,7 +2,7 @@ package sfllhkhan95.doodle.models
 
 import android.content.Context
 import android.graphics.Paint
-import android.support.v4.content.ContextCompat
+import androidx.core.content.ContextCompat
 
 import sfllhkhan95.doodle.R
 

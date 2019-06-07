@@ -4,10 +4,9 @@ import android.Manifest
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Bundle
-import android.support.annotation.DrawableRes
-import android.support.v4.app.Fragment
-import android.support.v4.content.ContextCompat
 import android.widget.Toast
+import androidx.annotation.DrawableRes
+import androidx.core.content.ContextCompat
 import com.github.paolorotolo.appintro.AppIntro
 import com.github.paolorotolo.appintro.AppIntroFragment
 import com.github.paolorotolo.appintro.model.SliderPage
@@ -115,7 +114,7 @@ class IntroActivity : AppIntro() {
         }
     }
 
-    override fun onDonePressed(currentFragment: Fragment?) {
+    override fun onDonePressed(currentFragment: androidx.fragment.app.Fragment?) {
         // Has user already seen the intro?
         val introSeen: Boolean = Hawk.get(DoodleApplication.FLAG_INTRO, false)
 

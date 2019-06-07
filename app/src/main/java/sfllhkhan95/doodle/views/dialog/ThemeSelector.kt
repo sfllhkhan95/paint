@@ -2,11 +2,11 @@ package sfllhkhan95.doodle.views.dialog
 
 import android.app.Dialog
 import android.os.Bundle
-import android.support.v4.content.ContextCompat
-import android.support.v7.app.AppCompatActivity
 import android.view.View
 import android.widget.Button
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import com.google.android.gms.ads.AdListener
 import com.google.android.gms.ads.AdView
 import sfllhkhan95.doodle.R

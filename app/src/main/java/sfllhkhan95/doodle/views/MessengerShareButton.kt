@@ -2,13 +2,13 @@ package sfllhkhan95.doodle.views
 
 import android.content.Context
 import android.net.Uri
-import android.support.v4.text.TextUtilsCompat
-import android.support.v4.view.ViewCompat
-import android.support.v7.app.AppCompatActivity
 import android.util.AttributeSet
 import android.view.View
 import android.widget.RelativeLayout
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.text.TextUtilsCompat
+import androidx.core.view.ViewCompat
 import com.facebook.messenger.MessengerUtils
 import com.facebook.messenger.ShareToMessengerParams
 import sfllhkhan95.doodle.R
@@ -18,9 +18,8 @@ import java.util.*
  * A button which can be used to share content to Messenger.
  *
  * @author saifkhichi96
- * @version 1.0
- * created on 23/10/2017 2:28 AM
- * @see [Messenger](https://www.messenger.com/features)
+ * @version 1.0.0
+ * @since 23/10/2017 2:28 AM
  */
 class MessengerShareButton : RelativeLayout {
 
@@ -58,11 +57,11 @@ class MessengerShareButton : RelativeLayout {
             }
         }
 
-        val DEFAULT_ACTION_TEXT = context.getString(R.string.label_compose)
-        setActionText(DEFAULT_ACTION_TEXT)
+        val actionText = context.getString(R.string.label_compose)
+        setActionText(actionText)
 
-        val DEFAULT_DESCRIPTION_TEXT = context.getString(R.string.label_new_message)
-        setDescriptionText(DEFAULT_DESCRIPTION_TEXT)
+        val descriptionText = context.getString(R.string.label_new_message)
+        setDescriptionText(descriptionText)
 
         if (attrs != null) {
             val a = context.theme.obtainStyledAttributes(
@@ -75,8 +74,8 @@ class MessengerShareButton : RelativeLayout {
             } finally {
                 a.recycle()
 
-                setActionText((if (mActionText == null) DEFAULT_ACTION_TEXT else mActionText)!!)
-                setDescriptionText((if (mDescriptionText == null) DEFAULT_DESCRIPTION_TEXT else mDescriptionText)!!)
+                setActionText((if (mActionText == null) actionText else mActionText)!!)
+                setDescriptionText((if (mDescriptionText == null) descriptionText else mDescriptionText)!!)
             }
         }
     }
@@ -95,7 +94,7 @@ class MessengerShareButton : RelativeLayout {
         requestLayout()
     }
 
-    override fun setOnClickListener(l: View.OnClickListener?) {
+    override fun setOnClickListener(l: OnClickListener?) {
         super.setOnClickListener(l)
         mActionButton!!.setOnClickListener(l)
         mActionStringView!!.setOnClickListener(l)

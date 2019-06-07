@@ -4,7 +4,7 @@ import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.Canvas
 import android.graphics.PointF
-import android.support.v4.content.ContextCompat
+import androidx.core.content.ContextCompat
 import android.util.DisplayMetrics
 import sfllhkhan95.doodle.R
 import sfllhkhan95.doodle.utils.ProjectUtils

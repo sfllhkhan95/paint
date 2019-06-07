@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:ads="http://schemas.android.com/apk/res-auto"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -8,21 +8,21 @@
     android:fitsSystemWindows="true"
     tools:context=".views.activity.HomeActivity">
 
-    <android.support.design.widget.AppBarLayout
+    <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="?actionBarSize"
         android:layout_gravity="top"
         android:background="?attr/colorPrimaryDark">
 
         <!-- Fixed Action Bar -->
-        <android.support.v7.widget.LinearLayoutCompat
+        <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="end|bottom"
             android:orientation="horizontal"
             app:layout_collapseMode="pin">
 
-            <android.support.v7.widget.AppCompatButton
+            <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/settingsButton"
                 style="@style/Widget.MaterialComponents.Button.TextButton.Dialog.Icon"
                 android:layout_width="40dp"
@@ -30,11 +30,11 @@
                 android:drawableEnd="@drawable/ic_action_settings"
                 android:drawableRight="@drawable/ic_action_settings" />
 
-        </android.support.v7.widget.LinearLayoutCompat>
+        </androidx.appcompat.widget.LinearLayoutCompat>
 
-    </android.support.design.widget.AppBarLayout>
+    </com.google.android.material.appbar.AppBarLayout>
 
-    <android.support.v4.widget.NestedScrollView
+    <androidx.core.widget.NestedScrollView
         android:id="@+id/scrollView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -52,7 +52,7 @@
             android:stretchMode="columnWidth"
             android:verticalSpacing="1dp" />
 
-    </android.support.v4.widget.NestedScrollView>
+    </androidx.core.widget.NestedScrollView>
 
     <com.google.android.gms.ads.AdView
         android:id="@+id/adView"
@@ -69,4 +69,4 @@
         android:layout_gravity="bottom|end"
         app:sdMainFabClosedSrc="@drawable/ic_action_add" />
 
-</android.support.design.widget.CoordinatorLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

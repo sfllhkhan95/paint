@@ -3,15 +3,13 @@ package sfllhkhan95.doodle.views.dialog
 import android.app.Dialog
 import android.content.Context
 import android.os.Bundle
-import android.support.annotation.DrawableRes
 import android.view.View
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
-
+import androidx.annotation.DrawableRes
 import com.google.android.gms.ads.AdListener
 import com.google.android.gms.ads.AdView
-
 import sfllhkhan95.doodle.R
 import sfllhkhan95.doodle.bo.AdManager
 

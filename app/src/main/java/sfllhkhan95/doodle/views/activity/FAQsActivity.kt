@@ -1,9 +1,9 @@
 package sfllhkhan95.doodle.views.activity
 
 import android.os.Bundle
-import android.support.design.button.MaterialButton
-import android.support.v7.app.AppCompatActivity
-import android.support.v7.widget.Toolbar
+import com.google.android.material.button.MaterialButton
+import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
 import android.widget.LinearLayout
 import sfllhkhan95.doodle.R
 import sfllhkhan95.doodle.utils.ThemeUtils
