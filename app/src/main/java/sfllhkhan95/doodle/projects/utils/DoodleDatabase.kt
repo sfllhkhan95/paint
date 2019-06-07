@@ -2,8 +2,9 @@ package sfllhkhan95.doodle.projects.utils
 
 import android.graphics.Bitmap
 import android.os.Environment
-import java.io.File
-import java.io.FileOutputStream
+import com.google.gson.Gson
+import sfllhkhan95.doodle.projects.models.Project
+import java.io.*
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -102,10 +103,10 @@ object DoodleDatabase {
      * @return the Bitmap image of the project, or null
      */
     fun loadDoodle(projectName: String, wd: Int, ht: Int): Bitmap? {
-        val file = File(rootDir, projectName)
+        val file = File(rootDir, timestamp2Name(projectName))
         return if (file.exists()) {
             try {
-                DoodleFactory.loadFromPath(rootDirPath + projectName, wd, ht)
+                DoodleFactory.loadFromPath(rootDirPath + timestamp2Name(projectName), wd, ht)
             } catch (ex: OutOfMemoryError) {
                 null
             }
@@ -150,9 +151,9 @@ object DoodleDatabase {
      */
     fun saveDoodle(projectData: Bitmap) {
         // Create file for storage with CURRENT_TIMESTAMP as name
-        val simpleDateFormat = SimpleDateFormat("yyyyMMdd_HHmmss", Locale.US)
+        val simpleDateFormat = SimpleDateFormat("yyyyMMdd_HHmmss", Locale.ENGLISH)
         val timestamp = simpleDateFormat.format(Date())
-        val filename = PREFIX + timestamp + EXT
+        val filename = timestamp2Name(timestamp)
 
         saveDoodle(projectData, filename)
     }
@@ -174,7 +175,49 @@ object DoodleDatabase {
         } catch (e: Exception) {
             e.printStackTrace()
         }
+    }
 
+    /**
+     * Reads metadata of a project.
+     *
+     * @param projectName name of the project to open
+     * @return Project contents, or null
+     */
+    fun loadMetadata(projectName: String): Project? {
+        val file = File(rootDir, timestamp2Name(projectName).split(EXT)[0] + ".json")
+        if (!file.exists()) return null
+
+        val stream = FileInputStream(file)
+        val reader = BufferedReader(InputStreamReader(stream))
+        val sb = StringBuilder()
+        var line: String? = readLine()
+        while (line != null) {
+            sb.append(line).append("\n")
+            line = reader.readLine()
+        }
+        reader.close()
+        val json = sb.toString()
+        stream.close()
+        return Gson().fromJson(json, Project::class.java)
+    }
+
+    /**
+     * Writes the metadata of a project to the database.
+     *
+     * @param metadata content of the project
+     * @param projectName name of the project
+     */
+    fun saveMetadata(metadata: Project, projectName: String) {
+        val file = File(rootDir, timestamp2Name(projectName).split(EXT)[0] + ".json")
+        if (file.exists()) file.delete()
+        try {
+            val out = FileOutputStream(file)
+            out.write(Gson().toJson(metadata).toByteArray())
+            out.flush()
+            out.close()
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
     }
 
     /**
@@ -184,7 +227,7 @@ object DoodleDatabase {
      * @return true if the project is found, false otherwise
      */
     operator fun contains(projectName: String): Boolean {
-        val file = File(rootDir, projectName)
+        val file = File(rootDir, timestamp2Name(projectName))
         return file.exists()
     }
 
@@ -195,7 +238,7 @@ object DoodleDatabase {
      * @return true if the project is successfully deleted, false otherwise
      */
     fun removeDoodle(projectName: String): Boolean {
-        return removeDoodle(rootDir, projectName)
+        return removeDoodle(rootDir, timestamp2Name(projectName))
     }
 
     /**
@@ -207,7 +250,16 @@ object DoodleDatabase {
      */
     private fun removeDoodle(rootDir: File, projectName: String): Boolean {
         val file = File(rootDir, projectName)
+        File(rootDir, projectName.split(EXT)[0] + ".json").delete()
         return file.exists() && file.delete()
+    }
+
+    fun timestamp2Name(timestamp: String): String {
+        return PREFIX + timestamp + EXT
+    }
+
+    fun name2Timestamp(name: String): String {
+        return name.split(PREFIX)[1].split(EXT)[0]
     }
 
 }

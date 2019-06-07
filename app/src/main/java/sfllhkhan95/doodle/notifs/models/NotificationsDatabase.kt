@@ -1,7 +1,7 @@
 package sfllhkhan95.doodle.notifs.models
 
 import com.google.firebase.messaging.RemoteMessage
-import pk.aspirasoft.core.db.PersistentValue
+import com.orhanobut.hawk.Hawk
 import sfllhkhan95.doodle.notifs.utils.NotificationListener
 import java.io.Serializable
 import java.util.*
@@ -25,9 +25,7 @@ class NotificationsDatabase private constructor() : Serializable {
         updateDb()
 
         // Trigger event notificationListener
-        if (notificationListener != null) {
-            notificationListener!!.onNotificationReceived()
-        }
+        notificationListener?.onNotificationReceived()
     }
 
     operator fun get(i: Int): RemoteMessage.Notification {
@@ -48,9 +46,7 @@ class NotificationsDatabase private constructor() : Serializable {
     }
 
     private fun updateDb() {
-        if (db == null) return
-        db!!.value = this
-        db!!.save()
+        db = this
     }
 
     fun setNotificationListener(notificationListener: NotificationListener) {
@@ -58,22 +54,17 @@ class NotificationsDatabase private constructor() : Serializable {
     }
 
     companion object {
-
         private const val TAG = "NOTIFICATIONS"
-        private var db: PersistentValue<NotificationsDatabase>? = null
+        private var db: NotificationsDatabase
+            set(value) {
+                Hawk.put(TAG, value)
+            }
+            get() {
+                return Hawk.get(TAG, NotificationsDatabase())
+            }
 
         val instance: NotificationsDatabase
-            get() {
-                if (db == null) {
-                    db = PersistentValue(TAG, NotificationsDatabase::class.java)
-                }
-
-                if (db!!.value == null) {
-                    db!!.value = NotificationsDatabase()
-                }
-
-                return db!!.value!!
-            }
+            get() = db
     }
 
 }

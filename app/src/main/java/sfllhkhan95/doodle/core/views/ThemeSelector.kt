@@ -7,8 +7,11 @@ import android.support.v7.app.AppCompatActivity
 import android.view.View
 import android.widget.Button
 import android.widget.TextView
+import com.google.android.gms.ads.AdListener
+import com.google.android.gms.ads.AdView
 import sfllhkhan95.doodle.DoodleApplication
 import sfllhkhan95.doodle.R
+import sfllhkhan95.doodle.ads.AdManager
 import sfllhkhan95.doodle.core.utils.ThemeAttrs.THEME_CHOCOLATE
 import sfllhkhan95.doodle.core.utils.ThemeAttrs.THEME_DARK
 import sfllhkhan95.doodle.core.utils.ThemeAttrs.THEME_DEFAULT
@@ -39,6 +42,7 @@ class ThemeSelector(context: AppCompatActivity) : Dialog(context), View.OnClickL
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        getWindow()?.setBackgroundDrawableResource(android.R.color.transparent)
         setContentView(R.layout.dialog_theme_selector)
 
         actionbar = findViewById(R.id.actionbar)
@@ -64,6 +68,15 @@ class ThemeSelector(context: AppCompatActivity) : Dialog(context), View.OnClickL
 
         selectedTheme = (ownerActivity!!.application as DoodleApplication).currentTheme
         updateUI((ownerActivity!!.application as DoodleApplication).currentTheme)
+
+        // Display ads if they are enabled
+        val mAdView = this.findViewById<AdView>(R.id.adView)
+        AdManager.instance.showBannerAd(mAdView, object : AdListener() {
+            override fun onAdLoaded() {
+                super.onAdLoaded()
+                mAdView.visibility = View.VISIBLE
+            }
+        })
     }
 
     private fun updateUI(theme: String) {
@@ -78,7 +91,6 @@ class ThemeSelector(context: AppCompatActivity) : Dialog(context), View.OnClickL
         actionbar!!.text = theme
         when (theme) {
             THEME_DEFAULT -> {
-                actionbar!!.setBackgroundColor(ContextCompat.getColor(context, R.color.purple_900))
                 window!!.setBackgroundColor(ContextCompat.getColor(context, R.color.deep_purple_50))
                 body!!.setBackgroundColor(ContextCompat.getColor(context, R.color.purple_100))
                 positiveButton!!.setBackgroundColor(ContextCompat.getColor(context, R.color.purple_900))
@@ -88,7 +100,6 @@ class ThemeSelector(context: AppCompatActivity) : Dialog(context), View.OnClickL
             }
 
             THEME_OCEAN -> {
-                actionbar!!.setBackgroundColor(ContextCompat.getColor(context, R.color.blue_900))
                 window!!.setBackgroundColor(ContextCompat.getColor(context, R.color.blue_grey_50))
                 body!!.setBackgroundColor(ContextCompat.getColor(context, R.color.blue_100))
                 positiveButton!!.setBackgroundColor(ContextCompat.getColor(context, R.color.blue_900))
@@ -98,7 +109,6 @@ class ThemeSelector(context: AppCompatActivity) : Dialog(context), View.OnClickL
             }
 
             THEME_SUNLIGHT -> {
-                actionbar!!.setBackgroundColor(ContextCompat.getColor(context, R.color.yellow_900))
                 window!!.setBackgroundColor(ContextCompat.getColor(context, R.color.orange_50))
                 body!!.setBackgroundColor(ContextCompat.getColor(context, R.color.yellow_100))
                 positiveButton!!.setBackgroundColor(ContextCompat.getColor(context, R.color.yellow_900))
@@ -108,7 +118,6 @@ class ThemeSelector(context: AppCompatActivity) : Dialog(context), View.OnClickL
             }
 
             THEME_FOREST -> {
-                actionbar!!.setBackgroundColor(ContextCompat.getColor(context, R.color.green_900))
                 window!!.setBackgroundColor(ContextCompat.getColor(context, R.color.light_green_50))
                 body!!.setBackgroundColor(ContextCompat.getColor(context, R.color.green_100))
                 positiveButton!!.setBackgroundColor(ContextCompat.getColor(context, R.color.green_900))
@@ -118,7 +127,6 @@ class ThemeSelector(context: AppCompatActivity) : Dialog(context), View.OnClickL
             }
 
             THEME_CHOCOLATE -> {
-                actionbar!!.setBackgroundColor(ContextCompat.getColor(context, R.color.brown_900))
                 window!!.setBackgroundColor(ContextCompat.getColor(context, R.color.deep_orange_50))
                 body!!.setBackgroundColor(ContextCompat.getColor(context, R.color.brown_100))
                 positiveButton!!.setBackgroundColor(ContextCompat.getColor(context, R.color.brown_900))
@@ -128,7 +136,6 @@ class ThemeSelector(context: AppCompatActivity) : Dialog(context), View.OnClickL
             }
 
             THEME_DARK -> {
-                actionbar!!.setBackgroundColor(ContextCompat.getColor(context, R.color.grey_900))
                 window!!.setBackgroundColor(ContextCompat.getColor(context, R.color.grey_600))
                 body!!.setBackgroundColor(ContextCompat.getColor(context, R.color.grey_400))
                 positiveButton!!.setBackgroundColor(ContextCompat.getColor(context, R.color.grey_900))

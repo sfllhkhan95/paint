@@ -164,6 +164,6 @@
         android:layout_height="50dp"
         android:layout_marginTop="-50dp"
         ads:adSize="BANNER"
-        ads:adUnitId="@string/admob_ad_banner" />
+        ads:adUnitId="@string/admob_ad_banner_confirmation" />
 
 </LinearLayout>

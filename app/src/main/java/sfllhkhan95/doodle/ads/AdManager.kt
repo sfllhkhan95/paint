@@ -48,7 +48,7 @@ class AdManager private constructor(context: Context) {
         get() = !hasRemovedAds() && mVideoAd != null && mVideoAd!!.isLoaded
 
     init {
-        MobileAds.initialize(context, ADMOB_APP_ID)
+        MobileAds.initialize(context, context.getString(R.string.admob_app_id))
         this.mBillingManager = BillingManager.getInstance(context)
     }
 
@@ -152,8 +152,6 @@ class AdManager private constructor(context: Context) {
     }
 
     companion object {
-
-        private const val ADMOB_APP_ID = "ca-app-pub-6293532072634065~6156179621"
         private var ourInstance: AdManager? = null
 
         /**

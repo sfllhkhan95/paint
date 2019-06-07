@@ -50,7 +50,7 @@ class NotificationService : FirebaseMessagingService() {
     private fun pushNotif(notification: RemoteMessage.Notification) {
         val notifier = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
         // Setting up Notification channels for Android Oreo and above
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             setupChannels(notifier)
         }
 

@@ -46,7 +46,10 @@ class ConfirmationDialog(context: Context) : Dialog(context) {
         titleView.text = title
 
         val headlineView = findViewById<TextView>(R.id.headline)
-        headlineView.text = headline
+        if (!headline.isNullOrBlank()) {
+            headlineView.text = headline
+            headlineView.visibility = View.VISIBLE
+        }
 
         val descriptionView = findViewById<TextView>(R.id.message)
         descriptionView.text = message
@@ -54,9 +57,10 @@ class ConfirmationDialog(context: Context) : Dialog(context) {
         if (icon != -1) {
             val iconView = findViewById<ImageView>(R.id.icon)
             iconView.setImageResource(icon)
+            iconView.visibility = View.VISIBLE
         }
 
-        if (!positiveButtonLabel.isEmpty()) {
+        if (positiveButtonLabel.isNotEmpty()) {
             val positiveButton = findViewById<Button>(R.id.positiveButton)
             positiveButton.text = positiveButtonLabel
             positiveButton.setOnClickListener {
@@ -68,7 +72,7 @@ class ConfirmationDialog(context: Context) : Dialog(context) {
             positiveButton.visibility = View.VISIBLE
         }
 
-        if (!negativeButtonLabel.isEmpty()) {
+        if (negativeButtonLabel.isNotEmpty()) {
             val negativeButton = findViewById<Button>(R.id.negativeButton)
             negativeButton.text = negativeButtonLabel
             negativeButton.setOnClickListener {

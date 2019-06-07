@@ -14,22 +14,11 @@
         android:title="@string/menu_action_share"
         app:showAsAction="always" />
 
-    <!--item
-        android:icon="@drawable/ic_action_save"
-        android:title="Save"
-        app:showAsAction="always">
-        <menu-->
     <item
         android:id="@+id/save"
         android:icon="@drawable/ic_action_save"
         android:title="@string/menu_action_save"
         app:showAsAction="always" />
-    <!--item
-        android:id="@+id/save_as"
-        android:icon="@drawable/ic_action_save_as"
-        android:title="Save As" />
-</menu>
-</item-->
 
     <item
         android:icon="@drawable/ic_action_layers"

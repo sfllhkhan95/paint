@@ -8,8 +8,8 @@ android {
         applicationId "sfllhkhan95.doodle"
         minSdkVersion 16
         targetSdkVersion 28
-        versionCode 28
-        versionName "3.5.6"
+        versionCode 29
+        versionName "3.6.0"
         multiDexEnabled true
     }
     buildTypes {
@@ -33,37 +33,28 @@ configurations {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation project(path: ':helper')
-
     implementation 'com.android.billingclient:billing:1.1'
-
     implementation 'com.android.support:design:28.0.0'
-    implementation 'com.android.support:appcompat-v7:28.0.0'
     implementation 'com.android.support:multidex:1.0.3'
-
-    implementation('com.crashlytics.sdk.android:crashlytics:2.9.3@aar') {
-        transitive = true
-    }
-
-    implementation 'com.facebook.android:facebook-android-sdk:4.29.0'
-    implementation 'com.facebook.android:facebook-messenger:4.29.0'
-
-    implementation 'com.github.bumptech.glide:glide:4.9.0'
-    annotationProcessor 'com.github.bumptech.glide:compiler:4.9.0'
-
+    implementation('com.crashlytics.sdk.android:crashlytics:2.9.3@aar') { transitive = true }
+    implementation 'com.facebook.android:facebook-android-sdk:5.0.1'
+    implementation 'com.facebook.android:facebook-messenger:5.0.1'
     implementation 'com.github.apl-devs:appintro:v4.2.3'
-    implementation "com.leinardi.android:speed-dial:2.0.0"
-    implementation 'com.rarepebble:colorpicker:2.4.2'
-
+    implementation 'com.github.bumptech.glide:glide:4.9.0'
+    implementation 'com.github.yalantis:ucrop:2.2.3-native'
     implementation 'com.google.android.gms:play-services-auth:16.0.1'
-    implementation 'com.google.firebase:firebase-ads:17.2.0'
-    implementation 'com.google.firebase:firebase-auth:16.2.1'
-    implementation 'com.google.firebase:firebase-core:16.0.8'
-    implementation 'com.google.firebase:firebase-firestore:18.2.0'
-    implementation 'com.google.firebase:firebase-messaging:17.6.0'
-
-    implementation 'us.feras.mdv:markdownview:1.1.0'
+    implementation 'com.google.firebase:firebase-ads:17.2.1'
+    implementation 'com.google.firebase:firebase-auth:17.0.0'
+    implementation 'com.google.firebase:firebase-core:16.0.9'
+    implementation 'com.google.firebase:firebase-firestore:19.0.2'
+    implementation 'com.google.firebase:firebase-messaging:18.0.0'
+    implementation 'com.leinardi.android:speed-dial:2.0.0'
+    implementation 'com.orhanobut:hawk:2.0.1'
+    implementation 'com.rarepebble:colorpicker:2.4.2'
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation 'us.feras.mdv:markdownview:1.1.0'
+
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.9.0'
 }
 
 repositories {

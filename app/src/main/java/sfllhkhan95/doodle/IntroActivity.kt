@@ -11,7 +11,7 @@ import android.widget.Toast
 import com.github.paolorotolo.appintro.AppIntro
 import com.github.paolorotolo.appintro.AppIntroFragment
 import com.github.paolorotolo.appintro.model.SliderPage
-import pk.aspirasoft.core.db.PersistentStorage
+import com.orhanobut.hawk.Hawk
 import sfllhkhan95.doodle.core.utils.ThemeAttrs
 import sfllhkhan95.doodle.projects.HomeActivity
 
@@ -85,8 +85,8 @@ class IntroActivity : AppIntro() {
         backButtonVisibilityWithDone = false
 
         // Turn vibration on and set intensity.
-        setVibrate(true);
-        setVibrateIntensity(30);
+        setVibrate(true)
+        setVibrateIntensity(30)
     }
 
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String>,
@@ -115,12 +115,12 @@ class IntroActivity : AppIntro() {
 
     override fun onDonePressed(currentFragment: Fragment?) {
         // Has user already seen the intro?
-        val introSeen: Boolean? = PersistentStorage.get("INTRO_SEEN", Boolean::class.java)
+        val introSeen: Boolean = Hawk.get(DoodleApplication.INTRO, false)
 
         // If this was the first time
-        if (introSeen == null || !introSeen) {
+        if (!introSeen) {
             // Mark intro as seen
-            PersistentStorage.put("INTRO_SEEN", true)
+            Hawk.put(DoodleApplication.INTRO, true)
 
             // Go to home activity
             startActivity(Intent(applicationContext, HomeActivity::class.java))

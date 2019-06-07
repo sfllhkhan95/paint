@@ -60,7 +60,7 @@
         android:layout_height="50dp"
         android:layout_gravity="bottom|center_horizontal"
         ads:adSize="BANNER"
-        ads:adUnitId="@string/admob_ad_banner" />
+        ads:adUnitId="@string/admob_ad_banner_confirmation" />
 
     <com.leinardi.android.speeddial.SpeedDialView
         android:id="@+id/compose_button"

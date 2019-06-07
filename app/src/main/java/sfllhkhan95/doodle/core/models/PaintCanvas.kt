@@ -6,7 +6,6 @@ import android.graphics.Canvas
 import android.graphics.PointF
 import android.support.v4.content.ContextCompat
 import android.util.DisplayMetrics
-
 import sfllhkhan95.doodle.R
 import sfllhkhan95.doodle.projects.utils.DoodleDatabase
 
@@ -55,63 +54,63 @@ class PaintCanvas(context: Context, metrics: DisplayMetrics) : Canvas() {
         if (projectName == null) {
             DoodleDatabase.saveDoodle(bitmap)
         } else {
-            DoodleDatabase.saveDoodle(bitmap, projectName!!)
+            DoodleDatabase.saveDoodle(bitmap, DoodleDatabase.timestamp2Name(projectName!!))
         }
     }
 
     fun getColor(touchAt: PointF): Int {
-        try {
-            return bitmap.getPixel(touchAt.x.toInt(), touchAt.y.toInt())
+        return try {
+            bitmap.getPixel(touchAt.x.toInt(), touchAt.y.toInt())
         } catch (ex: IllegalArgumentException) {
             ex.printStackTrace()
-            return DEFAULT_BG_COLOR
+            DEFAULT_BG_COLOR
         }
 
     }
 
     companion object {
 
-        private val DEFAULT_BG_COLOR = R.color.blue_grey_500
+        private const val DEFAULT_BG_COLOR = R.color.blue_grey_500
 
-        fun loadFromBitmap(context: Context, metrics: DisplayMetrics, srcBmp: Bitmap): PaintCanvas {
-            var srcBmp = srcBmp
+        fun loadFromBitmap(context: Context, metrics: DisplayMetrics, source: Bitmap): PaintCanvas {
+            var bitmap = source
             val canvas = PaintCanvas(context, metrics)
 
             val deviceAspect = metrics.widthPixels / metrics.heightPixels.toFloat()
-            val bmpAspect = srcBmp.width / srcBmp.height.toFloat()
+            val bmpAspect = bitmap.width / bitmap.height.toFloat()
 
             if (deviceAspect != bmpAspect) {
                 if (deviceAspect > bmpAspect) { // Device is wider, fit width
-                    val targetHeight = srcBmp.width / deviceAspect
-                    srcBmp = Bitmap.createBitmap(
-                            srcBmp,
+                    val targetHeight = bitmap.width / deviceAspect
+                    bitmap = Bitmap.createBitmap(
+                            bitmap,
                             0,
-                            ((srcBmp.height - targetHeight) / 2).toInt(),
-                            srcBmp.width,
+                            ((bitmap.height - targetHeight) / 2).toInt(),
+                            bitmap.width,
                             targetHeight.toInt()
                     )
                 } else {
-                    val targetWidth = srcBmp.height * deviceAspect
-                    srcBmp = Bitmap.createBitmap(
-                            srcBmp,
-                            ((srcBmp.width - targetWidth) / 2).toInt(),
+                    val targetWidth = bitmap.height * deviceAspect
+                    bitmap = Bitmap.createBitmap(
+                            bitmap,
+                            ((bitmap.width - targetWidth) / 2).toInt(),
                             0,
                             targetWidth.toInt(),
-                            srcBmp.height
+                            bitmap.height
                     )
                 }
 
                 if (metrics.widthPixels > metrics.heightPixels) {
                     val w = metrics.widthPixels
-                    val h = (metrics.widthPixels * srcBmp.height / srcBmp.width.toFloat()).toInt()
-                    canvas.bgImage = Bitmap.createScaledBitmap(srcBmp, w, h, false)
+                    val h = (metrics.widthPixels * bitmap.height / bitmap.width.toFloat()).toInt()
+                    canvas.bgImage = Bitmap.createScaledBitmap(bitmap, w, h, false)
                 } else {
                     val h = metrics.heightPixels
-                    val w = (metrics.heightPixels * srcBmp.width / srcBmp.height.toFloat()).toInt()
-                    canvas.bgImage = Bitmap.createScaledBitmap(srcBmp, w, h, false)
+                    val w = (metrics.heightPixels * bitmap.width / bitmap.height.toFloat()).toInt()
+                    canvas.bgImage = Bitmap.createScaledBitmap(bitmap, w, h, false)
                 }
             } else {
-                canvas.bgImage = Bitmap.createScaledBitmap(srcBmp, metrics.widthPixels, metrics.heightPixels, false)
+                canvas.bgImage = Bitmap.createScaledBitmap(bitmap, metrics.widthPixels, metrics.heightPixels, false)
             }
 
             return canvas

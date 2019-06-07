@@ -8,7 +8,7 @@ import android.support.v4.content.ContextCompat
 import android.support.v7.app.AppCompatActivity
 import com.crashlytics.android.Crashlytics
 import com.google.firebase.auth.FirebaseAuth
-import pk.aspirasoft.core.db.PersistentStorage
+import com.orhanobut.hawk.Hawk
 import sfllhkhan95.doodle.projects.HomeActivity
 import java.util.*
 
@@ -34,12 +34,10 @@ class LaunchScreen : AppCompatActivity() {
         val permissionCheck = ContextCompat.checkSelfPermission(this,
                 Manifest.permission.WRITE_EXTERNAL_STORAGE)
 
-        var introSeen: Boolean? = PersistentStorage.get("INTRO_SEEN", Boolean::class.java)
-        if (introSeen == null) introSeen = false
-        val finalIntroSeen = introSeen
+        val introSeen: Boolean = Hawk.get(DoodleApplication.INTRO, false)
         timer.schedule(object : TimerTask() {
             override fun run() {
-                startActivity(Intent(applicationContext, if (!finalIntroSeen || permissionCheck != PackageManager.PERMISSION_GRANTED)
+                startActivity(Intent(applicationContext, if (!introSeen || permissionCheck != PackageManager.PERMISSION_GRANTED)
                     IntroActivity::class.java
                 else
                     HomeActivity::class.java))

@@ -6,6 +6,8 @@ import android.content.ActivityNotFoundException
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Color
+import android.graphics.Point
+import android.net.Uri
 import android.os.Bundle
 import android.os.Environment
 import android.provider.MediaStore
@@ -20,14 +22,14 @@ import com.google.android.gms.ads.AdListener
 import com.google.android.gms.ads.AdView
 import com.leinardi.android.speeddial.SpeedDialActionItem
 import com.leinardi.android.speeddial.SpeedDialView
+import com.yalantis.ucrop.UCrop
 import sfllhkhan95.doodle.DoodleApplication
 import sfllhkhan95.doodle.R
 import sfllhkhan95.doodle.ads.AdManager
 import sfllhkhan95.doodle.core.MainActivity
 import sfllhkhan95.doodle.core.SettingsActivity
 import sfllhkhan95.doodle.core.views.ConfirmationDialog
-import sfllhkhan95.doodle.projects.utils.DoodleDatabase
-import sfllhkhan95.doodle.projects.utils.ThumbnailInflater
+import sfllhkhan95.doodle.projects.utils.ProjectInflater
 import java.io.File
 import java.io.IOException
 
@@ -38,7 +40,7 @@ import java.io.IOException
  */
 class HomeActivity : AppCompatActivity(), SpeedDialView.OnActionSelectedListener {
 
-    private var thumbnailInflater: ThumbnailInflater? = null
+    private var projectInflater: ProjectInflater? = null
 
     private var mCameraPicturePath: String? = null
 
@@ -50,7 +52,7 @@ class HomeActivity : AppCompatActivity(), SpeedDialView.OnActionSelectedListener
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
 
-        thumbnailInflater = ThumbnailInflater(this)
+        projectInflater = ProjectInflater(this)
 
         // Build floating actions
         val composeButton = findViewById<SpeedDialView>(R.id.compose_button)
@@ -101,8 +103,7 @@ class HomeActivity : AppCompatActivity(), SpeedDialView.OnActionSelectedListener
         super.onResume()
 
         // Inflate thumbnails of saved projects
-        thumbnailInflater?.let {
-            it.setSavedProjects(DoodleDatabase.listDoodles())
+        projectInflater?.let {
             runOnUiThread(it)
         }
     }
@@ -136,14 +137,39 @@ class HomeActivity : AppCompatActivity(), SpeedDialView.OnActionSelectedListener
         if (resultCode != Activity.RESULT_OK) return
         when (requestCode) {
             REQUEST_PICK_PHOTO -> if (data != null) {
-                val openGalleryImage = Intent(applicationContext, MainActivity::class.java)
-                openGalleryImage.putExtra("FROM_GALLERY", data)
-                startActivity(openGalleryImage)
+                data.data?.let { source ->
+                    val photoFile = createImageFile("CROPPED")
+                    val destination = Uri.fromFile(photoFile)
+
+                    val size = Point()
+                    window.windowManager.defaultDisplay.getSize(size)
+
+                    UCrop.of(source, destination)
+                            .withAspectRatio(9.0F, 16.0F)
+                            .withMaxResultSize(size.x, size.y)
+                            .start(this)
+                }
             }
             REQUEST_TAKE_PHOTO -> if (mCameraPicturePath != null && mCameraPicturePath!!.isNotEmpty()) {
-                val openCameraImage = Intent(applicationContext, MainActivity::class.java)
-                openCameraImage.putExtra("FROM_CAMERA", mCameraPicturePath)
-                startActivity(openCameraImage)
+                Uri.fromFile(File(mCameraPicturePath))?.let { source ->
+                    val photoFile = createImageFile("CROPPED")
+                    val destination = Uri.fromFile(photoFile)
+
+                    val size = Point()
+                    window.windowManager.defaultDisplay.getSize(size)
+
+                    UCrop.of(source, destination)
+                            .withAspectRatio(9.0F, 16.0F)
+                            .withMaxResultSize(size.x, size.y)
+                            .start(this)
+                }
+            }
+            UCrop.REQUEST_CROP -> {
+                if (data != null) {
+                    val openGalleryImage = Intent(applicationContext, MainActivity::class.java)
+                    openGalleryImage.putExtra("FROM_DEVICE", UCrop.getOutput(data))
+                    startActivity(openGalleryImage)
+                }
             }
         }
     }
@@ -201,7 +227,6 @@ class HomeActivity : AppCompatActivity(), SpeedDialView.OnActionSelectedListener
                                     }.show()
                         }
                     }
-
                 }
                 return true
             }
@@ -211,10 +236,10 @@ class HomeActivity : AppCompatActivity(), SpeedDialView.OnActionSelectedListener
     }
 
     @Throws(IOException::class)
-    private fun createImageFile(): File {
+    private fun createImageFile(name: String = "CAMERA_IMAGE"): File {
         // Create an image file name
         val storageDir = getExternalFilesDir(Environment.DIRECTORY_PICTURES)
-        val path = storageDir?.toString() + File.separator + "CAMERA_IMAGE.jpg"
+        val path = storageDir?.toString() + File.separator + name + ".jpg"
         val image = File(path)
         val created = image.createNewFile()
         Log.i(DoodleApplication.TAG, if (created) "New temporary file created." else "Temporary file already exists. Overwriting!")

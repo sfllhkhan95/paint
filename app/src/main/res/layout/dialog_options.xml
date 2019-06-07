@@ -1,176 +1,183 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:ads="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="320dp"
-    android:layout_height="wrap_content">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center">
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="320dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="35dp"
-        android:background="?attr/colorPrimary"
-        android:gravity="center_horizontal"
-        android:orientation="vertical">
+        android:layout_height="wrap_content">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="?attr/colorPrimaryDark"
-            android:gravity="center"
-            android:orientation="vertical"
-            android:paddingBottom="24dp"
-            android:paddingStart="24dp"
-            android:paddingEnd="24dp"
-            android:paddingTop="45dp">
-
-            <TextView
-                android:id="@+id/title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/placeholder_title"
-                android:textAllCaps="true"
-                android:textColor="@color/white"
-                android:textSize="20sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/message"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="@string/placeholder_dialog_body"
-                android:textColor="@color/white"
-                android:textSize="12sp" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_marginTop="35dp"
             android:background="?attr/colorPrimary"
-            android:gravity="center_horizontal|top"
-            android:orientation="horizontal">
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
 
             <LinearLayout
-                android:id="@+id/op1"
-                android:layout_width="70dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="10dp"
+                android:background="?attr/colorPrimaryDark"
                 android:gravity="center"
-                android:orientation="vertical">
-
-                <ImageButton
-                    android:id="@+id/op1_icon"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:background="@android:color/transparent"
-                    android:contentDescription="@string/desc_icon"
-                    android:scaleType="fitCenter"
-                    ads:srcCompat="@drawable/messenger_button_blue_bg_round" />
+                android:orientation="vertical"
+                android:paddingStart="24dp"
+                android:paddingTop="45dp"
+                android:paddingEnd="24dp"
+                android:paddingBottom="24dp">
 
                 <TextView
-                    android:id="@+id/op1_label"
-                    android:layout_width="match_parent"
+                    android:id="@+id/title"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="2dp"
-                    android:gravity="center"
-                    android:text="@string/label_op1"
+                    android:text="@string/placeholder_title"
                     android:textAllCaps="true"
-                    android:textColor="?attr/colorAccent"
-                    android:textSize="10sp"
-                    android:visibility="visible"
-                    tools:ignore="SmallSp" />
+                    android:textColor="@color/white"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/message"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="@string/placeholder_dialog_body"
+                    android:textColor="@color/white"
+                    android:textSize="12sp" />
 
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/op2"
-                android:layout_width="70dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:gravity="center"
-                android:orientation="vertical">
+                android:background="?attr/colorPrimary"
+                android:gravity="center_horizontal|top"
+                android:orientation="horizontal">
 
-                <ImageButton
-                    android:id="@+id/op2_icon"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:background="@android:color/transparent"
-                    android:contentDescription="@string/desc_icon"
-                    android:scaleType="fitCenter"
-                    ads:srcCompat="@drawable/ic_share" />
-
-                <TextView
-                    android:id="@+id/op2_label"
-                    android:layout_width="match_parent"
+                <LinearLayout
+                    android:id="@+id/op1"
+                    android:layout_width="70dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="2dp"
+                    android:layout_margin="10dp"
                     android:gravity="center"
-                    android:text="@string/label_op2"
-                    android:textAllCaps="true"
-                    android:textColor="?attr/colorAccent"
-                    android:textSize="10sp"
-                    android:visibility="visible"
-                    tools:ignore="SmallSp" />
+                    android:orientation="vertical">
+
+                    <ImageButton
+                        android:id="@+id/op1_icon"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:background="@android:color/transparent"
+                        android:contentDescription="@string/desc_icon"
+                        android:scaleType="fitCenter"
+                        ads:srcCompat="@drawable/ic_whatsapp" />
+
+                    <TextView
+                        android:id="@+id/op1_label"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:gravity="center"
+                        android:text="@string/label_op1"
+                        android:textAllCaps="true"
+                        android:textColor="?attr/colorAccent"
+                        android:textSize="10sp"
+                        android:visibility="visible"
+                        tools:ignore="SmallSp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/op2"
+                    android:layout_width="70dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <ImageButton
+                        android:id="@+id/op2_icon"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:background="@android:color/transparent"
+                        android:contentDescription="@string/desc_icon"
+                        android:scaleType="fitCenter"
+                        ads:srcCompat="@drawable/messenger_button_blue_bg_round" />
+
+                    <TextView
+                        android:id="@+id/op2_label"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:gravity="center"
+                        android:text="@string/label_op2"
+                        android:textAllCaps="true"
+                        android:textColor="?attr/colorAccent"
+                        android:textSize="10sp"
+                        android:visibility="visible"
+                        tools:ignore="SmallSp" />
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:id="@+id/op3"
+                    android:layout_width="70dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <ImageButton
+                        android:id="@+id/op3_icon"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:background="@android:color/transparent"
+                        android:contentDescription="@string/desc_icon"
+                        android:scaleType="fitCenter"
+                        ads:srcCompat="@drawable/ic_share" />
+
+                    <TextView
+                        android:id="@+id/op3_label"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:gravity="center"
+                        android:text="@string/label_op3"
+                        android:textAllCaps="true"
+                        android:textColor="?attr/colorAccent"
+                        android:textSize="10sp"
+                        android:visibility="visible"
+                        tools:ignore="SmallSp" />
+
+                </LinearLayout>
 
             </LinearLayout>
 
-
-            <LinearLayout
-                android:id="@+id/op3"
-                android:layout_width="70dp"
+            <com.google.android.gms.ads.AdView
+                android:id="@+id/adView"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:gravity="center"
-                android:orientation="vertical">
-
-                <ImageButton
-                    android:id="@+id/op3_icon"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:background="@android:color/transparent"
-                    android:contentDescription="@string/desc_icon"
-                    android:scaleType="fitCenter"
-                    ads:srcCompat="@drawable/ic_share" />
-
-                <TextView
-                    android:id="@+id/op3_label"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="2dp"
-                    android:gravity="center"
-                    android:text="@string/label_op3"
-                    android:textAllCaps="true"
-                    android:textColor="?attr/colorAccent"
-                    android:textSize="10sp"
-                    android:visibility="visible"
-                    tools:ignore="SmallSp" />
-
-            </LinearLayout>
+                android:visibility="gone"
+                ads:adSize="BANNER"
+                ads:adUnitId="@string/admob_ad_banner_options" />
 
         </LinearLayout>
 
-        <com.google.android.gms.ads.AdView
-            android:id="@+id/adView"
-            android:layout_width="wrap_content"
-            android:layout_height="50dp"
-            android:visibility="gone"
-            ads:adSize="BANNER"
-            ads:adUnitId="@string/admob_ad_banner" />
+        <ImageView
+            android:id="@+id/icon"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/bg_options_icon"
+            android:contentDescription="@string/desc_icon"
+            android:scaleType="centerInside"
+            android:src="@drawable/ic_tool_shapes"
+            android:tint="?attr/colorPrimaryDark" />
 
-    </LinearLayout>
+    </RelativeLayout>
 
-    <ImageView
-        android:id="@+id/icon"
-        android:layout_width="70dp"
-        android:layout_height="70dp"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:background="@drawable/bg_options_icon"
-        android:contentDescription="@string/desc_icon"
-        android:scaleType="centerInside"
-        ads:srcCompat="@drawable/ic_tool_shapes"
-        android:tint="?attr/colorPrimaryDark" />
-
-</RelativeLayout>
+</LinearLayout>

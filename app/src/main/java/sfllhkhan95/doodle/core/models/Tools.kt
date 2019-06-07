@@ -53,9 +53,8 @@ class Tools : ArrayList<Tool>() {
     }
 
     internal fun paint(canvas: PaintCanvas) {
-        var i = 0
-        for (tool in this) {
-            if (++i > pointer) break
+        for ((i, tool) in this.withIndex()) {
+            if (i + 1 > pointer) break
             tool.paint(canvas)
         }
     }

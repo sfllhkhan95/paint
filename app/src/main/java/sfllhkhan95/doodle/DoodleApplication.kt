@@ -4,8 +4,8 @@ import android.app.Application
 import android.support.v7.app.AppCompatActivity
 import com.crashlytics.android.Crashlytics
 import com.crashlytics.android.core.CrashlyticsCore
+import com.orhanobut.hawk.Hawk
 import io.fabric.sdk.android.Fabric
-import pk.aspirasoft.core.db.PersistentStorage
 import sfllhkhan95.doodle.ads.AdManager
 import sfllhkhan95.doodle.core.utils.ThemeAttrs.THEME_CHOCOLATE
 import sfllhkhan95.doodle.core.utils.ThemeAttrs.THEME_DARK
@@ -26,7 +26,7 @@ class DoodleApplication : Application() {
 
     val currentTheme: String
         get() {
-            var currentTheme: String? = PersistentStorage[THEME, String::class.java]
+            var currentTheme: String? = Hawk.get(THEME, null)
             if (currentTheme == null) currentTheme = THEME_DEFAULT
             return currentTheme
         }
@@ -78,13 +78,13 @@ class DoodleApplication : Application() {
 
     fun changeTheme(activity: AppCompatActivity, currentTheme: String) {
         when (currentTheme) {
-            THEME_OCEAN -> PersistentStorage.put(THEME, THEME_OCEAN)
-            THEME_SUNLIGHT -> PersistentStorage.put(THEME, THEME_SUNLIGHT)
-            THEME_FOREST -> PersistentStorage.put(THEME, THEME_FOREST)
-            THEME_CHOCOLATE -> PersistentStorage.put(THEME, THEME_CHOCOLATE)
-            THEME_DARK -> PersistentStorage.put(THEME, THEME_DARK)
-            THEME_DEFAULT -> PersistentStorage.put(THEME, THEME_DEFAULT)
-            else -> PersistentStorage.put(THEME, THEME_DEFAULT)
+            THEME_OCEAN -> Hawk.put(THEME, THEME_OCEAN)
+            THEME_SUNLIGHT -> Hawk.put(THEME, THEME_SUNLIGHT)
+            THEME_FOREST -> Hawk.put(THEME, THEME_FOREST)
+            THEME_CHOCOLATE -> Hawk.put(THEME, THEME_CHOCOLATE)
+            THEME_DARK -> Hawk.put(THEME, THEME_DARK)
+            THEME_DEFAULT -> Hawk.put(THEME, THEME_DEFAULT)
+            else -> Hawk.put(THEME, THEME_DEFAULT)
         }
         activity.recreate()
     }
@@ -95,37 +95,20 @@ class DoodleApplication : Application() {
      */
     override fun onCreate() {
         super.onCreate()
-        PersistentStorage.init(this, "DDODLE_PREFS")
+        Hawk.init(this).build()
 
         // Disable crash reporting in DEBUG mode
         Fabric.with(this, Crashlytics.Builder()
                 .core(CrashlyticsCore.Builder().disabled(BuildConfig.DEBUG).build())
                 .build())
 
-        /* The following method call initializes the Facebook SDK, and is recommended to
-         * be called as early as possible. The behavior of Facebook SDK functions is
-         * undetermined if this function is not called.
-         *
-         * UPDATE SDK v4.19+: The Facebook SDK is now auto initialized on Application start. If you are
-         * using the Facebook SDK in the main process and don't need a callback on SDK
-         * initialization completion you can now remove calls to FacebookSDK.sdkInitialize.
-         * If you do need a callback, you should manually invoke the callback in your code.
-         * (i.e. the following line of code can be safely removed.) */
-        // FacebookSdk.sdkInitialize(applicationContext)
-
-        /* Activating Facebook SDK's app event logging is required for the app to be
-         * eligible for Facebook's App Review submission.
-         *
-         * UPDATE SDK v4.19+: It is automatically initialized unless disabled.
-         * (i.e. the following line of code can be safely removed.) */
-        // AppEventsLogger.activateApp(this)
-
-        // Initialize Ad SDK
+        // Initialize ad SDKs
         AdManager.initialize(this)
     }
 
     companion object {
         const val TAG = "DoodleLogs"
+        const val INTRO = "INTRO_SEEN"
         private const val THEME = "APP_THEME"
     }
 

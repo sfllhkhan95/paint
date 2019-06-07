@@ -2,10 +2,10 @@ package sfllhkhan95.doodle
 
 import android.os.Bundle
 import android.support.design.button.MaterialButton
-import android.support.v7.app.AlertDialog
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.Toolbar
 import android.widget.LinearLayout
+import sfllhkhan95.doodle.core.views.ConfirmationDialog
 import java.io.BufferedReader
 import java.io.InputStreamReader
 
@@ -60,13 +60,14 @@ class FAQsActivity : AppCompatActivity() {
             layoutInflater.inflate(R.layout.template_settings_item, listView)
 
             val b = listView.getChildAt(listView.childCount - 1) as MaterialButton
-            b.text = f.question
+            b.text = "${f.question}?"
 
             b.setOnClickListener {
-                AlertDialog.Builder(this, (application as DoodleApplication).getDialogTheme())
-                        .setTitle(f.question)
+                ConfirmationDialog.Builder(this)
+                        .setIcon(R.drawable.ic_action_info)
+                        .setTitle("${f.question}?")
                         .setMessage(f.answer)
-                        .setCancelable(true)
+                        .create()
                         .show()
             }
         }

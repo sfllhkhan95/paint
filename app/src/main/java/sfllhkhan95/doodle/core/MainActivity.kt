@@ -2,10 +2,11 @@ package sfllhkhan95.doodle.core
 
 import android.content.Intent
 import android.graphics.Bitmap
+import android.net.Uri
 import android.os.Bundle
 import android.os.Environment
-import android.provider.MediaStore
 import android.support.design.widget.Snackbar
+import android.support.v4.content.ContextCompat
 import android.support.v4.content.FileProvider
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.Toolbar
@@ -187,42 +188,26 @@ class MainActivity : AppCompatActivity(), SeekBar.OnSeekBarChangeListener, OnToo
 
     private fun getPaintCanvas(metrics: DisplayMetrics): PaintCanvas {
         val savedDoodle = intent.getStringExtra("DOODLE")
-        val cameraImage = intent.getStringExtra("FROM_CAMERA")
-        val galleryImage = intent.getParcelableExtra<Intent>("FROM_GALLERY")
+        val selectedImage = intent.getParcelableExtra<Uri>("FROM_DEVICE")
 
-        return if (savedDoodle != null && !savedDoodle.isEmpty()) {
+        return if (savedDoodle != null && savedDoodle.isNotEmpty()) {
             projectName = savedDoodle
             resumeProject(metrics, savedDoodle)
-        } else if (galleryImage != null) {
-            startFromGallery(metrics, galleryImage)
-        } else if (cameraImage != null) {
-            projectName = cameraImage
-            startFromCamera(metrics, cameraImage)
+        } else if (selectedImage != null) {
+            startFromDevice(metrics, selectedImage)
         } else {
             startFromScratch(metrics)
         }
     }
 
-    private fun startFromGallery(metrics: DisplayMetrics, galleryImage: Intent): PaintCanvas {
+    private fun startFromDevice(metrics: DisplayMetrics, galleryImage: Uri?): PaintCanvas {
         val logParams = Bundle()
         var success = false
 
         var canvas: PaintCanvas
         try {
-            val selectedImage = galleryImage.data
-            val filePathColumn = arrayOf(MediaStore.Images.Media.DATA)
-
-            assert(selectedImage != null)
-            val cursor = contentResolver.query(selectedImage!!,
-                    filePathColumn, null, null, null)!!
-
-            cursor.moveToFirst()
-
-            val columnIndex = cursor.getColumnIndex(filePathColumn[0])
-            val picturePath = cursor.getString(columnIndex)
-            cursor.close()
-
-            val bitmapFromFile = DoodleFactory.loadFromPath(picturePath, metrics.widthPixels, metrics.heightPixels)
+            val picturePath = galleryImage?.path
+            val bitmapFromFile = DoodleFactory.loadFromPath(picturePath!!, metrics.widthPixels, metrics.heightPixels)
             canvas = PaintCanvas.loadFromBitmap(this, metrics, bitmapFromFile)
 
             projectName = picturePath
@@ -231,26 +216,7 @@ class MainActivity : AppCompatActivity(), SeekBar.OnSeekBarChangeListener, OnToo
             canvas = startFromScratch(metrics)
         } finally { // Log event
             logParams.putBoolean("success", success)
-            mFirebaseAnalytics!!.logEvent("from_gallery", logParams)
-        }
-        return canvas
-    }
-
-    private fun startFromCamera(metrics: DisplayMetrics, cameraImage: String): PaintCanvas {
-        val logParams = Bundle()
-        var success = false
-
-        var canvas: PaintCanvas
-        try {
-            val bitmapFromFile = DoodleFactory.loadFromPath(cameraImage, metrics.widthPixels, metrics.heightPixels)
-            canvas = PaintCanvas.loadFromBitmap(this, metrics, bitmapFromFile)
-
-            success = true
-        } catch (ex: Exception) {
-            canvas = startFromScratch(metrics)
-        } finally { // Log event
-            logParams.putBoolean("success", success)
-            mFirebaseAnalytics!!.logEvent("from_camera", logParams)
+            mFirebaseAnalytics!!.logEvent("from_device", logParams)
         }
         return canvas
     }
@@ -610,7 +576,7 @@ class MainActivity : AppCompatActivity(), SeekBar.OnSeekBarChangeListener, OnToo
         val secondary: Toolbar
 
         init {
-            primary.overflowIcon = resources.getDrawable(R.drawable.ic_action_layers)
+            primary.overflowIcon = ContextCompat.getDrawable(this@MainActivity, R.drawable.ic_action_layers)
             primary.title = ""
 
             secondary = findViewById(R.id.secondaryToolbar)

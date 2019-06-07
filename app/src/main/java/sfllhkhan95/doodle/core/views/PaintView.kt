@@ -19,7 +19,7 @@ import sfllhkhan95.doodle.core.utils.OnColorPickedListener
 
 
 /**
- * @author alichishti
+ * @author saifkhichi96
  */
 class PaintView : View {
     private val tools = Tools()
@@ -59,15 +59,11 @@ class PaintView : View {
         canvas.restore()
     }
 
-    override fun performClick(): Boolean {
-        return super.performClick()
-    }
-
-    override fun onTouchEvent(event: MotionEvent): Boolean {
+    override fun onTouchEvent(ev: MotionEvent): Boolean {
         if (shapeType == null || !isEnabled) return false
-        val touchAt = PointF(event.x, event.y)
+        val touchAt = PointF(ev.x, ev.y)
 
-        when (event.action) {
+        when (ev.action) {
             MotionEvent.ACTION_DOWN -> {
                 touchStart(touchAt)
                 performClick()
@@ -138,9 +134,9 @@ class PaintView : View {
     }
 
     private fun touchUp(touchAt: PointF) {
-        canvas?.let {
+        canvas?.let { c ->
             if (this.shapeType == ColorPicker::class.java) {
-                val color = it.getColor(touchAt)
+                val color = c.getColor(touchAt)
                 this.onColorPickedListener?.onColorPicked(color)
                 return
             }
@@ -150,7 +146,7 @@ class PaintView : View {
                 val tool = ToolFactory[shapeType!!, brush]
                 tool!!.moveTo(touchAt.x, touchAt.y)
                 if (tool.javaClass == Eraser::class.java) {
-                    (tool as Eraser).initEraser(it)
+                    (tool as Eraser).initEraser(c)
                 }
                 tools.add(tool)
             }
