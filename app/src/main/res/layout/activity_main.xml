@@ -5,10 +5,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".core.MainActivity">
+    tools:context=".views.activity.MainActivity">
 
     <!-- Painting canvas -->
-    <sfllhkhan95.doodle.core.views.PaintView
+    <sfllhkhan95.doodle.views.PaintView
         android:id="@+id/canvas"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
@@ -43,7 +43,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true">
 
-        <sfllhkhan95.doodle.core.views.ToolboxView
+        <sfllhkhan95.doodle.views.ToolboxView
             android:id="@+id/toolbox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -77,7 +77,7 @@
 
     </LinearLayout>
 
-    <sfllhkhan95.doodle.core.views.MessengerShareButton
+    <sfllhkhan95.doodle.views.MessengerShareButton
         android:id="@+id/messenger_share_button"
         android:layout_width="match_parent"
         android:layout_height="?actionBarSize"

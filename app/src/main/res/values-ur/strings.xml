@@ -10,6 +10,8 @@
 
     <!-- Error messages -->
     <string name="error_unknown">اوہ ہو! تازہ ترین ورژن پر اپ ڈیٹ کر کے دوبارہ کوشش کریں۔ مسلۂ برقرار رہنے کی صورت میں ہم سے رابطہ کریں۔</string>
+    <string name="error_no_camera">No Camera application found.</string>
+    <string name="error_no_gallery">No Gallery application found.</string>
 
     <!-- Confirmation and Status messages -->
     <string name="confirm_delete_title">پروجیکٹ مٹا دیں؟</string>
@@ -18,6 +20,8 @@
     <string name="confirm_revert">اصل حالت میں جائیں؟</string>
     <string name="confirm_quit">ایپ بند کریں؟</string>
     <string name="confirm_save">پروجیکٹ محفوظ کریں؟</string>
+    <string name="prompt_permissions">Permission to perform storage operations required.</string>
+    <string name="status_restricted">Grant all permissions before continuing.</string>
 
     <!-- Content descriptions (for Accessibility) -->
     <string name="desc_brush_size_icon">برش سائز کا انتخاب کریں</string>
@@ -73,7 +77,6 @@
 
     <!-- Settings screen options -->
     <string name="settings_item_help">مدد حاصل کریں</string>
-    <string name="settings_item_notifications">پُش اطلاعات</string>
     <string name="settings_item_privacy">رازداری پالیسی دیکھیں</string>
     <string name="settings_icon_support">تعاون کریں</string>
     <string name="settings_item_theme">اپلی کیشن کا رنگ</string>

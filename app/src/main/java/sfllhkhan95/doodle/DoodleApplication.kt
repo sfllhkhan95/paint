@@ -1,18 +1,11 @@
 package sfllhkhan95.doodle
 
 import android.app.Application
-import android.support.v7.app.AppCompatActivity
 import com.crashlytics.android.Crashlytics
 import com.crashlytics.android.core.CrashlyticsCore
 import com.orhanobut.hawk.Hawk
 import io.fabric.sdk.android.Fabric
-import sfllhkhan95.doodle.ads.AdManager
-import sfllhkhan95.doodle.core.utils.ThemeAttrs.THEME_CHOCOLATE
-import sfllhkhan95.doodle.core.utils.ThemeAttrs.THEME_DARK
-import sfllhkhan95.doodle.core.utils.ThemeAttrs.THEME_DEFAULT
-import sfllhkhan95.doodle.core.utils.ThemeAttrs.THEME_FOREST
-import sfllhkhan95.doodle.core.utils.ThemeAttrs.THEME_OCEAN
-import sfllhkhan95.doodle.core.utils.ThemeAttrs.THEME_SUNLIGHT
+import sfllhkhan95.doodle.bo.AdManager
 
 /**
  * Doodle is the Application class which bootstraps everything and initializes the global
@@ -23,71 +16,6 @@ import sfllhkhan95.doodle.core.utils.ThemeAttrs.THEME_SUNLIGHT
  * created on 23/10/2017 2:27 AM
  */
 class DoodleApplication : Application() {
-
-    val currentTheme: String
-        get() {
-            var currentTheme: String? = Hawk.get(THEME, null)
-            if (currentTheme == null) currentTheme = THEME_DEFAULT
-            return currentTheme
-        }
-
-    fun getDialogTheme(): Int {
-        return when (currentTheme) {
-            THEME_OCEAN -> R.style.DialogTheme_Ocean
-            THEME_SUNLIGHT -> R.style.DialogTheme_Sunlight
-            THEME_FOREST -> R.style.DialogTheme_Forest
-            THEME_CHOCOLATE -> R.style.DialogTheme_Chocolate
-            THEME_DARK -> R.style.DialogTheme_Dark
-            THEME_DEFAULT -> R.style.DialogTheme
-            else -> R.style.DialogTheme
-        }
-    }
-
-    fun setActivityTheme(activity: AppCompatActivity): Int {
-        when (currentTheme) {
-            THEME_OCEAN -> {
-                activity.setTheme(R.style.AppTheme_Ocean)
-                return 1
-            }
-            THEME_SUNLIGHT -> {
-                activity.setTheme(R.style.AppTheme_Sunlight)
-                return 2
-            }
-            THEME_FOREST -> {
-                activity.setTheme(R.style.AppTheme_Forest)
-                return 3
-            }
-            THEME_CHOCOLATE -> {
-                activity.setTheme(R.style.AppTheme_Chocolate)
-                return 4
-            }
-            THEME_DARK -> {
-                activity.setTheme(R.style.AppTheme_Dark)
-                return 5
-            }
-            THEME_DEFAULT -> {
-                activity.setTheme(R.style.AppTheme)
-                return 0
-            }
-            else -> {
-                activity.setTheme(R.style.AppTheme)
-                return 0
-            }
-        }
-    }
-
-    fun changeTheme(activity: AppCompatActivity, currentTheme: String) {
-        when (currentTheme) {
-            THEME_OCEAN -> Hawk.put(THEME, THEME_OCEAN)
-            THEME_SUNLIGHT -> Hawk.put(THEME, THEME_SUNLIGHT)
-            THEME_FOREST -> Hawk.put(THEME, THEME_FOREST)
-            THEME_CHOCOLATE -> Hawk.put(THEME, THEME_CHOCOLATE)
-            THEME_DARK -> Hawk.put(THEME, THEME_DARK)
-            THEME_DEFAULT -> Hawk.put(THEME, THEME_DEFAULT)
-            else -> Hawk.put(THEME, THEME_DEFAULT)
-        }
-        activity.recreate()
-    }
 
     /**
      * Called when the application is starting, before any other application objects
@@ -107,9 +35,47 @@ class DoodleApplication : Application() {
     }
 
     companion object {
-        const val TAG = "DoodleLogs"
-        const val INTRO = "INTRO_SEEN"
-        private const val THEME = "APP_THEME"
+        // Actions
+        const val ACTION_SHARE = "SHARE"
+
+        // Defaults
+        const val DEFAULT_NOTIFICATION_CHANNEL = "PRIMARY_CHANNEL"
+        const val DEFAULT_PROJECT_NAME = "Untitled"
+        const val EXT_IMAGE = ".jpg"
+        const val EXT_IMAGE_MIME = "image/jpeg"
+        const val EXT_METADATA = ".json"
+
+        // Events
+        const val EVENT_MESSENGER_REPLY = "reply_messenger"
+        const val EVENT_PROJECT_CREATE = "from_device"
+        const val EVENT_PROJECT_CREATE_BLANK = "from_scratch"
+
+        // Properties
+        const val PROPERTY_SUCCESS = "success"
+
+        // Flags
+        const val FLAG_INTRO = "INTRO_SEEN"
+        const val FLAG_MESSENGER_EXPRESSION = "MESSENGER"
+        const val FLAG_READ_ONLY = "READ_ONLY"
+
+        // Shared file names
+        const val FILE_CROPPED = "CROPPED"
+        const val FILE_CAMERA = "CAMERA_IMAGE"
+        const val FILE_SHAREABLE = "SHARE_IMAGE"
+
+        // Project properties
+        const val PROJECT_FROM_IMAGE = "FROM_DEVICE"
+        const val PROJECT_FROM_SAVED = "DOODLE"
+
+        // Request codes
+        const val REQUEST_ALL_PERMISSIONS = 1
+        const val REQUEST_PHOTO_CAPTURE = 100
+        const val REQUEST_PHOTO_PICK = 200
+        const val REQUEST_SHARE_DOODLE = 300
+
+        // Tags
+        const val TAG_NOTIFICATIONS = "NOTIFICATIONS"
+        const val TAG_THEME = "APP_THEME"
     }
 
 }

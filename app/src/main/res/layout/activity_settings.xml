@@ -8,7 +8,7 @@
     android:layout_height="match_parent"
     android:gravity="center"
     android:orientation="vertical"
-    tools:context=".core.SettingsActivity">
+    tools:context=".views.activity.SettingsActivity">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
@@ -45,18 +45,6 @@
                     android:layout_marginRight="8dp"
                     android:text="@string/settings_item_theme"
                     android:textAllCaps="false"
-                    app:cornerRadius="16dp" />
-
-                <android.support.design.button.MaterialButton
-                    android:id="@+id/notification_switch"
-                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="8dp"
-                    android:layout_marginRight="8dp"
-                    android:text="@string/settings_item_notifications"
-                    android:textAllCaps="false"
-                    android:visibility="gone"
                     app:cornerRadius="16dp" />
 
             </LinearLayout>

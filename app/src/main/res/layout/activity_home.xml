@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context=".projects.HomeActivity">
+    tools:context=".views.activity.HomeActivity">
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
@@ -40,7 +40,7 @@
         android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-        <sfllhkhan95.doodle.projects.views.ExpandableGridView
+        <sfllhkhan95.doodle.views.NestedGridView
             android:id="@+id/savedProjectsGrid"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

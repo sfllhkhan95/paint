@@ -7,7 +7,7 @@
     android:background="?attr/colorPrimaryDark"
     android:orientation="vertical"
     android:weightSum="3"
-    tools:context=".LaunchScreen">
+    tools:context=".views.activity.LaunchScreen">
 
     <Space
         android:layout_width="match_parent"

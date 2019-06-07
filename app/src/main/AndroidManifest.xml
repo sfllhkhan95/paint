@@ -32,7 +32,7 @@
             android:value="@string/fb_app_id" />
 
         <activity
-            android:name=".LaunchScreen"
+            android:name="sfllhkhan95.doodle.views.activity.LaunchScreen"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -42,18 +42,18 @@
         </activity>
 
         <activity
-            android:name=".projects.HomeActivity"
+            android:name="sfllhkhan95.doodle.views.activity.HomeActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait" />
 
         <activity
-            android:name=".core.SettingsActivity"
+            android:name="sfllhkhan95.doodle.views.activity.SettingsActivity"
             android:label="@string/label_settings"
-            android:parentActivityName=".projects.HomeActivity"
+            android:parentActivityName="sfllhkhan95.doodle.views.activity.HomeActivity"
             android:screenOrientation="portrait" />
 
         <activity
-            android:name=".core.MainActivity"
+            android:name="sfllhkhan95.doodle.views.activity.MainActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.PICK" />
@@ -82,19 +82,19 @@
         </activity>
 
         <activity
-            android:name=".PrivacyPolicy"
+            android:name="sfllhkhan95.doodle.views.activity.PrivacyPolicy"
             android:label="@string/label_privacy"
-            android:parentActivityName=".core.SettingsActivity"
+            android:parentActivityName="sfllhkhan95.doodle.views.activity.SettingsActivity"
             android:screenOrientation="portrait" />
 
         <activity
-            android:name=".FAQsActivity"
+            android:name="sfllhkhan95.doodle.views.activity.FAQsActivity"
             android:label="@string/label_faqs"
-            android:parentActivityName=".core.SettingsActivity"
+            android:parentActivityName="sfllhkhan95.doodle.views.activity.SettingsActivity"
             android:screenOrientation="portrait" />
 
         <activity
-            android:name=".IntroActivity"
+            android:name="sfllhkhan95.doodle.views.activity.IntroActivity"
             android:screenOrientation="portrait" />
 
         <activity
@@ -103,8 +103,8 @@
 
         <!-- For local file storage -->
         <provider
-            android:name=".projects.utils.GenericFileProvider"
-            android:authorities="${applicationId}.sfllhkhan95.doodle.provider"
+            android:name="sfllhkhan95.doodle.utils.provider.GenericFileProvider"
+            android:authorities="${applicationId}.sfllhkhan95.doodle.utils.provider"
             android:exported="false"
             android:grantUriPermissions="true">
             <meta-data
@@ -113,7 +113,7 @@
         </provider>
 
         <!-- This service receives FCM messages and generates notifications -->
-        <service android:name=".notifs.utils.NotificationService">
+        <service android:name="sfllhkhan95.doodle.bo.service.NotificationService">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>

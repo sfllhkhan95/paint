@@ -277,8 +277,8 @@
             android:contentDescription="@string/desc_icon"
             android:padding="12dp"
             android:scaleType="centerInside"
-            android:src="@drawable/paintbrush"
-            android:tint="?attr/colorPrimaryDark" />
+            android:tint="?attr/colorPrimaryDark"
+            app:srcCompat="@drawable/paintbrush" />
 
     </RelativeLayout>
 
