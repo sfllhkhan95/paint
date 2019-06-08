@@ -1,17 +1,15 @@
 <resources>
-    <!-- App details -->
-    <string name="app_name">ڈُوڈل</string>
-    <string name="app_name_v">ڈُوڈل و</string>
-    <string name="company_name">ایسپائرا سافٹ</string>
+    <string name="company_name_prefix">ایک</string>
+    <string name="company_name_suffix">اپلی کیشن</string>
 
     <!-- Notification channels -->
-    <string name="notifications_main_channel_name">Primary notification channel</string>
-    <string name="notifications_main_channel_description">This is the main notifications channel.</string>
+    <string name="notifications_main_channel_name">مین نوٹیفکیشن چینل</string>
+    <string name="notifications_main_channel_description">یہ اہم اطلاعاتی چینل ہے.</string>
 
     <!-- Error messages -->
     <string name="error_unknown">اوہ ہو! تازہ ترین ورژن پر اپ ڈیٹ کر کے دوبارہ کوشش کریں۔ مسلۂ برقرار رہنے کی صورت میں ہم سے رابطہ کریں۔</string>
-    <string name="error_no_camera">No Camera application found.</string>
-    <string name="error_no_gallery">No Gallery application found.</string>
+    <string name="error_no_camera">کوئی کیمرا ایپ نہیں ملی۔</string>
+    <string name="error_no_gallery">کوئی گیلری ایپ نہیں ملی۔</string>
 
     <!-- Confirmation and Status messages -->
     <string name="confirm_delete_title">پروجیکٹ مٹا دیں؟</string>
@@ -20,8 +18,8 @@
     <string name="confirm_revert">اصل حالت میں جائیں؟</string>
     <string name="confirm_quit">ایپ بند کریں؟</string>
     <string name="confirm_save">پروجیکٹ محفوظ کریں؟</string>
-    <string name="prompt_permissions">Permission to perform storage operations required.</string>
-    <string name="status_restricted">Grant all permissions before continuing.</string>
+    <string name="prompt_permissions">اسٹوریج آپریشن انجام دینے کی اجازت دیں۔</string>
+    <string name="status_restricted">آگے بڑھنے سے پہلے تمام اجازت دے۔</string>
 
     <!-- Content descriptions (for Accessibility) -->
     <string name="desc_brush_size_icon">برش سائز کا انتخاب کریں</string>
@@ -81,6 +79,7 @@
     <string name="settings_icon_support">تعاون کریں</string>
     <string name="settings_item_theme">اپلی کیشن کا رنگ</string>
     <string name="settings_item_intro">تعارف دیکھیں</string>
+    <string name="settings_item_locale">زبان</string>
 
     <!-- Menu items -->
     <string name="menu_action_layers">تبدیلیاں</string>

@@ -47,6 +47,17 @@
                     android:textAllCaps="false"
                     app:cornerRadius="16dp" />
 
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/locale"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginRight="8dp"
+                    android:text="@string/settings_item_locale"
+                    android:textAllCaps="false"
+                    app:cornerRadius="16dp" />
+
             </LinearLayout>
 
             <!-- About -->

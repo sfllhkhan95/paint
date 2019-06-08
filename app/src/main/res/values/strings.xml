@@ -1,8 +1,10 @@
 <resources>
     <!-- App details -->
-    <string name="app_name">Doodle</string>
-    <string name="app_name_v">Doodle  v</string>
-    <string name="company_name">AspiraSoft</string>
+    <string name="app_name" translatable="false">Doodle</string>
+    <string name="app_name_v" translatable="false">Doodle  v</string>
+    <string name="company_name_prefix">An</string>
+    <string name="company_name" translatable="false">AspiraSoft</string>
+    <string name="company_name_suffix">App</string>
     <string name="provider" translatable="false">.sfllhkhan95.doodle.utils.provider</string>
     <string name="package_whatsapp" translatable="false">com.whatsapp</string>
 
@@ -25,8 +27,8 @@
 
     <!-- Error messages -->
     <string name="error_unknown">Unknown error. Upgrade application to latest version or contact support if error persists.</string>
-    <string name="error_no_gallery">No Gallery application found</string>
-    <string name="error_no_camera">No Camera application found</string>
+    <string name="error_no_gallery">No Gallery application found.</string>
+    <string name="error_no_camera">No Camera application found.</string>
 
     <!-- Confirmation and Status messages -->
     <string name="confirm_delete_title">Are you sure?</string>
@@ -98,6 +100,7 @@
     <string name="settings_icon_support">Support Us</string>
     <string name="settings_item_theme">Choose Theme</string>
     <string name="settings_item_intro">See Intro</string>
+    <string name="settings_item_locale">Language</string>
 
     <!-- Menu items -->
     <string name="menu_action_layers">Layers</string>

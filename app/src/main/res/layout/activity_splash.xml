@@ -81,19 +81,22 @@
         android:layout_height="0dp"
         android:layout_weight="1"
         android:gravity="center_horizontal|bottom"
+        android:layoutDirection="locale"
         android:padding="16dp">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif-condensed"
-            android:text="An  "
+            android:text="@string/company_name_prefix"
             android:textAllCaps="true"
             android:textSize="12sp" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:layout_marginEnd="4dp"
             android:fontFamily="cursive"
             android:text="@string/company_name"
             android:textSize="18sp"
@@ -103,7 +106,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif-condensed"
-            android:text="  App"
+            android:text="@string/company_name_suffix"
             android:textAllCaps="true"
             android:textSize="12sp" />
 

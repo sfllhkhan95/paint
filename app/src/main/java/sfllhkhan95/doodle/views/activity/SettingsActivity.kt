@@ -2,18 +2,21 @@ package sfllhkhan95.doodle.views.activity
 
 import android.content.Intent
 import android.os.Bundle
-import com.google.android.material.button.MaterialButton
-import androidx.core.app.NavUtils
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
-import android.view.View
+import androidx.core.app.NavUtils
 import com.google.android.gms.ads.AdListener
 import com.google.android.gms.ads.AdView
+import com.google.android.gms.tasks.OnSuccessListener
+import com.google.android.material.button.MaterialButton
 import sfllhkhan95.doodle.R
 import sfllhkhan95.doodle.bo.AdManager
 import sfllhkhan95.doodle.bo.factory.DialogFactory
+import sfllhkhan95.doodle.utils.LocaleUtils
 import sfllhkhan95.doodle.utils.ThemeUtils
 import sfllhkhan95.doodle.views.dialog.ThemeSelector
+
 
 /**
  * @author saifkhichi96
@@ -32,9 +35,8 @@ class SettingsActivity : AppCompatActivity(), View.OnClickListener {
         // Configure action bar
         val toolbar = findViewById<Toolbar>(R.id.toolbar)
         setSupportActionBar(toolbar)
-        if (supportActionBar != null) {
-            supportActionBar!!.setDisplayHomeAsUpEnabled(true)
-        }
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.title = getString(R.string.label_settings)
 
         themeButton = findViewById(R.id.theme)
         themeButton?.setOnClickListener(this)
@@ -43,6 +45,7 @@ class SettingsActivity : AppCompatActivity(), View.OnClickListener {
         findViewById<View>(R.id.privacy_policy)?.setOnClickListener(this)
         findViewById<View>(R.id.faqs)?.setOnClickListener(this)
         findViewById<View>(R.id.intro)?.setOnClickListener(this)
+        findViewById<View>(R.id.locale)?.setOnClickListener(this)
     }
 
     override fun onStart() {
@@ -69,6 +72,12 @@ class SettingsActivity : AppCompatActivity(), View.OnClickListener {
             R.id.support -> DialogFactory.supportDialog(this).show()
 
             R.id.intro -> startActivity(Intent(this@SettingsActivity, IntroActivity::class.java))
+
+            R.id.locale -> {
+                LocaleUtils.makeDialog(this, OnSuccessListener {
+                    recreate()
+                }).show()
+            }
         }
     }
 

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="sfllhkhan95.doodle">
 
     <uses-permission android:name="android.permission.CAMERA" />
@@ -17,11 +18,14 @@
     <application
         android:name=".DoodleApplication"
         android:allowBackup="true"
+        android:appCategory="productivity"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
+        android:resizeableActivity="false"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme"
+        tools:ignore="GoogleAppIndexingWarning,UnusedAttribute">
 
         <uses-library
             android:name="org.apache.http.legacy"
@@ -43,63 +47,32 @@
 
         <activity
             android:name="sfllhkhan95.doodle.views.activity.HomeActivity"
-            android:label="@string/app_name"
-            android:screenOrientation="portrait" />
+            android:label="@string/app_name" />
 
         <activity
             android:name="sfllhkhan95.doodle.views.activity.SettingsActivity"
             android:label="@string/label_settings"
-            android:parentActivityName="sfllhkhan95.doodle.views.activity.HomeActivity"
-            android:screenOrientation="portrait" />
+            android:parentActivityName="sfllhkhan95.doodle.views.activity.HomeActivity" />
 
         <activity
             android:name="sfllhkhan95.doodle.views.activity.MainActivity"
-            android:screenOrientation="portrait">
-            <intent-filter>
-                <action android:name="android.intent.action.PICK" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="com.facebook.orca.category.PLATFORM_THREAD_20150314" />
-            </intent-filter>
-        </activity>
-
-        <activity
-            android:name="com.facebook.FacebookActivity"
-            android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
-            android:label="@string/app_name" />
-
-        <activity
-            android:name="com.facebook.CustomTabActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.BROWSABLE" />
-
-                <data android:scheme="@string/fb_login_protocol_scheme" />
-            </intent-filter>
-        </activity>
+            android:screenOrientation="portrait" />
 
         <activity
             android:name="sfllhkhan95.doodle.views.activity.PrivacyPolicy"
             android:label="@string/label_privacy"
-            android:parentActivityName="sfllhkhan95.doodle.views.activity.SettingsActivity"
-            android:screenOrientation="portrait" />
+            android:parentActivityName="sfllhkhan95.doodle.views.activity.SettingsActivity" />
 
         <activity
             android:name="sfllhkhan95.doodle.views.activity.FAQsActivity"
             android:label="@string/label_faqs"
-            android:parentActivityName="sfllhkhan95.doodle.views.activity.SettingsActivity"
-            android:screenOrientation="portrait" />
+            android:parentActivityName="sfllhkhan95.doodle.views.activity.SettingsActivity" />
 
         <activity
             android:name="sfllhkhan95.doodle.views.activity.IntroActivity"
             android:screenOrientation="portrait" />
 
-        <activity
-            android:name="com.yalantis.ucrop.UCropActivity"
-            android:screenOrientation="portrait" />
+        <activity android:name="com.yalantis.ucrop.UCropActivity" />
 
         <!-- For local file storage -->
         <provider

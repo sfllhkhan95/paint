@@ -1,10 +1,10 @@
 package sfllhkhan95.doodle.views.activity
 
 import android.os.Bundle
-import com.google.android.material.button.MaterialButton
+import android.widget.LinearLayout
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
-import android.widget.LinearLayout
+import com.google.android.material.button.MaterialButton
 import sfllhkhan95.doodle.R
 import sfllhkhan95.doodle.utils.ThemeUtils
 import sfllhkhan95.doodle.views.dialog.ConfirmationDialog
@@ -33,6 +33,7 @@ class FAQsActivity : AppCompatActivity() {
         val toolbar = findViewById<Toolbar>(R.id.toolbar)
         setSupportActionBar(toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.title = getString(R.string.label_faqs)
 
         // Read FAQs from file
         val buf = StringBuilder()
