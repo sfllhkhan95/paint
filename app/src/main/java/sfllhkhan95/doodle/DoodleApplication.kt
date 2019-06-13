@@ -6,6 +6,7 @@ import com.crashlytics.android.core.CrashlyticsCore
 import com.orhanobut.hawk.Hawk
 import io.fabric.sdk.android.Fabric
 import sfllhkhan95.doodle.bo.AdManager
+import sfllhkhan95.doodle.utils.LocaleUtils
 
 /**
  * Doodle is the Application class which bootstraps everything and initializes the global
@@ -32,6 +33,9 @@ class DoodleApplication : Application() {
 
         // Initialize ad SDKs
         AdManager.initialize(this)
+
+        // Restore locale settings
+        LocaleUtils.restoreLocaleSettings(this)
     }
 
     companion object {

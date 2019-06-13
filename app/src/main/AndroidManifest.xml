@@ -72,7 +72,9 @@
             android:name="sfllhkhan95.doodle.views.activity.IntroActivity"
             android:screenOrientation="portrait" />
 
-        <activity android:name="com.yalantis.ucrop.UCropActivity" />
+        <activity
+            android:name="com.yalantis.ucrop.UCropActivity"
+            android:screenOrientation="portrait" />
 
         <!-- For local file storage -->
         <provider
