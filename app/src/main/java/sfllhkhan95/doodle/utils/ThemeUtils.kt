@@ -1,6 +1,7 @@
 package sfllhkhan95.doodle.utils
 
 import android.content.Context
+import android.os.Build
 import android.util.TypedValue
 import androidx.annotation.AttrRes
 import androidx.appcompat.app.AppCompatActivity
@@ -41,34 +42,62 @@ object ThemeUtils {
         }
     }
 
-    fun setActivityTheme(activity: AppCompatActivity): Int {
+    fun setActivityTheme(activity: AppCompatActivity, immersive: Boolean = false): Int {
         when (currentTheme) {
             THEME_OCEAN -> {
-                activity.setTheme(R.style.AppTheme_Ocean)
+                if (immersive && Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+                    activity.setTheme(R.style.AppTheme_Ocean_Immersive)
+                } else {
+                    activity.setTheme(R.style.AppTheme_Ocean)
+                }
                 return 1
             }
             THEME_SUNLIGHT -> {
-                activity.setTheme(R.style.AppTheme_Sunlight)
+                if (immersive && Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+                    activity.setTheme(R.style.AppTheme_Sunlight_Immersive)
+                } else {
+                    activity.setTheme(R.style.AppTheme_Sunlight)
+                }
                 return 2
             }
             THEME_FOREST -> {
-                activity.setTheme(R.style.AppTheme_Forest)
+                if (immersive && Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+                    activity.setTheme(R.style.AppTheme_Forest_Immersive)
+                } else {
+                    activity.setTheme(R.style.AppTheme_Forest)
+                }
                 return 3
             }
             THEME_CHOCOLATE -> {
-                activity.setTheme(R.style.AppTheme_Chocolate)
+                if (immersive && Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+                    activity.setTheme(R.style.AppTheme_Chocolate_Immersive)
+                } else {
+                    activity.setTheme(R.style.AppTheme_Chocolate)
+                }
                 return 4
             }
             THEME_DARK -> {
-                activity.setTheme(R.style.AppTheme_Dark)
+                if (immersive && Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+                    activity.setTheme(R.style.AppTheme_Dark_Immersive)
+                } else {
+                    activity.setTheme(R.style.AppTheme_Dark)
+                }
                 return 5
             }
             THEME_DEFAULT -> {
-                activity.setTheme(R.style.AppTheme)
+                if (immersive && Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+                    activity.setTheme(R.style.AppTheme_Immersive)
+                } else {
+                    activity.setTheme(R.style.AppTheme)
+                }
                 return 0
             }
             else -> {
-                activity.setTheme(R.style.AppTheme)
+                if (immersive && Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+                    activity.setTheme(R.style.AppTheme_Immersive)
+                } else {
+                    activity.setTheme(R.style.AppTheme)
+                }
                 return 0
             }
         }

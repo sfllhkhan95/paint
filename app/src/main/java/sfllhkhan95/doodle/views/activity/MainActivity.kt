@@ -5,6 +5,7 @@ import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.Color
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
 import android.util.DisplayMetrics
 import android.view.Menu
@@ -80,7 +81,7 @@ class MainActivity : AppCompatActivity(), SeekBar.OnSeekBarChangeListener, OnToo
     private var messengerShareButton: MessengerShareButton? = null
 
     // Firebase Analytics (For event logging)
-    private var mFirebaseAnalytics: FirebaseAnalytics? = null
+    private var mFirebaseAnalytics: FirebaseAnalytics = FirebaseAnalytics.getInstance(this)
 
     // Is this a new or existing project?
     private var isExisting = false
@@ -92,7 +93,7 @@ class MainActivity : AppCompatActivity(), SeekBar.OnSeekBarChangeListener, OnToo
 
     @SuppressLint("ClickableViewAccessibility")
     override fun onCreate(savedInstanceState: Bundle?) {
-        ThemeUtils.setActivityTheme(this)
+        ThemeUtils.setActivityTheme(this, true)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
@@ -101,12 +102,13 @@ class MainActivity : AppCompatActivity(), SeekBar.OnSeekBarChangeListener, OnToo
         this.brushController = findViewById(R.id.brushController)
         this.brushController!!.setOnSeekBarChangeListener(this)
 
-        // Obtain the FirebaseAnalytics instance.
-        this.mFirebaseAnalytics = FirebaseAnalytics.getInstance(this)
-
         // Obtain device display metrics (used to setup project resolution)
         val metrics = DisplayMetrics()
-        windowManager.defaultDisplay.getMetrics(metrics)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
+            windowManager.defaultDisplay.getRealMetrics(metrics)
+        } else {
+            windowManager.defaultDisplay.getMetrics(metrics)
+        }
 
         isViewing = intent.getBooleanExtra(FLAG_READ_ONLY, false)
 
@@ -120,7 +122,7 @@ class MainActivity : AppCompatActivity(), SeekBar.OnSeekBarChangeListener, OnToo
             messengerShareButton?.setOnClickListener { onShareClicked(ShareMethod.MESSENGER) }
 
             if (Intent.ACTION_PICK == intent.action) {
-                mFirebaseAnalytics?.logEvent(EVENT_MESSENGER_REPLY, null)
+                mFirebaseAnalytics.logEvent(EVENT_MESSENGER_REPLY, null)
 
                 mReplying = true
                 messengerShareButton?.setActionText(resources.getString(R.string.label_messenger_action))
@@ -407,6 +409,19 @@ class MainActivity : AppCompatActivity(), SeekBar.OnSeekBarChangeListener, OnToo
         findViewById<View>(R.id.toolbox).visibility = if (isMaximized) View.GONE else View.VISIBLE
         findViewById<View>(R.id.brushSizeBar).visibility = if (isMaximized) View.GONE else View.VISIBLE
         toolbar.configure(isMaximized)
+
+        window.decorView.apply {
+            systemUiVisibility = 0
+            systemUiVisibility = if (!isMaximized) {
+                View.SYSTEM_UI_FLAG_LAYOUT_STABLE or View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+            } else {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+                    View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY or View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                } else {
+                    View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                }
+            }
+        }
     }
 
     private fun onToggleReadMode(isViewing: Boolean) {
@@ -449,7 +464,7 @@ class MainActivity : AppCompatActivity(), SeekBar.OnSeekBarChangeListener, OnToo
         } finally {
             val logParams = Bundle()
             logParams.putBoolean(PROPERTY_SUCCESS, success)
-            mFirebaseAnalytics?.logEvent(EVENT_PROJECT_CREATE, logParams)
+            mFirebaseAnalytics.logEvent(EVENT_PROJECT_CREATE, logParams)
         }
         return canvas
     }
@@ -460,7 +475,7 @@ class MainActivity : AppCompatActivity(), SeekBar.OnSeekBarChangeListener, OnToo
         // Log event
         val logParams = Bundle()
         logParams.putBoolean(PROPERTY_SUCCESS, true)
-        mFirebaseAnalytics?.logEvent(EVENT_PROJECT_CREATE_BLANK, logParams)
+        mFirebaseAnalytics.logEvent(EVENT_PROJECT_CREATE_BLANK, logParams)
 
         return canvas
     }

@@ -1,5 +1,6 @@
 package sfllhkhan95.doodle.views
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.Canvas
 import android.graphics.PointF
@@ -52,20 +53,19 @@ class PaintView : View {
         canvas.restore()
     }
 
+    @SuppressLint("ClickableViewAccessibility")
     override fun onTouchEvent(ev: MotionEvent): Boolean {
-        if (selectedTool == null || !isEnabled) return false
+        if (selectedTool == null || !isEnabled || ev.pointerCount > 1) return false
         val touchAt = PointF(ev.x, ev.y)
 
         when (ev.action) {
             MotionEvent.ACTION_DOWN -> {
                 touchStart(touchAt)
-                performClick()
                 invalidate()
                 return true
             }
             MotionEvent.ACTION_MOVE -> {
                 touchMove(touchAt)
-                performClick()
                 invalidate()
                 return true
             }
