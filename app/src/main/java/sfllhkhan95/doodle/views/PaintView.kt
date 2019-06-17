@@ -10,6 +10,7 @@ import android.view.View
 import sfllhkhan95.doodle.bo.factory.ToolFactory
 import sfllhkhan95.doodle.models.*
 import sfllhkhan95.doodle.models.shapes.Eraser
+import sfllhkhan95.doodle.models.shapes.FloodFill
 import sfllhkhan95.doodle.utils.listener.CanvasActionListener
 import sfllhkhan95.doodle.utils.listener.OnColorPickedListener
 
@@ -148,10 +149,18 @@ class PaintView : View {
 
             val tool = ToolFactory[selectedTool!!, brush]
             tool!!.moveTo(iTouch.x, iTouch.y)
-            if (tool.javaClass == Eraser::class.java) {
-                canvas?.let { (tool as Eraser).initEraser(it) }
+            canvas?.let {
+                when (tool.javaClass) {
+                    Eraser::class.java -> (tool as Eraser).initEraser(it)
+                    FloodFill::class.java -> {
+                        (tool as FloodFill).apply {
+                            this.bitmap = it.bitmap
+                            this.execute(iTouch)
+                        }
+                    }
+                }
+                tools.add(tool)
             }
-            tools.add(tool)
         }
 
         fTouch?.let {

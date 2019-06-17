@@ -271,7 +271,7 @@ class MainActivity : AppCompatActivity(), SeekBar.OnSeekBarChangeListener, OnToo
             R.id.pen -> paintView.selectedTool = Pen::class.java
 
             R.id.colorPicker -> {
-                paintView.selectedTool = EyedropTool::class.java
+                paintView.selectedTool = FloodFill::class.java
                 paintView.setOnColorPickedListener(this)
             }
 
