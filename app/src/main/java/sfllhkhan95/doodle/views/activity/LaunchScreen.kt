@@ -33,13 +33,15 @@ class LaunchScreen : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
 
-        val permissionCheck = ContextCompat.checkSelfPermission(this,
-                Manifest.permission.WRITE_EXTERNAL_STORAGE)
+        val permissionsGranted = ContextCompat.checkSelfPermission(this,
+                Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED &&
+                ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) ==
+                PackageManager.PERMISSION_GRANTED
 
         val introSeen: Boolean = Hawk.get(DoodleApplication.FLAG_INTRO, false)
         timer.schedule(object : TimerTask() {
             override fun run() {
-                startActivity(Intent(applicationContext, if (!introSeen || permissionCheck != PackageManager.PERMISSION_GRANTED)
+                startActivity(Intent(applicationContext, if (!introSeen || !permissionsGranted)
                     IntroActivity::class.java
                 else
                     HomeActivity::class.java))

@@ -92,6 +92,7 @@ class IntroActivity : AppIntro() {
 
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String>,
                                             grantResults: IntArray) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         when (requestCode) {
             REQUEST_ALL_PERMISSIONS -> {
                 var allGranted = true
@@ -103,32 +104,20 @@ class IntroActivity : AppIntro() {
                 }
 
                 if (allGranted) {
-                    super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+                    // Go to home activity
+                    startActivity(Intent(applicationContext, HomeActivity::class.java))
+                    overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
+                    finish()
                 } else {
                     Toast.makeText(this, getString(R.string.status_restricted), Toast.LENGTH_SHORT).show()
-                    recreate()
                 }
             }
-
-            else -> super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         }
     }
 
     override fun onDonePressed(currentFragment: androidx.fragment.app.Fragment?) {
-        // Has user already seen the intro?
-        val introSeen: Boolean = Hawk.get(DoodleApplication.FLAG_INTRO, false)
-
-        // If this was the first time
-        if (!introSeen) {
-            // Mark intro as seen
-            Hawk.put(DoodleApplication.FLAG_INTRO, true)
-
-            // Go to home activity
-            startActivity(Intent(applicationContext, HomeActivity::class.java))
-            overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
-        }
-
-        finish()
+        // Mark intro as seen
+        Hawk.put(DoodleApplication.FLAG_INTRO, true)
     }
 
     override fun startActivity(intent: Intent) {
