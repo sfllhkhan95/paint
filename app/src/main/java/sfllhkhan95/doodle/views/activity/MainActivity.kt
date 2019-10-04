@@ -13,21 +13,19 @@ import android.view.MenuItem
 import android.view.MotionEvent
 import android.view.View
 import android.widget.SeekBar
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.core.content.ContextCompat
-import androidx.core.content.FileProvider
 import com.crashlytics.android.Crashlytics
 import com.google.android.gms.tasks.OnSuccessListener
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.analytics.FirebaseAnalytics
 import sfllhkhan95.doodle.DoodleApplication.Companion.ACTION_SHARE
-import sfllhkhan95.doodle.DoodleApplication.Companion.EVENT_MESSENGER_REPLY
 import sfllhkhan95.doodle.DoodleApplication.Companion.EVENT_PROJECT_CREATE
 import sfllhkhan95.doodle.DoodleApplication.Companion.EVENT_PROJECT_CREATE_BLANK
 import sfllhkhan95.doodle.DoodleApplication.Companion.EXT_IMAGE_MIME
 import sfllhkhan95.doodle.DoodleApplication.Companion.FILE_SHAREABLE
-import sfllhkhan95.doodle.DoodleApplication.Companion.FLAG_MESSENGER_EXPRESSION
 import sfllhkhan95.doodle.DoodleApplication.Companion.FLAG_READ_ONLY
 import sfllhkhan95.doodle.DoodleApplication.Companion.PROJECT_FROM_IMAGE
 import sfllhkhan95.doodle.DoodleApplication.Companion.PROJECT_FROM_SAVED
@@ -42,7 +40,6 @@ import sfllhkhan95.doodle.models.shapes.*
 import sfllhkhan95.doodle.utils.*
 import sfllhkhan95.doodle.utils.listener.OnColorPickedListener
 import sfllhkhan95.doodle.utils.listener.OnToolSelectedListener
-import sfllhkhan95.doodle.views.MessengerShareButton
 import sfllhkhan95.doodle.views.PaintView
 import sfllhkhan95.doodle.views.ToolboxView
 import sfllhkhan95.doodle.views.dialog.CanvasColorPicker
@@ -75,10 +72,6 @@ class MainActivity : AppCompatActivity(), SeekBar.OnSeekBarChangeListener, OnToo
         }
 
     private var stickyMaximized: Boolean = false
-
-    // Are we in a REPLY flow?
-    private var mReplying: Boolean = false
-    private var messengerShareButton: MessengerShareButton? = null
 
     // Firebase Analytics (For event logging)
     private var mFirebaseAnalytics: FirebaseAnalytics = FirebaseAnalytics.getInstance(this)
@@ -115,28 +108,7 @@ class MainActivity : AppCompatActivity(), SeekBar.OnSeekBarChangeListener, OnToo
         // Initialize canvas where everything is drawn
         paintView = findViewById(R.id.canvas)
         paintView.setOnTouchListener(this)
-        val messengerAction = intent.getBooleanExtra(FLAG_MESSENGER_EXPRESSION, false)
-        messengerShareButton = findViewById(R.id.messenger_share_button)
-        if (Intent.ACTION_PICK == intent.action || messengerAction) {
-            messengerShareButton?.visibility = View.VISIBLE
-            messengerShareButton?.setOnClickListener { onShareClicked(ShareMethod.MESSENGER) }
-
-            if (Intent.ACTION_PICK == intent.action) {
-                mFirebaseAnalytics.logEvent(EVENT_MESSENGER_REPLY, null)
-
-                mReplying = true
-                messengerShareButton?.setActionText(resources.getString(R.string.label_messenger_action))
-                messengerShareButton?.setDescriptionText(resources.getString(R.string.placeholder_messenger_recipient))
-
-                ShareUtils.getMessengerRecipient(intent, OnSuccessListener { recipientName ->
-                    messengerShareButton?.setDescriptionText(recipientName)
-                })
-            }
-
-            initPaintView(startFromScratch(metrics))
-        } else {
-            initPaintView(createCanvas(metrics))
-        }
+        initPaintView(createCanvas(metrics))
 
         // Add click event listeners to toolbox buttons
         toolbox = findViewById(R.id.toolbox)
@@ -378,7 +350,7 @@ class MainActivity : AppCompatActivity(), SeekBar.OnSeekBarChangeListener, OnToo
         } catch (ex: Exception) {
             Crashlytics.logException(ex)
             Snackbar.make(
-                    messengerShareButton!!,
+                    paintView,
                     getString(R.string.error_unknown),
                     Snackbar.LENGTH_INDEFINITE
             ).show()
@@ -490,24 +462,19 @@ class MainActivity : AppCompatActivity(), SeekBar.OnSeekBarChangeListener, OnToo
     }
 
     private fun shareOnMessenger(imageFile: File) {
-        // Get a shareable file URI
-        val contentType = EXT_IMAGE_MIME
-        val contentUri = FileProvider.getUriForFile(
-                this,
-                applicationContext.packageName + getString(R.string.provider),
-                imageFile
-        )
-
-        // Start share sequence
-        if (mReplying) {
-            messengerShareButton?.sendReply(this, contentType, contentUri)
-        } else {
-            messengerShareButton?.sendMessage(this, contentType, contentUri, REQUEST_SHARE_DOODLE)
+        try {
+            share(imageFile, getString(R.string.package_messenger))
+        } catch (ex: Exception) {
+            Toast.makeText(this, "Please install Facebook Messenger.", Toast.LENGTH_LONG).show();
         }
     }
 
     private fun shareOnWhatsApp(imageFile: File) {
-        share(imageFile, getString(R.string.package_whatsapp))
+        try{
+            share(imageFile, getString(R.string.package_whatsapp))
+        } catch (ex: Exception) {
+            Toast.makeText(this, "Please install WhatsApp.", Toast.LENGTH_LONG).show();
+        }
     }
 
     private inner class CustomToolbar internal constructor() {

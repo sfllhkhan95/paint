@@ -31,10 +31,6 @@
             android:name="org.apache.http.legacy"
             android:required="false" />
 
-        <meta-data
-            android:name="com.facebook.sdk.ApplicationId"
-            android:value="@string/fb_app_id" />
-
         <activity
             android:name="sfllhkhan95.doodle.views.activity.LaunchScreen"
             android:screenOrientation="portrait">

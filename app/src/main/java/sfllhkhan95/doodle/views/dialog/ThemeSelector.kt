@@ -26,7 +26,7 @@ import sfllhkhan95.doodle.utils.ThemeUtils.THEME_SUNLIGHT
  * @version 1.0.0
  * @since 1.0.0 01/11/2018 3:46 PM
  */
-class ThemeSelector(context: AppCompatActivity) : Dialog(context), View.OnClickListener {
+class ThemeSelector(private val ownerActivity: AppCompatActivity) : Dialog(ownerActivity), View.OnClickListener {
 
     private var actionbar: TextView? = null
     private var window: View? = null
@@ -35,10 +35,6 @@ class ThemeSelector(context: AppCompatActivity) : Dialog(context), View.OnClickL
     private var negativeButton: Button? = null
 
     private var selectedTheme: String? = null
-
-    init {
-        ownerActivity = context
-    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

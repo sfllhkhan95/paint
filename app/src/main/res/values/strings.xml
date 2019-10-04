@@ -7,14 +7,13 @@
     <string name="company_name_suffix">App</string>
     <string name="provider" translatable="false">.sfllhkhan95.doodle.utils.provider</string>
     <string name="package_whatsapp" translatable="false">com.whatsapp</string>
+    <string name="package_messenger" translatable="false">com.facebook.orca</string>
 
     <!-- API strings -->
     <string name="admob_app_id" translatable="false">ca-app-pub-6293532072634065~6156179621</string>
     <string name="admob_ad_banner_confirmation" translatable="false">ca-app-pub-6293532072634065/1203928393</string>
     <string name="admob_ad_banner_options" translatable="false">ca-app-pub-6293532072634065/3015894701</string>
     <string name="admob_ad_rewarded" translatable="false">ca-app-pub-6293532072634065/2952381497</string>
-    <string name="fb_app_id" translatable="false">140472159955272</string>
-    <string name="fb_login_protocol_scheme" translatable="false">fb140472159955272</string>
 
     <!-- URLs -->
     <string name="privacy_policy_url" translatable="false">https://www.iubenda.com/privacy-policy/35502767</string>

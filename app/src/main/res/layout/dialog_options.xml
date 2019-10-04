@@ -105,7 +105,7 @@
                         android:background="@android:color/transparent"
                         android:contentDescription="@string/desc_icon"
                         android:scaleType="fitCenter"
-                        ads:srcCompat="@drawable/messenger_button_blue_bg_round" />
+                        ads:srcCompat="@drawable/ic_messenger" />
 
                     <TextView
                         android:id="@+id/op2_label"

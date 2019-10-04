@@ -50,7 +50,6 @@ class DoodleApplication : Application() {
         const val EXT_METADATA = ".json"
 
         // Events
-        const val EVENT_MESSENGER_REPLY = "reply_messenger"
         const val EVENT_PROJECT_CREATE = "from_device"
         const val EVENT_PROJECT_CREATE_BLANK = "from_scratch"
 
@@ -59,7 +58,6 @@ class DoodleApplication : Application() {
 
         // Flags
         const val FLAG_INTRO = "INTRO_SEEN"
-        const val FLAG_MESSENGER_EXPRESSION = "MESSENGER"
         const val FLAG_READ_ONLY = "READ_ONLY"
 
         // Shared file names

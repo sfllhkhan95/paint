@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <declare-styleable name="MessengerShareButton">
-        <attr name="actionText" format="string" />
-        <attr name="descriptionText" format="string" />
-    </declare-styleable>
-</resources>

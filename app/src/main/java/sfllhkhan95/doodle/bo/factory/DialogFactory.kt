@@ -98,7 +98,7 @@ object DialogFactory {
                 .setTitle(context.getString(R.string.menu_action_share))
                 .setMessage(context.getString(R.string.desc_prompt_share))
                 .setOption1(context.getString(R.string.label_share_whatsapp), R.drawable.ic_whatsapp, callback1)
-                .setOption2(context.getString(R.string.label_share_messenger), R.drawable.messenger_button_blue_bg_round, callback2)
+                .setOption2(context.getString(R.string.label_share_messenger), R.drawable.ic_messenger, callback2)
                 .setOption3(context.getString(R.string.label_share_default), R.drawable.ic_share, callback3)
                 .create()
     }

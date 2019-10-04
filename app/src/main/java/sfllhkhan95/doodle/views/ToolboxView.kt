@@ -28,7 +28,7 @@ class ToolboxView : LinearLayout {
     private var toolSelectedListener: OnToolSelectedListener? = null
 
     constructor(context: Context, attrs: AttributeSet?) : super(context, attrs) {
-        val params = LinearLayout.LayoutParams(context, attrs)
+        val params = LayoutParams(context, attrs)
         params.weight = 1f
 
         primaryToolbox = LinearLayout(context, attrs)
@@ -39,7 +39,7 @@ class ToolboxView : LinearLayout {
 
         secondaryToolbox = scrollView.findViewById(R.id.shapes_container)
 
-        val p = LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
+        val p = LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
                 ViewGroup.LayoutParams.WRAP_CONTENT)
         layoutParams = p
 
@@ -60,7 +60,7 @@ class ToolboxView : LinearLayout {
     }
 
     constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int) : super(context, attrs, defStyleAttr) {
-        val params = LinearLayout.LayoutParams(context, attrs)
+        val params = LayoutParams(context, attrs)
         params.weight = 1f
 
         primaryToolbox = LinearLayout(context, attrs, defStyleAttr)
@@ -71,7 +71,7 @@ class ToolboxView : LinearLayout {
 
         secondaryToolbox = scrollView.findViewById(R.id.shapes_container)
 
-        val p = LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
+        val p = LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
                 ViewGroup.LayoutParams.WRAP_CONTENT)
         layoutParams = p
 
@@ -92,7 +92,7 @@ class ToolboxView : LinearLayout {
     }
 
     private fun inflateItem(root: LinearLayout, item: MenuItem) {
-        val params = LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.MATCH_PARENT)
+        val params = LayoutParams(0, LayoutParams.MATCH_PARENT)
         params.weight = 1f
 
         if (item.isCheckable) {
