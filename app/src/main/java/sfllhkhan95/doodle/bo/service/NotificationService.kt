@@ -22,8 +22,8 @@ import sfllhkhan95.doodle.utils.NotificationUtils
  */
 class NotificationService : FirebaseMessagingService() {
 
-    override fun onMessageReceived(remoteMessage: RemoteMessage?) {
-        val notification = remoteMessage!!.notification
+    override fun onMessageReceived(remoteMessage: RemoteMessage) {
+        val notification = remoteMessage.notification
         if (notification != null) {
             pushNotif(notification)
             NotificationUtils.instance.add(notification)
