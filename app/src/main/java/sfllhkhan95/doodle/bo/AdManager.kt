@@ -2,10 +2,7 @@ package sfllhkhan95.doodle.bo
 
 import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
-import com.google.android.gms.ads.AdListener
-import com.google.android.gms.ads.AdRequest
-import com.google.android.gms.ads.AdView
-import com.google.android.gms.ads.MobileAds
+import com.google.android.gms.ads.*
 import com.google.android.gms.ads.reward.RewardItem
 import com.google.android.gms.ads.reward.RewardedVideoAd
 import com.google.android.gms.ads.reward.RewardedVideoAdListener
@@ -25,7 +22,13 @@ class AdManager private constructor(context: Context) {
 
     private val mBillingManager: BillingManager
 
+    private var mInterstitialAd: InterstitialAd? = null
     private var mVideoAd: RewardedVideoAd? = null
+
+    init {
+        MobileAds.initialize(context, context.getString(R.string.admob_app_id))
+        this.mBillingManager = BillingManager.getInstance(context)
+    }
 
     /**
      * Returns the amount which user has to pay to remove all ads in app.
@@ -36,6 +39,9 @@ class AdManager private constructor(context: Context) {
     val removalPrice: String?
         get() = mBillingManager.getPrice(BillingManager.Products.AD_REMOVE)
 
+    val isInterstitialAdLoaded: Boolean
+        get() = !hasRemovedAds() && mInterstitialAd != null && mInterstitialAd!!.isLoaded
+
     /**
      * Returns true if ads are enabled and a video ad has been loaded.
      *
@@ -44,11 +50,6 @@ class AdManager private constructor(context: Context) {
      */
     val isVideoAdLoaded: Boolean
         get() = !hasRemovedAds() && mVideoAd != null && mVideoAd!!.isLoaded
-
-    init {
-        MobileAds.initialize(context, context.getString(R.string.admob_app_id))
-        this.mBillingManager = BillingManager.getInstance(context)
-    }
 
     /**
      * This method makes the one-time purchase which removes all advertisements from
@@ -87,10 +88,38 @@ class AdManager private constructor(context: Context) {
      */
     fun showBannerAd(target: AdView, callback: AdListener?) {
         if (!hasRemovedAds()) {
-            if (callback != null) {
-                target.adListener = callback
-            }
+            target.adListener = callback
             target.loadAd(AdRequest.Builder().build())
+        }
+    }
+
+    /**
+     * Displays an interstitial ad if one has been loaded.
+     * @since 3.6.5
+     */
+    fun showInterstitialAd() {
+        if (isInterstitialAdLoaded) {
+            mInterstitialAd?.show()
+        }
+    }
+
+    /**
+     * Makes an asynchronous request for loading an interstitial ad.
+     *
+     * @param context the [Context] which is used to create this ad
+     * @since 3.6.5
+     */
+    fun loadInterstitialAd(context: AppCompatActivity) {
+        if (!hasRemovedAds()) {
+            mInterstitialAd = InterstitialAd(context)
+            mInterstitialAd?.adUnitId = context.getString(R.string.admob_ad_interstitial)
+            mInterstitialAd?.adListener = object : AdListener() {
+                override fun onAdClosed() {
+                    super.onAdClosed()
+                    context.finish()
+                }
+            }
+            mInterstitialAd?.loadAd(AdRequest.Builder().build())
         }
     }
 

@@ -46,7 +46,7 @@ class HomeActivity : AppCompatActivity(), SpeedDialView.OnActionSelectedListener
 
     private var mCameraPicturePath: String? = null
 
-    private var mAdManager: AdManager? = null
+    private val mAdManager = AdManager.instance
     private var settingsButton: View? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -89,8 +89,8 @@ class HomeActivity : AppCompatActivity(), SpeedDialView.OnActionSelectedListener
         super.onStart()
 
         // Display ads if they are enabled
-        mAdManager = AdManager.instance
-        mAdManager?.loadVideoAd(this)
+        mAdManager.loadVideoAd(this)
+        mAdManager.loadInterstitialAd(this)
 
         val mAdView = this.findViewById<AdView>(R.id.adView)
         AdManager.instance.showBannerAd(mAdView, object : AdListener() {
@@ -111,22 +111,19 @@ class HomeActivity : AppCompatActivity(), SpeedDialView.OnActionSelectedListener
     }
 
     override fun onBackPressed() {
-        val mBuilder = ConfirmationDialog.Builder(this)
-                .setIcon(android.R.drawable.ic_menu_close_clear_cancel)
-                .setHeadline(getString(R.string.label_exit))
-                .setTitle(getString(R.string.confirm_quit))
-                .setMessage(getString(R.string.desc_prompt_quit))
-                .setPositiveButton(getString(android.R.string.yes), View.OnClickListener { super@HomeActivity.onBackPressed() }, true)
-                .setNegativeButton(getString(android.R.string.cancel), View.OnClickListener { /* no-op */ }, true)
-
-        mAdManager?.let { ads ->
-            if (ads.isVideoAdLoaded) {
-                mBuilder.setMessage(getString(R.string.desc_prompt_watch_ad))
-                        .setNegativeButton(getString(R.string.label_watch_ad), View.OnClickListener { ads.showVideoAd() }, false)
-            }
+        when {
+            mAdManager.isVideoAdLoaded -> mAdManager.showVideoAd()
+            mAdManager.isInterstitialAdLoaded -> mAdManager.showInterstitialAd()
+            else -> ConfirmationDialog.Builder(this)
+                    .setIcon(android.R.drawable.ic_menu_close_clear_cancel)
+                    .setHeadline(getString(R.string.label_exit))
+                    .setTitle(getString(R.string.confirm_quit))
+                    .setMessage(getString(R.string.desc_prompt_quit))
+                    .setPositiveButton(getString(android.R.string.yes), View.OnClickListener { super@HomeActivity.onBackPressed() }, true)
+                    .setNegativeButton(getString(android.R.string.cancel), View.OnClickListener { /* no-op */ }, true)
+                    .create()
+                    .show()
         }
-
-        mBuilder.create().show()
     }
 
     override fun startActivity(intent: Intent) {
@@ -134,33 +131,26 @@ class HomeActivity : AppCompatActivity(), SpeedDialView.OnActionSelectedListener
         overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
     }
 
+    private fun selectAndCropImage(source: Uri) {
+        val photoFile = FileUtils.createImageFile(this, FILE_CROPPED)
+        val destination = Uri.fromFile(photoFile)
+
+        val size = Point()
+        window.windowManager.defaultDisplay.getSize(size)
+
+        UCrop.of(source, destination)
+                .withAspectRatio(9.0F, 16.0F)
+                .withMaxResultSize(size.x, size.y)
+                .start(this)
+    }
+
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (resultCode != RESULT_OK) return
         when (requestCode) {
-            REQUEST_PHOTO_PICK -> data?.data?.let { source ->
-                val photoFile = FileUtils.createImageFile(this, FILE_CROPPED)
-                val destination = Uri.fromFile(photoFile)
-
-                val size = Point()
-                window.windowManager.defaultDisplay.getSize(size)
-
-                UCrop.of(source, destination)
-                        .withAspectRatio(9.0F, 16.0F)
-                        .withMaxResultSize(size.x, size.y)
-                        .start(this)
-            }
-            REQUEST_PHOTO_CAPTURE -> Uri.fromFile(File(mCameraPicturePath))?.let { source ->
-                val photoFile = FileUtils.createImageFile(this, FILE_CROPPED)
-                val destination = Uri.fromFile(photoFile)
-
-                val size = Point()
-                window.windowManager.defaultDisplay.getSize(size)
-
-                UCrop.of(source, destination)
-                        .withAspectRatio(9.0F, 16.0F)
-                        .withMaxResultSize(size.x, size.y)
-                        .start(this)
+            REQUEST_PHOTO_PICK -> data?.data?.let { selectAndCropImage(it) }
+            REQUEST_PHOTO_CAPTURE -> mCameraPicturePath?.let { path ->
+                Uri.fromFile(File(path))?.let { selectAndCropImage(it) }
             }
             UCrop.REQUEST_CROP -> {
                 if (data != null) {
