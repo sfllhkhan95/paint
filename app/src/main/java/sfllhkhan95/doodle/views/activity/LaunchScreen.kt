@@ -7,8 +7,6 @@ import android.content.pm.PackageManager
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
-import com.crashlytics.android.Crashlytics
-import com.google.firebase.auth.FirebaseAuth
 import com.orhanobut.hawk.Hawk
 import sfllhkhan95.doodle.DoodleApplication
 import sfllhkhan95.doodle.R
@@ -50,18 +48,6 @@ class LaunchScreen : AppCompatActivity() {
                 finish()
             }
         }, delay)
-    }
-
-    override fun onStart() {
-        super.onStart()
-        try {
-            val mAuth = FirebaseAuth.getInstance()
-            if (mAuth.currentUser == null) {
-                mAuth.signInAnonymously()
-            }
-        } catch (ex: Exception) {
-            Crashlytics.logException(ex)
-        }
     }
 
     override fun startActivity(intent: Intent) {

@@ -8,8 +8,8 @@ android {
         applicationId "sfllhkhan95.doodle"
         minSdkVersion 16
         targetSdkVersion 29
-        versionCode 34
-        versionName "3.6.5"
+        versionCode 35
+        versionName "3.6.6"
         multiDexEnabled true
     }
     buildTypes {
@@ -21,9 +21,19 @@ android {
             resValue "string", "app_version",
                     "${defaultConfig.versionName}"
 
-            minifyEnabled false
+            // Enables code shrinking, obfuscation, and optimization for only
+            // your project's release build type.
+            minifyEnabled true
+
+            // Enables resource shrinking, which is performed by the
+            // Android Gradle plugin.
+            shrinkResources true
+
+            // Includes the default ProGuard rules files that are packaged with
+            // the Android Gradle plugin. To learn more, go to the section about
+            // R8 configuration files.
             proguardFiles getDefaultProguardFile(
-                    'proguard-android.txt'),
+                    'proguard-android-optimize.txt'),
                     'proguard-rules.pro'
         }
     }
@@ -44,11 +54,8 @@ dependencies {
     implementation 'com.github.bumptech.glide:glide:4.9.0'
     implementation 'com.github.franmontiel:LocaleChanger:0.9.2'
     implementation 'com.github.yalantis:ucrop:2.2.3-native'
-    implementation 'com.google.android.gms:play-services-auth:17.0.0'
     implementation 'com.google.firebase:firebase-ads:18.2.0'
-    implementation 'com.google.firebase:firebase-auth:19.1.0'
     implementation 'com.google.firebase:firebase-core:17.2.0'
-    implementation 'com.google.firebase:firebase-firestore:21.2.0'
     implementation 'com.google.firebase:firebase-messaging:20.0.0'
     implementation 'com.leinardi.android:speed-dial:2.0.0'
     implementation 'com.orhanobut:hawk:2.0.1'
