@@ -1,11 +1,13 @@
 package sfllhkhan95.doodle.views.activity
 
+import android.content.Context
 import android.os.Bundle
 import android.widget.LinearLayout
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import com.google.android.material.button.MaterialButton
 import sfllhkhan95.doodle.R
+import sfllhkhan95.doodle.utils.LocaleUtils
 import sfllhkhan95.doodle.utils.ThemeUtils
 import sfllhkhan95.doodle.views.dialog.ConfirmationDialog
 import java.io.BufferedReader
@@ -74,6 +76,14 @@ class FAQsActivity : AppCompatActivity() {
                         .show()
             }
         }
+    }
+
+    override fun attachBaseContext(base: Context?) {
+        super.attachBaseContext(try {
+            LocaleUtils.configureBaseContext(base)
+        } catch (ignored: Exception) {
+            base
+        })
     }
 
 }

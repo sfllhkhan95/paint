@@ -2,8 +2,8 @@ package sfllhkhan95.doodle.utils
 
 import android.content.Context
 import androidx.appcompat.app.AlertDialog
+import com.franmontiel.localechanger.LocaleChanger
 import com.google.android.gms.tasks.OnSuccessListener
-import com.orhanobut.hawk.Hawk
 import sfllhkhan95.doodle.R
 import java.util.*
 
@@ -16,60 +16,53 @@ import java.util.*
  */
 object LocaleUtils {
 
-    private const val TAG = "APP_LANGUAGE"
-
-    private val supportedLocales = Array<CharSequence>(5) {
+    private val supportedLocales = Array<CharSequence>(4) {
         when (it) {
-            1 -> "English"
-            2 -> "Deutsch"
-            3 -> "Français"
-            4 -> "اردو"
-            else -> "System Default"
+            1 -> "Deutsch"
+            2 -> "Français"
+            3 -> "اردو"
+            else -> "English"
         }
     }
 
-    private fun getSelectedLocale(which: Int): Locale {
-        return when (which) {
-            1 -> Locale.ENGLISH
-            2 -> Locale.GERMAN
-            3 -> Locale.FRENCH
-            4 -> Locale("ur")
-            else -> Locale.getDefault()
-        }
+    fun init(context: Context) {
+        LocaleChanger.initialize(context, listOf(
+                Locale.ENGLISH,
+                Locale.GERMAN,
+                Locale.FRENCH,
+                Locale("ur")
+        ))
     }
 
-    private fun selectLocale(context: Context, which: Int) {
-        val locale = getSelectedLocale(which)
-        changeLocale(context, locale)
-
-        saveLocaleSettings(which)
+    fun configureBaseContext(base: Context?): Context? {
+        return LocaleChanger.configureBaseContext(base)
     }
 
-    private fun changeLocale(context: Context, locale: Locale) {
-        val resources = context.resources
-
-        val config = resources.configuration
-        config.locale = locale
-
-        resources.updateConfiguration(config, resources.displayMetrics)
-    }
-
-    private fun saveLocaleSettings(which: Int) {
-        Hawk.put(TAG, which)
-    }
-
-    fun restoreLocaleSettings(context: Context) {
-        selectLocale(context, Hawk.get(TAG, 0))
+    fun onConfigurationChanged() {
+        LocaleChanger.onConfigurationChanged()
     }
 
     fun makeDialog(context: Context, onLocaleChanged: OnSuccessListener<Void>?): AlertDialog {
         return AlertDialog.Builder(context, ThemeUtils.getDialogTheme())
                 .setTitle(context.getString(R.string.settings_item_locale))
                 .setItems(supportedLocales) { _, which ->
-                    selectLocale(context, which)
+                    selectLocale(which)
                     onLocaleChanged?.onSuccess(null)
                 }
                 .create()
+    }
+
+    private fun getSelectedLocale(which: Int): Locale {
+        return when (which) {
+            2 -> Locale.GERMAN
+            3 -> Locale.FRENCH
+            4 -> Locale("ur")
+            else -> Locale.ENGLISH
+        }
+    }
+
+    private fun selectLocale(which: Int) {
+        LocaleChanger.setLocale(getSelectedLocale(which))
     }
 
 }

@@ -1,16 +1,18 @@
 package sfllhkhan95.doodle.views.activity
 
 import android.Manifest
+import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Bundle
-import androidx.core.content.ContextCompat
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import com.crashlytics.android.Crashlytics
 import com.google.firebase.auth.FirebaseAuth
 import com.orhanobut.hawk.Hawk
 import sfllhkhan95.doodle.DoodleApplication
 import sfllhkhan95.doodle.R
+import sfllhkhan95.doodle.utils.LocaleUtils
 import sfllhkhan95.doodle.utils.ThemeUtils
 import java.util.*
 
@@ -73,6 +75,14 @@ class LaunchScreen : AppCompatActivity() {
         } finally {
             super.onDestroy()
         }
+    }
+
+    override fun attachBaseContext(base: Context?) {
+        super.attachBaseContext(try {
+            LocaleUtils.configureBaseContext(base)
+        } catch (ignored: Exception) {
+            base
+        })
     }
 
 }

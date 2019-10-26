@@ -1,5 +1,6 @@
 package sfllhkhan95.doodle.views.activity
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
@@ -83,6 +84,14 @@ class SettingsActivity : AppCompatActivity(), View.OnClickListener {
 
     override fun onBackPressed() {
         NavUtils.navigateUpFromSameTask(this)
+    }
+
+    override fun attachBaseContext(base: Context?) {
+        super.attachBaseContext(try {
+            LocaleUtils.configureBaseContext(base)
+        } catch (ignored: Exception) {
+            base
+        })
     }
 
 }

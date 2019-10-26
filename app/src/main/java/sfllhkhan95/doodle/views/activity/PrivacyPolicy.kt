@@ -1,9 +1,11 @@
 package sfllhkhan95.doodle.views.activity
 
+import android.content.Context
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
 import android.webkit.WebView
+import androidx.appcompat.app.AppCompatActivity
 import sfllhkhan95.doodle.R
+import sfllhkhan95.doodle.utils.LocaleUtils
 import sfllhkhan95.doodle.utils.ThemeUtils
 
 /**
@@ -20,6 +22,14 @@ class PrivacyPolicy : AppCompatActivity() {
         val webView = WebView(this)
         webView.loadUrl(resources.getString(R.string.privacy_policy_url))
         setContentView(webView)
+    }
+
+    override fun attachBaseContext(base: Context?) {
+        super.attachBaseContext(try {
+            LocaleUtils.configureBaseContext(base)
+        } catch (ignored: Exception) {
+            base
+        })
     }
 
 }

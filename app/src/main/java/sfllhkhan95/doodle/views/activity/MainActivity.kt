@@ -1,6 +1,7 @@
 package sfllhkhan95.doodle.views.activity
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.Color
@@ -465,15 +466,15 @@ class MainActivity : AppCompatActivity(), SeekBar.OnSeekBarChangeListener, OnToo
         try {
             share(imageFile, getString(R.string.package_messenger))
         } catch (ex: Exception) {
-            Toast.makeText(this, "Please install Facebook Messenger.", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Please install Facebook Messenger.", Toast.LENGTH_LONG).show()
         }
     }
 
     private fun shareOnWhatsApp(imageFile: File) {
-        try{
+        try {
             share(imageFile, getString(R.string.package_whatsapp))
         } catch (ex: Exception) {
-            Toast.makeText(this, "Please install WhatsApp.", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Please install WhatsApp.", Toast.LENGTH_LONG).show()
         }
     }
 
@@ -508,6 +509,14 @@ class MainActivity : AppCompatActivity(), SeekBar.OnSeekBarChangeListener, OnToo
         DEFAULT,
         MESSENGER,
         WHATSAPP
+    }
+
+    override fun attachBaseContext(base: Context?) {
+        super.attachBaseContext(try {
+            LocaleUtils.configureBaseContext(base)
+        } catch (ignored: Exception) {
+            base
+        })
     }
 
 }

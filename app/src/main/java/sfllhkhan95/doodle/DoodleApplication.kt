@@ -1,12 +1,14 @@
 package sfllhkhan95.doodle
 
 import android.app.Application
+import android.content.res.Configuration
 import com.crashlytics.android.Crashlytics
 import com.crashlytics.android.core.CrashlyticsCore
 import com.orhanobut.hawk.Hawk
 import io.fabric.sdk.android.Fabric
 import sfllhkhan95.doodle.bo.AdManager
 import sfllhkhan95.doodle.utils.LocaleUtils
+import sfllhkhan95.doodle.utils.ProjectUtils
 
 /**
  * Doodle is the Application class which bootstraps everything and initializes the global
@@ -35,7 +37,12 @@ class DoodleApplication : Application() {
         AdManager.initialize(this)
 
         // Restore locale settings
-        LocaleUtils.restoreLocaleSettings(this)
+        LocaleUtils.init(applicationContext)
+    }
+
+    override fun onConfigurationChanged(newConfig: Configuration) {
+        super.onConfigurationChanged(newConfig)
+        LocaleUtils.onConfigurationChanged()
     }
 
     companion object {
