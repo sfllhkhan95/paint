@@ -1,125 +1,157 @@
 <resources>
-    <string name="company_name_prefix">Ein</string>
-    <string name="company_name_suffix">App</string>
-    
-    <!-- Notification channels -->
-    <string name="notifications_main_channel_name">Primärer Benachrichtigungskanal</string>
-    <string name="notifications_main_channel_description">Dies ist der Hauptbenachrichtigungskanal.</string>
+  <string name="company_name_prefix">Ein</string>
+  <string name="company_name_suffix">App</string>
 
-    <!-- Error messages -->
-    <string name="error_unknown">Unbekannter Fehler. Aktualisieren Sie die Anwendung auf die neueste Version oder wenden Sie sich an den Support, wenn der Fehler weiterhin besteht.</string>
-    <string name="error_no_gallery">Keine Galerie-Anwendung gefunden.</string>
-    <string name="error_no_camera">Keine Kameraanwendung gefunden.</string>
+  <!-- Notification channels -->
+  <string name="notifications_main_channel_name">Primärer Benachrichtigungskanal</string>
+  <string name="notifications_main_channel_description">Dies ist der Hauptbenachrichtigungskanal.</string>
 
-    <!-- Confirmation and Status messages -->
-    <string name="confirm_delete_title">Bist du sicher?</string>
-    <string name="confirm_delete_body">Diese Aktion löscht das Projekt dauerhaft. Möchten Sie wirklich fortfahren?</string>
-    <string name="confirm_exit">Beenden ohne Speichern?</string>
-    <string name="confirm_revert">Auf Original zurücksetzen?</string>
-    <string name="confirm_save">Aktuelles Doodle speichern?</string>
-    <string name="confirm_quit">Möchtest du wirklich aufhören?</string>
-    <string name="prompt_permissions">Berechtigung zum Ausführen von Speicheroperationen erforderlich.</string>
-    <string name="status_restricted">Gewähren Sie alle Berechtigungen, bevor Sie fortfahren.</string>
+  <!-- Error messages -->
+  <string name="error_unknown">Unbekannter Fehler. Aktualisieren Sie die Anwendung auf die neueste Version oder wenden
+    Sie sich an den Support, wenn der Fehler weiterhin besteht.
+  </string>
+  <string name="error_no_gallery">Keine Galerie-Anwendung gefunden.</string>
+  <string name="error_no_camera">Keine Kameraanwendung gefunden.</string>
 
-    <!-- Content descriptions (for Accessibility) -->
-    <string name="desc_brush_size_icon">Pinselgröße auswählen</string>
-    <string name="desc_donated">Danke, dass du Doodle unterstützt! Anzeigen werden entfernt, wenn Sie die App erneut starten.</string>
-    <string name="desc_icon">Ikone</string>
-    <string name="desc_logo">Logo</string>
-    <string name="desc_messenger_share_button">Im Messenger teilen</string>
-    <string name="desc_thumbnail">Projekt-Symbol</string>
+  <!-- Confirmation and Status messages -->
+  <string name="confirm_delete_title">Bist du sicher?</string>
+  <string name="confirm_delete_body">Diese Aktion löscht das Projekt dauerhaft. Möchten Sie wirklich fortfahren?
+  </string>
+  <string name="confirm_exit">Beenden ohne Speichern?</string>
+  <string name="confirm_revert">Auf Original zurücksetzen?</string>
+  <string name="confirm_save">Aktuelles Doodle speichern?</string>
+  <string name="confirm_quit">Möchtest du wirklich aufhören?</string>
+  <string name="prompt_permissions">Berechtigung zum Ausführen von Speicheroperationen erforderlich.</string>
+  <string name="status_restricted">Gewähren Sie alle Berechtigungen, bevor Sie fortfahren.</string>
 
-    <!-- Prompt descriptions -->
-    <string name="desc_prompt_save">Ihr Projekt wird in der Galerie gespeichert und Sie können es später weiter bearbeiten.</string>
-    <string name="desc_prompt_exit">Alle nicht gespeicherten Änderungen werden verworfen. Möchten Sie wirklich fortfahren?</string>
-    <string name="desc_prompt_revert">Diese Aktion löscht alle nicht gespeicherten Änderungen. Es kann nicht rückgängig gemacht werden. Möchten Sie wirklich fortfahren?</string>
-    <string name="desc_prompt_share">In WhatsApp freigeben, Doodle in einer Messenger-Unterhaltung senden oder über andere Anwendungen freigeben</string>
-    <string name="desc_prompt_support">Doodle ist ein kostenloses Open-Source-Projekt. Unser Team arbeitet hart daran, Ihnen das beste Produkt zu liefern. Minimalanzeigen sind die einzige Einnahmequelle dieser App. Sie können Doodle unterstützen, indem Sie es im Play Store überprüfen, einen Beitrag zur Quelle leisten oder einen einmaligen Betrag spenden, um alle Anzeigen aus der App zu entfernen.</string>
-    <string name="desc_prompt_supported">Danke, dass du Doodle unterstützt! Doodle ist ein kostenloses Open-Source-Projekt. Unser Team arbeitet hart daran, Ihnen das beste Produkt zu liefern. Sie können Doodle unterstützen, indem Sie es im Play Store lesen oder einen Beitrag zu seiner Quelle leisten.</string>
-    <string name="desc_prompt_watch_ad">Doodle ist ein kostenloses Open-Source-Projekt. Klicken Sie unten auf "Werbung ansehen", um eine Videoanzeige zu sehen. Dies hilft uns, Umsatz zu generieren. Viel Spaß beim Kritzeln!</string>
-    <string name="desc_prompt_quit">Komm bald wieder.\nViel Spaß beim Zeichnen!</string>
+  <!-- Content descriptions (for Accessibility) -->
+  <string name="desc_brush_size_icon">Pinselgröße auswählen</string>
+  <string name="desc_donated">Danke, dass du Doodle unterstützt! Anzeigen werden entfernt, wenn Sie die App erneut
+    starten.
+  </string>
+  <string name="desc_icon">Ikone</string>
+  <string name="desc_logo">Logo</string>
+  <string name="desc_messenger_share_button">Im Messenger teilen</string>
+  <string name="desc_thumbnail">Projekt-Symbol</string>
 
-    <!-- Placeholders -->
-    <string name="placeholder_default_theme">Standardthema</string>
-    <string name="placeholder_dialog_body">Hier kommt die Beschreibung</string>
-    <string name="placeholder_hello_world">Hallo Welt!</string>
-    <string name="placeholder_messenger_recipient">Messenger-Gespräch</string>
-    <string name="placeholder_name">Erstes M. Letztes</string>
-    <string name="placeholder_title">Titel</string>
+  <!-- Prompt descriptions -->
+  <string name="desc_prompt_save">Ihr Projekt wird in der Galerie gespeichert und Sie können es später weiter
+    bearbeiten.
+  </string>
+  <string name="desc_prompt_exit">Alle nicht gespeicherten Änderungen werden verworfen. Möchten Sie wirklich
+    fortfahren?
+  </string>
+  <string name="desc_prompt_revert">Diese Aktion löscht alle nicht gespeicherten Änderungen. Es kann nicht rückgängig
+    gemacht werden. Möchten Sie wirklich fortfahren?
+  </string>
+  <string name="desc_prompt_share">In WhatsApp freigeben, Doodle in einer Messenger-Unterhaltung senden oder über andere
+    Anwendungen freigeben
+  </string>
+  <string name="desc_prompt_support">Doodle ist ein kostenloses Open-Source-Projekt. Unser Team arbeitet hart daran,
+    Ihnen das beste Produkt zu liefern. Minimalanzeigen sind die einzige Einnahmequelle dieser App. Sie können Doodle
+    unterstützen, indem Sie es im Play Store überprüfen, einen Beitrag zur Quelle leisten oder einen einmaligen Betrag
+    spenden, um alle Anzeigen aus der App zu entfernen.
+  </string>
+  <string name="desc_prompt_supported">Danke, dass du Doodle unterstützt! Doodle ist ein kostenloses
+    Open-Source-Projekt. Unser Team arbeitet hart daran, Ihnen das beste Produkt zu liefern. Sie können Doodle
+    unterstützen, indem Sie es im Play Store lesen oder einen Beitrag zu seiner Quelle leisten.
+  </string>
+  <string name="desc_prompt_watch_ad">Doodle ist ein kostenloses Open-Source-Projekt. Klicken Sie unten auf "Werbung
+    ansehen", um eine Videoanzeige zu sehen. Dies hilft uns, Umsatz zu generieren. Viel Spaß beim Kritzeln!
+  </string>
+  <string name="desc_prompt_quit">Komm bald wieder.\nViel Spaß beim Zeichnen!</string>
 
-    <!-- Labels -->
-    <string name="label_blank">Leeres Projekt</string>
-    <string name="label_camera">Kamera</string>
-    <string name="label_compose">Komponieren</string>
-    <string name="label_choose_theme">Wähle eine Farbe</string>
-    <string name="label_delete">Löschen</string>
-    <string name="label_faqs">Doodle-FAQs</string>
-    <string name="label_gallery">Galerie</string>
-    <string name="label_messenger_action">Antworten auf</string>
-    <string name="label_new_message">Neue Nachricht</string>
-    <string name="label_op1">Option 1</string>
-    <string name="label_op2">Option 2</string>
-    <string name="label_op3">Option 3</string>
-    <string name="label_privacy">Datenschutz-Bestimmungen</string>
-    <string name="label_set">Einstellen</string>
-    <string name="label_settings">Einstellungen</string>
+  <!-- Placeholders -->
+  <string name="placeholder_default_theme">Standardthema</string>
+  <string name="placeholder_dialog_body">Hier kommt die Beschreibung</string>
+  <string name="placeholder_hello_world">Hallo Welt!</string>
+  <string name="placeholder_messenger_recipient">Messenger-Gespräch</string>
+  <string name="placeholder_name">Erstes M. Letztes</string>
+  <string name="placeholder_title">Titel</string>
 
-    <string name="label_share_whatsapp">WhatsApp</string>
-    <string name="label_share_messenger">Messenger</string>
-    <string name="label_share_default">Standard</string>
+  <!-- Labels -->
+  <string name="label_blank">Leeres Projekt</string>
+  <string name="label_camera">Kamera</string>
+  <string name="label_compose">Komponieren</string>
+  <string name="label_choose_theme">Wähle eine Farbe</string>
+  <string name="label_delete">Löschen</string>
+  <string name="label_faqs">Doodle-FAQs</string>
+  <string name="label_gallery">Galerie</string>
+  <string name="label_messenger_action">Antworten auf</string>
+  <string name="label_new_message">Neue Nachricht</string>
+  <string name="label_op1">Option 1</string>
+  <string name="label_op2">Option 2</string>
+  <string name="label_op3">Option 3</string>
+  <string name="label_privacy">Datenschutz-Bestimmungen</string>
+  <string name="label_set">Einstellen</string>
+  <string name="label_settings">Einstellungen</string>
 
-    <string name="label_support_contribute">Beitragen</string>
-    <string name="label_support_donate">Spenden</string>
-    <string name="label_support_review">Rezension</string>
+  <string name="label_share_whatsapp">WhatsApp</string>
+  <string name="label_share_messenger">Messenger</string>
+  <string name="label_share_default">Standard</string>
 
-    <string name="label_exit">Schließen</string>
-    <string name="label_watch_ad">Werbung ansehen</string>
+  <string name="label_support_contribute">Beitragen</string>
+  <string name="label_support_donate">Spenden</string>
+  <string name="label_support_review">Rezension</string>
 
-    <!-- Settings screen options -->
-    <string name="settings_item_help">Hilfe erhalten</string>
-    <string name="settings_item_privacy">Siehe Datenschutzerklärung</string>
-    <string name="settings_icon_support">Unterstütze uns</string>
-    <string name="settings_item_theme">Wähle eine Farbe</string>
-    <string name="settings_item_intro">Siehe Einleitung</string>
-    <string name="settings_item_locale">Sprache</string>
+  <string name="label_exit">Schließen</string>
+  <string name="label_watch_ad">Werbung ansehen</string>
 
-    <!-- Menu items -->
-    <string name="menu_action_layers">Schichten</string>
-    <string name="menu_action_redo">Wiederholen</string>
-    <string name="menu_action_revert">Zurückkehren</string>
-    <string name="menu_action_save">Speichern</string>
-    <string name="menu_action_share">Aktie</string>
-    <string name="menu_action_undo">Stornieren</string>
+  <!-- Settings screen options -->
+  <string name="settings_item_help">Hilfe erhalten</string>
+  <string name="settings_item_privacy">Siehe Datenschutzerklärung</string>
+  <string name="settings_icon_support">Unterstütze uns</string>
+  <string name="settings_item_theme">Wähle eine Farbe</string>
+  <string name="settings_item_intro">Siehe Einleitung</string>
+  <string name="settings_item_locale">Sprache</string>
 
-    <string name="menu_tools_box">Würfel</string>
-    <string name="menu_tools_canvas">Leinwandfarbe</string>
-    <string name="menu_tools_circle">Kreis</string>
-    <string name="menu_tools_color_fill">Füllfarbe</string>
-    <string name="menu_tools_color_stroke">Stiftfarbe</string>
-    <string name="menu_tools_diamond">Diamant</string>
-    <string name="menu_tools_eraser">Radiergummi</string>
-    <string name="menu_tools_eyedrop">Farbwähler</string>
-    <string name="menu_tools_line">Linie</string>
-    <string name="menu_tools_pen">Stift</string>
-    <string name="menu_tools_rect">Viereck</string>
-    <string name="menu_tools_shape">Gestalt</string>
-    <string name="menu_tools_star">Star</string>
-    <string name="menu_tools_triangle">Dreieck</string>
+  <!-- Menu items -->
+  <string name="menu_action_layers">Schichten</string>
+  <string name="menu_action_redo">Wiederholen</string>
+  <string name="menu_action_revert">Zurückkehren</string>
+  <string name="menu_action_save">Speichern</string>
+  <string name="menu_action_share">Aktie</string>
+  <string name="menu_action_undo">Stornieren</string>
 
-    <!-- Intro Slides -->
-    <string name="label_intro_done_permission">Erlauben</string>
-    <string name="label_intro_end_normal">Start</string>
+  <string name="menu_tools_box">Würfel</string>
+  <string name="menu_tools_canvas">Leinwandfarbe</string>
+  <string name="menu_tools_circle">Kreis</string>
+  <string name="menu_tools_color_fill">Füllfarbe</string>
+  <string name="menu_tools_color_stroke">Stiftfarbe</string>
+  <string name="menu_tools_diamond">Diamant</string>
+  <string name="menu_tools_eraser">Radiergummi</string>
+  <string name="menu_tools_eyedrop">Farbwähler</string>
+  <string name="menu_tools_line">Linie</string>
+  <string name="menu_tools_pen">Stift</string>
+  <string name="menu_tools_rect">Viereck</string>
+  <string name="menu_tools_shape">Gestalt</string>
+  <string name="menu_tools_star">Star</string>
+  <string name="menu_tools_triangle">Dreieck</string>
 
-    <string name="slide1_title">Willkommen</string>
-    <string name="slide1_description">Doodle ist dein Kunstbegleiter, mit dem du alles Mögliche machen kannst, vom lässigen Kritzeln bis hin zu ernsteren Zeichnungen.</string>
+  <!-- Intro Slides -->
+  <string name="label_intro_done_permission">Erlauben</string>
+  <string name="label_intro_end_normal">Start</string>
 
-    <string name="slide2_title">Formen und Farben</string>
-    <string name="slide2_description">Zusätzlich zum Freiform-Doodling können Sie mit Doodle vordefinierte geometrische Formen in Farben Ihrer Wahl zeichnen.</string>
+  <string name="slide1_title">Willkommen</string>
+  <string name="slide1_description">Doodle ist dein Kunstbegleiter, mit dem du alles Mögliche machen kannst, vom
+    lässigen Kritzeln bis hin zu ernsteren Zeichnungen.
+  </string>
 
-    <string name="slide3_title">Doodle mit Freunden</string>
-    <string name="slide3_description">Senden Sie Ihre Kreationen auf Facebook Messenger an Ihre Freunde und beantworten Sie ihre Doodle-Nachrichten mit Ihrem eigenen Doodle, ohne Messenger zu verlassen.</string>
+  <string name="slide2_title">Formen und Farben</string>
+  <string name="slide2_description">Zusätzlich zum Freiform-Doodling können Sie mit Doodle vordefinierte geometrische
+    Formen in Farben Ihrer Wahl zeichnen.
+  </string>
 
-    <string name="slide4_title">Zugriff Gewähren</string>
-    <string name="slide4_description_permissions">Doodle benötigt Speicher- und Kameraberechtigungen, um ein Projekt zu starten.</string>
-    <string name="slide4_description_normal">Beginnen Sie mit einem leeren Projekt oder wählen Sie ein Bild aus der Galerie oder der Kamera.</string>
+  <string name="slide3_title">Doodle mit Freunden</string>
+  <string name="slide3_description">Senden Sie Ihre Kreationen auf Facebook Messenger an Ihre Freunde und beantworten
+    Sie ihre Doodle-Nachrichten mit Ihrem eigenen Doodle, ohne Messenger zu verlassen.
+  </string>
+
+  <string name="slide4_title">Zugriff Gewähren</string>
+  <string name="slide4_description_permissions">Doodle benötigt Speicher- und Kameraberechtigungen, um ein Projekt zu
+    starten.
+  </string>
+  <string name="slide4_description_normal">Beginnen Sie mit einem leeren Projekt oder wählen Sie ein Bild aus der
+    Galerie oder der Kamera.
+  </string>
 </resources>

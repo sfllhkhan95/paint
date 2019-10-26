@@ -1,47 +1,47 @@
 <!--?xml version="1.0" encoding="UTF-8"?-->
 <resources>
-    <!-- Default colors -->
-    <color name="deep_purple_50">#ede7f6</color>
-    <color name="purple_100">#e1bee7</color>
-    <color name="purple_900">#4a148c</color>
-    <color name="purple_900a">#444a148c</color>
+  <!-- Default colors -->
+  <color name="deep_purple_50">#ede7f6</color>
+  <color name="purple_100">#e1bee7</color>
+  <color name="purple_900">#4a148c</color>
+  <color name="purple_900a">#444a148c</color>
 
-    <!-- Ocean colors -->
-    <color name="blue_grey_50">#eceff1</color>
-    <color name="blue_100">#bbdefb</color>
-    <color name="blue_900">#0d47a1</color>
-    <color name="blue_900a">#440d47a1</color>
+  <!-- Ocean colors -->
+  <color name="blue_grey_50">#eceff1</color>
+  <color name="blue_100">#bbdefb</color>
+  <color name="blue_900">#0d47a1</color>
+  <color name="blue_900a">#440d47a1</color>
 
-    <!-- Sunlight colors-->
-    <color name="orange_50">#fff3e0</color>
-    <color name="yellow_100">#fff9c4</color>
-    <color name="yellow_900">#f57f17</color>
-    <color name="yellow_900a">#44f57f17</color>
+  <!-- Sunlight colors-->
+  <color name="orange_50">#fff3e0</color>
+  <color name="yellow_100">#fff9c4</color>
+  <color name="yellow_900">#f57f17</color>
+  <color name="yellow_900a">#44f57f17</color>
 
-    <!-- Forest colors -->
-    <color name="light_green_50">#f1f8e9</color>
-    <color name="green_100">#c8e6c9</color>
-    <color name="green_900">#1b5e20</color>
-    <color name="green_900a">#441b5e20</color>
+  <!-- Forest colors -->
+  <color name="light_green_50">#f1f8e9</color>
+  <color name="green_100">#c8e6c9</color>
+  <color name="green_900">#1b5e20</color>
+  <color name="green_900a">#441b5e20</color>
 
-    <!-- Chocolate colors -->
-    <color name="deep_orange_50">#fbe9e7</color>
-    <color name="brown_100">#d7ccc8</color>
-    <color name="brown_900">#3e2723</color>
-    <color name="brown_900a">#443e2723</color>
+  <!-- Chocolate colors -->
+  <color name="deep_orange_50">#fbe9e7</color>
+  <color name="brown_100">#d7ccc8</color>
+  <color name="brown_900">#3e2723</color>
+  <color name="brown_900a">#443e2723</color>
 
-    <!-- Dark colors -->
-    <color name="grey_400">#bdbdbd</color>
-    <color name="grey_600">#757575</color>
-    <color name="grey_900">#212121</color>
-    <color name="grey_900a">#44212121</color>
+  <!-- Dark colors -->
+  <color name="grey_400">#bdbdbd</color>
+  <color name="grey_600">#757575</color>
+  <color name="grey_900">#212121</color>
+  <color name="grey_900a">#44212121</color>
 
-    <!-- Other colors -->
-    <color name="black">#000000</color>
-    <color name="blue_grey_500">#607d8b</color>
-    <color name="blue_grey_500a">#88607d8b</color>
-    <color name="blue_grey_800">#37474f</color>
-    <color name="red_900">#b71c1c</color>
-    <color name="red_900a">#88b71c1c</color>
-    <color name="white">#FFFFFF</color>
+  <!-- Other colors -->
+  <color name="black">#000000</color>
+  <color name="blue_grey_500">#607d8b</color>
+  <color name="blue_grey_500a">#88607d8b</color>
+  <color name="blue_grey_800">#37474f</color>
+  <color name="red_900">#b71c1c</color>
+  <color name="red_900a">#88b71c1c</color>
+  <color name="white">#FFFFFF</color>
 </resources>

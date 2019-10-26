@@ -3,7 +3,6 @@ package sfllhkhan95.doodle.utils
 import android.content.Context
 import android.content.Intent
 import androidx.core.content.FileProvider
-import com.google.android.gms.tasks.OnSuccessListener
 import sfllhkhan95.doodle.R
 import java.io.File
 

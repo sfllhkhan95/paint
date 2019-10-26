@@ -1,120 +1,120 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:custom="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".views.activity.MainActivity">
-
-    <!-- Painting canvas -->
-    <sfllhkhan95.doodle.views.PaintView
-        android:id="@+id/canvas"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:fitsSystemWindows="true">
-
-        <!-- Action bar -->
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/primaryToolbar"
-            android:layout_width="match_parent"
-            android:layout_height="?actionBarSize"
-            android:layout_alignParentTop="true"
-            android:background="@drawable/bg_toolbar"
-            android:gravity="center_vertical"
-            android:paddingStart="10dp"
-            android:paddingEnd="10dp" />
-
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/secondaryToolbar"
-            android:layout_width="wrap_content"
-            android:layout_height="?actionBarSize"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentTop="true"
-            android:layout_marginStart="10dp"
-            android:layout_marginLeft="10dp"
-            android:background="@android:color/transparent"
-            android:gravity="center_vertical" />
-
-        <!-- Drawing tools -->
-        <sfllhkhan95.doodle.views.ToolboxView
-            android:id="@+id/toolbox"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:orientation="horizontal" />
-
-        <LinearLayout
-            android:id="@+id/brushSizeBar"
-            android:layout_width="match_parent"
-            android:layout_height="35dp"
-            android:layout_above="@+id/toolbox"
-            android:orientation="horizontal"
-            android:weightSum="6">
-
-            <ImageView
-                android:layout_width="0dp"
+                xmlns:custom="http://schemas.android.com/apk/res-auto"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:contentDescription="@string/desc_brush_size_icon"
-                android:scaleType="centerInside"
-                android:src="@drawable/ic_brush_size"
-                android:tint="?attr/colorPrimaryDark" />
+                android:orientation="vertical"
+                tools:context=".views.activity.MainActivity">
 
-            <androidx.appcompat.widget.AppCompatSeekBar
-                android:id="@+id/brushController"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="5"
-                android:max="15"
-                android:progress="5" />
+  <!-- Painting canvas -->
+  <sfllhkhan95.doodle.views.PaintView
+      android:id="@+id/canvas"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"/>
 
-        </LinearLayout>
+  <RelativeLayout
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:fitsSystemWindows="true">
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentBottom="true"
-            android:layout_marginStart="@dimen/activity_horizontal_margin"
-            android:layout_marginTop="@dimen/activity_vertical_margin"
-            android:layout_marginEnd="@dimen/activity_horizontal_margin"
-            android:layout_marginBottom="@dimen/activity_vertical_margin"
-            android:orientation="vertical"
-            tools:ignore="RelativeOverlap">
+    <!-- Action bar -->
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/primaryToolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?actionBarSize"
+        android:layout_alignParentTop="true"
+        android:background="@drawable/bg_toolbar"
+        android:gravity="center_vertical"
+        android:paddingStart="10dp"
+        android:paddingEnd="10dp"/>
 
-            <com.google.android.material.floatingactionbutton.FloatingActionButton
-                android:id="@+id/deleteButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
-                android:onClick="deleteProject"
-                android:src="@drawable/ic_action_delete"
-                custom:backgroundTint="@color/red_900" />
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/secondaryToolbar"
+        android:layout_width="wrap_content"
+        android:layout_height="?actionBarSize"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"
+        android:background="@android:color/transparent"
+        android:gravity="center_vertical"/>
 
-            <com.google.android.material.floatingactionbutton.FloatingActionButton
-                android:id="@+id/shareButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
-                android:onClick="shareProject"
-                android:src="@drawable/ic_action_share" />
+    <!-- Drawing tools -->
+    <sfllhkhan95.doodle.views.ToolboxView
+        android:id="@+id/toolbox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal"/>
 
-            <com.google.android.material.floatingactionbutton.FloatingActionButton
-                android:id="@+id/editButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:onClick="editMode"
-                android:src="@drawable/ic_action_edit" />
+    <LinearLayout
+        android:id="@+id/brushSizeBar"
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:layout_above="@+id/toolbox"
+        android:orientation="horizontal"
+        android:weightSum="6">
 
-        </LinearLayout>
+      <ImageView
+          android:layout_width="0dp"
+          android:layout_height="match_parent"
+          android:layout_weight="1"
+          android:contentDescription="@string/desc_brush_size_icon"
+          android:scaleType="centerInside"
+          android:src="@drawable/ic_brush_size"
+          android:tint="?attr/colorPrimaryDark"/>
 
-    </RelativeLayout>
+      <androidx.appcompat.widget.AppCompatSeekBar
+          android:id="@+id/brushController"
+          android:layout_width="0dp"
+          android:layout_height="match_parent"
+          android:layout_weight="5"
+          android:max="15"
+          android:progress="5"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="@dimen/activity_horizontal_margin"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:layout_marginEnd="@dimen/activity_horizontal_margin"
+        android:layout_marginBottom="@dimen/activity_vertical_margin"
+        android:orientation="vertical"
+        tools:ignore="RelativeOverlap">
+
+      <com.google.android.material.floatingactionbutton.FloatingActionButton
+          android:id="@+id/deleteButton"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginBottom="8dp"
+          android:onClick="deleteProject"
+          android:src="@drawable/ic_action_delete"
+          custom:backgroundTint="@color/red_900"/>
+
+      <com.google.android.material.floatingactionbutton.FloatingActionButton
+          android:id="@+id/shareButton"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginBottom="8dp"
+          android:onClick="shareProject"
+          android:src="@drawable/ic_action_share"/>
+
+      <com.google.android.material.floatingactionbutton.FloatingActionButton
+          android:id="@+id/editButton"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:onClick="editMode"
+          android:src="@drawable/ic_action_edit"/>
+
+    </LinearLayout>
+
+  </RelativeLayout>
 
 </RelativeLayout>

@@ -21,10 +21,6 @@ class ActionBarManager
     private val saveAction: MenuItem = menu.findItem(R.id.save)
     // private val saveAsAction: MenuItem = menu.findItem(R.id.save_as)
 
-    init {
-
-    }
-
     private fun enable(item: MenuItem) {
         item.isEnabled = true
     }

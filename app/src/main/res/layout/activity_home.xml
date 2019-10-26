@@ -1,73 +1,73 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:ads="http://schemas.android.com/apk/res-auto"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:fitsSystemWindows="true"
-    tools:context=".views.activity.HomeActivity">
+                                                     xmlns:ads="http://schemas.android.com/apk/res-auto"
+                                                     xmlns:app="http://schemas.android.com/apk/res-auto"
+                                                     xmlns:tools="http://schemas.android.com/tools"
+                                                     android:layout_width="match_parent"
+                                                     android:layout_height="match_parent"
+                                                     android:fitsSystemWindows="true"
+                                                     tools:context=".views.activity.HomeActivity">
 
-    <com.google.android.material.appbar.AppBarLayout
-        android:layout_width="match_parent"
-        android:layout_height="?actionBarSize"
-        android:layout_gravity="top"
-        android:background="?attr/colorPrimaryDark">
+  <com.google.android.material.appbar.AppBarLayout
+      android:layout_width="match_parent"
+      android:layout_height="?actionBarSize"
+      android:layout_gravity="top"
+      android:background="?attr/colorPrimaryDark">
 
-        <!-- Fixed Action Bar -->
-        <androidx.appcompat.widget.LinearLayoutCompat
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="end|bottom"
-            android:orientation="horizontal"
-            app:layout_collapseMode="pin">
-
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/settingsButton"
-                style="@style/Widget.MaterialComponents.Button.TextButton.Dialog.Icon"
-                android:layout_width="40dp"
-                android:layout_height="wrap_content"
-                android:drawableEnd="@drawable/ic_action_settings"
-                android:drawableRight="@drawable/ic_action_settings" />
-
-        </androidx.appcompat.widget.LinearLayoutCompat>
-
-    </com.google.android.material.appbar.AppBarLayout>
-
-    <androidx.core.widget.NestedScrollView
-        android:id="@+id/scrollView"
+    <!-- Fixed Action Bar -->
+    <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+        android:gravity="end|bottom"
+        android:orientation="horizontal"
+        app:layout_collapseMode="pin">
 
-        <sfllhkhan95.doodle.views.NestedGridView
-            android:id="@+id/savedProjectsGrid"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:clickable="true"
-            android:columnWidth="112dp"
-            android:focusable="true"
-            android:gravity="center"
-            android:horizontalSpacing="1dp"
-            android:numColumns="auto_fit"
-            android:stretchMode="columnWidth"
-            android:verticalSpacing="1dp" />
+      <androidx.appcompat.widget.AppCompatButton
+          android:id="@+id/settingsButton"
+          style="@style/Widget.MaterialComponents.Button.TextButton.Dialog.Icon"
+          android:layout_width="40dp"
+          android:layout_height="wrap_content"
+          android:drawableEnd="@drawable/ic_action_settings"
+          android:drawableRight="@drawable/ic_action_settings"/>
 
-    </androidx.core.widget.NestedScrollView>
+    </androidx.appcompat.widget.LinearLayoutCompat>
 
-    <com.google.android.gms.ads.AdView
-        android:id="@+id/adView"
-        android:layout_width="wrap_content"
-        android:layout_height="50dp"
-        android:layout_gravity="bottom|center_horizontal"
-        ads:adSize="BANNER"
-        ads:adUnitId="@string/admob_ad_banner_confirmation" />
+  </com.google.android.material.appbar.AppBarLayout>
 
-    <com.leinardi.android.speeddial.SpeedDialView
-        android:id="@+id/compose_button"
-        android:layout_width="wrap_content"
+  <androidx.core.widget.NestedScrollView
+      android:id="@+id/scrollView"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+    <sfllhkhan95.doodle.views.NestedGridView
+        android:id="@+id/savedProjectsGrid"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        app:sdMainFabClosedSrc="@drawable/ic_action_add" />
+        android:clickable="true"
+        android:columnWidth="112dp"
+        android:focusable="true"
+        android:gravity="center"
+        android:horizontalSpacing="1dp"
+        android:numColumns="auto_fit"
+        android:stretchMode="columnWidth"
+        android:verticalSpacing="1dp"/>
+
+  </androidx.core.widget.NestedScrollView>
+
+  <com.google.android.gms.ads.AdView
+      android:id="@+id/adView"
+      android:layout_width="wrap_content"
+      android:layout_height="50dp"
+      android:layout_gravity="bottom|center_horizontal"
+      ads:adSize="BANNER"
+      ads:adUnitId="@string/admob_ad_banner_confirmation"/>
+
+  <com.leinardi.android.speeddial.SpeedDialView
+      android:id="@+id/compose_button"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_gravity="bottom|end"
+      app:sdMainFabClosedSrc="@drawable/ic_action_add"/>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -43,7 +43,7 @@ class ToolboxView : LinearLayout {
                 ViewGroup.LayoutParams.WRAP_CONTENT)
         layoutParams = p
 
-        this.orientation = LinearLayout.VERTICAL
+        this.orientation = VERTICAL
         this.weightSum = 2f
 
         addView(scrollView)
@@ -75,7 +75,7 @@ class ToolboxView : LinearLayout {
                 ViewGroup.LayoutParams.WRAP_CONTENT)
         layoutParams = p
 
-        this.orientation = LinearLayout.VERTICAL
+        this.orientation = VERTICAL
         this.weightSum = 2f
 
         addView(scrollView)

@@ -1,11 +1,11 @@
 package sfllhkhan95.doodle.bo
 
 import android.content.Intent
-import androidx.annotation.UiThread
-import androidx.appcompat.app.AppCompatActivity
 import android.view.View
 import android.widget.AdapterView
 import android.widget.GridView
+import androidx.annotation.UiThread
+import androidx.appcompat.app.AppCompatActivity
 import sfllhkhan95.doodle.DoodleApplication.Companion.DEFAULT_PROJECT_NAME
 import sfllhkhan95.doodle.DoodleApplication.Companion.FLAG_READ_ONLY
 import sfllhkhan95.doodle.DoodleApplication.Companion.PROJECT_FROM_SAVED

@@ -1,27 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+                                                     android:layout_width="match_parent"
+                                                     android:layout_height="match_parent">
 
-    <sfllhkhan95.doodle.views.SquareImageView
-        android:id="@+id/projectIcon"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:contentDescription="@string/desc_thumbnail"
-        android:scaleType="centerCrop"
-        android:src="@drawable/paintbrush" />
+  <sfllhkhan95.doodle.views.SquareImageView
+      android:id="@+id/projectIcon"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:contentDescription="@string/desc_thumbnail"
+      android:scaleType="centerCrop"
+      android:src="@drawable/paintbrush"/>
 
-    <TextView
-        android:id="@+id/projectName"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom"
-        android:background="@color/blue_900a"
-        android:maxLines="1"
-        android:padding="8dp"
-        android:textAllCaps="true"
-        android:textColor="@color/white"
-        android:textSize="12sp"
-        android:textStyle="bold" />
+  <TextView
+      android:id="@+id/projectName"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_gravity="bottom"
+      android:background="@color/blue_900a"
+      android:maxLines="1"
+      android:padding="8dp"
+      android:textAllCaps="true"
+      android:textColor="@color/white"
+      android:textSize="12sp"
+      android:textStyle="bold"/>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

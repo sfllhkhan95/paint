@@ -58,7 +58,7 @@ class ThemeSelector(private val ownerActivity: AppCompatActivity) : Dialog(owner
 
         findViewById<View>(R.id.ok_button).setOnClickListener {
             dismiss()
-            ThemeUtils.changeTheme(ownerActivity as AppCompatActivity, selectedTheme!!)
+            ThemeUtils.changeTheme(ownerActivity, selectedTheme!!)
         }
 
         selectedTheme = ThemeUtils.currentTheme

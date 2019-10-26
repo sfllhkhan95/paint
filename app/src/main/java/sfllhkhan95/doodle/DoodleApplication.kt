@@ -8,7 +8,6 @@ import com.orhanobut.hawk.Hawk
 import io.fabric.sdk.android.Fabric
 import sfllhkhan95.doodle.bo.AdManager
 import sfllhkhan95.doodle.utils.LocaleUtils
-import sfllhkhan95.doodle.utils.ProjectUtils
 
 /**
  * Doodle is the Application class which bootstraps everything and initializes the global

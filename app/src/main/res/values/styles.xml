@@ -1,133 +1,133 @@
 <resources>
 
-    <style name="AppTheme" parent="Theme.MaterialComponents.NoActionBar">
-        <item name="colorPrimary">@color/purple_100</item>
-        <item name="colorPrimaryDark">@color/purple_900</item>
-        <item name="colorAccent">@color/purple_900</item>
-        <item name="colorSecondary">@color/purple_900a</item>
-        <item name="android:windowBackground">@color/deep_purple_50</item>
-    </style>
+  <style name="AppTheme" parent="Theme.MaterialComponents.NoActionBar">
+    <item name="colorPrimary">@color/purple_100</item>
+    <item name="colorPrimaryDark">@color/purple_900</item>
+    <item name="colorAccent">@color/purple_900</item>
+    <item name="colorSecondary">@color/purple_900a</item>
+    <item name="android:windowBackground">@color/deep_purple_50</item>
+  </style>
 
-    <style name="AppTheme.Ocean" parent="Theme.MaterialComponents.NoActionBar">
-        <item name="colorPrimary">@color/blue_100</item>
-        <item name="colorPrimaryDark">@color/blue_900</item>
-        <item name="colorAccent">@color/blue_900</item>
-        <item name="colorSecondary">@color/blue_900a</item>
-        <item name="android:windowBackground">@color/blue_grey_50</item>
-    </style>
+  <style name="AppTheme.Ocean" parent="Theme.MaterialComponents.NoActionBar">
+    <item name="colorPrimary">@color/blue_100</item>
+    <item name="colorPrimaryDark">@color/blue_900</item>
+    <item name="colorAccent">@color/blue_900</item>
+    <item name="colorSecondary">@color/blue_900a</item>
+    <item name="android:windowBackground">@color/blue_grey_50</item>
+  </style>
 
-    <style name="AppTheme.Sunlight" parent="Theme.MaterialComponents.NoActionBar">
-        <item name="colorPrimary">@color/yellow_100</item>
-        <item name="colorPrimaryDark">@color/yellow_900</item>
-        <item name="colorAccent">@color/yellow_900</item>
-        <item name="colorSecondary">@color/yellow_900a</item>
-        <item name="android:windowBackground">@color/orange_50</item>
-    </style>
+  <style name="AppTheme.Sunlight" parent="Theme.MaterialComponents.NoActionBar">
+    <item name="colorPrimary">@color/yellow_100</item>
+    <item name="colorPrimaryDark">@color/yellow_900</item>
+    <item name="colorAccent">@color/yellow_900</item>
+    <item name="colorSecondary">@color/yellow_900a</item>
+    <item name="android:windowBackground">@color/orange_50</item>
+  </style>
 
-    <style name="AppTheme.Forest" parent="Theme.MaterialComponents.NoActionBar">
-        <item name="colorPrimary">@color/green_100</item>
-        <item name="colorPrimaryDark">@color/green_900</item>
-        <item name="colorAccent">@color/green_900</item>
-        <item name="colorSecondary">@color/green_900a</item>
-        <item name="android:windowBackground">@color/light_green_50</item>
-    </style>
+  <style name="AppTheme.Forest" parent="Theme.MaterialComponents.NoActionBar">
+    <item name="colorPrimary">@color/green_100</item>
+    <item name="colorPrimaryDark">@color/green_900</item>
+    <item name="colorAccent">@color/green_900</item>
+    <item name="colorSecondary">@color/green_900a</item>
+    <item name="android:windowBackground">@color/light_green_50</item>
+  </style>
 
-    <style name="AppTheme.Chocolate" parent="Theme.MaterialComponents.NoActionBar">
-        <item name="colorPrimary">@color/brown_100</item>
-        <item name="colorPrimaryDark">@color/brown_900</item>
-        <item name="colorAccent">@color/brown_900</item>
-        <item name="colorSecondary">@color/brown_900a</item>
-        <item name="android:windowBackground">@color/deep_orange_50</item>
-    </style>
+  <style name="AppTheme.Chocolate" parent="Theme.MaterialComponents.NoActionBar">
+    <item name="colorPrimary">@color/brown_100</item>
+    <item name="colorPrimaryDark">@color/brown_900</item>
+    <item name="colorAccent">@color/brown_900</item>
+    <item name="colorSecondary">@color/brown_900a</item>
+    <item name="android:windowBackground">@color/deep_orange_50</item>
+  </style>
 
-    <style name="AppTheme.Dark" parent="Theme.MaterialComponents.NoActionBar">
-        <item name="colorPrimary">@color/grey_400</item>
-        <item name="colorPrimaryDark">@color/grey_900</item>
-        <item name="colorAccent">@color/grey_900</item>
-        <item name="colorSecondary">@color/grey_900a</item>
-        <item name="android:windowBackground">@color/grey_600</item>
-    </style>
+  <style name="AppTheme.Dark" parent="Theme.MaterialComponents.NoActionBar">
+    <item name="colorPrimary">@color/grey_400</item>
+    <item name="colorPrimaryDark">@color/grey_900</item>
+    <item name="colorAccent">@color/grey_900</item>
+    <item name="colorSecondary">@color/grey_900a</item>
+    <item name="android:windowBackground">@color/grey_600</item>
+  </style>
 
-    <style name="AppTheme.Ocean.Immersive" parent="Theme.MaterialComponents.NoActionBar">
-        <item name="colorPrimary">@color/blue_100</item>
-        <item name="colorPrimaryDark">@color/blue_900</item>
-        <item name="colorAccent">@color/blue_900</item>
-        <item name="colorSecondary">@color/blue_900a</item>
-        <item name="android:windowBackground">@color/blue_grey_50</item>
-    </style>
+  <style name="AppTheme.Ocean.Immersive" parent="Theme.MaterialComponents.NoActionBar">
+    <item name="colorPrimary">@color/blue_100</item>
+    <item name="colorPrimaryDark">@color/blue_900</item>
+    <item name="colorAccent">@color/blue_900</item>
+    <item name="colorSecondary">@color/blue_900a</item>
+    <item name="android:windowBackground">@color/blue_grey_50</item>
+  </style>
 
-    <style name="AppTheme.Sunlight.Immersive" parent="Theme.MaterialComponents.NoActionBar">
-        <item name="colorPrimary">@color/yellow_100</item>
-        <item name="colorPrimaryDark">@color/yellow_900</item>
-        <item name="colorAccent">@color/yellow_900</item>
-        <item name="colorSecondary">@color/yellow_900a</item>
-        <item name="android:windowBackground">@color/orange_50</item>
-    </style>
+  <style name="AppTheme.Sunlight.Immersive" parent="Theme.MaterialComponents.NoActionBar">
+    <item name="colorPrimary">@color/yellow_100</item>
+    <item name="colorPrimaryDark">@color/yellow_900</item>
+    <item name="colorAccent">@color/yellow_900</item>
+    <item name="colorSecondary">@color/yellow_900a</item>
+    <item name="android:windowBackground">@color/orange_50</item>
+  </style>
 
-    <style name="AppTheme.Forest.Immersive" parent="Theme.MaterialComponents.NoActionBar">
-        <item name="colorPrimary">@color/green_100</item>
-        <item name="colorPrimaryDark">@color/green_900</item>
-        <item name="colorAccent">@color/green_900</item>
-        <item name="colorSecondary">@color/green_900a</item>
-        <item name="android:windowBackground">@color/light_green_50</item>
-    </style>
+  <style name="AppTheme.Forest.Immersive" parent="Theme.MaterialComponents.NoActionBar">
+    <item name="colorPrimary">@color/green_100</item>
+    <item name="colorPrimaryDark">@color/green_900</item>
+    <item name="colorAccent">@color/green_900</item>
+    <item name="colorSecondary">@color/green_900a</item>
+    <item name="android:windowBackground">@color/light_green_50</item>
+  </style>
 
-    <style name="AppTheme.Chocolate.Immersive" parent="Theme.MaterialComponents.NoActionBar">
-        <item name="colorPrimary">@color/brown_100</item>
-        <item name="colorPrimaryDark">@color/brown_900</item>
-        <item name="colorAccent">@color/brown_900</item>
-        <item name="colorSecondary">@color/brown_900a</item>
-        <item name="android:windowBackground">@color/deep_orange_50</item>
-    </style>
+  <style name="AppTheme.Chocolate.Immersive" parent="Theme.MaterialComponents.NoActionBar">
+    <item name="colorPrimary">@color/brown_100</item>
+    <item name="colorPrimaryDark">@color/brown_900</item>
+    <item name="colorAccent">@color/brown_900</item>
+    <item name="colorSecondary">@color/brown_900a</item>
+    <item name="android:windowBackground">@color/deep_orange_50</item>
+  </style>
 
-    <style name="AppTheme.Dark.Immersive" parent="Theme.MaterialComponents.NoActionBar">
-        <item name="colorPrimary">@color/grey_400</item>
-        <item name="colorPrimaryDark">@color/grey_900</item>
-        <item name="colorAccent">@color/grey_900</item>
-        <item name="colorSecondary">@color/grey_900a</item>
-        <item name="android:windowBackground">@color/grey_600</item>
-    </style>
+  <style name="AppTheme.Dark.Immersive" parent="Theme.MaterialComponents.NoActionBar">
+    <item name="colorPrimary">@color/grey_400</item>
+    <item name="colorPrimaryDark">@color/grey_900</item>
+    <item name="colorAccent">@color/grey_900</item>
+    <item name="colorSecondary">@color/grey_900a</item>
+    <item name="android:windowBackground">@color/grey_600</item>
+  </style>
 
-    <style name="DialogTheme" parent="Theme.MaterialComponents.Light.Dialog.Alert">
-        <item name="colorPrimary">@color/purple_100</item>
-        <item name="colorPrimaryDark">@color/purple_900</item>
-        <item name="colorAccent">@color/purple_900</item>
-        <item name="android:windowBackground">@color/deep_purple_50</item>
-    </style>
+  <style name="DialogTheme" parent="Theme.MaterialComponents.Light.Dialog.Alert">
+    <item name="colorPrimary">@color/purple_100</item>
+    <item name="colorPrimaryDark">@color/purple_900</item>
+    <item name="colorAccent">@color/purple_900</item>
+    <item name="android:windowBackground">@color/deep_purple_50</item>
+  </style>
 
-    <style name="DialogTheme.Ocean" parent="Theme.MaterialComponents.Light.Dialog.Alert">
-        <item name="colorPrimary">@color/blue_100</item>
-        <item name="colorPrimaryDark">@color/blue_900</item>
-        <item name="colorAccent">@color/blue_900</item>
-        <item name="android:windowBackground">@color/blue_grey_50</item>
-    </style>
+  <style name="DialogTheme.Ocean" parent="Theme.MaterialComponents.Light.Dialog.Alert">
+    <item name="colorPrimary">@color/blue_100</item>
+    <item name="colorPrimaryDark">@color/blue_900</item>
+    <item name="colorAccent">@color/blue_900</item>
+    <item name="android:windowBackground">@color/blue_grey_50</item>
+  </style>
 
-    <style name="DialogTheme.Sunlight" parent="Theme.MaterialComponents.Light.Dialog.Alert">
-        <item name="colorPrimary">@color/yellow_100</item>
-        <item name="colorPrimaryDark">@color/yellow_900</item>
-        <item name="colorAccent">@color/yellow_900</item>
-        <item name="android:windowBackground">@color/orange_50</item>
-    </style>
+  <style name="DialogTheme.Sunlight" parent="Theme.MaterialComponents.Light.Dialog.Alert">
+    <item name="colorPrimary">@color/yellow_100</item>
+    <item name="colorPrimaryDark">@color/yellow_900</item>
+    <item name="colorAccent">@color/yellow_900</item>
+    <item name="android:windowBackground">@color/orange_50</item>
+  </style>
 
-    <style name="DialogTheme.Forest" parent="Theme.MaterialComponents.Light.Dialog.Alert">
-        <item name="colorPrimary">@color/green_100</item>
-        <item name="colorPrimaryDark">@color/green_900</item>
-        <item name="colorAccent">@color/green_900</item>
-        <item name="android:windowBackground">@color/light_green_50</item>
-    </style>
+  <style name="DialogTheme.Forest" parent="Theme.MaterialComponents.Light.Dialog.Alert">
+    <item name="colorPrimary">@color/green_100</item>
+    <item name="colorPrimaryDark">@color/green_900</item>
+    <item name="colorAccent">@color/green_900</item>
+    <item name="android:windowBackground">@color/light_green_50</item>
+  </style>
 
-    <style name="DialogTheme.Chocolate" parent="Theme.MaterialComponents.Light.Dialog.Alert">
-        <item name="colorPrimary">@color/brown_100</item>
-        <item name="colorPrimaryDark">@color/brown_900</item>
-        <item name="colorAccent">@color/brown_900</item>
-        <item name="android:windowBackground">@color/deep_orange_50</item>
-    </style>
+  <style name="DialogTheme.Chocolate" parent="Theme.MaterialComponents.Light.Dialog.Alert">
+    <item name="colorPrimary">@color/brown_100</item>
+    <item name="colorPrimaryDark">@color/brown_900</item>
+    <item name="colorAccent">@color/brown_900</item>
+    <item name="android:windowBackground">@color/deep_orange_50</item>
+  </style>
 
-    <style name="DialogTheme.Dark" parent="Theme.MaterialComponents.Light.Dialog.Alert">
-        <item name="colorPrimary">@color/grey_400</item>
-        <item name="colorPrimaryDark">@color/grey_900</item>
-        <item name="colorAccent">@color/grey_900</item>
-        <item name="android:windowBackground">@color/grey_400</item>
-    </style>
+  <style name="DialogTheme.Dark" parent="Theme.MaterialComponents.Light.Dialog.Alert">
+    <item name="colorPrimary">@color/grey_400</item>
+    <item name="colorPrimaryDark">@color/grey_900</item>
+    <item name="colorAccent">@color/grey_900</item>
+    <item name="android:windowBackground">@color/grey_400</item>
+  </style>
 
 </resources>
