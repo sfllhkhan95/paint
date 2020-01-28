@@ -8,8 +8,8 @@ import java.util.*
 
 /**
  * @author saifkhichi96
- * @version 1.0.2
- * @since 3.4.0
+ * @version 2.0.0
+ * @since 3.6.6
  * created on 04/06/2018 12:29 AM
  */
 class BillingManager private constructor(context: Context) :
@@ -30,6 +30,7 @@ class BillingManager private constructor(context: Context) :
      * This object is used to communicate with the billing server.
      */
     private val mBillingClient: BillingClient = BillingClient.newBuilder(context)
+            .enablePendingPurchases()
             .setListener(this)
             .build()
 
@@ -59,20 +60,17 @@ class BillingManager private constructor(context: Context) :
                         .setType(BillingClient.SkuType.INAPP)
                         .build()
 
-        ) { responseCode, products ->
-            if (responseCode == BillingClient.BillingResponse.OK && products != null) {
+        ) { response, products ->
+            if (response.responseCode == BillingClient.BillingResponseCode.OK && products != null) {
                 for (product in products) {
                     allProducts[product.sku] = product
                 }
             }
         }
 
-        // Update list of purchased items from local cache
+        // Update user's purchases
         val purchasesResult = mBillingClient.queryPurchases(BillingClient.SkuType.INAPP)
-        onPurchasesUpdated(purchasesResult.responseCode, purchasesResult.purchasesList)
-
-        // Synchronise purchases with remote server
-        mBillingClient.queryPurchaseHistoryAsync(BillingClient.SkuType.INAPP) { responseCode, purchasesList -> onPurchasesUpdated(responseCode, purchasesList) }
+        onPurchasesUpdated(purchasesResult.billingResult, purchasesResult.purchasesList)
     }
 
     /**
@@ -82,7 +80,7 @@ class BillingManager private constructor(context: Context) :
      * @return [SkuDetails] object for the specified product id, or null if no
      * such product exists
      */
-    fun getDetails(productId: String): SkuDetails? {
+    private fun getDetails(productId: String): SkuDetails? {
         return allProducts[productId]
     }
 
@@ -101,26 +99,25 @@ class BillingManager private constructor(context: Context) :
      *
      * @param context   the activity from which purchase request is launched
      * @param productId unique id of the product to purchase
-     * @return [com.android.billingclient.api.BillingClient.BillingResponse] indicating status
+     * @return [BillingClient.BillingResponseCode] indicating status of purcahse request
      * of the purchase request
      */
     fun purchaseProduct(context: AppCompatActivity, productId: String): Int {
         // If the specified product is not in inventory, return proper error code
         if (!allProducts.containsKey(productId)) {
-            return BillingClient.BillingResponse.ITEM_UNAVAILABLE
+            return BillingClient.BillingResponseCode.ITEM_UNAVAILABLE
         }
 
         // Build a purchase request
         val params = BillingFlowParams.newBuilder()
-                .setSku(productId)
-                .setType(BillingClient.SkuType.INAPP) // SkuType.SUB for subscription
+                .setSkuDetails(getDetails(productId))
                 .build()
 
         // Start the purchase sequence
-        val responseCode = mBillingClient.launchBillingFlow(context, params)
+        val responseCode = mBillingClient.launchBillingFlow(context, params).responseCode
 
         // If Play Store says user already owns this product, update local purchases' info
-        if (responseCode == BillingClient.BillingResponse.ITEM_ALREADY_OWNED &&
+        if (responseCode == BillingClient.BillingResponseCode.ITEM_ALREADY_OWNED &&
                 !purchasedProducts.containsKey(productId)) {
             purchasedProducts[productId] = ""
         }
@@ -158,11 +155,11 @@ class BillingManager private constructor(context: Context) :
      * This callback is fired when purchases are updated. Both purchases initiated by
      * your app and the ones initiated by Play Store will be reported here.
      *
-     * @param responseCode Response code of the update.
-     * @param purchases    List of updated purchases if present.
+     * @param result    Result of the billing request
+     * @param purchases List of updated purchases if present
      */
-    override fun onPurchasesUpdated(responseCode: Int, purchases: List<Purchase>?) {
-        if (responseCode == BillingClient.BillingResponse.OK && purchases != null) {
+    override fun onPurchasesUpdated(result: BillingResult, purchases: List<Purchase>?) {
+        if (result.responseCode == BillingClient.BillingResponseCode.OK && purchases != null) {
             for (purchase in purchases) {
                 onItemPurchased(purchase)
             }
@@ -174,11 +171,11 @@ class BillingManager private constructor(context: Context) :
      * a connection was successfully established, local inventory and purchase details
      * are updated.
      *
-     * @param status this code indicates whether the configuration was successful
+     * @param result this code indicates whether the configuration was successful
      * or not
      */
-    override fun onBillingSetupFinished(status: Int) {
-        if (status == BillingClient.BillingResponse.OK) {
+    override fun onBillingSetupFinished(result: BillingResult) {
+        if (result.responseCode == BillingClient.BillingResponseCode.OK) {
             syncInventory()
         }
     }
