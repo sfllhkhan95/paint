@@ -8,10 +8,8 @@ import sfllhkhan95.doodle.R
 import java.util.*
 
 /**
- *
- *
  * @author saifkhichi96
- * @version 1.0.0
+ * @version 1.1.0
  * @since 1.0.0 2019-06-09 03:08
  */
 object LocaleUtils {
@@ -54,9 +52,9 @@ object LocaleUtils {
 
     private fun getSelectedLocale(which: Int): Locale {
         return when (which) {
-            2 -> Locale.GERMAN
-            3 -> Locale.FRENCH
-            4 -> Locale("ur")
+            1 -> Locale.GERMAN
+            2 -> Locale.FRENCH
+            3 -> Locale("ur")
             else -> Locale.ENGLISH
         }
     }

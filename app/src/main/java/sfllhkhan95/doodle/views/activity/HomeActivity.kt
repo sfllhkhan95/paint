@@ -16,6 +16,7 @@ import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
 import com.google.android.gms.ads.AdListener
 import com.google.android.gms.ads.AdView
+import com.google.android.gms.tasks.OnSuccessListener
 import com.google.android.material.snackbar.Snackbar
 import com.leinardi.android.speeddial.SpeedDialActionItem
 import com.leinardi.android.speeddial.SpeedDialView
@@ -29,10 +30,10 @@ import sfllhkhan95.doodle.DoodleApplication.Companion.REQUEST_PHOTO_PICK
 import sfllhkhan95.doodle.R
 import sfllhkhan95.doodle.bo.AdManager
 import sfllhkhan95.doodle.bo.ProjectInflater
+import sfllhkhan95.doodle.bo.factory.DialogFactory
 import sfllhkhan95.doodle.utils.FileUtils
 import sfllhkhan95.doodle.utils.LocaleUtils
 import sfllhkhan95.doodle.utils.ThemeUtils
-import sfllhkhan95.doodle.views.dialog.ConfirmationDialog
 import java.io.File
 
 /**
@@ -114,15 +115,10 @@ class HomeActivity : AppCompatActivity(), SpeedDialView.OnActionSelectedListener
         when {
             mAdManager.isVideoAdLoaded -> mAdManager.showVideoAd()
             mAdManager.isInterstitialAdLoaded -> mAdManager.showInterstitialAd()
-            else -> ConfirmationDialog.Builder(this)
-                    .setIcon(android.R.drawable.ic_menu_close_clear_cancel)
-                    .setHeadline(getString(R.string.label_exit))
-                    .setTitle(getString(R.string.confirm_quit))
-                    .setMessage(getString(R.string.desc_prompt_quit))
-                    .setPositiveButton(getString(android.R.string.yes), View.OnClickListener { super@HomeActivity.onBackPressed() }, true)
-                    .setNegativeButton(getString(android.R.string.cancel), View.OnClickListener { /* no-op */ }, true)
-                    .create()
-                    .show()
+            else -> DialogFactory.confirmExitAppDialog(this,
+                    OnSuccessListener {
+                        super@HomeActivity.onBackPressed()
+                    }).show()
         }
     }
 

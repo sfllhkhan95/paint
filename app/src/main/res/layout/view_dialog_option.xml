@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent" android:layout_height="wrap_content"
+    android:clickable="true"
+    android:focusable="true"
+    android:foreground="?android:attr/selectableItemBackground"
+    android:gravity="center_vertical|start"
+    android:orientation="horizontal"
+    android:padding="16dp">
+
+  <androidx.appcompat.widget.AppCompatImageView
+      android:id="@+id/optionIcon"
+      android:layout_width="32dp"
+      android:layout_height="32dp"
+      android:scaleType="centerInside"
+      app:tint="?attr/colorPrimaryDark"/>
+
+  <LinearLayout
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:orientation="vertical"
+      android:layout_marginLeft="16dp"
+      android:layout_marginStart="16dp">
+
+    <TextView
+        style="@style/TextAppearance.MaterialComponents.Body1"
+        android:id="@+id/optionText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="?attr/colorPrimaryDark"/>
+
+    <TextView
+        style="@style/TextAppearance.MaterialComponents.Caption"
+        android:id="@+id/optionDescription"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="?attr/colorPrimaryDark"/>
+
+  </LinearLayout>
+
+</LinearLayout>

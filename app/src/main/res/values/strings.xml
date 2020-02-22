@@ -20,7 +20,7 @@
   <string name="privacy_policy_url" translatable="false">https://www.iubenda.com/privacy-policy/35502767</string>
   <string name="url_doodle" translatable="false">https://play.google.com/store/apps/details?id=sfllhkhan95.doodle
   </string>
-  <string name="url_doodle_source" translatable="false">https://github.com/sfllhkhan95/paint</string>
+  <string name="url_doodle_source" translatable="false">https://github.com/saifkhichi96/paint</string>
 
   <!-- Notification channels -->
   <string name="notifications_main_channel_name">Primary notification channel</string>

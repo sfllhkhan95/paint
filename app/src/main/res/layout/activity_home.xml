@@ -1,34 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                                                     xmlns:ads="http://schemas.android.com/apk/res-auto"
-                                                     xmlns:app="http://schemas.android.com/apk/res-auto"
-                                                     xmlns:tools="http://schemas.android.com/tools"
-                                                     android:layout_width="match_parent"
-                                                     android:layout_height="match_parent"
-                                                     android:fitsSystemWindows="true"
-                                                     tools:context=".views.activity.HomeActivity">
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:ads="http://schemas.android.com/apk/res-auto"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    tools:context=".views.activity.HomeActivity">
 
   <com.google.android.material.appbar.AppBarLayout
       android:layout_width="match_parent"
       android:layout_height="?actionBarSize"
       android:layout_gravity="top"
-      android:background="?attr/colorPrimaryDark">
+      android:background="?attr/colorPrimaryDark"
+      app:liftOnScroll="true">
 
     <!-- Fixed Action Bar -->
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="end|bottom"
+        android:gravity="end|center_vertical"
         android:orientation="horizontal"
         app:layout_collapseMode="pin">
 
-      <androidx.appcompat.widget.AppCompatButton
+      <androidx.appcompat.widget.AppCompatImageButton
           android:id="@+id/settingsButton"
           style="@style/Widget.MaterialComponents.Button.TextButton.Dialog.Icon"
-          android:layout_width="40dp"
+          android:layout_width="42dp"
           android:layout_height="wrap_content"
-          android:drawableEnd="@drawable/ic_action_settings"
-          android:drawableRight="@drawable/ic_action_settings"/>
+          android:src="@drawable/ic_action_settings"/>
 
     </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -57,8 +58,8 @@
 
   <com.google.android.gms.ads.AdView
       android:id="@+id/adView"
-      android:layout_width="wrap_content"
-      android:layout_height="50dp"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
       android:layout_gravity="bottom|center_horizontal"
       ads:adSize="BANNER"
       ads:adUnitId="@string/admob_ad_banner_confirmation"/>

@@ -1,168 +1,175 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:ads="http://schemas.android.com/apk/res-auto"
-              xmlns:app="http://schemas.android.com/apk/res-auto"
-              xmlns:tools="http://schemas.android.com/tools"
-              android:id="@+id/container"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:gravity="center"
-              android:orientation="vertical"
-              tools:context=".views.activity.SettingsActivity">
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:ads="http://schemas.android.com/apk/res-auto"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".views.activity.SettingsActivity">
 
-  <androidx.appcompat.widget.Toolbar
-      android:id="@+id/toolbar"
-      android:layout_width="match_parent"
-      android:layout_height="?actionBarSize"
-      android:background="?attr/colorPrimaryDark"/>
-
-  <ScrollView
+  <LinearLayout
+      android:id="@+id/container"
       android:layout_width="match_parent"
       android:layout_height="match_parent"
-      android:scrollbars="none">
+      android:gravity="center"
+      android:orientation="vertical">
 
-    <LinearLayout
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:paddingBottom="80dp">
+        android:layout_height="?actionBarSize"
+        android:background="?attr/colorPrimaryDark"/>
 
-      <!-- Personalization -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="none">
+
       <LinearLayout
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
-          android:layout_marginStart="@dimen/activity_horizontal_margin"
-          android:layout_marginTop="@dimen/activity_vertical_margin"
-          android:layout_marginEnd="@dimen/activity_horizontal_margin"
-          android:orientation="vertical">
+          android:orientation="vertical"
+          android:paddingBottom="80dp">
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/theme"
-            style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
-            android:layout_marginRight="8dp"
-            android:text="@string/settings_item_theme"
-            android:textAllCaps="false"
-            app:cornerRadius="16dp"/>
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/locale"
-            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
-            android:layout_marginRight="8dp"
-            android:text="@string/settings_item_locale"
-            android:textAllCaps="false"
-            app:cornerRadius="16dp"/>
-
-      </LinearLayout>
-
-      <!-- About -->
-      <LinearLayout
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:layout_marginStart="@dimen/activity_horizontal_margin"
-          android:layout_marginTop="@dimen/activity_vertical_margin"
-          android:layout_marginEnd="@dimen/activity_horizontal_margin"
-          android:orientation="vertical">
-
+        <!-- Personalization -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:layout_marginStart="@dimen/activity_horizontal_margin"
+            android:layout_marginTop="@dimen/activity_vertical_margin"
+            android:layout_marginEnd="@dimen/activity_horizontal_margin"
+            android:orientation="vertical">
 
           <com.google.android.material.button.MaterialButton
-              android:id="@+id/faqs"
-              style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+              android:id="@+id/theme"
+              style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
               android:layout_width="wrap_content"
               android:layout_height="wrap_content"
               android:layout_marginEnd="8dp"
               android:layout_marginRight="8dp"
-              android:text="@string/settings_item_help"
+              android:text="@string/settings_item_theme"
               android:textAllCaps="false"
               app:cornerRadius="16dp"/>
 
           <com.google.android.material.button.MaterialButton
-              android:id="@+id/intro"
+              android:id="@+id/locale"
               style="@style/Widget.MaterialComponents.Button.OutlinedButton"
               android:layout_width="wrap_content"
               android:layout_height="wrap_content"
               android:layout_marginEnd="8dp"
               android:layout_marginRight="8dp"
-              android:text="@string/settings_item_intro"
+              android:text="@string/settings_item_locale"
               android:textAllCaps="false"
               app:cornerRadius="16dp"/>
 
         </LinearLayout>
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/privacy_policy"
-            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-            android:layout_width="wrap_content"
+        <!-- About -->
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
-            android:layout_marginRight="8dp"
-            android:text="@string/settings_item_privacy"
-            android:textAllCaps="false"
-            app:cornerRadius="16dp"/>
+            android:layout_marginStart="@dimen/activity_horizontal_margin"
+            android:layout_marginTop="@dimen/activity_vertical_margin"
+            android:layout_marginEnd="@dimen/activity_horizontal_margin"
+            android:orientation="vertical">
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/support"
-            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-            android:layout_width="wrap_content"
+          <LinearLayout
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:orientation="horizontal">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/faqs"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:layout_marginRight="8dp"
+                android:text="@string/settings_item_help"
+                android:textAllCaps="false"
+                app:cornerRadius="16dp"/>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/intro"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:layout_marginRight="8dp"
+                android:text="@string/settings_item_intro"
+                android:textAllCaps="false"
+                app:cornerRadius="16dp"/>
+
+          </LinearLayout>
+
+          <com.google.android.material.button.MaterialButton
+              android:id="@+id/privacy_policy"
+              style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_marginEnd="8dp"
+              android:layout_marginRight="8dp"
+              android:text="@string/settings_item_privacy"
+              android:textAllCaps="false"
+              app:cornerRadius="16dp"/>
+
+          <com.google.android.material.button.MaterialButton
+              android:id="@+id/support"
+              style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_marginEnd="8dp"
+              android:layout_marginRight="8dp"
+              android:text="@string/settings_icon_support"
+              android:textAllCaps="false"
+              app:cornerRadius="16dp"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
-            android:layout_marginRight="8dp"
-            android:text="@string/settings_icon_support"
-            android:textAllCaps="false"
-            app:cornerRadius="16dp"/>
+            android:layout_marginTop="@dimen/activity_vertical_margin"
+            android:layout_marginBottom="@dimen/activity_vertical_margin"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:paddingTop="@dimen/activity_vertical_margin">
+
+          <TextView
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:text="@string/app_name_v"
+              android:textAllCaps="false"
+              android:textColor="@color/grey_600"
+              android:textSize="10sp"
+              android:textStyle="bold"
+              tools:ignore="SmallSp"/>
+
+          <TextView
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:text="@string/app_version"
+              android:textAllCaps="false"
+              android:textColor="@color/grey_600"
+              android:textSize="10sp"
+              android:textStyle="bold"
+              tools:ignore="SmallSp"/>
+
+        </LinearLayout>
 
       </LinearLayout>
 
-      <LinearLayout
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:layout_marginTop="@dimen/activity_vertical_margin"
-          android:layout_marginBottom="@dimen/activity_vertical_margin"
-          android:gravity="center"
-          android:orientation="horizontal"
-          android:paddingTop="@dimen/activity_vertical_margin">
+    </ScrollView>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/app_name_v"
-            android:textAllCaps="false"
-            android:textColor="@color/grey_600"
-            android:textSize="10sp"
-            android:textStyle="bold"
-            tools:ignore="SmallSp"/>
+    <com.google.android.gms.ads.AdView
+        android:id="@+id/adView"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:layout_marginTop="-50dp"
+        ads:adSize="BANNER"
+        ads:adUnitId="@string/admob_ad_banner_confirmation"/>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/app_version"
-            android:textAllCaps="false"
-            android:textColor="@color/grey_600"
-            android:textSize="10sp"
-            android:textStyle="bold"
-            tools:ignore="SmallSp"/>
+  </LinearLayout>
 
-      </LinearLayout>
-
-    </LinearLayout>
-
-  </ScrollView>
-
-  <com.google.android.gms.ads.AdView
-      android:id="@+id/adView"
-      android:layout_width="wrap_content"
-      android:layout_height="50dp"
-      android:layout_marginTop="-50dp"
-      ads:adSize="BANNER"
-      ads:adUnitId="@string/admob_ad_banner_confirmation"/>
-
-</LinearLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

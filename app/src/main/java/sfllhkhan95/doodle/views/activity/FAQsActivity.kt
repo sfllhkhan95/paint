@@ -3,13 +3,13 @@ package sfllhkhan95.doodle.views.activity
 import android.content.Context
 import android.os.Bundle
 import android.widget.LinearLayout
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import com.google.android.material.button.MaterialButton
 import sfllhkhan95.doodle.R
 import sfllhkhan95.doodle.utils.LocaleUtils
 import sfllhkhan95.doodle.utils.ThemeUtils
-import sfllhkhan95.doodle.views.dialog.ConfirmationDialog
 import java.io.BufferedReader
 import java.io.InputStreamReader
 
@@ -68,7 +68,7 @@ class FAQsActivity : AppCompatActivity() {
             b.text = "${f.question}?"
 
             b.setOnClickListener {
-                ConfirmationDialog.Builder(this)
+                AlertDialog.Builder(this, ThemeUtils.getDialogTheme())
                         .setIcon(R.drawable.ic_action_info)
                         .setTitle("${f.question}?")
                         .setMessage(f.answer)

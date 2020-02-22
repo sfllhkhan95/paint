@@ -14,7 +14,6 @@ import android.view.MenuItem
 import android.view.MotionEvent
 import android.view.View
 import android.widget.SeekBar
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.core.content.ContextCompat
@@ -124,15 +123,19 @@ class MainActivity : AppCompatActivity(), SeekBar.OnSeekBarChangeListener, OnToo
         }
     }
 
+    override fun onResume() {
+        super.onResume()
+        paintView.invalidate()
+    }
+
     override fun onBackPressed() {
-        if (paintView.isModified) {
-            DialogFactory.confirmExitDialog(
-                    this,
-                    OnSuccessListener { this@MainActivity.finish() },
-                    OnSuccessListener { paintView.save(); this@MainActivity.finish() }
-            ).show()
-        } else {
-            super.onBackPressed()
+        when {
+            isViewing -> super.onBackPressed()
+            paintView.isModified -> DialogFactory.confirmExitDialog(this,
+                    OnSuccessListener { paintView.clear(); onToggleReadMode(true) },
+                    OnSuccessListener { paintView.save(); onToggleReadMode(true) })
+                    .show()
+            else -> onToggleReadMode(true)
         }
     }
 
@@ -315,12 +318,7 @@ class MainActivity : AppCompatActivity(), SeekBar.OnSeekBarChangeListener, OnToo
     }
 
     fun shareProject(view: View? = null) {
-        DialogFactory.shareDialog(
-                view?.context ?: this,
-                View.OnClickListener { onShareClicked(ShareMethod.WHATSAPP) },
-                View.OnClickListener { onShareClicked(ShareMethod.MESSENGER) },
-                View.OnClickListener { onShareClicked(ShareMethod.DEFAULT) }
-        ).show()
+        onShareClicked()
     }
 
     private fun createCanvas(metrics: DisplayMetrics): PaintCanvas {
@@ -366,15 +364,9 @@ class MainActivity : AppCompatActivity(), SeekBar.OnSeekBarChangeListener, OnToo
         paintView.brush.size = brushController!!.progress
     }
 
-    private fun onShareClicked(method: ShareMethod) {
+    private fun onShareClicked() {
         if (isExisting || paintView.isModified) {
-            createShareableFile()?.let { tempFile ->
-                when (method) {
-                    ShareMethod.DEFAULT -> share(tempFile)
-                    ShareMethod.MESSENGER -> shareOnMessenger(tempFile)
-                    ShareMethod.WHATSAPP -> shareOnWhatsApp(tempFile)
-                }
-            }
+            createShareableFile()?.let { tempFile -> share(tempFile) }
         }
     }
 
@@ -415,6 +407,7 @@ class MainActivity : AppCompatActivity(), SeekBar.OnSeekBarChangeListener, OnToo
             // Select pen
             findViewById<View>(R.id.pen).performClick()
         }
+        paintView.invalidate()
     }
 
     private fun resumeProject(metrics: DisplayMetrics, savedDoodle: String): PaintCanvas {
@@ -462,22 +455,6 @@ class MainActivity : AppCompatActivity(), SeekBar.OnSeekBarChangeListener, OnToo
         )
     }
 
-    private fun shareOnMessenger(imageFile: File) {
-        try {
-            share(imageFile, getString(R.string.package_messenger))
-        } catch (ex: Exception) {
-            Toast.makeText(this, "Please install Facebook Messenger.", Toast.LENGTH_LONG).show()
-        }
-    }
-
-    private fun shareOnWhatsApp(imageFile: File) {
-        try {
-            share(imageFile, getString(R.string.package_whatsapp))
-        } catch (ex: Exception) {
-            Toast.makeText(this, "Please install WhatsApp.", Toast.LENGTH_LONG).show()
-        }
-    }
-
     private inner class CustomToolbar internal constructor() {
         private val primary: Toolbar = findViewById(R.id.primaryToolbar)
         val secondary: Toolbar
@@ -503,12 +480,6 @@ class MainActivity : AppCompatActivity(), SeekBar.OnSeekBarChangeListener, OnToo
                             R.drawable.ic_action_maximize)
             }
         }
-    }
-
-    private enum class ShareMethod {
-        DEFAULT,
-        MESSENGER,
-        WHATSAPP
     }
 
     override fun attachBaseContext(base: Context?) {

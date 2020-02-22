@@ -9,8 +9,7 @@ import java.util.*
 /**
  * @author saifkhichi96
  * @version 2.0.0
- * @since 3.6.6
- * created on 04/06/2018 12:29 AM
+ * @since 3.4.0 2018-06-04 00:29
  */
 class BillingManager private constructor(context: Context) :
         PurchasesUpdatedListener, BillingClientStateListener {
