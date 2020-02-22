@@ -2,11 +2,11 @@ package sfllhkhan95.doodle.views.activity
 
 import android.content.Context
 import android.os.Bundle
+import android.view.View
 import android.widget.LinearLayout
-import androidx.appcompat.app.AlertDialog
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
-import com.google.android.material.button.MaterialButton
 import sfllhkhan95.doodle.R
 import sfllhkhan95.doodle.utils.LocaleUtils
 import sfllhkhan95.doodle.utils.ThemeUtils
@@ -61,19 +61,31 @@ class FAQsActivity : AppCompatActivity() {
 
         // Display FAQs
         val listView = findViewById<LinearLayout>(R.id.faqsView)
-        for (f in faqList) {
-            layoutInflater.inflate(R.layout.view_settings_item, listView)
+        val faqAnswers = mutableListOf<TextView>()
+        for (faq in faqList) {
+            layoutInflater.inflate(R.layout.view_faq, listView)
+            val v = listView.getChildAt(listView.childCount - 1)
 
-            val b = listView.getChildAt(listView.childCount - 1) as MaterialButton
-            b.text = "${f.question}?"
+            v.findViewById<TextView>(R.id.description)?.let { answerView ->
+                answerView.text = faq.answer
+                faqAnswers.add(answerView)
 
-            b.setOnClickListener {
-                AlertDialog.Builder(this, ThemeUtils.getDialogTheme())
-                        .setIcon(R.drawable.ic_action_info)
-                        .setTitle("${f.question}?")
-                        .setMessage(f.answer)
-                        .create()
-                        .show()
+                v.findViewById<TextView>(R.id.title)?.let { questionView ->
+                    questionView.text = "${faq.question}?"
+                    questionView.setOnClickListener {
+                        for (answer in faqAnswers) {
+                            if (answer != answerView) {
+                                answer.visibility = View.GONE
+                            }
+                        }
+
+                        if (answerView.visibility == View.GONE) {
+                            answerView.visibility = View.VISIBLE
+                        } else {
+                            answerView.visibility = View.GONE
+                        }
+                    }
+                }
             }
         }
     }

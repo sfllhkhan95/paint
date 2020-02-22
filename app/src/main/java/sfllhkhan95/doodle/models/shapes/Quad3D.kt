@@ -1,8 +1,10 @@
 package sfllhkhan95.doodle.models.shapes
 
+import android.graphics.Paint
 import android.graphics.PointF
 
 import sfllhkhan95.doodle.models.PaintBrush
+import sfllhkhan95.doodle.models.PaintCanvas
 import sfllhkhan95.doodle.models.Tool
 
 /**
@@ -37,4 +39,16 @@ class Quad3D internal constructor(paintBrush: PaintBrush) : Tool(paintBrush) {
         this.lineTo(f.x + Math.abs(f.x - i.x) / 2, i.y + Math.abs(f.y - i.y) / 2)
         this.lineTo(f.x, i.y)
     }
+
+    override fun paint(canvas: PaintCanvas) {
+        paintBrush.style = Paint.Style.FILL
+        paintBrush.color = paintBrush.fillColor
+        canvas.drawPath(this, paintBrush)
+
+        paintBrush.style = Paint.Style.STROKE
+        paintBrush.color = paintBrush.strokeColor
+        paintBrush.strokeWidth = paintBrush.size.toFloat()
+        canvas.drawPath(this, paintBrush)
+    }
+
 }
