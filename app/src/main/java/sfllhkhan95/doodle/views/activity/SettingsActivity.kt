@@ -70,7 +70,7 @@ class SettingsActivity : AppCompatActivity(), View.OnClickListener {
 
             R.id.faqs -> startActivity(Intent(this, FAQsActivity::class.java))
 
-            R.id.support -> DialogFactory.supportDialog(this).show()
+            R.id.support -> DialogFactory.supportDialog(this).show(supportFragmentManager)
 
             R.id.intro -> startActivity(Intent(this@SettingsActivity, IntroActivity::class.java))
 

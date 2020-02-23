@@ -1,14 +1,16 @@
 package sfllhkhan95.doodle.views.dialog
 
-import android.app.Dialog
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
-import android.widget.Button
+import android.view.ViewGroup
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import androidx.fragment.app.DialogFragment
 import com.google.android.gms.ads.AdListener
 import com.google.android.gms.ads.AdView
+import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import sfllhkhan95.doodle.R
 import sfllhkhan95.doodle.bo.AdManager
 import sfllhkhan95.doodle.utils.ThemeUtils
@@ -26,37 +28,35 @@ import sfllhkhan95.doodle.utils.ThemeUtils.THEME_SUNLIGHT
  * @version 1.0.0
  * @since 1.0.0 01/11/2018 3:46 PM
  */
-class ThemeSelector(private val ownerActivity: AppCompatActivity) : Dialog(ownerActivity), View.OnClickListener {
+class ThemeSelector(private val ownerActivity: AppCompatActivity) : BottomSheetDialogFragment(), View.OnClickListener {
 
+    private lateinit var v: View
     private var actionbar: TextView? = null
-    private var window: View? = null
-    private var body: View? = null
-    private var positiveButton: Button? = null
-    private var negativeButton: Button? = null
 
     private var selectedTheme: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        getWindow()?.setBackgroundDrawableResource(android.R.color.transparent)
-        setContentView(R.layout.dialog_theme_selector)
+        setStyle(DialogFragment.STYLE_NO_FRAME, ThemeUtils.getDialogTheme())
+    }
 
-        actionbar = findViewById(R.id.actionbar)
-        window = findViewById(R.id.window)
-        body = findViewById(R.id.body)
-        positiveButton = findViewById(R.id.positiveButton)
-        negativeButton = findViewById(R.id.negativeButton)
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        v = inflater.inflate(R.layout.dialog_theme_selector, container, false)
+        dialog?.window?.setBackgroundDrawableResource(android.R.color.transparent)
+        dialog?.window?.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
 
-        findViewById<View>(R.id.defaultTheme).setOnClickListener(this)
-        findViewById<View>(R.id.oceanTheme).setOnClickListener(this)
-        findViewById<View>(R.id.sunlightTheme).setOnClickListener(this)
-        findViewById<View>(R.id.forestTheme).setOnClickListener(this)
-        findViewById<View>(R.id.chocolateTheme).setOnClickListener(this)
-        findViewById<View>(R.id.darkTheme).setOnClickListener(this)
+        actionbar = v.findViewById(R.id.actionbar)
 
-        findViewById<View>(R.id.cancel_button).setOnClickListener { cancel() }
+        v.findViewById<View>(R.id.defaultTheme).setOnClickListener(this)
+        v.findViewById<View>(R.id.oceanTheme).setOnClickListener(this)
+        v.findViewById<View>(R.id.sunlightTheme).setOnClickListener(this)
+        v.findViewById<View>(R.id.forestTheme).setOnClickListener(this)
+        v.findViewById<View>(R.id.chocolateTheme).setOnClickListener(this)
+        v.findViewById<View>(R.id.darkTheme).setOnClickListener(this)
 
-        findViewById<View>(R.id.ok_button).setOnClickListener {
+        v.findViewById<View>(R.id.cancel_button).setOnClickListener { dialog?.cancel() }
+
+        v.findViewById<View>(R.id.ok_button).setOnClickListener {
             dismiss()
             ThemeUtils.changeTheme(ownerActivity, selectedTheme!!)
         }
@@ -65,77 +65,64 @@ class ThemeSelector(private val ownerActivity: AppCompatActivity) : Dialog(owner
         updateUI(selectedTheme!!)
 
         // Display ads if they are enabled
-        val mAdView = this.findViewById<AdView>(R.id.adView)
+        val mAdView = v.findViewById<AdView>(R.id.adView)
         AdManager.instance.showBannerAd(mAdView, object : AdListener() {
             override fun onAdLoaded() {
                 super.onAdLoaded()
                 mAdView.visibility = View.VISIBLE
             }
         })
+
+        return v
+    }
+
+    fun show() {
+        super.show(ownerActivity.supportFragmentManager, "theme_selecter")
     }
 
     private fun updateUI(theme: String) {
-        findViewById<View>(R.id.defaultThemeSelected).visibility = View.INVISIBLE
-        findViewById<View>(R.id.oceanThemeSelected).visibility = View.INVISIBLE
-        findViewById<View>(R.id.sunlightThemeSelected).visibility = View.INVISIBLE
-        findViewById<View>(R.id.forestThemeSelected).visibility = View.INVISIBLE
-        findViewById<View>(R.id.chocolateThemeSelected).visibility = View.INVISIBLE
-        findViewById<View>(R.id.darkThemeSelected).visibility = View.INVISIBLE
-        negativeButton!!.setBackgroundColor(ContextCompat.getColor(context, android.R.color.transparent))
+        v.findViewById<View>(R.id.defaultThemeSelected).visibility = View.INVISIBLE
+        v.findViewById<View>(R.id.oceanThemeSelected).visibility = View.INVISIBLE
+        v.findViewById<View>(R.id.sunlightThemeSelected).visibility = View.INVISIBLE
+        v.findViewById<View>(R.id.forestThemeSelected).visibility = View.INVISIBLE
+        v.findViewById<View>(R.id.chocolateThemeSelected).visibility = View.INVISIBLE
+        v.findViewById<View>(R.id.darkThemeSelected).visibility = View.INVISIBLE
 
         actionbar!!.text = theme
         when (theme) {
             THEME_DEFAULT -> {
-                window!!.setBackgroundColor(ContextCompat.getColor(context, R.color.deep_purple_50))
-                body!!.setBackgroundColor(ContextCompat.getColor(context, R.color.purple_100))
-                positiveButton!!.setBackgroundColor(ContextCompat.getColor(context, R.color.purple_900))
-                negativeButton!!.setTextColor(ContextCompat.getColor(context, R.color.purple_900))
-                findViewById<View>(R.id.defaultThemeSelected).visibility = View.VISIBLE
+                actionbar!!.setTextColor(ContextCompat.getColor(ownerActivity, R.color.purple_900))
+                v.findViewById<View>(R.id.defaultThemeSelected).visibility = View.VISIBLE
                 selectedTheme = THEME_DEFAULT
             }
 
             THEME_OCEAN -> {
-                window!!.setBackgroundColor(ContextCompat.getColor(context, R.color.blue_grey_50))
-                body!!.setBackgroundColor(ContextCompat.getColor(context, R.color.blue_100))
-                positiveButton!!.setBackgroundColor(ContextCompat.getColor(context, R.color.blue_900))
-                negativeButton!!.setTextColor(ContextCompat.getColor(context, R.color.blue_900))
-                findViewById<View>(R.id.oceanThemeSelected).visibility = View.VISIBLE
+                actionbar!!.setTextColor(ContextCompat.getColor(ownerActivity, R.color.blue_900))
+                v.findViewById<View>(R.id.oceanThemeSelected).visibility = View.VISIBLE
                 selectedTheme = THEME_OCEAN
             }
 
             THEME_SUNLIGHT -> {
-                window!!.setBackgroundColor(ContextCompat.getColor(context, R.color.orange_50))
-                body!!.setBackgroundColor(ContextCompat.getColor(context, R.color.yellow_100))
-                positiveButton!!.setBackgroundColor(ContextCompat.getColor(context, R.color.yellow_900))
-                negativeButton!!.setTextColor(ContextCompat.getColor(context, R.color.yellow_900))
-                findViewById<View>(R.id.sunlightThemeSelected).visibility = View.VISIBLE
+                actionbar!!.setTextColor(ContextCompat.getColor(ownerActivity, R.color.yellow_900))
+                v.findViewById<View>(R.id.sunlightThemeSelected).visibility = View.VISIBLE
                 selectedTheme = THEME_SUNLIGHT
             }
 
             THEME_FOREST -> {
-                window!!.setBackgroundColor(ContextCompat.getColor(context, R.color.light_green_50))
-                body!!.setBackgroundColor(ContextCompat.getColor(context, R.color.green_100))
-                positiveButton!!.setBackgroundColor(ContextCompat.getColor(context, R.color.green_900))
-                negativeButton!!.setTextColor(ContextCompat.getColor(context, R.color.green_900))
-                findViewById<View>(R.id.forestThemeSelected).visibility = View.VISIBLE
+                actionbar!!.setTextColor(ContextCompat.getColor(ownerActivity, R.color.green_900))
+                v.findViewById<View>(R.id.forestThemeSelected).visibility = View.VISIBLE
                 selectedTheme = THEME_FOREST
             }
 
             THEME_CHOCOLATE -> {
-                window!!.setBackgroundColor(ContextCompat.getColor(context, R.color.deep_orange_50))
-                body!!.setBackgroundColor(ContextCompat.getColor(context, R.color.brown_100))
-                positiveButton!!.setBackgroundColor(ContextCompat.getColor(context, R.color.brown_900))
-                negativeButton!!.setTextColor(ContextCompat.getColor(context, R.color.brown_900))
-                findViewById<View>(R.id.chocolateThemeSelected).visibility = View.VISIBLE
+                actionbar!!.setTextColor(ContextCompat.getColor(ownerActivity, R.color.brown_900))
+                v.findViewById<View>(R.id.chocolateThemeSelected).visibility = View.VISIBLE
                 selectedTheme = THEME_CHOCOLATE
             }
 
             THEME_DARK -> {
-                window!!.setBackgroundColor(ContextCompat.getColor(context, R.color.grey_600))
-                body!!.setBackgroundColor(ContextCompat.getColor(context, R.color.grey_400))
-                positiveButton!!.setBackgroundColor(ContextCompat.getColor(context, R.color.grey_900))
-                negativeButton!!.setTextColor(ContextCompat.getColor(context, R.color.grey_900))
-                findViewById<View>(R.id.darkThemeSelected).visibility = View.VISIBLE
+                actionbar!!.setTextColor(ContextCompat.getColor(ownerActivity, R.color.grey_900))
+                v.findViewById<View>(R.id.darkThemeSelected).visibility = View.VISIBLE
                 selectedTheme = THEME_DARK
             }
         }

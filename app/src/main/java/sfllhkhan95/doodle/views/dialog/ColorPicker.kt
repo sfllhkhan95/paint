@@ -1,39 +1,92 @@
 package sfllhkhan95.doodle.views.dialog
 
-import android.content.Context
-import androidx.appcompat.app.AlertDialog
-import com.rarepebble.colorpicker.ColorObserver
+import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import androidx.fragment.app.DialogFragment
+import androidx.fragment.app.FragmentManager
+import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.rarepebble.colorpicker.ColorPickerView
-import com.rarepebble.colorpicker.ObservableColor
+import sfllhkhan95.doodle.R
+import sfllhkhan95.doodle.utils.ThemeUtils
 import sfllhkhan95.doodle.utils.listener.OnColorPickedListener
 
-open class ColorPicker(private val context: Context, color: Int, private val dialogTheme: Int) : ColorObserver {
+open class ColorPicker : BottomSheetDialogFragment() {
 
-    protected val picker: ColorPickerView = ColorPickerView(context)
+    private var alpha = true
+    private var hex = false
+    private var preview = true
 
-    init {
-        picker.color = color
-        picker.showAlpha(true)
-        picker.showHex(false)
-        picker.showPreview(true)
+    var color = 0xff
+    var colorPickedListener: OnColorPickedListener? = null
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setStyle(DialogFragment.STYLE_NO_FRAME, ThemeUtils.getDialogTheme())
     }
 
-    private var onColorPickedListener: OnColorPickedListener? = null
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        val v = inflater.inflate(R.layout.dialog_color_picker, container, false)
+        dialog?.window?.setBackgroundDrawableResource(android.R.color.transparent)
+        dialog?.window?.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
 
-    override fun updateColor(observableColor: ObservableColor?) {
-        observableColor?.let {
-            onColorPickedListener?.onColorPicked(it.color)
+        v.findViewById<ColorPickerView>(R.id.colorPicker)?.apply {
+            this.addColorObserver { this@ColorPicker.color = it.color }
+            this.color = this@ColorPicker.color
+            this.showAlpha(this@ColorPicker.alpha)
+            this.showHex(this@ColorPicker.hex)
+            this.showPreview(this@ColorPicker.preview)
         }
+
+        v.findViewById<View>(R.id.confirm_button)?.setOnClickListener {
+            colorPickedListener?.onColorPicked(color)
+            dismiss()
+        }
+
+        v.findViewById<View>(R.id.cancel_button)?.setOnClickListener {
+            dismiss()
+        }
+
+        return v
     }
 
-    fun setOnColorPickedListener(onColorPickedListener: OnColorPickedListener): ColorPicker {
-        picker.addColorObserver(this)
-        this.onColorPickedListener = onColorPickedListener
-        return this
+    fun showAlpha(alpha: Boolean) {
+        this.alpha = alpha
     }
 
-    fun show() {
-        AlertDialog.Builder(context, dialogTheme).setView(picker).show()
+    fun showHex(hex: Boolean) {
+        this.hex = hex
+    }
+
+    fun showPreview(preview: Boolean) {
+        this.preview = preview
+    }
+
+    fun show(manager: FragmentManager) {
+        super.show(manager, "color_picker")
+    }
+
+    open class Builder(color: Int) {
+
+        protected val picker: ColorPicker = ColorPicker()
+
+        init {
+            picker.color = color
+            picker.showAlpha(true)
+            picker.showHex(false)
+            picker.showPreview(true)
+        }
+
+        fun setOnColorPickedListener(onColorPickedListener: OnColorPickedListener): Builder {
+            picker.colorPickedListener = onColorPickedListener
+            return this
+        }
+
+        fun create(): ColorPicker {
+            return picker
+        }
+
     }
 
 }

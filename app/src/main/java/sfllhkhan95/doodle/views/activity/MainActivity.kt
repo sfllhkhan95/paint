@@ -134,7 +134,7 @@ class MainActivity : AppCompatActivity(), SeekBar.OnSeekBarChangeListener, OnToo
             paintView.isModified -> DialogFactory.confirmExitDialog(this,
                     OnSuccessListener { paintView.clear(); onToggleReadMode(true) },
                     OnSuccessListener { paintView.save(); onToggleReadMode(true) })
-                    .show()
+                    .show(supportFragmentManager)
             else -> onToggleReadMode(true)
         }
     }
@@ -167,17 +167,16 @@ class MainActivity : AppCompatActivity(), SeekBar.OnSeekBarChangeListener, OnToo
             }
 
             R.id.canvas -> {
-                CanvasColorPicker(
-                        this,
-                        paintView.canvas?.color ?: Color.BLACK,
-                        ThemeUtils.getDialogTheme()
-                ).setOnColorPickedListener(object : OnColorPickedListener {
-                    override fun onColorPicked(color: Int) {
-                        paintView.canvas?.color = color
-                        this@MainActivity.onColorPicked(color.inv() or -0x1000000)
-                        paintView.invalidate()
-                    }
-                }).show()
+                CanvasColorPicker.Builder(paintView.canvas?.color ?: Color.BLACK)
+                        .setOnColorPickedListener(object : OnColorPickedListener {
+                            override fun onColorPicked(color: Int) {
+                                paintView.canvas?.color = color
+                                this@MainActivity.onColorPicked(color.inv() or -0x1000000)
+                                paintView.invalidate()
+                            }
+                        })
+                        .create()
+                        .show(supportFragmentManager)
                 return true
             }
 
@@ -195,7 +194,7 @@ class MainActivity : AppCompatActivity(), SeekBar.OnSeekBarChangeListener, OnToo
                 DialogFactory.confirmRevertDialog(
                         this,
                         OnSuccessListener { paintView.clear() }
-                ).show()
+                ).show(supportFragmentManager)
                 return true
             }
 
@@ -206,12 +205,12 @@ class MainActivity : AppCompatActivity(), SeekBar.OnSeekBarChangeListener, OnToo
                                 this,
                                 OnSuccessListener { paintView.save(); this@MainActivity.finish() },
                                 OnSuccessListener { paintView.saveAs();this@MainActivity.finish() }
-                        ).show()
+                        ).show(supportFragmentManager)
                     } else {
                         DialogFactory.confirmSaveDialog(
                                 this,
                                 OnSuccessListener { paintView.save(); this@MainActivity.finish() }
-                        ).show()
+                        ).show(supportFragmentManager)
                     }
                 }
                 return true
@@ -260,19 +259,19 @@ class MainActivity : AppCompatActivity(), SeekBar.OnSeekBarChangeListener, OnToo
             R.id.star -> paintView.selectedTool = Star::class.java
 
             R.id.penColorPicker -> {
-                val strokePicker = ColorPicker(this, paintView.brush.strokeColor, ThemeUtils.getDialogTheme())
+                val strokePicker = ColorPicker.Builder(paintView.brush.strokeColor)
                 strokePicker.setOnColorPickedListener(this)
-                strokePicker.show()
+                strokePicker.create().show(supportFragmentManager)
             }
             R.id.fillColorPicker -> {
-                val fillPicker = ColorPicker(this, paintView.brush.fillColor, ThemeUtils.getDialogTheme())
+                val fillPicker = ColorPicker.Builder(paintView.brush.fillColor)
                 fillPicker.setOnColorPickedListener(object : OnColorPickedListener {
                     override fun onColorPicked(color: Int) {
                         paintView.brush.fillColor = color
                         toolbox.updateFillColorPicker(color)
                     }
                 })
-                fillPicker.show()
+                fillPicker.create().show(supportFragmentManager)
             }
 
             R.id.eraser -> paintView.selectedTool = Eraser::class.java
@@ -309,7 +308,7 @@ class MainActivity : AppCompatActivity(), SeekBar.OnSeekBarChangeListener, OnToo
             DialogFactory.confirmDeleteDialog(view.context, OnSuccessListener {
                 ProjectUtils.delete(project)
                 this@MainActivity.finish()
-            }).show()
+            }).show(supportFragmentManager)
         }
     }
 

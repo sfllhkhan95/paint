@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:ads="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginBottom="-16dp"
+    app:cardCornerRadius="16dp"
+    app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
+
+  <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:background="?attr/colorPrimary"
+      android:gravity="center_horizontal"
+      android:orientation="vertical"
+      android:paddingBottom="16dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+      <TextView
+          android:id="@+id/title"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="Pick a color"
+          android:textAllCaps="true"
+          android:textColor="?attr/colorPrimaryDark"
+          android:textSize="20sp"
+          android:textStyle="bold"/>
+
+    </LinearLayout>
+
+    <com.rarepebble.colorpicker.ColorPickerView
+        android:id="@+id/colorPicker"
+        android:layout_width="256dp"
+        android:layout_height="256dp"
+        android:layout_marginBottom="8dp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="end"
+        android:padding="8dp">
+
+      <com.google.android.material.button.MaterialButton
+          style="@style/Widget.MaterialComponents.Button.TextButton.Dialog"
+          android:id="@+id/cancel_button"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginEnd="16dp"
+          android:layout_marginRight="16dp"
+          android:text="@android:string/cancel"
+          android:textColor="?attr/colorPrimaryDark"/>
+
+      <com.google.android.material.button.MaterialButton
+          style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
+          android:id="@+id/confirm_button"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="@android:string/ok"
+          android:textColor="@color/white"
+          app:backgroundTint="?attr/colorPrimaryDark"/>
+
+    </LinearLayout>
+
+    <com.google.android.gms.ads.AdView
+        android:id="@+id/adView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        ads:adSize="BANNER"
+        ads:adUnitId="@string/admob_ad_banner_confirmation"/>
+
+  </LinearLayout>
+
+</com.google.android.material.card.MaterialCardView>

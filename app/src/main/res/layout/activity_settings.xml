@@ -50,6 +50,8 @@
               android:layout_marginRight="8dp"
               android:text="@string/settings_item_theme"
               android:textAllCaps="false"
+              android:textColor="@color/white"
+              app:backgroundTint="?attr/colorPrimaryDark"
               app:cornerRadius="16dp"/>
 
           <com.google.android.material.button.MaterialButton
@@ -61,6 +63,8 @@
               android:layout_marginRight="8dp"
               android:text="@string/settings_item_locale"
               android:textAllCaps="false"
+              android:textColor="?attr/colorPrimaryDark"
+              app:strokeColor="?attr/colorPrimary"
               app:cornerRadius="16dp"/>
 
         </LinearLayout>
@@ -88,6 +92,8 @@
                 android:layout_marginRight="8dp"
                 android:text="@string/settings_item_help"
                 android:textAllCaps="false"
+                android:textColor="?attr/colorPrimaryDark"
+                app:strokeColor="?attr/colorPrimary"
                 app:cornerRadius="16dp"/>
 
             <com.google.android.material.button.MaterialButton
@@ -99,6 +105,8 @@
                 android:layout_marginRight="8dp"
                 android:text="@string/settings_item_intro"
                 android:textAllCaps="false"
+                android:textColor="?attr/colorPrimaryDark"
+                app:strokeColor="?attr/colorPrimary"
                 app:cornerRadius="16dp"/>
 
           </LinearLayout>
@@ -112,6 +120,8 @@
               android:layout_marginRight="8dp"
               android:text="@string/settings_item_privacy"
               android:textAllCaps="false"
+              android:textColor="?attr/colorPrimaryDark"
+              app:strokeColor="?attr/colorPrimary"
               app:cornerRadius="16dp"/>
 
           <com.google.android.material.button.MaterialButton
@@ -123,6 +133,8 @@
               android:layout_marginRight="8dp"
               android:text="@string/settings_icon_support"
               android:textAllCaps="false"
+              android:textColor="?attr/colorPrimaryDark"
+              app:strokeColor="?attr/colorPrimary"
               app:cornerRadius="16dp"/>
 
         </LinearLayout>

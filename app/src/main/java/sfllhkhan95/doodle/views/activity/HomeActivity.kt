@@ -118,7 +118,7 @@ class HomeActivity : AppCompatActivity(), SpeedDialView.OnActionSelectedListener
             else -> DialogFactory.confirmExitAppDialog(this,
                     OnSuccessListener {
                         super@HomeActivity.onBackPressed()
-                    }).show()
+                    }).show(supportFragmentManager)
         }
     }
 
