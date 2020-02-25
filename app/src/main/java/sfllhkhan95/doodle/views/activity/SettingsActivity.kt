@@ -37,7 +37,7 @@ class SettingsActivity : AppCompatActivity(), View.OnClickListener {
         val toolbar = findViewById<Toolbar>(R.id.toolbar)
         setSupportActionBar(toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        supportActionBar?.title = getString(R.string.label_settings)
+        supportActionBar?.title = getString(R.string.title_settings)
 
         themeButton = findViewById(R.id.theme)
         themeButton?.setOnClickListener(this)

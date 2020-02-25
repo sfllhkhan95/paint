@@ -3,21 +3,39 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:ads="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/optionsDialog"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginBottom="-16dp"
     app:cardCornerRadius="16dp"
-    android:background="@android:color/transparent"
-    app:cardBackgroundColor="?attr/colorPrimary"
     app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
 
   <LinearLayout
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
-      android:gravity="center"
-      android:paddingBottom="16dp"
       android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="16dp"
+        android:orientation="vertical">
+
+      <androidx.appcompat.widget.AppCompatTextView
+          style="@style/TextAppearance.MaterialComponents.Subtitle1"
+          android:id="@+id/title"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:textStyle="bold"
+          android:visibility="gone"/>
+
+      <androidx.appcompat.widget.AppCompatTextView
+          style="@style/TextAppearance.MaterialComponents.Caption"
+          android:id="@+id/message"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginBottom="8dp"
+          android:visibility="gone"/>
+
+    </LinearLayout>
 
     <LinearLayout
         android:id="@+id/optionsList"

@@ -10,7 +10,8 @@
       android:id="@+id/toolbar"
       android:layout_width="match_parent"
       android:layout_height="?actionBarSize"
-      android:background="?attr/colorPrimaryDark"/>
+      android:background="?attr/colorPrimaryDark"
+      android:theme="@style/ThemeOverlay.MaterialComponents.Dark"/>
 
   <ScrollView
       android:layout_width="match_parent"

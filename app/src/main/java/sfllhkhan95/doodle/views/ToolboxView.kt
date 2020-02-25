@@ -1,13 +1,11 @@
 package sfllhkhan95.doodle.views
 
 import android.content.Context
-import android.graphics.Color
 import android.util.AttributeSet
 import android.view.*
 import android.widget.ImageButton
 import android.widget.LinearLayout
 import android.widget.PopupMenu
-import android.widget.TextView
 import sfllhkhan95.doodle.R
 import sfllhkhan95.doodle.utils.ThemeUtils
 import sfllhkhan95.doodle.utils.listener.OnToolSelectedListener
@@ -22,31 +20,19 @@ class ToolboxView : LinearLayout {
     private val nonSticky = ArrayList<Int>()
 
     private val primaryToolbox: LinearLayout
-    private val secondaryToolbox: LinearLayout
 
-    private var primarySelected = -1
     private var toolSelectedListener: OnToolSelectedListener? = null
 
     constructor(context: Context, attrs: AttributeSet?) : super(context, attrs) {
         val params = LayoutParams(context, attrs)
-        params.weight = 1f
 
         primaryToolbox = LinearLayout(context, attrs)
         primaryToolbox.layoutParams = params
+        primaryToolbox.weightSum = 5f
 
-        val scrollView = View.inflate(context, R.layout.view_shapes_popup, null)
-        scrollView.layoutParams = params
-
-        secondaryToolbox = scrollView.findViewById(R.id.shapes_container)
-
-        val p = LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
-                ViewGroup.LayoutParams.WRAP_CONTENT)
-        layoutParams = p
-
+        this.layoutParams = LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
         this.orientation = VERTICAL
-        this.weightSum = 2f
 
-        addView(scrollView)
         addView(primaryToolbox)
         init()
 
@@ -55,30 +41,18 @@ class ToolboxView : LinearLayout {
         } catch (ignored: Exception) {
 
         }
-
-        secondaryToolbox.visibility = View.GONE
     }
 
     constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int) : super(context, attrs, defStyleAttr) {
         val params = LayoutParams(context, attrs)
-        params.weight = 1f
 
         primaryToolbox = LinearLayout(context, attrs, defStyleAttr)
         primaryToolbox.layoutParams = params
+        primaryToolbox.weightSum = 5f
 
-        val scrollView = View.inflate(context, R.layout.view_shapes_popup, null)
-        scrollView.layoutParams = params
-
-        secondaryToolbox = scrollView.findViewById(R.id.shapes_container)
-
-        val p = LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
-                ViewGroup.LayoutParams.WRAP_CONTENT)
-        layoutParams = p
-
+        this.layoutParams = LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
         this.orientation = VERTICAL
-        this.weightSum = 2f
 
-        addView(scrollView)
         addView(primaryToolbox)
         init()
 
@@ -87,8 +61,6 @@ class ToolboxView : LinearLayout {
         } catch (ignored: Exception) {
 
         }
-
-        secondaryToolbox.visibility = View.GONE
     }
 
     private fun inflateItem(root: LinearLayout, item: MenuItem) {
@@ -106,62 +78,29 @@ class ToolboxView : LinearLayout {
         itemView?.id = item.itemId
         itemView?.setImageDrawable(item.icon)
 
-        val labelView = toolView.findViewById<TextView>(R.id.label)
-        labelView?.text = item.title
-        if (root.equals(secondaryToolbox)) labelView.visibility = View.GONE
-
         itemView.setOnClickListener { v ->
             for (i in 0 until root.childCount) {
                 if (v.id == (root.getChildAt(i) as LinearLayout).getChildAt(0).id) {
-                    if (item.hasSubMenu()) {
-                        if (primarySelected != v.id || secondaryToolbox.visibility == View.GONE) {
-                            inflateMenu(secondaryToolbox, item.subMenu)
-                            secondaryToolbox.visibility = View.VISIBLE
+                    selectTool(primaryToolbox, v.id)
 
-                            selectTool(primaryToolbox, v.id)
-
-                            if (hasOnToolSelectedListener()) {
-                                val id = (secondaryToolbox.getChildAt(0) as LinearLayout).getChildAt(0).id
-                                selectTool(secondaryToolbox, id)
-
-                                toolSelectedListener!!.onToolSelected(!nonSticky.contains(id), id)
-                            }
-                        } else {
-                            secondaryToolbox.visibility = View.GONE
-
-                            if (hasOnToolSelectedListener()) {
-                                toolSelectedListener!!.onToolSelected(!nonSticky.contains(v.id), v.id)
-                            }
-                        }
-                    } else {
-                        if (root == primaryToolbox) {
-                            secondaryToolbox.visibility = View.GONE
-                            selectTool(primaryToolbox, v.id)
-                        } else {
-                            selectTool(secondaryToolbox, v.id)
-                        }
-
-                        if (hasOnToolSelectedListener()) {
-                            toolSelectedListener!!.onToolSelected(!nonSticky.contains(v.id), v.id)
-                        }
-                    }
+                    toolSelectedListener?.onToolSelected(!nonSticky.contains(v.id), v.id)
                 }
             }
+        }
+
+        if (item.itemId == R.id.space) {
+            toolView.visibility = View.INVISIBLE
         }
 
         root.addView(toolView)
     }
 
-    private fun hasOnToolSelectedListener(): Boolean {
-        return toolSelectedListener != null
-    }
-
     private fun inflateMenu(root: LinearLayout, menu: Menu) {
         root.removeAllViews()
 
-        weightSum = menu.size().toFloat()
-        for (i in 0 until menu.size())
+        for (i in 0 until menu.size()) {
             inflateItem(root, menu.getItem(i))
+        }
     }
 
     private fun init() {
@@ -176,7 +115,6 @@ class ToolboxView : LinearLayout {
         } catch (e: Exception) {
             e.printStackTrace()
         }
-
     }
 
     private fun setToolColor(itemId: Int, color: Int) {
@@ -185,34 +123,19 @@ class ToolboxView : LinearLayout {
         } catch (ignored: Exception) {
 
         }
-
     }
 
     private fun selectTool(root: LinearLayout, id: Int) {
         if (nonSticky.contains(id)) return
 
         deselectAll(root)
-        if (root == primaryToolbox)
-            primarySelected = id
-
-        setToolColor(id, ThemeUtils.colorPrimaryDark(context))
+        // setToolColor(id, ThemeUtils.colorAccent(context))
     }
 
     private fun deselectAll(root: LinearLayout) {
-        if (root == primaryToolbox)
-            primarySelected = -1
-
         for (i in 0 until root.childCount) {
-            setToolColor((root.getChildAt(i) as LinearLayout).getChildAt(0).id, Color.WHITE)
+            setToolColor((root.getChildAt(i) as LinearLayout).getChildAt(0).id, ThemeUtils.colorTextPrimary(context))
         }
-    }
-
-    fun updateFillColorPicker(color: Int) {
-        setToolColor(R.id.fillColorPicker, color)
-    }
-
-    fun updatePenColorPicker(color: Int) {
-        setToolColor(R.id.penColorPicker, color)
     }
 
     private fun setOnToolSelectedListener(toolSelectedListener: OnToolSelectedListener) {

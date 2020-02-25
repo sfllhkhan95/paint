@@ -10,19 +10,9 @@
       android:id="@+id/icon"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
-      android:background="@drawable/bg_icon"
-      android:layout_margin="10dp"
-      android:padding="10dp"
+      android:background="@android:color/transparent"
+      android:layout_margin="8dp"
+      android:tint="?attr/colorPrimaryDark"
       android:scaleType="centerInside"/>
-
-  <androidx.appcompat.widget.AppCompatTextView
-      android:id="@+id/label"
-      android:layout_width="40dp"
-      android:layout_height="wrap_content"
-      android:layout_marginTop="-5dp"
-      android:gravity="center"
-      android:textAllCaps="true"
-      android:textColor="@color/white"
-      android:textSize="10sp"/>
 
 </LinearLayout>

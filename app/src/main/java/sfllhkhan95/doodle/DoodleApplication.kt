@@ -80,6 +80,8 @@ class DoodleApplication : Application() {
         const val REQUEST_PHOTO_CAPTURE = 100
         const val REQUEST_PHOTO_PICK = 200
         const val REQUEST_SHARE_DOODLE = 300
+        const val REQUEST_GALLERY_ACCESS = 400
+        const val REQUEST_CAMERA_ACCESS = 500
 
         // Tags
         const val TAG_NOTIFICATIONS = "NOTIFICATIONS"

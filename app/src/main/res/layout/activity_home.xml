@@ -14,6 +14,7 @@
       android:layout_height="?actionBarSize"
       android:layout_gravity="top"
       android:background="?attr/colorPrimaryDark"
+      android:theme="@style/ThemeOverlay.MaterialComponents.Dark"
       app:liftOnScroll="true">
 
     <!-- Fixed Action Bar -->
@@ -24,12 +25,12 @@
         android:orientation="horizontal"
         app:layout_collapseMode="pin">
 
-      <androidx.appcompat.widget.AppCompatImageButton
-          android:id="@+id/settingsButton"
-          style="@style/Widget.MaterialComponents.Button.TextButton.Dialog.Icon"
-          android:layout_width="42dp"
-          android:layout_height="wrap_content"
-          android:src="@drawable/ic_action_settings"/>
+      <androidx.appcompat.widget.Toolbar
+          android:id="@+id/toolbar"
+          android:layout_width="match_parent"
+          android:layout_height="?actionBarSize"
+          android:background="?attr/colorPrimaryDark"
+          android:theme="@style/ThemeOverlay.MaterialComponents.Dark"/>
 
     </androidx.appcompat.widget.LinearLayoutCompat>
 

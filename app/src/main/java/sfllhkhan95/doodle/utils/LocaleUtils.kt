@@ -14,6 +14,7 @@ import java.util.*
  */
 object LocaleUtils {
 
+    private var selectedLocale = 0
     private val supportedLocales = Array<CharSequence>(4) {
         when (it) {
             1 -> "Deutsch"
@@ -32,6 +33,15 @@ object LocaleUtils {
         ))
     }
 
+    private fun getIndexFromLanguage(language: String): Int {
+        return when (language) {
+            Locale.GERMAN.language -> 1
+            Locale.FRENCH.language -> 2
+            Locale("ur").language -> 3
+            else -> 0
+        }
+    }
+
     fun configureBaseContext(base: Context?): Context? {
         return LocaleChanger.configureBaseContext(base)
     }
@@ -41,10 +51,14 @@ object LocaleUtils {
     }
 
     fun makeDialog(context: Context, onLocaleChanged: OnSuccessListener<Void>?): AlertDialog {
+        selectedLocale = getIndexFromLanguage(LocaleChanger.getLocale().language)
         return AlertDialog.Builder(context, ThemeUtils.getDialogTheme())
                 .setTitle(context.getString(R.string.settings_item_locale))
-                .setItems(supportedLocales) { _, which ->
-                    selectLocale(which)
+                .setSingleChoiceItems(supportedLocales, selectedLocale) { _, which ->
+                    selectedLocale = which
+                }
+                .setPositiveButton(android.R.string.ok) { _, _ ->
+                    selectLocale(selectedLocale)
                     onLocaleChanged?.onSuccess(null)
                 }
                 .create()

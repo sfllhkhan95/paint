@@ -1,57 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-  <style name="AppTheme" parent="Theme.MaterialComponents.NoActionBar">
-    <item name="colorPrimary">@color/purple_100</item>
-    <item name="colorPrimaryDark">@color/purple_900</item>
-    <item name="colorAccent">@color/purple_900</item>
-    <item name="colorSecondary">@color/purple_900a</item>
-    <item name="android:windowBackground">@color/deep_purple_50</item>
-    <item name="android:navigationBarColor">@color/purple_900</item>
-  </style>
-
-  <style name="AppTheme.Ocean" parent="Theme.MaterialComponents.NoActionBar">
-    <item name="colorPrimary">@color/blue_100</item>
+  <style name="AppTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
+    <item name="colorPrimary">@color/blue_600</item>
     <item name="colorPrimaryDark">@color/blue_900</item>
     <item name="colorAccent">@color/blue_900</item>
-    <item name="colorSecondary">@color/blue_900a</item>
-    <item name="android:windowBackground">@color/blue_grey_50</item>
+    <item name="android:textColorPrimary">@android:color/primary_text_light</item>
+    <item name="android:textColorSecondary">@android:color/secondary_text_light</item>
+    <item name="android:windowBackground">@android:color/background_light</item>
     <item name="android:navigationBarColor">@color/blue_900</item>
   </style>
 
-  <style name="AppTheme.Sunlight" parent="Theme.MaterialComponents.NoActionBar">
-    <item name="colorPrimary">@color/yellow_100</item>
-    <item name="colorPrimaryDark">@color/yellow_900</item>
-    <item name="colorAccent">@color/yellow_900</item>
-    <item name="colorSecondary">@color/yellow_900a</item>
-    <item name="android:windowBackground">@color/orange_50</item>
-    <item name="android:navigationBarColor">@color/yellow_900</item>
-  </style>
-
-  <style name="AppTheme.Forest" parent="Theme.MaterialComponents.NoActionBar">
-    <item name="colorPrimary">@color/green_100</item>
-    <item name="colorPrimaryDark">@color/green_900</item>
-    <item name="colorAccent">@color/green_900</item>
-    <item name="colorSecondary">@color/green_900a</item>
-    <item name="android:windowBackground">@color/light_green_50</item>
-    <item name="android:navigationBarColor">@color/green_900</item>
-  </style>
-
-  <style name="AppTheme.Chocolate" parent="Theme.MaterialComponents.NoActionBar">
-    <item name="colorPrimary">@color/brown_100</item>
-    <item name="colorPrimaryDark">@color/brown_900</item>
-    <item name="colorAccent">@color/brown_900</item>
-    <item name="colorSecondary">@color/brown_900a</item>
-    <item name="android:windowBackground">@color/deep_orange_50</item>
-    <item name="android:navigationBarColor">@color/brown_900</item>
-  </style>
-
   <style name="AppTheme.Dark" parent="Theme.MaterialComponents.NoActionBar">
-    <item name="colorPrimary">@color/grey_400</item>
+    <item name="colorPrimary">@color/grey_600</item>
     <item name="colorPrimaryDark">@color/grey_900</item>
-    <item name="colorAccent">@color/grey_900</item>
-    <item name="colorSecondary">@color/grey_900a</item>
-    <item name="android:windowBackground">@color/grey_600</item>
-    <item name="android:navigationBarColor">@color/grey_900</item>
+    <item name="colorAccent">@color/blue_600</item>
+    <item name="android:textColorPrimary">@android:color/primary_text_dark</item>
+    <item name="android:textColorSecondary">@android:color/secondary_text_dark</item>
+    <item name="android:windowBackground">@android:color/background_dark</item>
+    <item name="android:navigationBarColor">@color/blue_600</item>
   </style>
+
 </resources>

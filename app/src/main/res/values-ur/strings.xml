@@ -14,34 +14,20 @@
   <string name="error_no_gallery">کوئی گیلری ایپ نہیں ملی۔</string>
 
   <!-- Confirmation and Status messages -->
-  <string name="confirm_delete_title">پروجیکٹ مٹا دیں؟</string>
-  <string name="confirm_delete_body">یہ عمل مستقل طور پر پروجیکٹ کو مٹا دے گا. کیا آپ واقعی ایسا کرنا چاہتے ہیں؟
-  </string>
-  <string name="confirm_exit">محفوظ کئے بغیر بند کریں؟</string>
-  <string name="confirm_revert">اصل حالت میں جائیں؟</string>
-  <string name="confirm_quit">ایپ بند کریں؟</string>
-  <string name="confirm_save">پروجیکٹ محفوظ کریں؟</string>
-  <string name="prompt_permissions">اسٹوریج آپریشن انجام دینے کی اجازت دیں۔</string>
-  <string name="status_restricted">آگے بڑھنے سے پہلے تمام اجازت دے۔</string>
+  <string name="confirm_delete_body">یہ عمل مستقل طور پر پروجیکٹ کو مٹا دے گا</string>
 
   <!-- Content descriptions (for Accessibility) -->
   <string name="desc_brush_size_icon">برش سائز کا انتخاب کریں</string>
-  <string name="desc_donated">ہمارے ساتھ تعاون کرنے کا شکریہ! دوبارہ ڈُوڈل چلانے پر تمام اشتہارات مٹا دیے جائں گے۔
+  <string name="desc_donated">ہمارے ساتھ تعاون کرنے کا شکریہ! دوبارہ ڈُوڈل چلانے پر تمام اشتہارات مٹا دیے جائں گے
   </string>
-  <string name="desc_icon">آئکن</string>
-  <string name="desc_logo">لوگو</string>
-  <string name="desc_messenger_share_button">میسنجر پر بھیجیں</string>
-  <string name="desc_thumbnail">پروجیکٹ آئکن</string>
+  <string name="desc_prompt_save_and_close">بند کرنے سے پہلے تبدیلیاں محفوظ کریں</string>
+  <string name="label_save_and_close">محفوظ کر کے بند کریں</string>
 
-  <string name="desc_prompt_exit">تمام غیر محفوظ تبدیلیاں ضائع ہو جائیں گی۔ کیا آپ واقعی یہ کرنا چاہتے ہیں؟</string>
-  <string name="desc_prompt_revert">یہ عمل تمام غیر محفوظ تبدیلیاں ختم کر دے گا. یہ واپس نہیں کیا جا سکتا. کیا آپ واقعی
-    ایسا کرنا چاہتے ہیں؟
+  <string name="desc_prompt_close">تمام غیر محفوظ تبدیلیاں ضائع ہو جائیں گی</string>
+  <string name="desc_prompt_revert">یہ عمل تمام غیر محفوظ تبدیلیاں ختم کر دے گا. یہ واپس نہیں کیا جا سکتا
   </string>
-  <string name="desc_prompt_save">آپ کا پروجیکٹ محفوظ کر لیا جائے گا جسے آپ بعد میں تبدیل بھی کر سکیں گے۔</string>
-  <string name="desc_prompt_share">واٹس ایپ پر بھیجیں، فیس بک میسینجر میں دوستوں کو بھیجیں، یا کسی اور طرح سے شیئر
-    کریں۔
-  </string>
-  <string name="desc_prompt_support">ڈوڈل ایک مفت اور کھلا پروجیکٹ ہے. ہماری ٹیم آپ کو بہترین تجربات دینے کیلئے محرک ہے.
+  <string name="desc_prompt_save">آپ کا پروجیکٹ محفوظ کر لیا جائے گا جسے آپ بعد میں تبدیل بھی کر سکیں گے</string>
+  <string name="desc_prompt_support">ڈوڈل ایک مفت اور کھلا پروجیکٹ ہے ہماری ٹیم آپ کو بہترین تجربات دینے کیلئے محرک ہے.
     اس اپلی کیشن سے آمدنی کا ذریعہ صرف چند اشتہارات ہیں. ہماری حوصلہ افضائی کیلئے Play Store پراپنی رائے سے، اس کے کوڈ
     میں حصہ ڈال کر، یا تمام اشتھارات کو مٹانے کیلئے ایک بار کی رقم کا عطیہ دے کر ہمیں سپورٹ کرسکتے ہیں.
   </string>
@@ -49,53 +35,38 @@
     کو بہترین تجربات دینے کیلئے محرک ہے. ہماری حوصلہ افضائی کیلئے Play Store پراپنی رائے سے یا اس کے کوڈ میں حصہ ڈال کر
     ہمیں سپورٹ کرسکتے ہیں.
   </string>
-  <string name="desc_prompt_watch_ad">ڈوڈل ایک مفت، open-source ایپ ہے. ویڈیو اشتہار دیکھنے کیلئے ذیل میں .اشتھار دیکھں.
-    پر کلک کریں. یہ ہمیں آمدنی پیدا کرنے میں مدد دیتا ہے.
-  </string>
-  <string name="desc_prompt_quit">جلد واپس آئیے گا!</string>
+  <string name="desc_prompt_exit">جلد واپس آئیے گا!</string>
 
-  <!-- Placeholders -->
-  <string name="placeholder_default_theme">منتخب کردہ رنگ</string>
-  <string name="placeholder_dialog_body">ڈائیلاگ کی تفصیل یہاں آتی ہے</string>
-  <string name="placeholder_hello_world">ہیلو، ورلڈ!</string>
-  <string name="placeholder_messenger_recipient">میسنجر پر گفتگو</string>
-  <string name="placeholder_name">نام</string>
-  <string name="placeholder_title">عنوان</string>
+  <string name="desc_support_review">آپ کی رائے آپ کی بہتر خدمت کرنے میں ہماری مدد کرتی ہے</string>
+  <string name="desc_support_contribute">یہ اوپن سورس پروجیکٹ اپنے سورس کوڈ اور دستاویزات میں شراکت کا خیر مقدم کرتا
+    ہے
+  </string>
+  <string name="desc_support_donate">اگر آپ یہ عطیہ کرنا منتخب کرتے ہیں تو تمام ان ایپ اشتہارات ہٹا دیئے جائیں گے
+  </string>
 
   <!-- Labels -->
   <string name="label_blank">خالی کینوس</string>
   <string name="label_camera">کیمرہ</string>
-  <string name="label_choose_theme">رنگ منتخب کریں</string>
-  <string name="label_compose">بنائیں</string>
+  <string name="label_close">بند کریں</string>
   <string name="label_delete">مٹائیں</string>
   <string name="label_exit">بند کریں</string>
-  <string name="label_faqs">امدادی سوالات</string>
   <string name="label_gallery">گیلری</string>
-  <string name="label_messenger_action">جواب دیں</string>
-  <string name="label_new_message">نیا پیغام</string>
-  <string name="label_op1">اختیار ۱</string>
-  <string name="label_op2">اختیار ۲</string>
-  <string name="label_op3">اختیار ۳</string>
-  <string name="label_privacy">رازداری پالیسی</string>
-  <string name="label_watch_ad">اشتہار دیکھیں</string>
-  <string name="label_set">لگائیں</string>
-  <string name="label_settings">ترتیبات</string>
-
-  <string name="label_support_review">آپ کی رائے</string>
+  <string name="label_support_review">ارائے دیں</string>
   <string name="label_support_donate">چندہ دیں</string>
   <string name="label_support_contribute">حصہ ڈالیں</string>
 
-  <string name="label_share_default">بانٹیں</string>
-  <string name="label_share_whatsapp">واٹس ایپ</string>
-  <string name="label_share_messenger">میسنجر</string>
+  <!-- Activity titles -->
+  <string name="title_faqs">امدادی سوالات</string>
+  <string name="title_privacy">رازداری پالیسی</string>
+  <string name="title_settings">ترتیبات</string>
 
   <!-- Settings screen options -->
   <string name="settings_item_help">مدد حاصل کریں</string>
   <string name="settings_item_privacy">رازداری پالیسی دیکھیں</string>
-  <string name="settings_icon_support">تعاون کریں</string>
-  <string name="settings_item_theme">اپلی کیشن کا رنگ</string>
+  <string name="settings_item_support">تعاون کریں</string>
+  <string name="settings_item_theme">رنگ چنیں</string>
   <string name="settings_item_intro">تعارف دیکھیں</string>
-  <string name="settings_item_locale">زبان</string>
+  <string name="settings_item_locale">زبان منتخب کریں</string>
 
   <!-- Menu items -->
   <string name="menu_action_layers">تبدیلیاں</string>
@@ -139,11 +110,16 @@
     سے ہی جوابی ڈُوڈل بھیجیں۔
   </string>
 
-  <string name="slide4_title">رسائی</string>
+  <string name="slide4_title">رسائی دیں</string>
   <string name="slide4_description_permissions">گیلری یا کیمرے کی تصویر سے ڈُوڈل بنانے کیلئے ہمیں سٹوریج اور کیمرے تک
     رسائی کی اجازت درکار ہے۔
   </string>
   <string name="slide4_description_normal">خالی کینوس پر مصوری کریں یا گیلری اور کیمرے سے تصویر لے کر اس پر ڈُوڈل
     بنائیں۔
   </string>
+  <string name="desc_prompt_save_as">موجودہ پروجیکٹ کو اوور رائٹنگ کے بجائے ایک کاپی بنائیں</string>
+  <string name="menu_action_save_as">نقل بنائیں</string>
+  <string name="theme_dark">سیاہ</string>
+  <string name="theme_light">روشن</string>
+  <string name="menu_action_settings">ترتیبات</string>
 </resources>

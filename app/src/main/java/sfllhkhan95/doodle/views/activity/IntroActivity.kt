@@ -5,7 +5,6 @@ import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Bundle
-import android.widget.Toast
 import androidx.annotation.DrawableRes
 import androidx.core.content.ContextCompat
 import com.github.paolorotolo.appintro.AppIntro
@@ -97,22 +96,10 @@ class IntroActivity : AppIntro() {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         when (requestCode) {
             REQUEST_ALL_PERMISSIONS -> {
-                var allGranted = true
-                for (result in grantResults) {
-                    if (result != PackageManager.PERMISSION_GRANTED) {
-                        allGranted = false
-                        break
-                    }
-                }
-
-                if (allGranted) {
-                    // Go to home activity
-                    startActivity(Intent(applicationContext, HomeActivity::class.java))
-                    overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
-                    finish()
-                } else {
-                    Toast.makeText(this, getString(R.string.status_restricted), Toast.LENGTH_SHORT).show()
-                }
+                // Allow user to proceed to next activity (even if permissions not granted)
+                startActivity(Intent(applicationContext, HomeActivity::class.java))
+                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
+                finish()
             }
         }
     }

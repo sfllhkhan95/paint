@@ -47,8 +47,9 @@
 
     <activity
         android:name="sfllhkhan95.doodle.views.activity.SettingsActivity"
-        android:label="@string/label_settings"
-        android:parentActivityName="sfllhkhan95.doodle.views.activity.HomeActivity"/>
+        android:label="@string/title_settings"
+        android:parentActivityName="sfllhkhan95.doodle.views.activity.HomeActivity"
+        android:configChanges="uiMode"/>
 
     <activity
         android:name="sfllhkhan95.doodle.views.activity.MainActivity"
@@ -56,12 +57,12 @@
 
     <activity
         android:name="sfllhkhan95.doodle.views.activity.PrivacyPolicy"
-        android:label="@string/label_privacy"
+        android:label="@string/title_privacy"
         android:parentActivityName="sfllhkhan95.doodle.views.activity.SettingsActivity"/>
 
     <activity
         android:name="sfllhkhan95.doodle.views.activity.FAQsActivity"
-        android:label="@string/label_faqs"
+        android:label="@string/title_faqs"
         android:parentActivityName="sfllhkhan95.doodle.views.activity.SettingsActivity"/>
 
     <activity

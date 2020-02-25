@@ -15,94 +15,63 @@
   <string name="error_no_camera">Aucune application de caméra trouvée.</string>
 
   <!-- Confirmation and Status messages -->
-  <string name="confirm_delete_title">Êtes-vous sûr?</string>
-  <string name="confirm_delete_body">Cette action supprimera définitivement le projet. Souhaitez-vous vraiment
-    continuer?
-  </string>
-  <string name="confirm_exit">Quitter sans sauvegarder?</string>
-  <string name="confirm_revert">Réinitialiser à l\'original?</string>
-  <string name="confirm_save">Enregistrer le Doodle actuel?</string>
-  <string name="confirm_quit">Voulez-vous vraiment fermer?</string>
-  <string name="prompt_permissions">L\'autorisation d\'effectuer des opérations de stockage est requise.</string>
-  <string name="status_restricted">Accordez toutes les autorisations avant de continuer.</string>
+  <string name="confirm_delete_body">Cette action supprimera définitivement le projet</string>
 
   <!-- Content descriptions (for Accessibility) -->
   <string name="desc_brush_size_icon">Sélectionnez la taille du pinceau</string>
   <string name="desc_donated">Merci de soutenir Doodle! Les annonces seront supprimées lorsque vous relancez
     l\'application.
   </string>
-  <string name="desc_icon">Icône</string>
-  <string name="desc_logo">Logo</string>
-  <string name="desc_messenger_share_button">Partager sur Messenger</string>
-  <string name="desc_thumbnail">Icône de projet</string>
+  <string name="desc_prompt_save_and_close">Enregistrer les modifications avant de fermer</string>
+  <string name="label_save_and_close">Sauver et fermer</string>
 
   <!-- Prompt descriptions -->
   <string name="desc_prompt_save">Votre projet sera enregistré dans Galerie et vous pourrez continuer à le modifier
-    ultérieurement.
+    ultérieurement
   </string>
-  <string name="desc_prompt_exit">Toutes les modifications non sauvegardées seraient ignorées. Souhaitez-vous vraiment
-    continuer?
-  </string>
+  <string name="desc_prompt_close">Toutes les modifications non sauvegardées seraient ignorées</string>
   <string name="desc_prompt_revert">Cette action effacera toutes les modifications non enregistrées. Cela ne peut pas
-    être inversé. Souhaitez-vous vraiment continuer?
-  </string>
-  <string name="desc_prompt_share">Partager sur WhatsApp, envoyer Doodle dans une conversation Messenger ou partager via
-    d\'autres applications
+    être inversé
   </string>
   <string name="desc_prompt_support">Doodle est un projet libre et open source. Notre équipe travaille dur pour vous
     apporter le meilleur produit. Les annonces minimales constituent la seule source de revenus pour cette application.
     Vous pouvez soutenir Doodle en laissant des commentaires sur Play Store, en contribuant à sa source ou en faisant un
-    don unique pour supprimer toutes les annonces de l\'application.
+    don unique pour supprimer toutes les annonces de l\'application
   </string>
   <string name="desc_prompt_supported">Merci de soutenir Doodle! Doodle est un projet gratuit et open source. Notre
     équipe travaille dur pour vous apporter le meilleur produit. Vous pouvez soutenir Doodle en le consultant sur Play
     Store ou en contribuant à sa source.
   </string>
-  <string name="desc_prompt_watch_ad">Doodle est un projet gratuit et open-source. Pensez à cliquer sur \"Regarder
-    l\'annonce\" ci-dessous pour voir une annonce vidéo. Cela nous aide à générer des revenus. Joyeux Doodling!
-  </string>
-  <string name="desc_prompt_quit">Reviens bientôt.\nJoyeux Doodling!</string>
+  <string name="desc_prompt_exit">Reviens bientôt.\nJoyeux Doodling!</string>
 
-  <!-- Placeholders -->
-  <string name="placeholder_default_theme">Thème par défaut</string>
-  <string name="placeholder_dialog_body">La description du dialogue vient ici</string>
-  <string name="placeholder_hello_world">Bonjour le monde!</string>
-  <string name="placeholder_messenger_recipient">Conversation Messenger</string>
-  <string name="placeholder_name">Premier M. Dernier</string>
-  <string name="placeholder_title">Titre</string>
+  <string name="desc_support_review">Vos commentaires nous aident à mieux vous servir</string>
+  <string name="desc_support_contribute">Ce projet open source accueille favorablement les contributions à son code
+    source et à sa documentation
+  </string>
+  <string name="desc_support_donate">Toutes les annonces intégrées à l\'application seront supprimées si vous choisissez
+    de faire ce don
+  </string>
 
   <!-- Labels -->
   <string name="label_blank">Projet vide</string>
   <string name="label_camera">Caméra</string>
-  <string name="label_compose">Composer</string>
-  <string name="label_choose_theme">Choisissez un thème</string>
+  <string name="label_close">Fermer</string>
   <string name="label_delete">Effacer</string>
-  <string name="label_faqs">FAQ de Doodle</string>
+  <string name="label_exit">Fermer</string>
   <string name="label_gallery">Galerie</string>
-  <string name="label_messenger_action">Répondre à</string>
-  <string name="label_new_message">Nouveau message</string>
-  <string name="label_op1">Option 1</string>
-  <string name="label_op2">Option 2</string>
-  <string name="label_op3">Option 3</string>
-  <string name="label_privacy">Politique de confidentialité</string>
-  <string name="label_set">Choisir</string>
-  <string name="label_settings">Réglages</string>
-
-  <string name="label_share_whatsapp">WhatsApp</string>
-  <string name="label_share_messenger">Messenger</string>
-  <string name="label_share_default">Défaut</string>
-
   <string name="label_support_contribute">Contribuer</string>
   <string name="label_support_donate">Faire un don</string>
   <string name="label_support_review">La revue</string>
 
-  <string name="label_exit">Fermer</string>
-  <string name="label_watch_ad">Regarder l\'annonce</string>
+  <!-- Activity titles -->
+  <string name="title_faqs">FAQ de Doodle</string>
+  <string name="title_privacy">Politique de Confidentialité</string>
+  <string name="title_settings">Réglages</string>
 
   <!-- Settings screen options -->
   <string name="settings_item_help">Aidez</string>
   <string name="settings_item_privacy">Politique de confidentialité</string>
-  <string name="settings_icon_support">Nous soutenir</string>
+  <string name="settings_item_support">Nous soutenir</string>
   <string name="settings_item_theme">Choisissez un thème</string>
   <string name="settings_item_intro">Voir l\'intro</string>
   <string name="settings_item_locale">Langue</string>
@@ -157,4 +126,9 @@
   <string name="slide4_description_normal">Commencez avec un projet vierge ou choisissez une image dans Galerie ou
     Appareil photo.
   </string>
+  <string name="desc_prompt_save_as">Créer une copie au lieu de remplacer le projet existant</string>
+  <string name="menu_action_save_as">Faire Double</string>
+  <string name="theme_dark">Nuit</string>
+  <string name="theme_light">Lumière</string>
+  <string name="menu_action_settings">Réglages</string>
 </resources>

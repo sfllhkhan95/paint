@@ -3,8 +3,10 @@ package sfllhkhan95.doodle.views.activity
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
+import android.content.res.ColorStateList
 import android.graphics.Bitmap
 import android.graphics.Color
+import android.graphics.PorterDuff
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
@@ -19,6 +21,7 @@ import androidx.appcompat.widget.Toolbar
 import androidx.core.content.ContextCompat
 import com.crashlytics.android.Crashlytics
 import com.google.android.gms.tasks.OnSuccessListener
+import com.google.android.material.button.MaterialButton
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.analytics.FirebaseAnalytics
 import sfllhkhan95.doodle.DoodleApplication.Companion.ACTION_SHARE
@@ -112,7 +115,26 @@ class MainActivity : AppCompatActivity(), SeekBar.OnSeekBarChangeListener, OnToo
 
         // Add click event listeners to toolbox buttons
         toolbox = findViewById(R.id.toolbox)
-        toolbox.updatePenColorPicker(paintView.brush.strokeColor)
+        updatePenColorPicker(paintView.brush.strokeColor)
+
+        arrayOf(R.id.line, R.id.rect, R.id.triangle, R.id.circle,
+                R.id.diamond, R.id.star, R.id.box).forEach { id ->
+            findViewById<View>(id)?.setOnClickListener { onToolSelected(false, id) }
+        }
+
+        findViewById<View>(R.id.selectedTool).setOnClickListener {
+            // todo: findViewById<View>(R.id.brushSizeBar)?.visibility = View.VISIBLE
+            ColorPicker.Builder(paintView.brush.strokeColor).apply {
+                setOnColorPickedListener(this@MainActivity)
+                setOnFillColorPickedListener(object : OnColorPickedListener {
+                    override fun onColorPicked(color: Int) {
+                        paintView.brush.fillColor = color
+                        updateFillColorPicker(color)
+                    }
+                })
+                create().show(supportFragmentManager)
+            }
+        }
     }
 
     override fun onStart() {
@@ -132,22 +154,43 @@ class MainActivity : AppCompatActivity(), SeekBar.OnSeekBarChangeListener, OnToo
         when {
             isViewing -> super.onBackPressed()
             paintView.isModified -> DialogFactory.confirmExitDialog(this,
-                    OnSuccessListener { paintView.clear(); onToggleReadMode(true) },
-                    OnSuccessListener { paintView.save(); onToggleReadMode(true) })
+                    OnSuccessListener {
+                        paintView.clear()
+                        if (isExisting) {
+                            super.onBackPressed()
+                        } else {
+                            onToggleReadMode(true)
+                        }
+                    },
+                    OnSuccessListener {
+                        paintView.save()
+                        if (isExisting) {
+                            super.onBackPressed()
+                        } else {
+                            onToggleReadMode(true)
+                        }
+                    })
                     .show(supportFragmentManager)
+            !isExisting -> super.onBackPressed()
             else -> onToggleReadMode(true)
         }
     }
 
     override fun onColorPicked(color: Int) {
         paintView.brush.strokeColor = color
-        toolbox.updatePenColorPicker(color)
+        updatePenColorPicker(color)
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         if (!isMaximized) {
             val inflater = menuInflater
             inflater.inflate(R.menu.menu_main, menu)
+            for (i in 0 until menu.size()) {
+                menu.getItem(i)?.icon?.mutate()?.setColorFilter(
+                        ThemeUtils.colorTextPrimary(this),
+                        PorterDuff.Mode.SRC_ATOP)
+            }
+
             menu.findItem(R.id.canvas).isVisible = !isExisting
 
             val mActionBarManager = ActionBarManager(menu)
@@ -242,43 +285,69 @@ class MainActivity : AppCompatActivity(), SeekBar.OnSeekBarChangeListener, OnToo
         if (reset) {
             paintView.selectedTool = null
         }
+
+        findViewById<View>(R.id.shapes).visibility = View.GONE
+        findViewById<View>(R.id.brushSizeBar).visibility = View.GONE
         when (id) {
-            R.id.pen -> paintView.selectedTool = Pen::class.java
+            R.id.pen -> {
+                paintView.selectedTool = Pen::class.java
+                findViewById<MaterialButton>(R.id.selectedTool).setIconResource(R.drawable.ic_tool_pen)
+            }
 
             R.id.colorPicker -> {
                 paintView.selectedTool = EyedropTool::class.java
                 paintView.setOnColorPickedListener(this)
+                findViewById<MaterialButton>(R.id.selectedTool).setIconResource(R.drawable.ic_tool_color_picker)
             }
 
-            R.id.line -> paintView.selectedTool = Line::class.java
-            R.id.rect -> paintView.selectedTool = Quad2D::class.java
-            R.id.box -> paintView.selectedTool = Quad3D::class.java
-            R.id.circle -> paintView.selectedTool = Circle::class.java
-            R.id.triangle -> paintView.selectedTool = Triangle::class.java
-            R.id.diamond -> paintView.selectedTool = Diamond::class.java
-            R.id.star -> paintView.selectedTool = Star::class.java
-
-            R.id.penColorPicker -> {
-                val strokePicker = ColorPicker.Builder(paintView.brush.strokeColor)
-                strokePicker.setOnColorPickedListener(this)
-                strokePicker.create().show(supportFragmentManager)
+            R.id.shapes -> {
+                findViewById<View>(R.id.shapes).visibility = View.VISIBLE
             }
-            R.id.fillColorPicker -> {
-                val fillPicker = ColorPicker.Builder(paintView.brush.fillColor)
-                fillPicker.setOnColorPickedListener(object : OnColorPickedListener {
-                    override fun onColorPicked(color: Int) {
-                        paintView.brush.fillColor = color
-                        toolbox.updateFillColorPicker(color)
-                    }
-                })
-                fillPicker.create().show(supportFragmentManager)
+            R.id.line -> {
+                paintView.selectedTool = Line::class.java
+                findViewById<MaterialButton>(R.id.selectedTool).setIconResource(R.drawable.ic_shape_line)
+            }
+            R.id.rect -> {
+                paintView.selectedTool = Quad2D::class.java
+                findViewById<MaterialButton>(R.id.selectedTool).setIconResource(R.drawable.ic_shape_rect)
+            }
+            R.id.box -> {
+                paintView.selectedTool = Quad3D::class.java
+                findViewById<MaterialButton>(R.id.selectedTool).setIconResource(R.drawable.ic_shape_box)
+            }
+            R.id.circle -> {
+                paintView.selectedTool = Circle::class.java
+                findViewById<MaterialButton>(R.id.selectedTool).setIconResource(R.drawable.ic_shape_circle)
+            }
+            R.id.triangle -> {
+                paintView.selectedTool = Triangle::class.java
+                findViewById<MaterialButton>(R.id.selectedTool).setIconResource(R.drawable.ic_shape_triangle)
+            }
+            R.id.diamond -> {
+                paintView.selectedTool = Diamond::class.java
+                findViewById<MaterialButton>(R.id.selectedTool).setIconResource(R.drawable.ic_shape_diamond)
+            }
+            R.id.star -> {
+                paintView.selectedTool = Star::class.java
+                findViewById<MaterialButton>(R.id.selectedTool).setIconResource(R.drawable.ic_shape_star)
             }
 
-            R.id.eraser -> paintView.selectedTool = Eraser::class.java
+            R.id.eraser -> {
+                paintView.selectedTool = Eraser::class.java
+                findViewById<MaterialButton>(R.id.selectedTool).setIconResource(R.drawable.ic_tool_eraser)
+            }
         }
 
-        toolbox.updateFillColorPicker(paintView.brush.fillColor)
-        toolbox.updatePenColorPicker(paintView.brush.strokeColor)
+        updateFillColorPicker(paintView.brush.fillColor)
+        updatePenColorPicker(paintView.brush.strokeColor)
+    }
+
+    private fun updateFillColorPicker(color: Int) {
+        findViewById<MaterialButton>(R.id.selectedTool).backgroundTintList = ColorStateList.valueOf(color or 0xFF000000.toInt())
+    }
+
+    private fun updatePenColorPicker(color: Int) {
+        findViewById<MaterialButton>(R.id.selectedTool).strokeColor = ColorStateList.valueOf(color)
     }
 
     override fun onTouch(view: View, motionEvent: MotionEvent): Boolean {
@@ -301,6 +370,14 @@ class MainActivity : AppCompatActivity(), SeekBar.OnSeekBarChangeListener, OnToo
             }
         }
         return false
+    }
+
+    override fun attachBaseContext(base: Context?) {
+        super.attachBaseContext(try {
+            LocaleUtils.configureBaseContext(base)
+        } catch (ignored: Exception) {
+            base
+        })
     }
 
     fun deleteProject(view: View) {
@@ -370,8 +447,12 @@ class MainActivity : AppCompatActivity(), SeekBar.OnSeekBarChangeListener, OnToo
     }
 
     private fun onToggleFullscreen(isMaximized: Boolean) {
-        findViewById<View>(R.id.toolbox).visibility = if (isMaximized) View.GONE else View.VISIBLE
-        findViewById<View>(R.id.brushSizeBar).visibility = if (isMaximized) View.GONE else View.VISIBLE
+        findViewById<View>(R.id.editBar).visibility = if (isMaximized) View.GONE else View.VISIBLE
+        findViewById<View>(R.id.selectedTool).visibility = if (isMaximized) View.GONE else View.VISIBLE
+        if (isMaximized) {
+            findViewById<View>(R.id.brushSizeBar).visibility = View.GONE
+            findViewById<View>(R.id.shapes).visibility = View.GONE
+        }
         toolbar.configure(isMaximized)
 
         window.decorView.apply {
@@ -392,15 +473,11 @@ class MainActivity : AppCompatActivity(), SeekBar.OnSeekBarChangeListener, OnToo
         this.isViewing = isViewing
         this.isMaximized = isViewing
         if (isViewing) {
-            findViewById<View>(R.id.editButton).visibility = View.VISIBLE
-            findViewById<View>(R.id.shareButton).visibility = View.VISIBLE
-            findViewById<View>(R.id.deleteButton).visibility = View.VISIBLE
+            findViewById<View>(R.id.viewBar).visibility = View.VISIBLE
             paintView.isEnabled = false
             toolbar.secondary.visibility = View.GONE
         } else {
-            findViewById<View>(R.id.editButton).visibility = View.GONE
-            findViewById<View>(R.id.shareButton).visibility = View.GONE
-            findViewById<View>(R.id.deleteButton).visibility = View.GONE
+            findViewById<View>(R.id.viewBar).visibility = View.GONE
             paintView.isEnabled = true
 
             // Select pen
@@ -470,23 +547,15 @@ class MainActivity : AppCompatActivity(), SeekBar.OnSeekBarChangeListener, OnToo
             primary.visibility = if (isMaximized) View.GONE else View.VISIBLE
             secondary.visibility = if (!isMaximized) View.GONE else View.VISIBLE
             setSupportActionBar(if (isMaximized) secondary else primary)
-            if (supportActionBar != null) {
-                supportActionBar!!.setDisplayHomeAsUpEnabled(true)
-                supportActionBar!!.setHomeAsUpIndicator(
-                        if (isMaximized)
-                            R.drawable.ic_action_minimize
-                        else
-                            R.drawable.ic_action_maximize)
-            }
-        }
-    }
+            supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
-    override fun attachBaseContext(base: Context?) {
-        super.attachBaseContext(try {
-            LocaleUtils.configureBaseContext(base)
-        } catch (ignored: Exception) {
-            base
-        })
+            val upIcon = resources.getDrawable(
+                    if (isMaximized) R.drawable.ic_action_minimize
+                    else R.drawable.ic_action_maximize, theme)
+            upIcon.setColorFilter(ThemeUtils.colorTextPrimary(this@MainActivity), PorterDuff.Mode.SRC_ATOP)
+            supportActionBar?.setHomeAsUpIndicator(upIcon)
+
+        }
     }
 
 }

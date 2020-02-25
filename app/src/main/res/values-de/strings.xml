@@ -14,93 +14,62 @@
   <string name="error_no_camera">Keine Kameraanwendung gefunden.</string>
 
   <!-- Confirmation and Status messages -->
-  <string name="confirm_delete_title">Bist du sicher?</string>
-  <string name="confirm_delete_body">Diese Aktion löscht das Projekt dauerhaft. Möchten Sie wirklich fortfahren?
-  </string>
-  <string name="confirm_exit">Beenden ohne Speichern?</string>
-  <string name="confirm_revert">Auf Original zurücksetzen?</string>
-  <string name="confirm_save">Aktuelles Doodle speichern?</string>
-  <string name="confirm_quit">Möchtest du wirklich aufhören?</string>
-  <string name="prompt_permissions">Berechtigung zum Ausführen von Speicheroperationen erforderlich.</string>
-  <string name="status_restricted">Gewähren Sie alle Berechtigungen, bevor Sie fortfahren.</string>
+  <string name="confirm_delete_body">Diese Aktion löscht das Projekt dauerhaft</string>
 
   <!-- Content descriptions (for Accessibility) -->
   <string name="desc_brush_size_icon">Pinselgröße auswählen</string>
   <string name="desc_donated">Danke, dass du Doodle unterstützt! Anzeigen werden entfernt, wenn Sie die App erneut
     starten.
   </string>
-  <string name="desc_icon">Ikone</string>
-  <string name="desc_logo">Logo</string>
-  <string name="desc_messenger_share_button">Im Messenger teilen</string>
-  <string name="desc_thumbnail">Projekt-Symbol</string>
 
   <!-- Prompt descriptions -->
   <string name="desc_prompt_save">Ihr Projekt wird in der Galerie gespeichert und Sie können es später weiter
-    bearbeiten.
+    bearbeiten
   </string>
-  <string name="desc_prompt_exit">Alle nicht gespeicherten Änderungen werden verworfen. Möchten Sie wirklich
-    fortfahren?
+  <string name="desc_prompt_save_and_close">Speichern Sie die Änderungen vor dem Schließen</string>
+  <string name="desc_prompt_close">Alle nicht gespeicherten Änderungen werden verworfen
   </string>
   <string name="desc_prompt_revert">Diese Aktion löscht alle nicht gespeicherten Änderungen. Es kann nicht rückgängig
-    gemacht werden. Möchten Sie wirklich fortfahren?
-  </string>
-  <string name="desc_prompt_share">In WhatsApp freigeben, Doodle in einer Messenger-Unterhaltung senden oder über andere
-    Anwendungen freigeben
+    gemacht werden
   </string>
   <string name="desc_prompt_support">Doodle ist ein kostenloses Open-Source-Projekt. Unser Team arbeitet hart daran,
     Ihnen das beste Produkt zu liefern. Minimalanzeigen sind die einzige Einnahmequelle dieser App. Sie können Doodle
     unterstützen, indem Sie es im Play Store überprüfen, einen Beitrag zur Quelle leisten oder einen einmaligen Betrag
-    spenden, um alle Anzeigen aus der App zu entfernen.
+    spenden, um alle Anzeigen aus der App zu entfernen
   </string>
   <string name="desc_prompt_supported">Danke, dass du Doodle unterstützt! Doodle ist ein kostenloses
     Open-Source-Projekt. Unser Team arbeitet hart daran, Ihnen das beste Produkt zu liefern. Sie können Doodle
     unterstützen, indem Sie es im Play Store lesen oder einen Beitrag zu seiner Quelle leisten.
   </string>
-  <string name="desc_prompt_watch_ad">Doodle ist ein kostenloses Open-Source-Projekt. Klicken Sie unten auf "Werbung
-    ansehen", um eine Videoanzeige zu sehen. Dies hilft uns, Umsatz zu generieren. Viel Spaß beim Kritzeln!
-  </string>
-  <string name="desc_prompt_quit">Komm bald wieder.\nViel Spaß beim Zeichnen!</string>
+  <string name="desc_prompt_exit">Komm bald wieder.\nViel Spaß beim Zeichnen!</string>
 
-  <!-- Placeholders -->
-  <string name="placeholder_default_theme">Standardthema</string>
-  <string name="placeholder_dialog_body">Hier kommt die Beschreibung</string>
-  <string name="placeholder_hello_world">Hallo Welt!</string>
-  <string name="placeholder_messenger_recipient">Messenger-Gespräch</string>
-  <string name="placeholder_name">Erstes M. Letztes</string>
-  <string name="placeholder_title">Titel</string>
+  <string name="desc_support_review">Ihr Feedback hilft uns, Sie besser zu bedienen</string>
+  <string name="desc_support_contribute">Dieses Open-Source-Projekt begrüßt Beiträge zu seinem Quellcode und seiner
+    Dokumentation
+  </string>
+  <string name="desc_support_donate">Alle In-App-Anzeigen werden entfernt, wenn Sie diese Spende tätigen</string>
 
   <!-- Labels -->
   <string name="label_blank">Leeres Projekt</string>
   <string name="label_camera">Kamera</string>
-  <string name="label_compose">Komponieren</string>
-  <string name="label_choose_theme">Wähle eine Farbe</string>
+  <string name="label_close">Schließen</string>
   <string name="label_delete">Löschen</string>
-  <string name="label_faqs">Doodle-FAQs</string>
+  <string name="label_exit">Schließen</string>
   <string name="label_gallery">Galerie</string>
-  <string name="label_messenger_action">Antworten auf</string>
-  <string name="label_new_message">Neue Nachricht</string>
-  <string name="label_op1">Option 1</string>
-  <string name="label_op2">Option 2</string>
-  <string name="label_op3">Option 3</string>
-  <string name="label_privacy">Datenschutz-Bestimmungen</string>
-  <string name="label_set">Einstellen</string>
-  <string name="label_settings">Einstellungen</string>
-
-  <string name="label_share_whatsapp">WhatsApp</string>
-  <string name="label_share_messenger">Messenger</string>
-  <string name="label_share_default">Standard</string>
-
+  <string name="label_save_and_close">Speichern und Schließen</string>
   <string name="label_support_contribute">Beitragen</string>
   <string name="label_support_donate">Spenden</string>
   <string name="label_support_review">Rezension</string>
 
-  <string name="label_exit">Schließen</string>
-  <string name="label_watch_ad">Werbung ansehen</string>
+  <!-- Activity titles -->
+  <string name="title_faqs">Doodle-FAQs</string>
+  <string name="title_privacy">Datenschutz-Bestimmungen</string>
+  <string name="title_settings">Einstellungen</string>
 
   <!-- Settings screen options -->
   <string name="settings_item_help">Hilfe erhalten</string>
   <string name="settings_item_privacy">Siehe Datenschutzerklärung</string>
-  <string name="settings_icon_support">Unterstütze uns</string>
+  <string name="settings_item_support">Unterstütze uns</string>
   <string name="settings_item_theme">Wähle eine Farbe</string>
   <string name="settings_item_intro">Siehe Einleitung</string>
   <string name="settings_item_locale">Sprache</string>
@@ -154,4 +123,9 @@
   <string name="slide4_description_normal">Beginnen Sie mit einem leeren Projekt oder wählen Sie ein Bild aus der
     Galerie oder der Kamera.
   </string>
+  <string name="desc_prompt_save_as">Erstellen Sie eine Kopie, anstatt das vorhandene Projekt zu überschreiben</string>
+  <string name="menu_action_save_as">Speichern Als</string>
+  <string name="theme_dark">Nacht</string>
+  <string name="theme_light">Licht</string>
+  <string name="menu_action_settings">Einstellungen</string>
 </resources>

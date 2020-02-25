@@ -9,6 +9,8 @@ import android.graphics.Point
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
+import android.view.Menu
+import android.view.MenuItem
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
@@ -24,7 +26,8 @@ import com.yalantis.ucrop.UCrop
 import sfllhkhan95.doodle.DoodleApplication.Companion.FILE_CAMERA
 import sfllhkhan95.doodle.DoodleApplication.Companion.FILE_CROPPED
 import sfllhkhan95.doodle.DoodleApplication.Companion.PROJECT_FROM_IMAGE
-import sfllhkhan95.doodle.DoodleApplication.Companion.REQUEST_ALL_PERMISSIONS
+import sfllhkhan95.doodle.DoodleApplication.Companion.REQUEST_CAMERA_ACCESS
+import sfllhkhan95.doodle.DoodleApplication.Companion.REQUEST_GALLERY_ACCESS
 import sfllhkhan95.doodle.DoodleApplication.Companion.REQUEST_PHOTO_CAPTURE
 import sfllhkhan95.doodle.DoodleApplication.Companion.REQUEST_PHOTO_PICK
 import sfllhkhan95.doodle.R
@@ -43,22 +46,25 @@ import java.io.File
  */
 class HomeActivity : AppCompatActivity(), SpeedDialView.OnActionSelectedListener {
 
+    private lateinit var composeButton: SpeedDialView
     private var projectInflater: ProjectInflater? = null
 
     private var mCameraPicturePath: String? = null
 
     private val mAdManager = AdManager.instance
-    private var settingsButton: View? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         ThemeUtils.setActivityTheme(this)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
 
+        setSupportActionBar(findViewById(R.id.toolbar))
+        supportActionBar?.title = ""
+
         projectInflater = ProjectInflater(this)
 
         // Build floating actions
-        val composeButton = findViewById<SpeedDialView>(R.id.compose_button)
+        composeButton = findViewById(R.id.compose_button)
         composeButton.setOnActionSelectedListener(this)
 
         composeButton.addActionItem(SpeedDialActionItem.Builder(R.id.link_camera, R.drawable.ic_open_camera)
@@ -79,11 +85,6 @@ class HomeActivity : AppCompatActivity(), SpeedDialView.OnActionSelectedListener
                 .setLabelColor(ContextCompat.getColor(this@HomeActivity, R.color.blue_grey_500))
                 .create()
         )
-
-        settingsButton = findViewById(R.id.settingsButton)
-        settingsButton?.setOnClickListener {
-            startActivity(Intent(this@HomeActivity, SettingsActivity::class.java))
-        }
     }
 
     override fun onStart() {
@@ -122,6 +123,22 @@ class HomeActivity : AppCompatActivity(), SpeedDialView.OnActionSelectedListener
         }
     }
 
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        menuInflater.inflate(R.menu.menu_home, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.settings -> {
+                startActivity(Intent(this@HomeActivity, SettingsActivity::class.java))
+                return true
+            }
+        }
+
+        return false
+    }
+
     override fun startActivity(intent: Intent) {
         super.startActivity(intent)
         overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
@@ -134,7 +151,16 @@ class HomeActivity : AppCompatActivity(), SpeedDialView.OnActionSelectedListener
         val size = Point()
         window.windowManager.defaultDisplay.getSize(size)
 
+        val options = UCrop.Options()
+        options.setStatusBarColor(ThemeUtils.colorPrimaryDark(this))
+        options.setToolbarColor(ThemeUtils.colorPrimaryDark(this))
+        options.setToolbarWidgetColor(ContextCompat.getColor(this, android.R.color.white))
+        options.setActiveControlsWidgetColor(ContextCompat.getColor(this, android.R.color.white))
+        options.setShowCropFrame(false)
+        options.setShowCropGrid(false)
+
         UCrop.of(source, destination)
+                .withOptions(options)
                 .withAspectRatio(9.0F, 16.0F)
                 .withMaxResultSize(size.x, size.y)
                 .start(this)
@@ -144,6 +170,8 @@ class HomeActivity : AppCompatActivity(), SpeedDialView.OnActionSelectedListener
         super.onActivityResult(requestCode, resultCode, data)
         if (resultCode != RESULT_OK) return
         when (requestCode) {
+            REQUEST_GALLERY_ACCESS -> onGalleryActionSelected()
+            REQUEST_CAMERA_ACCESS -> onCameraActionSelected()
             REQUEST_PHOTO_PICK -> data?.data?.let { selectAndCropImage(it) }
             REQUEST_PHOTO_CAPTURE -> mCameraPicturePath?.let { path ->
                 Uri.fromFile(File(path))?.let { selectAndCropImage(it) }
@@ -166,46 +194,38 @@ class HomeActivity : AppCompatActivity(), SpeedDialView.OnActionSelectedListener
                 return true
             }
             R.id.link_gallery -> {
-                val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
-                if (intent.resolveActivity(packageManager) != null) {
-                    try {
-                        startActivityForResult(intent, REQUEST_PHOTO_PICK)
-                    } catch (ex: ActivityNotFoundException) {
-                        Snackbar.make(settingsButton!!, getString(R.string.error_no_gallery), Snackbar.LENGTH_LONG).show()
-                    }
+                // Need storage permission to perform this task
+                val storagePermissionGranted = ContextCompat.checkSelfPermission(this,
+                        Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED
 
+                if (storagePermissionGranted) {
+                    onGalleryActionSelected()
+                } else {
+                    ActivityCompat.requestPermissions(
+                            this,
+                            arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE),
+                            REQUEST_GALLERY_ACCESS
+                    )
                 }
                 return true
             }
             R.id.link_camera -> {
-                val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
-                if (intent.resolveActivity(packageManager) != null) {
-                    try {
-                        val photoFile: File = FileUtils.createImageFile(this, FILE_CAMERA)
-                        mCameraPicturePath = photoFile.absolutePath
+                // Need both camera and storage permission to perform this task
+                val storagePermissionGranted = ContextCompat.checkSelfPermission(this,
+                        Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED
 
-                        intent.putExtra(MediaStore.EXTRA_OUTPUT,
-                                FileProvider.getUriForFile(this,
-                                        applicationContext.packageName + getString(R.string.provider),
-                                        photoFile))
+                val cameraPermissionGranted = ContextCompat.checkSelfPermission(this,
+                        Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED
 
-                        startActivityForResult(intent, REQUEST_PHOTO_CAPTURE)
-
-                    } catch (ex: ActivityNotFoundException) {
-                        Snackbar.make(settingsButton!!, getString(R.string.error_no_camera),
-                                Snackbar.LENGTH_LONG).show()
-
-                    } catch (ex: Exception) {
-                        if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
-                            Snackbar.make(settingsButton!!, getString(R.string.prompt_permissions),
-                                    Snackbar.LENGTH_INDEFINITE)
-                                    .setAction(getString(R.string.label_intro_done_permission)) {
-                                        ActivityCompat.requestPermissions(this@HomeActivity,
-                                                arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE),
-                                                REQUEST_ALL_PERMISSIONS)
-                                    }.show()
-                        }
-                    }
+                if (cameraPermissionGranted && storagePermissionGranted) {
+                    onCameraActionSelected()
+                } else {
+                    ActivityCompat.requestPermissions(
+                            this,
+                            arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                                    Manifest.permission.CAMERA),
+                            REQUEST_CAMERA_ACCESS
+                    )
                 }
                 return true
             }
@@ -220,6 +240,40 @@ class HomeActivity : AppCompatActivity(), SpeedDialView.OnActionSelectedListener
         } catch (ignored: Exception) {
             base
         })
+    }
+
+    private fun onCameraActionSelected() {
+        val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+        if (intent.resolveActivity(packageManager) != null) {
+            try {
+                val photoFile: File = FileUtils.createImageFile(this, FILE_CAMERA)
+                mCameraPicturePath = photoFile.absolutePath
+
+                intent.putExtra(MediaStore.EXTRA_OUTPUT,
+                        FileProvider.getUriForFile(this,
+                                applicationContext.packageName + getString(R.string.provider),
+                                photoFile))
+
+                startActivityForResult(intent, REQUEST_PHOTO_CAPTURE)
+
+            } catch (ex: ActivityNotFoundException) {
+                Snackbar.make(composeButton, getString(R.string.error_no_camera),
+                        Snackbar.LENGTH_LONG).show()
+            }
+        }
+    }
+
+    private fun onGalleryActionSelected() {
+        val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
+        if (intent.resolveActivity(packageManager) != null) {
+            try {
+                startActivityForResult(intent, REQUEST_PHOTO_PICK)
+
+            } catch (ex: ActivityNotFoundException) {
+                Snackbar.make(composeButton, getString(R.string.error_no_gallery),
+                        Snackbar.LENGTH_LONG).show()
+            }
+        }
     }
 
 }

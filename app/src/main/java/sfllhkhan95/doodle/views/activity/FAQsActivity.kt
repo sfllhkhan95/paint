@@ -35,7 +35,6 @@ class FAQsActivity : AppCompatActivity() {
         val toolbar = findViewById<Toolbar>(R.id.toolbar)
         setSupportActionBar(toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        supportActionBar?.title = getString(R.string.label_faqs)
 
         // Read FAQs from file
         val buf = StringBuilder()

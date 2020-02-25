@@ -1,14 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".views.activity.MainActivity">
 
-  <RelativeLayout
+  <androidx.coordinatorlayout.widget.CoordinatorLayout
       android:layout_width="match_parent"
-      android:layout_height="match_parent">
+      android:layout_height="match_parent"
+      android:layout_above="@id/editBar"
+      android:fitsSystemWindows="true">
 
     <!-- Painting canvas -->
     <sfllhkhan95.doodle.views.PaintView
@@ -16,48 +20,45 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 
-    <RelativeLayout
+    <!-- Action bar (normal view) -->
+    <androidx.appcompat.widget.Toolbar
+        app:popupTheme="@style/ThemeOverlay.MaterialComponents.Dark"
+        android:id="@+id/primaryToolbar"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:fitsSystemWindows="true">
+        android:layout_height="?actionBarSize"
+        android:layout_gravity="top"
+        android:background="@drawable/bg_toolbar"
+        android:gravity="center_vertical"
+        android:paddingStart="8dp"
+        android:paddingEnd="8dp"/>
 
-      <!-- Action bar -->
-      <androidx.appcompat.widget.Toolbar
-          android:id="@+id/primaryToolbar"
-          android:layout_width="match_parent"
-          android:layout_height="?actionBarSize"
-          android:layout_alignParentTop="true"
-          android:background="@drawable/bg_toolbar"
-          android:gravity="center_vertical"
-          android:paddingStart="10dp"
-          android:paddingEnd="10dp"/>
+    <!-- Action bar (fullscreen view) -->
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/secondaryToolbar"
+        android:layout_width="wrap_content"
+        android:layout_height="?actionBarSize"
+        android:layout_gravity="start|top"
+        android:background="@android:color/transparent"
+        android:gravity="center_vertical"
+        android:paddingStart="8dp"
+        android:paddingEnd="8dp"/>
 
-      <androidx.appcompat.widget.Toolbar
-          android:id="@+id/secondaryToolbar"
-          android:layout_width="wrap_content"
-          android:layout_height="?actionBarSize"
-          android:layout_alignParentStart="true"
-          android:layout_alignParentLeft="true"
-          android:layout_alignParentTop="true"
-          android:layout_marginStart="10dp"
-          android:layout_marginLeft="10dp"
-          android:background="@android:color/transparent"
-          android:gravity="center_vertical"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:orientation="vertical">
 
-      <!-- Drawing tools -->
-      <sfllhkhan95.doodle.views.ToolboxView
-          android:id="@+id/toolbox"
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:layout_alignParentBottom="true"
-          android:orientation="horizontal"/>
-
+      <!-- Brush size controls -->
       <LinearLayout
           android:id="@+id/brushSizeBar"
           android:layout_width="match_parent"
           android:layout_height="35dp"
-          android:layout_above="@+id/toolbox"
+          android:background="?android:attr/colorBackground"
+          android:paddingEnd="48dp"
+          android:paddingRight="48dp"
           android:orientation="horizontal"
+          android:visibility="gone"
           android:weightSum="6">
 
         <ImageView
@@ -67,64 +68,329 @@
             android:contentDescription="@string/desc_brush_size_icon"
             android:scaleType="centerInside"
             android:src="@drawable/ic_brush_size"
-            android:tint="?attr/colorPrimaryDark"/>
+            android:tint="?android:attr/textColorPrimary"/>
 
         <androidx.appcompat.widget.AppCompatSeekBar
             android:id="@+id/brushController"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="5"
-            android:max="15"
-            android:progress="5"/>
+            android:max="50"
+            android:progress="15"/>
 
       </LinearLayout>
 
-      <LinearLayout
+      <!-- Shapes popup -->
+      <com.google.android.material.card.MaterialCardView
+          android:id="@+id/shapes"
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
-          android:layout_alignParentBottom="true"
-          android:background="@drawable/bg_toolbar_bottom"
-          android:gravity="center"
-          android:orientation="horizontal"
-          android:paddingBottom="@dimen/activity_horizontal_margin"
-          android:paddingTop="@dimen/activity_horizontal_margin"
-          android:weightSum="3"
-          tools:ignore="RelativeOverlap">
+          android:visibility="gone"
+          app:cardBackgroundColor="?android:attr/colorBackground"
+          app:cardCornerRadius="0dp"
+          app:contentPadding="8dp">
 
-        <androidx.appcompat.widget.AppCompatImageButton
-            android:id="@+id/shareButton"
-            android:layout_width="0dp"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:padding="8dp"
-            android:background="@android:color/transparent"
-            android:onClick="shareProject"
-            android:src="@drawable/ic_action_share"/>
+            android:orientation="vertical">
 
-        <androidx.appcompat.widget.AppCompatImageButton
-            android:id="@+id/editButton"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:padding="8dp"
-            android:background="@android:color/transparent"
-            android:onClick="editMode"
-            android:src="@drawable/ic_action_edit"/>
+          <LinearLayout
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:baselineAligned="false"
+              android:gravity="bottom"
+              android:orientation="horizontal"
+              android:padding="8dp"
+              android:weightSum="4">
 
-        <androidx.appcompat.widget.AppCompatImageButton
-            android:id="@+id/deleteButton"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:padding="8dp"
-            android:background="@android:color/transparent"
-            android:onClick="deleteProject"
-            android:src="@drawable/ic_action_delete"/>
+            <LinearLayout
+                android:id="@+id/line"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center"
+                android:orientation="vertical">
 
-      </LinearLayout>
+              <androidx.appcompat.widget.AppCompatImageView
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  app:srcCompat="@drawable/ic_shape_line"
+                  app:tint="?android:attr/textColorPrimary"/>
+
+              <androidx.appcompat.widget.AppCompatTextView
+                  style="@style/TextAppearance.MaterialComponents.Button"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:layout_marginTop="4dp"
+                  android:text="@string/menu_tools_line"
+                  android:textSize="10sp"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/rect"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center"
+                android:orientation="vertical">
+
+              <androidx.appcompat.widget.AppCompatImageView
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  app:srcCompat="@drawable/ic_shape_rect"
+                  app:tint="?android:attr/textColorPrimary"/>
+
+              <androidx.appcompat.widget.AppCompatTextView
+                  style="@style/TextAppearance.MaterialComponents.Button"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:layout_marginTop="4dp"
+                  android:text="@string/menu_tools_rect"
+                  android:textSize="10sp"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/triangle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center"
+                android:orientation="vertical">
+
+              <androidx.appcompat.widget.AppCompatImageView
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  app:srcCompat="@drawable/ic_shape_triangle"
+                  app:tint="?android:attr/textColorPrimary"/>
+
+              <androidx.appcompat.widget.AppCompatTextView
+                  style="@style/TextAppearance.MaterialComponents.Button"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:layout_marginTop="4dp"
+                  android:text="@string/menu_tools_triangle"
+                  android:textSize="10sp"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/circle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center"
+                android:orientation="vertical">
+
+              <androidx.appcompat.widget.AppCompatImageView
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  app:srcCompat="@drawable/ic_shape_circle"
+                  app:tint="?android:attr/textColorPrimary"/>
+
+              <androidx.appcompat.widget.AppCompatTextView
+                  style="@style/TextAppearance.MaterialComponents.Button"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:layout_marginTop="4dp"
+                  android:text="@string/menu_tools_circle"
+                  android:textSize="10sp"/>
+
+            </LinearLayout>
+
+          </LinearLayout>
+
+          <LinearLayout
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:baselineAligned="false"
+              android:gravity="bottom"
+              android:orientation="horizontal"
+              android:padding="8dp"
+              android:weightSum="4">
+
+            <LinearLayout
+                android:id="@+id/diamond"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center"
+                android:orientation="vertical">
+
+              <androidx.appcompat.widget.AppCompatImageView
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  app:srcCompat="@drawable/ic_shape_diamond"
+                  app:tint="?android:attr/textColorPrimary"/>
+
+              <androidx.appcompat.widget.AppCompatTextView
+                  style="@style/TextAppearance.MaterialComponents.Button"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:layout_marginTop="4dp"
+                  android:text="@string/menu_tools_diamond"
+                  android:textSize="10sp"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/star"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center"
+                android:orientation="vertical">
+
+              <androidx.appcompat.widget.AppCompatImageView
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  app:srcCompat="@drawable/ic_shape_star"
+                  app:tint="?android:attr/textColorPrimary"/>
+
+              <androidx.appcompat.widget.AppCompatTextView
+                  style="@style/TextAppearance.MaterialComponents.Button"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:layout_marginTop="4dp"
+                  android:text="@string/menu_tools_star"
+                  android:textSize="10sp"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/box"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center"
+                android:orientation="vertical">
+
+              <androidx.appcompat.widget.AppCompatImageView
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  app:srcCompat="@drawable/ic_shape_box"
+                  app:tint="?android:attr/textColorPrimary"/>
+
+              <androidx.appcompat.widget.AppCompatTextView
+                  style="@style/TextAppearance.MaterialComponents.Button"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:layout_marginTop="4dp"
+                  android:text="@string/menu_tools_box"
+                  android:textSize="10sp"/>
+
+            </LinearLayout>
+
+          </LinearLayout>
+
+        </LinearLayout>
+
+      </com.google.android.material.card.MaterialCardView>
+
+    </LinearLayout>
+
+  </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+  <!-- Bottom bar (view mode) -->
+  <LinearLayout
+      android:id="@+id/viewBar"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_alignParentBottom="true"
+      android:background="@drawable/bg_toolbar_bottom"
+      android:gravity="center"
+      android:orientation="horizontal"
+      android:paddingBottom="@dimen/activity_horizontal_margin"
+      android:paddingTop="@dimen/activity_horizontal_margin"
+      android:weightSum="3"
+      tools:ignore="RelativeOverlap">
+
+    <androidx.appcompat.widget.AppCompatImageButton
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:padding="8dp"
+        android:background="@android:color/transparent"
+        android:onClick="shareProject"
+        android:tint="?android:attr/colorBackground"
+        app:srcCompat="@drawable/ic_action_share"/>
+
+    <androidx.appcompat.widget.AppCompatImageButton
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:padding="8dp"
+        android:background="@android:color/transparent"
+        android:onClick="editMode"
+        android:tint="?android:attr/colorBackground"
+        app:srcCompat="@drawable/ic_action_edit"/>
+
+    <androidx.appcompat.widget.AppCompatImageButton
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:padding="8dp"
+        android:background="@android:color/transparent"
+        android:onClick="deleteProject"
+        android:tint="?android:attr/colorBackground"
+        app:srcCompat="@drawable/ic_action_delete"/>
+
+  </LinearLayout>
+
+  <!-- Bottom bar (edit mode) -->
+  <com.google.android.material.card.MaterialCardView
+      android:id="@+id/editBar"
+      android:layout_width="match_parent"
+      android:layout_height="58dp"
+      android:layout_alignParentBottom="true"
+      app:cardBackgroundColor="?android:attr/colorBackground"
+      app:cardCornerRadius="0dp">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="58dp">
+
+      <sfllhkhan95.doodle.views.ToolboxView
+          android:id="@+id/toolbox"
+          android:layout_width="match_parent"
+          android:layout_height="match_parent"
+          android:orientation="horizontal"/>
+
+      <com.google.android.material.button.MaterialButton
+          style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
+          android:id="@+id/selectedTool"
+          android:layout_width="48dp"
+          android:layout_height="match_parent"
+          android:layout_centerInParent="true"
+          android:elevation="1dp"
+          android:padding="12dp"
+          android:visibility="visible"
+          app:backgroundTint="?android:attr/colorBackground"
+          app:cornerRadius="24dp"
+          app:icon="@drawable/ic_tool_pen"
+          app:iconSize="24dp"
+          app:iconTint="?attr/colorAccent"
+          app:strokeWidth="4dp"
+          app:strokeColor="?attr/colorAccent"/>
 
     </RelativeLayout>
 
-  </RelativeLayout>
+  </com.google.android.material.card.MaterialCardView>
 
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+</RelativeLayout>

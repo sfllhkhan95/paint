@@ -16,7 +16,7 @@
       android:layout_width="32dp"
       android:layout_height="32dp"
       android:scaleType="centerInside"
-      app:tint="?attr/colorPrimaryDark"/>
+      app:tint="?android:attr/textColorPrimary"/>
 
   <LinearLayout
       android:layout_width="wrap_content"
@@ -29,15 +29,13 @@
         style="@style/TextAppearance.MaterialComponents.Body1"
         android:id="@+id/optionText"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="?attr/colorPrimaryDark"/>
+        android:layout_height="wrap_content"/>
 
     <TextView
         style="@style/TextAppearance.MaterialComponents.Caption"
         android:id="@+id/optionDescription"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="?attr/colorPrimaryDark"/>
+        android:layout_height="wrap_content"/>
 
   </LinearLayout>
 

@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.widget.AppCompatCheckBox
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.FragmentManager
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
@@ -17,9 +18,11 @@ open class ColorPicker : BottomSheetDialogFragment() {
     private var alpha = true
     private var hex = false
     private var preview = true
+    private var options = true
 
     var color = 0xff
     var colorPickedListener: OnColorPickedListener? = null
+    var fillColorPickedListener: OnColorPickedListener? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,8 +42,15 @@ open class ColorPicker : BottomSheetDialogFragment() {
             this.showPreview(this@ColorPicker.preview)
         }
 
+        v.findViewById<View>(R.id.colorOptions).visibility = if (this@ColorPicker.options) View.VISIBLE else View.GONE
         v.findViewById<View>(R.id.confirm_button)?.setOnClickListener {
-            colorPickedListener?.onColorPicked(color)
+            if (v.findViewById<AppCompatCheckBox>(R.id.strokeColor).isChecked) {
+                colorPickedListener?.onColorPicked(color)
+            }
+
+            if (v.findViewById<AppCompatCheckBox>(R.id.fillColor).isChecked) {
+                fillColorPickedListener?.onColorPicked(color)
+            }
             dismiss()
         }
 
@@ -63,6 +73,10 @@ open class ColorPicker : BottomSheetDialogFragment() {
         this.preview = preview
     }
 
+    fun showOptions(options: Boolean) {
+        this.options = options
+    }
+
     fun show(manager: FragmentManager) {
         super.show(manager, "color_picker")
     }
@@ -80,6 +94,11 @@ open class ColorPicker : BottomSheetDialogFragment() {
 
         fun setOnColorPickedListener(onColorPickedListener: OnColorPickedListener): Builder {
             picker.colorPickedListener = onColorPickedListener
+            return this
+        }
+
+        fun setOnFillColorPickedListener(fillColorPickedListener: OnColorPickedListener): Builder {
+            picker.fillColorPickedListener = fillColorPickedListener
             return this
         }
 

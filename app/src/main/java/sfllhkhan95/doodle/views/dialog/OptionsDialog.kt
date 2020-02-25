@@ -26,6 +26,8 @@ import sfllhkhan95.doodle.utils.ThemeUtils
 class OptionsDialog private constructor() : BottomSheetDialogFragment() {
 
     private val options: MutableList<Option> = mutableListOf()
+    private var title: String? = null
+    private var message: String? = null
 
     private class Option {
         @DrawableRes
@@ -73,6 +75,16 @@ class OptionsDialog private constructor() : BottomSheetDialogFragment() {
             })
         }
 
+        title?.let {
+            v.findViewById<TextView>(R.id.title).text = it
+            v.findViewById<TextView>(R.id.title).visibility = View.VISIBLE
+        }
+
+        message?.let {
+            v.findViewById<TextView>(R.id.message).text = it
+            v.findViewById<TextView>(R.id.message).visibility = View.VISIBLE
+        }
+
         return v
     }
 
@@ -82,7 +94,7 @@ class OptionsDialog private constructor() : BottomSheetDialogFragment() {
 
     class Builder {
 
-        private val optionsDialog: OptionsDialog = OptionsDialog()
+        private val optionsDialog = OptionsDialog()
 
         fun addOption(label: String, description: String, @DrawableRes iconRes: Int, clickListener: DialogInterface.OnClickListener): Builder {
             optionsDialog.options.add(Option().apply {
@@ -91,6 +103,16 @@ class OptionsDialog private constructor() : BottomSheetDialogFragment() {
                 this.description = description
                 this.clickListener = clickListener
             })
+            return this
+        }
+
+        fun setTitle(title: String): Builder {
+            optionsDialog.title = title
+            return this
+        }
+
+        fun setMessage(message: String): Builder {
+            optionsDialog.message = message
             return this
         }
 

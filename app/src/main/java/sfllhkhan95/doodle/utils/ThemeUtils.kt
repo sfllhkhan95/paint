@@ -23,19 +23,11 @@ object ThemeUtils {
             return currentTheme
         }
 
-    const val THEME_DEFAULT = "DEFAULT"
-    const val THEME_SUNLIGHT = "SUNLIGHT"
-    const val THEME_OCEAN = "OCEAN"
-    const val THEME_FOREST = "FOREST"
-    const val THEME_CHOCOLATE = "CHOCOLATE"
+    const val THEME_DEFAULT = "LIGHT"
     const val THEME_DARK = "DARK"
 
     fun getDialogTheme(): Int {
         return when (currentTheme) {
-            THEME_OCEAN -> R.style.DialogTheme_Ocean
-            THEME_SUNLIGHT -> R.style.DialogTheme_Sunlight
-            THEME_FOREST -> R.style.DialogTheme_Forest
-            THEME_CHOCOLATE -> R.style.DialogTheme_Chocolate
             THEME_DARK -> R.style.DialogTheme_Dark
             THEME_DEFAULT -> R.style.DialogTheme
             else -> R.style.DialogTheme
@@ -44,38 +36,6 @@ object ThemeUtils {
 
     fun setActivityTheme(activity: AppCompatActivity, immersive: Boolean = false): Int {
         when (currentTheme) {
-            THEME_OCEAN -> {
-                if (immersive && Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-                    activity.setTheme(R.style.AppTheme_Ocean_Immersive)
-                } else {
-                    activity.setTheme(R.style.AppTheme_Ocean)
-                }
-                return 1
-            }
-            THEME_SUNLIGHT -> {
-                if (immersive && Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-                    activity.setTheme(R.style.AppTheme_Sunlight_Immersive)
-                } else {
-                    activity.setTheme(R.style.AppTheme_Sunlight)
-                }
-                return 2
-            }
-            THEME_FOREST -> {
-                if (immersive && Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-                    activity.setTheme(R.style.AppTheme_Forest_Immersive)
-                } else {
-                    activity.setTheme(R.style.AppTheme_Forest)
-                }
-                return 3
-            }
-            THEME_CHOCOLATE -> {
-                if (immersive && Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-                    activity.setTheme(R.style.AppTheme_Chocolate_Immersive)
-                } else {
-                    activity.setTheme(R.style.AppTheme_Chocolate)
-                }
-                return 4
-            }
             THEME_DARK -> {
                 if (immersive && Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
                     activity.setTheme(R.style.AppTheme_Dark_Immersive)
@@ -105,10 +65,6 @@ object ThemeUtils {
 
     fun changeTheme(activity: AppCompatActivity, currentTheme: String) {
         when (currentTheme) {
-            THEME_OCEAN -> Hawk.put(DoodleApplication.TAG_THEME, THEME_OCEAN)
-            THEME_SUNLIGHT -> Hawk.put(DoodleApplication.TAG_THEME, THEME_SUNLIGHT)
-            THEME_FOREST -> Hawk.put(DoodleApplication.TAG_THEME, THEME_FOREST)
-            THEME_CHOCOLATE -> Hawk.put(DoodleApplication.TAG_THEME, THEME_CHOCOLATE)
             THEME_DARK -> Hawk.put(DoodleApplication.TAG_THEME, THEME_DARK)
             THEME_DEFAULT -> Hawk.put(DoodleApplication.TAG_THEME, THEME_DEFAULT)
             else -> Hawk.put(DoodleApplication.TAG_THEME, THEME_DEFAULT)
@@ -126,6 +82,18 @@ object ThemeUtils {
 
     fun colorAccent(context: Context): Int {
         return getColor(context, R.attr.colorAccent)
+    }
+
+    fun colorTextPrimary(context: Context): Int {
+        return getColor(context, android.R.attr.textColorPrimary)
+    }
+
+    fun colorTextSecondary(context: Context): Int {
+        return getColor(context, android.R.attr.textColorSecondary)
+    }
+
+    fun colorBackground(context: Context): Int {
+        return getColor(context, android.R.attr.colorBackground)
     }
 
     private fun getColor(context: Context, @AttrRes attrId: Int): Int {
