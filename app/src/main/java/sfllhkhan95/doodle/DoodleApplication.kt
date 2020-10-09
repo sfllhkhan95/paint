@@ -2,10 +2,7 @@ package sfllhkhan95.doodle
 
 import android.app.Application
 import android.content.res.Configuration
-import com.crashlytics.android.Crashlytics
-import com.crashlytics.android.core.CrashlyticsCore
 import com.orhanobut.hawk.Hawk
-import io.fabric.sdk.android.Fabric
 import sfllhkhan95.doodle.bo.AdManager
 import sfllhkhan95.doodle.utils.LocaleUtils
 
@@ -26,11 +23,6 @@ class DoodleApplication : Application() {
     override fun onCreate() {
         super.onCreate()
         Hawk.init(this).build()
-
-        // Disable crash reporting in DEBUG mode
-        Fabric.with(this, Crashlytics.Builder()
-                .core(CrashlyticsCore.Builder().disabled(BuildConfig.DEBUG).build())
-                .build())
 
         // Initialize ad SDKs
         AdManager.initialize(this)
