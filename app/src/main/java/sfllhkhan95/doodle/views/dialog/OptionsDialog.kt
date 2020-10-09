@@ -23,7 +23,7 @@ import sfllhkhan95.doodle.utils.ThemeUtils
  * @version 1.1.0
  * @since 3.3.0
  */
-class OptionsDialog private constructor() : BottomSheetDialogFragment() {
+class OptionsDialog : BottomSheetDialogFragment() {
 
     private val options: MutableList<Option> = mutableListOf()
     private var title: String? = null

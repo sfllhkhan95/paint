@@ -455,18 +455,18 @@ class MainActivity : AppCompatActivity(), SeekBar.OnSeekBarChangeListener, OnToo
         }
         toolbar.configure(isMaximized)
 
-        window.decorView.apply {
-            systemUiVisibility = 0
-            systemUiVisibility = if (!isMaximized) {
-                View.SYSTEM_UI_FLAG_LAYOUT_STABLE or View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
-            } else {
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-                    View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY or View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
-                } else {
-                    View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
-                }
-            }
-        }
+//        window.decorView.apply {
+//            systemUiVisibility = 0
+//            systemUiVisibility = if (!isMaximized) {
+//                View.SYSTEM_UI_FLAG_LAYOUT_STABLE or View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+//            } else {
+//                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+//                    View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY or View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+//                } else {
+//                    View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+//                }
+//            }
+//        }
     }
 
     private fun onToggleReadMode(isViewing: Boolean) {

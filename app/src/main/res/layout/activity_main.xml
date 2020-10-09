@@ -5,14 +5,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
+    android:fitsSystemWindows="true"
     tools:context=".views.activity.MainActivity">
 
   <androidx.coordinatorlayout.widget.CoordinatorLayout
       android:layout_width="match_parent"
       android:layout_height="match_parent"
-      android:layout_above="@id/editBar"
-      android:fitsSystemWindows="true">
+      android:layout_above="@id/editBar">
 
     <!-- Painting canvas -->
     <sfllhkhan95.doodle.views.PaintView
