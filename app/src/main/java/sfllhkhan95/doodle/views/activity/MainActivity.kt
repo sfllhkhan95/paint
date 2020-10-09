@@ -19,11 +19,11 @@ import android.widget.SeekBar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.core.content.ContextCompat
-import com.crashlytics.android.Crashlytics
 import com.google.android.gms.tasks.OnSuccessListener
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.analytics.FirebaseAnalytics
+import com.google.firebase.crashlytics.FirebaseCrashlytics
 import sfllhkhan95.doodle.DoodleApplication.Companion.ACTION_SHARE
 import sfllhkhan95.doodle.DoodleApplication.Companion.EVENT_PROJECT_CREATE
 import sfllhkhan95.doodle.DoodleApplication.Companion.EVENT_PROJECT_CREATE_BLANK
@@ -117,8 +117,8 @@ class MainActivity : AppCompatActivity(), SeekBar.OnSeekBarChangeListener, OnToo
         toolbox = findViewById(R.id.toolbox)
         updatePenColorPicker(paintView.brush.strokeColor)
 
-        arrayOf(R.id.line, R.id.rect, R.id.triangle, R.id.circle,
-                R.id.diamond, R.id.star, R.id.box).forEach { id ->
+        for (id in arrayOf(R.id.line, R.id.rect, R.id.triangle, R.id.circle,
+                R.id.diamond, R.id.star, R.id.box)) {
             findViewById<View>(id)?.setOnClickListener { onToolSelected(false, id) }
         }
 
@@ -423,7 +423,8 @@ class MainActivity : AppCompatActivity(), SeekBar.OnSeekBarChangeListener, OnToo
 
             tempFile
         } catch (ex: Exception) {
-            Crashlytics.logException(ex)
+            val crashlytics = FirebaseCrashlytics.getInstance()
+            crashlytics.recordException(ex)
             Snackbar.make(
                     paintView,
                     getString(R.string.error_unknown),
@@ -531,7 +532,7 @@ class MainActivity : AppCompatActivity(), SeekBar.OnSeekBarChangeListener, OnToo
         )
     }
 
-    private inner class CustomToolbar internal constructor() {
+    private inner class CustomToolbar {
         private val primary: Toolbar = findViewById(R.id.primaryToolbar)
         val secondary: Toolbar
 
@@ -543,7 +544,7 @@ class MainActivity : AppCompatActivity(), SeekBar.OnSeekBarChangeListener, OnToo
             secondary.title = ""
         }
 
-        internal fun configure(isMaximized: Boolean) {
+        fun configure(isMaximized: Boolean) {
             primary.visibility = if (isMaximized) View.GONE else View.VISIBLE
             secondary.visibility = if (!isMaximized) View.GONE else View.VISIBLE
             setSupportActionBar(if (isMaximized) secondary else primary)

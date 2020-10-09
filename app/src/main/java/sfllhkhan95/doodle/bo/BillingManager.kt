@@ -103,13 +103,14 @@ class BillingManager private constructor(context: Context) :
      */
     fun purchaseProduct(context: AppCompatActivity, productId: String): Int {
         // If the specified product is not in inventory, return proper error code
-        if (!allProducts.containsKey(productId)) {
+        val details = getDetails(productId)
+        if (!allProducts.containsKey(productId) || details == null) {
             return BillingClient.BillingResponseCode.ITEM_UNAVAILABLE
         }
 
         // Build a purchase request
         val params = BillingFlowParams.newBuilder()
-                .setSkuDetails(getDetails(productId))
+                .setSkuDetails(details)
                 .build()
 
         // Start the purchase sequence

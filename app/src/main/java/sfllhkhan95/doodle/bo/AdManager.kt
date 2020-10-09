@@ -6,7 +6,6 @@ import com.google.android.gms.ads.*
 import com.google.android.gms.ads.reward.RewardItem
 import com.google.android.gms.ads.reward.RewardedVideoAd
 import com.google.android.gms.ads.reward.RewardedVideoAdListener
-import io.fabric.sdk.android.InitializationException
 import sfllhkhan95.doodle.R
 
 /**
@@ -194,10 +193,10 @@ class AdManager private constructor(context: Context) {
         }
 
         val instance: AdManager
-            @Throws(InitializationException::class)
+            @Throws(UninitializedPropertyAccessException::class)
             get() {
                 if (ourInstance == null) {
-                    throw InitializationException("")
+                    throw UninitializedPropertyAccessException("AdManager not initialized properly.")
                 }
 
                 return ourInstance as AdManager
