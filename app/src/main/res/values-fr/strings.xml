@@ -3,10 +3,6 @@
   <string name="company_name_prefix">Une</string>
   <string name="company_name_suffix">Application</string>
 
-  <!-- Notification channels -->
-  <string name="notifications_main_channel_name">Canal de notification principal</string>
-  <string name="notifications_main_channel_description">C\'est le canal de notifications principal.</string>
-
   <!-- Error messages -->
   <string name="error_unknown">Erreur inconnue. Mettez à niveau l\'application vers la dernière version ou contactez le
     support si l\'erreur persiste.
@@ -74,7 +70,6 @@
   <string name="settings_item_support">Nous soutenir</string>
   <string name="settings_item_theme">Choisissez un thème</string>
   <string name="settings_item_intro">Voir l\'intro</string>
-  <string name="settings_item_locale">Langue</string>
 
   <!-- Menu items -->
   <string name="menu_action_layers">Couches</string>

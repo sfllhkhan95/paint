@@ -2,7 +2,6 @@ package sfllhkhan95.doodle.views.activity
 
 import android.Manifest
 import android.content.ActivityNotFoundException
-import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Point
@@ -34,7 +33,6 @@ import sfllhkhan95.doodle.bo.AdManager
 import sfllhkhan95.doodle.bo.ProjectInflater
 import sfllhkhan95.doodle.bo.factory.DialogFactory
 import sfllhkhan95.doodle.utils.FileUtils
-import sfllhkhan95.doodle.utils.LocaleUtils
 import sfllhkhan95.doodle.utils.ThemeUtils
 import java.io.File
 
@@ -230,14 +228,6 @@ class HomeActivity : AppCompatActivity(), SpeedDialView.OnActionSelectedListener
         }
 
         return false
-    }
-
-    override fun attachBaseContext(base: Context?) {
-        super.attachBaseContext(try {
-            LocaleUtils.configureBaseContext(base)
-        } catch (ignored: Exception) {
-            base
-        })
     }
 
     private fun onCameraActionSelected() {

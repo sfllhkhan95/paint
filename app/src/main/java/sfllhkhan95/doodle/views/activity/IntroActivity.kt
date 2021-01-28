@@ -1,7 +1,6 @@
 package sfllhkhan95.doodle.views.activity
 
 import android.Manifest
-import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Bundle
@@ -14,7 +13,6 @@ import com.orhanobut.hawk.Hawk
 import sfllhkhan95.doodle.DoodleApplication
 import sfllhkhan95.doodle.DoodleApplication.Companion.REQUEST_ALL_PERMISSIONS
 import sfllhkhan95.doodle.R
-import sfllhkhan95.doodle.utils.LocaleUtils
 import sfllhkhan95.doodle.utils.ThemeUtils
 
 
@@ -140,14 +138,6 @@ class IntroActivity : AppIntro() {
         fun build(): AppIntroFragment {
             return AppIntroFragment.newInstance(fragment)
         }
-    }
-
-    override fun attachBaseContext(base: Context?) {
-        super.attachBaseContext(try {
-            LocaleUtils.configureBaseContext(base)
-        } catch (ignored: Exception) {
-            base
-        })
     }
 
 }

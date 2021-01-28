@@ -1,10 +1,8 @@
 package sfllhkhan95.doodle
 
 import android.app.Application
-import android.content.res.Configuration
 import com.orhanobut.hawk.Hawk
 import sfllhkhan95.doodle.bo.AdManager
-import sfllhkhan95.doodle.utils.LocaleUtils
 
 /**
  * Doodle is the Application class which bootstraps everything and initializes the global
@@ -26,14 +24,6 @@ class DoodleApplication : Application() {
 
         // Initialize ad SDKs
         AdManager.initialize(this)
-
-        // Restore locale settings
-        LocaleUtils.init(applicationContext)
-    }
-
-    override fun onConfigurationChanged(newConfig: Configuration) {
-        super.onConfigurationChanged(newConfig)
-        LocaleUtils.onConfigurationChanged()
     }
 
     companion object {

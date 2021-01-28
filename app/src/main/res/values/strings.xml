@@ -21,8 +21,9 @@
   <string name="url_doodle_source" translatable="false">https://github.com/saifkhichi96/paint</string>
 
   <!-- Notification channels -->
-  <string name="notifications_main_channel_name">Primary notification channel</string>
-  <string name="notifications_main_channel_description">This is the main notifications channel.</string>
+  <string name="notifications_main_channel_name" translatable="false">Primary notification channel</string>
+  <string name="notifications_main_channel_description" translatable="false">This is the main notifications channel.
+  </string>
 
   <!-- Error messages -->
   <string name="error_unknown">Unknown error. Upgrade application to latest version or contact support if error
@@ -84,7 +85,6 @@
   <string name="settings_item_support">Support Us</string>
   <string name="settings_item_theme">Choose Theme</string>
   <string name="settings_item_intro">See Intro</string>
-  <string name="settings_item_locale">Set Language</string>
 
   <!-- Menu items -->
   <string name="menu_action_layers">Layers</string>

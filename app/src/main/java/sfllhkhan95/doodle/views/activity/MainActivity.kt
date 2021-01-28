@@ -1,7 +1,6 @@
 package sfllhkhan95.doodle.views.activity
 
 import android.annotation.SuppressLint
-import android.content.Context
 import android.content.Intent
 import android.content.res.ColorStateList
 import android.graphics.Bitmap
@@ -378,14 +377,6 @@ class MainActivity : AppCompatActivity(), SeekBar.OnSeekBarChangeListener, OnToo
             }
         }
         return false
-    }
-
-    override fun attachBaseContext(base: Context?) {
-        super.attachBaseContext(try {
-            LocaleUtils.configureBaseContext(base)
-        } catch (ignored: Exception) {
-            base
-        })
     }
 
     fun deleteProject(view: View) {

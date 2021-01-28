@@ -1,10 +1,6 @@
 <resources>
-  <string name="company_name_prefix">ایک</string>
+  <string name="company_name_prefix"/>
   <string name="company_name_suffix">اپلی کیشن</string>
-
-  <!-- Notification channels -->
-  <string name="notifications_main_channel_name">مین نوٹیفکیشن چینل</string>
-  <string name="notifications_main_channel_description">یہ اہم اطلاعاتی چینل ہے.</string>
 
   <!-- Error messages -->
   <string name="error_unknown">اوہ ہو! تازہ ترین ورژن پر اپ ڈیٹ کر کے دوبارہ کوشش کریں۔ مسلۂ برقرار رہنے کی صورت میں ہم
@@ -66,7 +62,6 @@
   <string name="settings_item_support">تعاون کریں</string>
   <string name="settings_item_theme">رنگ چنیں</string>
   <string name="settings_item_intro">تعارف دیکھیں</string>
-  <string name="settings_item_locale">زبان منتخب کریں</string>
 
   <!-- Menu items -->
   <string name="menu_action_layers">تبدیلیاں</string>

@@ -1,6 +1,5 @@
 package sfllhkhan95.doodle.views.activity
 
-import android.content.Context
 import android.os.Bundle
 import android.view.View
 import android.widget.LinearLayout
@@ -8,7 +7,6 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import sfllhkhan95.doodle.R
-import sfllhkhan95.doodle.utils.LocaleUtils
 import sfllhkhan95.doodle.utils.ThemeUtils
 import java.io.BufferedReader
 import java.io.InputStreamReader
@@ -87,14 +85,6 @@ class FAQsActivity : AppCompatActivity() {
                 }
             }
         }
-    }
-
-    override fun attachBaseContext(base: Context?) {
-        super.attachBaseContext(try {
-            LocaleUtils.configureBaseContext(base)
-        } catch (ignored: Exception) {
-            base
-        })
     }
 
 }

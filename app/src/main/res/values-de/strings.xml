@@ -1,10 +1,6 @@
 <resources>
-  <string name="company_name_prefix">Ein</string>
+  <string name="company_name_prefix">Eine</string>
   <string name="company_name_suffix">App</string>
-
-  <!-- Notification channels -->
-  <string name="notifications_main_channel_name">Primärer Benachrichtigungskanal</string>
-  <string name="notifications_main_channel_description">Dies ist der Hauptbenachrichtigungskanal.</string>
 
   <!-- Error messages -->
   <string name="error_unknown">Unbekannter Fehler. Aktualisieren Sie die Anwendung auf die neueste Version oder wenden
@@ -72,7 +68,6 @@
   <string name="settings_item_support">Unterstütze uns</string>
   <string name="settings_item_theme">Wähle eine Farbe</string>
   <string name="settings_item_intro">Siehe Einleitung</string>
-  <string name="settings_item_locale">Sprache</string>
 
   <!-- Menu items -->
   <string name="menu_action_layers">Schichten</string>

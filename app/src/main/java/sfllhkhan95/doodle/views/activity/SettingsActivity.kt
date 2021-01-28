@@ -1,6 +1,5 @@
 package sfllhkhan95.doodle.views.activity
 
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
@@ -13,7 +12,6 @@ import com.google.android.material.button.MaterialButton
 import sfllhkhan95.doodle.R
 import sfllhkhan95.doodle.bo.AdManager
 import sfllhkhan95.doodle.bo.factory.DialogFactory
-import sfllhkhan95.doodle.utils.LocaleUtils
 import sfllhkhan95.doodle.utils.ThemeUtils
 import sfllhkhan95.doodle.views.dialog.ThemeSelector
 
@@ -45,7 +43,6 @@ class SettingsActivity : AppCompatActivity(), View.OnClickListener {
         findViewById<View>(R.id.privacy_policy)?.setOnClickListener(this)
         findViewById<View>(R.id.faqs)?.setOnClickListener(this)
         findViewById<View>(R.id.intro)?.setOnClickListener(this)
-        findViewById<View>(R.id.locale)?.setOnClickListener(this)
     }
 
     override fun onStart() {
@@ -72,25 +69,11 @@ class SettingsActivity : AppCompatActivity(), View.OnClickListener {
             R.id.support -> DialogFactory.supportDialog(this).show(supportFragmentManager)
 
             R.id.intro -> startActivity(Intent(this@SettingsActivity, IntroActivity::class.java))
-
-            R.id.locale -> {
-                LocaleUtils.makeDialog(this) {
-                    recreate()
-                }.show()
-            }
         }
     }
 
     override fun onBackPressed() {
         NavUtils.navigateUpFromSameTask(this)
-    }
-
-    override fun attachBaseContext(base: Context?) {
-        super.attachBaseContext(try {
-            LocaleUtils.configureBaseContext(base)
-        } catch (ignored: Exception) {
-            base
-        })
     }
 
 }
