@@ -3,9 +3,10 @@ package sfllhkhan95.doodle.bo
 import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.gms.ads.*
-import com.google.android.gms.ads.reward.RewardItem
-import com.google.android.gms.ads.reward.RewardedVideoAd
-import com.google.android.gms.ads.reward.RewardedVideoAdListener
+import com.google.android.gms.ads.interstitial.InterstitialAd
+import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback
+import com.google.android.gms.ads.rewarded.RewardedAd
+import com.google.android.gms.ads.rewarded.RewardedAdLoadCallback
 import sfllhkhan95.doodle.R
 
 /**
@@ -22,10 +23,10 @@ class AdManager private constructor(context: Context) {
     private val mBillingManager: BillingManager
 
     private var mInterstitialAd: InterstitialAd? = null
-    private var mVideoAd: RewardedVideoAd? = null
+    private var mVideoAd: RewardedAd? = null
 
     init {
-        MobileAds.initialize(context, context.getString(R.string.admob_app_id))
+        MobileAds.initialize(context)
         this.mBillingManager = BillingManager.getInstance(context)
     }
 
@@ -39,7 +40,7 @@ class AdManager private constructor(context: Context) {
         get() = mBillingManager.getPrice(BillingManager.Products.AD_REMOVE)
 
     val isInterstitialAdLoaded: Boolean
-        get() = !hasRemovedAds() && mInterstitialAd != null && mInterstitialAd!!.isLoaded
+        get() = !hasRemovedAds() && mInterstitialAd != null
 
     /**
      * Returns true if ads are enabled and a video ad has been loaded.
@@ -48,7 +49,7 @@ class AdManager private constructor(context: Context) {
      * @since 3.5.0
      */
     val isVideoAdLoaded: Boolean
-        get() = !hasRemovedAds() && mVideoAd != null && mVideoAd!!.isLoaded
+        get() = !hasRemovedAds() && mVideoAd != null
 
     /**
      * This method makes the one-time purchase which removes all advertisements from
@@ -96,9 +97,9 @@ class AdManager private constructor(context: Context) {
      * Displays an interstitial ad if one has been loaded.
      * @since 3.6.5
      */
-    fun showInterstitialAd() {
+    fun showInterstitialAd(context: AppCompatActivity) {
         if (isInterstitialAdLoaded) {
-            mInterstitialAd?.show()
+            mInterstitialAd?.show(context)
         }
     }
 
@@ -109,26 +110,35 @@ class AdManager private constructor(context: Context) {
      * @since 3.6.5
      */
     fun loadInterstitialAd(context: AppCompatActivity) {
-        if (!hasRemovedAds()) {
-            mInterstitialAd = InterstitialAd(context)
-            mInterstitialAd?.adUnitId = context.getString(R.string.admob_ad_interstitial)
-            mInterstitialAd?.adListener = object : AdListener() {
-                override fun onAdClosed() {
-                    super.onAdClosed()
-                    context.finish()
+        if (!hasRemovedAds()) InterstitialAd.load(
+            context,
+            context.getString(R.string.admob_ad_interstitial),
+            AdRequest.Builder().build(),
+            object : InterstitialAdLoadCallback() {
+                override fun onAdLoaded(ad: InterstitialAd) {
+                    mInterstitialAd = ad
+                    mVideoAd?.fullScreenContentCallback = object : FullScreenContentCallback() {
+                        override fun onAdDismissedFullScreenContent() {
+                            mInterstitialAd = null
+                            context.finish()
+                        }
+
+                        override fun onAdFailedToShowFullScreenContent(adError: AdError?) {}
+                        override fun onAdShowedFullScreenContent() {}
+                    }
                 }
-            }
-            mInterstitialAd?.loadAd(AdRequest.Builder().build())
-        }
+            })
     }
 
     /**
      * Displays a video ad if one has been loaded.
      * @since 3.5.0
      */
-    fun showVideoAd() {
+    fun showVideoAd(context: AppCompatActivity) {
         if (isVideoAdLoaded) {
-            mVideoAd?.show()
+            mVideoAd?.show(context) {
+                // User has received reward
+            }
         }
     }
 
@@ -139,42 +149,24 @@ class AdManager private constructor(context: Context) {
      * @since 3.5.0
      */
     fun loadVideoAd(context: AppCompatActivity) {
-        mVideoAd = MobileAds.getRewardedVideoAdInstance(context)
-        mVideoAd?.rewardedVideoAdListener = object : RewardedVideoAdListener {
-            override fun onRewardedVideoAdLoaded() {
+        if (!hasRemovedAds()) RewardedAd.load(
+            context,
+            context.getString(R.string.admob_ad_rewarded),
+            AdRequest.Builder().build(),
+            object : RewardedAdLoadCallback() {
+                override fun onAdLoaded(ad: RewardedAd) {
+                    mVideoAd = ad
+                    mVideoAd?.fullScreenContentCallback = object : FullScreenContentCallback() {
+                        override fun onAdDismissedFullScreenContent() {
+                            mVideoAd = null
+                            context.finish()
+                        }
 
-            }
-
-            override fun onRewardedVideoAdOpened() {
-
-            }
-
-            override fun onRewardedVideoStarted() {
-
-            }
-
-            override fun onRewardedVideoAdClosed() {
-                context.finish()
-            }
-
-            override fun onRewarded(rewardItem: RewardItem) {
-
-            }
-
-            override fun onRewardedVideoAdLeftApplication() {
-
-            }
-
-            override fun onRewardedVideoAdFailedToLoad(i: Int) {
-
-            }
-
-            override fun onRewardedVideoCompleted() {
-
-            }
-        }
-        mVideoAd?.loadAd(context.getString(R.string.admob_ad_rewarded),
-                AdRequest.Builder().build())
+                        override fun onAdFailedToShowFullScreenContent(adError: AdError?) {}
+                        override fun onAdShowedFullScreenContent() {}
+                    }
+                }
+            })
     }
 
     companion object {

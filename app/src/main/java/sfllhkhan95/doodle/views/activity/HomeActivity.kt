@@ -18,7 +18,6 @@ import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
 import com.google.android.gms.ads.AdListener
 import com.google.android.gms.ads.AdView
-import com.google.android.gms.tasks.OnSuccessListener
 import com.google.android.material.snackbar.Snackbar
 import com.leinardi.android.speeddial.SpeedDialActionItem
 import com.leinardi.android.speeddial.SpeedDialView
@@ -68,22 +67,22 @@ class HomeActivity : AppCompatActivity(), SpeedDialView.OnActionSelectedListener
         composeButton.setOnActionSelectedListener(this)
 
         composeButton.addActionItem(SpeedDialActionItem.Builder(R.id.link_camera, R.drawable.ic_open_camera)
-                .setLabel(getString(R.string.label_camera))
-                .setFabBackgroundColor(ContextCompat.getColor(this@HomeActivity, R.color.red_900))
-                .setLabelColor(ContextCompat.getColor(this@HomeActivity, R.color.red_900))
-                .create()
+            .setLabel(getString(R.string.label_camera))
+            .setFabBackgroundColor(ContextCompat.getColor(this@HomeActivity, R.color.red_900))
+            .setLabelColor(ContextCompat.getColor(this@HomeActivity, R.color.red_900))
+            .create()
         )
         composeButton.addActionItem(SpeedDialActionItem.Builder(R.id.link_gallery, R.drawable.ic_open_gallery)
-                .setLabel(getString(R.string.label_gallery))
-                .setFabBackgroundColor(ContextCompat.getColor(this@HomeActivity, R.color.red_900))
-                .setLabelColor(ContextCompat.getColor(this@HomeActivity, R.color.red_900))
-                .create()
+            .setLabel(getString(R.string.label_gallery))
+            .setFabBackgroundColor(ContextCompat.getColor(this@HomeActivity, R.color.red_900))
+            .setLabelColor(ContextCompat.getColor(this@HomeActivity, R.color.red_900))
+            .create()
         )
         composeButton.addActionItem(SpeedDialActionItem.Builder(R.id.link_blank, R.drawable.ic_open_blank)
-                .setLabel(getString(R.string.label_blank))
-                .setFabBackgroundColor(ContextCompat.getColor(this@HomeActivity, R.color.blue_grey_500))
-                .setLabelColor(ContextCompat.getColor(this@HomeActivity, R.color.blue_grey_500))
-                .create()
+            .setLabel(getString(R.string.label_blank))
+            .setFabBackgroundColor(ContextCompat.getColor(this@HomeActivity, R.color.blue_grey_500))
+            .setLabelColor(ContextCompat.getColor(this@HomeActivity, R.color.blue_grey_500))
+            .create()
         )
     }
 
@@ -114,12 +113,11 @@ class HomeActivity : AppCompatActivity(), SpeedDialView.OnActionSelectedListener
 
     override fun onBackPressed() {
         when {
-            mAdManager.isVideoAdLoaded -> mAdManager.showVideoAd()
-            mAdManager.isInterstitialAdLoaded -> mAdManager.showInterstitialAd()
-            else -> DialogFactory.confirmExitAppDialog(this,
-                    OnSuccessListener {
-                        super@HomeActivity.onBackPressed()
-                    }).show(supportFragmentManager)
+            mAdManager.isVideoAdLoaded -> mAdManager.showVideoAd(this)
+            mAdManager.isInterstitialAdLoaded -> mAdManager.showInterstitialAd(this)
+            else -> DialogFactory.confirmExitAppDialog(this) {
+                super@HomeActivity.onBackPressed()
+            }.show(supportFragmentManager)
         }
     }
 
@@ -160,10 +158,10 @@ class HomeActivity : AppCompatActivity(), SpeedDialView.OnActionSelectedListener
         options.setShowCropGrid(false)
 
         UCrop.of(source, destination)
-                .withOptions(options)
-                .withAspectRatio(9.0F, 16.0F)
-                .withMaxResultSize(size.x, size.y)
-                .start(this)
+            .withOptions(options)
+            .withAspectRatio(9.0F, 16.0F)
+            .withMaxResultSize(size.x, size.y)
+            .start(this)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -196,15 +194,15 @@ class HomeActivity : AppCompatActivity(), SpeedDialView.OnActionSelectedListener
             R.id.link_gallery -> {
                 // Need storage permission to perform this task
                 val storagePermissionGranted = ContextCompat.checkSelfPermission(this,
-                        Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED
+                    Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED
 
                 if (storagePermissionGranted) {
                     onGalleryActionSelected()
                 } else {
                     ActivityCompat.requestPermissions(
-                            this,
-                            arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE),
-                            REQUEST_GALLERY_ACCESS
+                        this,
+                        arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE),
+                        REQUEST_GALLERY_ACCESS
                     )
                 }
                 return true
@@ -212,19 +210,19 @@ class HomeActivity : AppCompatActivity(), SpeedDialView.OnActionSelectedListener
             R.id.link_camera -> {
                 // Need both camera and storage permission to perform this task
                 val storagePermissionGranted = ContextCompat.checkSelfPermission(this,
-                        Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED
+                    Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED
 
                 val cameraPermissionGranted = ContextCompat.checkSelfPermission(this,
-                        Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED
+                    Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED
 
                 if (cameraPermissionGranted && storagePermissionGranted) {
                     onCameraActionSelected()
                 } else {
                     ActivityCompat.requestPermissions(
-                            this,
-                            arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE,
-                                    Manifest.permission.CAMERA),
-                            REQUEST_CAMERA_ACCESS
+                        this,
+                        arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                            Manifest.permission.CAMERA),
+                        REQUEST_CAMERA_ACCESS
                     )
                 }
                 return true
@@ -250,15 +248,15 @@ class HomeActivity : AppCompatActivity(), SpeedDialView.OnActionSelectedListener
                 mCameraPicturePath = photoFile.absolutePath
 
                 intent.putExtra(MediaStore.EXTRA_OUTPUT,
-                        FileProvider.getUriForFile(this,
-                                applicationContext.packageName + getString(R.string.provider),
-                                photoFile))
+                    FileProvider.getUriForFile(this,
+                        applicationContext.packageName + getString(R.string.provider),
+                        photoFile))
 
                 startActivityForResult(intent, REQUEST_PHOTO_CAPTURE)
 
             } catch (ex: ActivityNotFoundException) {
                 Snackbar.make(composeButton, getString(R.string.error_no_camera),
-                        Snackbar.LENGTH_LONG).show()
+                    Snackbar.LENGTH_LONG).show()
             }
         }
     }
@@ -271,7 +269,7 @@ class HomeActivity : AppCompatActivity(), SpeedDialView.OnActionSelectedListener
 
             } catch (ex: ActivityNotFoundException) {
                 Snackbar.make(composeButton, getString(R.string.error_no_gallery),
-                        Snackbar.LENGTH_LONG).show()
+                    Snackbar.LENGTH_LONG).show()
             }
         }
     }
