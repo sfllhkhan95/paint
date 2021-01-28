@@ -6,6 +6,7 @@ import android.graphics.PointF
 import sfllhkhan95.doodle.models.PaintBrush
 import sfllhkhan95.doodle.models.PaintCanvas
 import sfllhkhan95.doodle.models.Tool
+import kotlin.math.abs
 
 /**
  * Created by saifkhichi96 on 23/10/2017.
@@ -23,20 +24,20 @@ class Quad3D internal constructor(paintBrush: PaintBrush) : Tool(paintBrush) {
         this.lineTo(i.x, i.y)
 
         // Back
-        this.lineTo(i.x + Math.abs(f.x - i.x) / 2, i.y + Math.abs(f.y - i.y) / 2)
-        this.lineTo(i.x + Math.abs(f.x - i.x) / 2, f.y + Math.abs(f.y - i.y) / 2)
-        this.lineTo(f.x + Math.abs(f.x - i.x) / 2, f.y + Math.abs(f.y - i.y) / 2)
-        this.lineTo(f.x + Math.abs(f.x - i.x) / 2, i.y + Math.abs(f.y - i.y) / 2)
-        this.lineTo(i.x + Math.abs(f.x - i.x) / 2, i.y + Math.abs(f.y - i.y) / 2)
+        this.lineTo(i.x + abs(f.x - i.x) / 2, i.y + abs(f.y - i.y) / 2)
+        this.lineTo(i.x + abs(f.x - i.x) / 2, f.y + abs(f.y - i.y) / 2)
+        this.lineTo(f.x + abs(f.x - i.x) / 2, f.y + abs(f.y - i.y) / 2)
+        this.lineTo(f.x + abs(f.x - i.x) / 2, i.y + abs(f.y - i.y) / 2)
+        this.lineTo(i.x + abs(f.x - i.x) / 2, i.y + abs(f.y - i.y) / 2)
 
         // Left
-        this.lineTo(i.x + Math.abs(f.x - i.x) / 2, f.y + Math.abs(f.y - i.y) / 2)
+        this.lineTo(i.x + abs(f.x - i.x) / 2, f.y + abs(f.y - i.y) / 2)
         this.lineTo(i.x, f.y)
 
         // Right
         this.lineTo(f.x, f.y)
-        this.lineTo(f.x + Math.abs(f.x - i.x) / 2, f.y + Math.abs(f.y - i.y) / 2)
-        this.lineTo(f.x + Math.abs(f.x - i.x) / 2, i.y + Math.abs(f.y - i.y) / 2)
+        this.lineTo(f.x + abs(f.x - i.x) / 2, f.y + abs(f.y - i.y) / 2)
+        this.lineTo(f.x + abs(f.x - i.x) / 2, i.y + abs(f.y - i.y) / 2)
         this.lineTo(f.x, i.y)
     }
 

@@ -6,7 +6,6 @@ import android.content.Intent
 import android.content.res.ColorStateList
 import android.graphics.Bitmap
 import android.graphics.Color
-import android.graphics.PorterDuff
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
@@ -19,7 +18,8 @@ import android.widget.SeekBar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.core.content.ContextCompat
-import com.google.android.gms.tasks.OnSuccessListener
+import androidx.core.graphics.BlendModeColorFilterCompat
+import androidx.core.graphics.BlendModeCompat
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.analytics.FirebaseAnalytics
@@ -55,7 +55,7 @@ import java.io.File
  * @since 1.0.0
  */
 class MainActivity : AppCompatActivity(), SeekBar.OnSeekBarChangeListener, OnToolSelectedListener,
-        OnColorPickedListener, View.OnTouchListener {
+    OnColorPickedListener, View.OnTouchListener {
 
     // Brush controller
     private var brushController: SeekBar? = null
@@ -118,7 +118,7 @@ class MainActivity : AppCompatActivity(), SeekBar.OnSeekBarChangeListener, OnToo
         updatePenColorPicker(paintView.brush.strokeColor)
 
         for (id in arrayOf(R.id.line, R.id.rect, R.id.triangle, R.id.circle,
-                R.id.diamond, R.id.star, R.id.box)) {
+            R.id.diamond, R.id.star, R.id.box)) {
             findViewById<View>(id)?.setOnClickListener { onToolSelected(false, id) }
         }
 
@@ -154,23 +154,23 @@ class MainActivity : AppCompatActivity(), SeekBar.OnSeekBarChangeListener, OnToo
         when {
             isViewing -> super.onBackPressed()
             paintView.isModified -> DialogFactory.confirmExitDialog(this,
-                    OnSuccessListener {
-                        paintView.clear()
-                        if (isExisting) {
-                            super.onBackPressed()
-                        } else {
-                            onToggleReadMode(true)
-                        }
-                    },
-                    OnSuccessListener {
-                        paintView.save()
-                        if (isExisting) {
-                            super.onBackPressed()
-                        } else {
-                            onToggleReadMode(true)
-                        }
-                    })
-                    .show(supportFragmentManager)
+                {
+                    paintView.clear()
+                    if (isExisting) {
+                        super.onBackPressed()
+                    } else {
+                        onToggleReadMode(true)
+                    }
+                },
+                {
+                    paintView.save()
+                    if (isExisting) {
+                        super.onBackPressed()
+                    } else {
+                        onToggleReadMode(true)
+                    }
+                })
+                .show(supportFragmentManager)
             !isExisting -> super.onBackPressed()
             else -> onToggleReadMode(true)
         }
@@ -186,9 +186,11 @@ class MainActivity : AppCompatActivity(), SeekBar.OnSeekBarChangeListener, OnToo
             val inflater = menuInflater
             inflater.inflate(R.menu.menu_main, menu)
             for (i in 0 until menu.size()) {
-                menu.getItem(i)?.icon?.mutate()?.setColorFilter(
+                menu.getItem(i)?.icon?.mutate()?.colorFilter =
+                    BlendModeColorFilterCompat.createBlendModeColorFilterCompat(
                         ThemeUtils.colorTextPrimary(this),
-                        PorterDuff.Mode.SRC_ATOP)
+                        BlendModeCompat.SRC_ATOP
+                    )
             }
 
             menu.findItem(R.id.canvas).isVisible = !isExisting
@@ -211,15 +213,15 @@ class MainActivity : AppCompatActivity(), SeekBar.OnSeekBarChangeListener, OnToo
 
             R.id.canvas -> {
                 CanvasColorPicker.Builder(paintView.canvas?.color ?: Color.BLACK)
-                        .setOnColorPickedListener(object : OnColorPickedListener {
-                            override fun onColorPicked(color: Int) {
-                                paintView.canvas?.color = color
-                                this@MainActivity.onColorPicked(color.inv() or -0x1000000)
-                                paintView.invalidate()
-                            }
-                        })
-                        .create()
-                        .show(supportFragmentManager)
+                    .setOnColorPickedListener(object : OnColorPickedListener {
+                        override fun onColorPicked(color: Int) {
+                            paintView.canvas?.color = color
+                            this@MainActivity.onColorPicked(color.inv() or -0x1000000)
+                            paintView.invalidate()
+                        }
+                    })
+                    .create()
+                    .show(supportFragmentManager)
                 return true
             }
 
@@ -234,10 +236,9 @@ class MainActivity : AppCompatActivity(), SeekBar.OnSeekBarChangeListener, OnToo
             }
 
             R.id.revert -> {
-                DialogFactory.confirmRevertDialog(
-                        this,
-                        OnSuccessListener { paintView.clear() }
-                ).show(supportFragmentManager)
+                DialogFactory.confirmRevertDialog(this) {
+                    paintView.clear()
+                }.show(supportFragmentManager)
                 return true
             }
 
@@ -245,15 +246,21 @@ class MainActivity : AppCompatActivity(), SeekBar.OnSeekBarChangeListener, OnToo
                 if (paintView.isModified) {
                     if (isExisting) {
                         DialogFactory.confirmSaveAsDialog(
-                                this,
-                                OnSuccessListener { paintView.save(); this@MainActivity.finish() },
-                                OnSuccessListener { paintView.saveAs();this@MainActivity.finish() }
+                            this,
+                            {
+                                paintView.save()
+                                this@MainActivity.finish()
+                            },
+                            {
+                                paintView.saveAs()
+                                this@MainActivity.finish()
+                            }
                         ).show(supportFragmentManager)
                     } else {
-                        DialogFactory.confirmSaveDialog(
-                                this,
-                                OnSuccessListener { paintView.save(); this@MainActivity.finish() }
-                        ).show(supportFragmentManager)
+                        DialogFactory.confirmSaveDialog(this) {
+                            paintView.save()
+                            this@MainActivity.finish()
+                        }.show(supportFragmentManager)
                     }
                 }
                 return true
@@ -343,7 +350,8 @@ class MainActivity : AppCompatActivity(), SeekBar.OnSeekBarChangeListener, OnToo
     }
 
     private fun updateFillColorPicker(color: Int) {
-        findViewById<MaterialButton>(R.id.selectedTool).backgroundTintList = ColorStateList.valueOf(color or 0xFF000000.toInt())
+        findViewById<MaterialButton>(R.id.selectedTool).backgroundTintList =
+            ColorStateList.valueOf(color or 0xFF000000.toInt())
     }
 
     private fun updatePenColorPicker(color: Int) {
@@ -382,17 +390,19 @@ class MainActivity : AppCompatActivity(), SeekBar.OnSeekBarChangeListener, OnToo
 
     fun deleteProject(view: View) {
         projectName?.let { project ->
-            DialogFactory.confirmDeleteDialog(view.context, OnSuccessListener {
+            DialogFactory.confirmDeleteDialog(view.context) {
                 ProjectUtils.delete(project)
                 this@MainActivity.finish()
-            }).show(supportFragmentManager)
+            }.show(supportFragmentManager)
         }
     }
 
+    @Suppress("UNUSED_PARAMETER")
     fun editMode(view: View) {
         onToggleReadMode(false)
     }
 
+    @Suppress("UNUSED_PARAMETER")
     fun shareProject(view: View? = null) {
         onShareClicked()
     }
@@ -426,9 +436,9 @@ class MainActivity : AppCompatActivity(), SeekBar.OnSeekBarChangeListener, OnToo
             val crashlytics = FirebaseCrashlytics.getInstance()
             crashlytics.recordException(ex)
             Snackbar.make(
-                    paintView,
-                    getString(R.string.error_unknown),
-                    Snackbar.LENGTH_INDEFINITE
+                paintView,
+                getString(R.string.error_unknown),
+                Snackbar.LENGTH_INDEFINITE
             ).show()
 
             null
@@ -527,8 +537,8 @@ class MainActivity : AppCompatActivity(), SeekBar.OnSeekBarChangeListener, OnToo
         val intent = ShareUtils.createShareIntent(applicationContext, imageFile, EXT_IMAGE_MIME)
         intent.setPackage(targetPackage)
         startActivityForResult(
-                Intent.createChooser(intent, resources.getString(R.string.menu_action_share)),
-                REQUEST_SHARE_DOODLE
+            Intent.createChooser(intent, resources.getString(R.string.menu_action_share)),
+            REQUEST_SHARE_DOODLE
         )
     }
 
@@ -551,9 +561,17 @@ class MainActivity : AppCompatActivity(), SeekBar.OnSeekBarChangeListener, OnToo
             supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
             val upIcon = resources.getDrawable(
-                    if (isMaximized) R.drawable.ic_action_minimize
-                    else R.drawable.ic_action_maximize, theme)
-            upIcon.setColorFilter(ThemeUtils.colorTextPrimary(this@MainActivity), PorterDuff.Mode.SRC_ATOP)
+                when {
+                    isMaximized -> R.drawable.ic_action_minimize
+                    else -> R.drawable.ic_action_maximize
+                },
+                theme
+            )
+            upIcon.colorFilter =
+                BlendModeColorFilterCompat.createBlendModeColorFilterCompat(
+                    ThemeUtils.colorTextPrimary(this@MainActivity),
+                    BlendModeCompat.SRC_ATOP
+                )
             supportActionBar?.setHomeAsUpIndicator(upIcon)
 
         }

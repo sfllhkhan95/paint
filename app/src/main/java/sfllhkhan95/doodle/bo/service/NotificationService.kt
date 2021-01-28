@@ -39,13 +39,16 @@ class NotificationService : FirebaseMessagingService() {
         val adminChannelName = getString(R.string.notifications_main_channel_name)
         val adminChannelDescription = getString(R.string.notifications_main_channel_description)
 
-        val adminChannel: NotificationChannel
-        adminChannel = NotificationChannel(DEFAULT_NOTIFICATION_CHANNEL, adminChannelName, NotificationManager.IMPORTANCE_LOW)
-        adminChannel.description = adminChannelDescription
-        adminChannel.enableLights(true)
-        adminChannel.lightColor = Color.RED
-        adminChannel.enableVibration(true)
-        notifier.createNotificationChannel(adminChannel)
+        val channel = NotificationChannel(
+            DEFAULT_NOTIFICATION_CHANNEL,
+            adminChannelName,
+            NotificationManager.IMPORTANCE_LOW
+        )
+        channel.description = adminChannelDescription
+        channel.enableLights(true)
+        channel.lightColor = Color.RED
+        channel.enableVibration(true)
+        notifier.createNotificationChannel(channel)
     }
 
     private fun pushNotif(notification: RemoteMessage.Notification) {
@@ -56,12 +59,12 @@ class NotificationService : FirebaseMessagingService() {
         }
 
         val nBuilder = NotificationCompat.Builder(this, DEFAULT_NOTIFICATION_CHANNEL)
-                .setSmallIcon(R.mipmap.ic_launcher_round)
-                .setContentTitle(notification.title)
-                .setContentText(notification.body)
-                .setLights(Color.GREEN, 100, 100)
-                .setVibrate(longArrayOf(100, 50, 50, 100, 5000))
-                .setSound(RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION))
+            .setSmallIcon(R.mipmap.ic_launcher_round)
+            .setContentTitle(notification.title)
+            .setContentText(notification.body)
+            .setLights(Color.GREEN, 100, 100)
+            .setVibrate(longArrayOf(100, 50, 50, 100, 5000))
+            .setSound(RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION))
 
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.N) {
             notifier.notify(notificationId++, nBuilder.build())

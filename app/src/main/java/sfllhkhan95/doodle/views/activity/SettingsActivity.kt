@@ -9,7 +9,6 @@ import androidx.appcompat.widget.Toolbar
 import androidx.core.app.NavUtils
 import com.google.android.gms.ads.AdListener
 import com.google.android.gms.ads.AdView
-import com.google.android.gms.tasks.OnSuccessListener
 import com.google.android.material.button.MaterialButton
 import sfllhkhan95.doodle.R
 import sfllhkhan95.doodle.bo.AdManager
@@ -75,9 +74,9 @@ class SettingsActivity : AppCompatActivity(), View.OnClickListener {
             R.id.intro -> startActivity(Intent(this@SettingsActivity, IntroActivity::class.java))
 
             R.id.locale -> {
-                LocaleUtils.makeDialog(this, OnSuccessListener {
+                LocaleUtils.makeDialog(this) {
                     recreate()
-                }).show()
+                }.show()
             }
         }
     }
