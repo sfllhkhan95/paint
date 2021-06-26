@@ -3,6 +3,7 @@ package sfllhkhan95.doodle
 import android.app.Application
 import com.orhanobut.hawk.Hawk
 import sfllhkhan95.doodle.bo.AdManager
+import sfllhkhan95.doodle.utils.ProjectUtils
 
 /**
  * Doodle is the Application class which bootstraps everything and initializes the global
@@ -24,6 +25,8 @@ class DoodleApplication : Application() {
 
         // Initialize ad SDKs
         AdManager.initialize(this)
+
+        ProjectUtils.init(this)
     }
 
     companion object {

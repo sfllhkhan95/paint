@@ -64,23 +64,26 @@ class HomeActivity : AppCompatActivity(), SpeedDialView.OnActionSelectedListener
         composeButton = findViewById(R.id.compose_button)
         composeButton.setOnActionSelectedListener(this)
 
-        composeButton.addActionItem(SpeedDialActionItem.Builder(R.id.link_camera, R.drawable.ic_open_camera)
-            .setLabel(getString(R.string.label_camera))
-            .setFabBackgroundColor(ContextCompat.getColor(this@HomeActivity, R.color.red_900))
-            .setLabelColor(ContextCompat.getColor(this@HomeActivity, R.color.red_900))
-            .create()
+        composeButton.addActionItem(
+            SpeedDialActionItem.Builder(R.id.link_camera, R.drawable.ic_open_camera)
+                .setLabel(getString(R.string.label_camera))
+                .setFabBackgroundColor(ContextCompat.getColor(this@HomeActivity, R.color.red_900))
+                .setLabelColor(ContextCompat.getColor(this@HomeActivity, R.color.red_900))
+                .create()
         )
-        composeButton.addActionItem(SpeedDialActionItem.Builder(R.id.link_gallery, R.drawable.ic_open_gallery)
-            .setLabel(getString(R.string.label_gallery))
-            .setFabBackgroundColor(ContextCompat.getColor(this@HomeActivity, R.color.red_900))
-            .setLabelColor(ContextCompat.getColor(this@HomeActivity, R.color.red_900))
-            .create()
+        composeButton.addActionItem(
+            SpeedDialActionItem.Builder(R.id.link_gallery, R.drawable.ic_open_gallery)
+                .setLabel(getString(R.string.label_gallery))
+                .setFabBackgroundColor(ContextCompat.getColor(this@HomeActivity, R.color.red_900))
+                .setLabelColor(ContextCompat.getColor(this@HomeActivity, R.color.red_900))
+                .create()
         )
-        composeButton.addActionItem(SpeedDialActionItem.Builder(R.id.link_blank, R.drawable.ic_open_blank)
-            .setLabel(getString(R.string.label_blank))
-            .setFabBackgroundColor(ContextCompat.getColor(this@HomeActivity, R.color.blue_grey_500))
-            .setLabelColor(ContextCompat.getColor(this@HomeActivity, R.color.blue_grey_500))
-            .create()
+        composeButton.addActionItem(
+            SpeedDialActionItem.Builder(R.id.link_blank, R.drawable.ic_open_blank)
+                .setLabel(getString(R.string.label_blank))
+                .setFabBackgroundColor(ContextCompat.getColor(this@HomeActivity, R.color.blue_grey_500))
+                .setLabelColor(ContextCompat.getColor(this@HomeActivity, R.color.blue_grey_500))
+                .create()
         )
     }
 
@@ -166,8 +169,6 @@ class HomeActivity : AppCompatActivity(), SpeedDialView.OnActionSelectedListener
         super.onActivityResult(requestCode, resultCode, data)
         if (resultCode != RESULT_OK) return
         when (requestCode) {
-            REQUEST_GALLERY_ACCESS -> onGalleryActionSelected()
-            REQUEST_CAMERA_ACCESS -> onCameraActionSelected()
             REQUEST_PHOTO_PICK -> data?.data?.let { selectAndCropImage(it) }
             REQUEST_PHOTO_CAPTURE -> mCameraPicturePath?.let { path ->
                 Uri.fromFile(File(path))?.let { selectAndCropImage(it) }
@@ -182,6 +183,14 @@ class HomeActivity : AppCompatActivity(), SpeedDialView.OnActionSelectedListener
         }
     }
 
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        when (requestCode) {
+            REQUEST_GALLERY_ACCESS -> onGalleryActionSelected()
+            REQUEST_CAMERA_ACCESS -> onCameraActionSelected()
+        }
+    }
+
     override fun onActionSelected(speedDialActionItem: SpeedDialActionItem): Boolean {
         when (speedDialActionItem.id) {
             R.id.link_blank -> {
@@ -190,36 +199,22 @@ class HomeActivity : AppCompatActivity(), SpeedDialView.OnActionSelectedListener
                 return true
             }
             R.id.link_gallery -> {
-                // Need storage permission to perform this task
-                val storagePermissionGranted = ContextCompat.checkSelfPermission(this,
-                    Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED
-
-                if (storagePermissionGranted) {
-                    onGalleryActionSelected()
-                } else {
-                    ActivityCompat.requestPermissions(
-                        this,
-                        arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE),
-                        REQUEST_GALLERY_ACCESS
-                    )
-                }
+                onGalleryActionSelected()
                 return true
             }
             R.id.link_camera -> {
                 // Need both camera and storage permission to perform this task
-                val storagePermissionGranted = ContextCompat.checkSelfPermission(this,
-                    Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED
+                val cameraPermissionGranted = ContextCompat.checkSelfPermission(
+                    this,
+                    Manifest.permission.CAMERA
+                ) == PackageManager.PERMISSION_GRANTED
 
-                val cameraPermissionGranted = ContextCompat.checkSelfPermission(this,
-                    Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED
-
-                if (cameraPermissionGranted && storagePermissionGranted) {
+                if (cameraPermissionGranted) {
                     onCameraActionSelected()
                 } else {
                     ActivityCompat.requestPermissions(
                         this,
-                        arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE,
-                            Manifest.permission.CAMERA),
+                        arrayOf(Manifest.permission.CAMERA),
                         REQUEST_CAMERA_ACCESS
                     )
                 }
@@ -237,16 +232,22 @@ class HomeActivity : AppCompatActivity(), SpeedDialView.OnActionSelectedListener
                 val photoFile: File = FileUtils.createImageFile(this, FILE_CAMERA)
                 mCameraPicturePath = photoFile.absolutePath
 
-                intent.putExtra(MediaStore.EXTRA_OUTPUT,
-                    FileProvider.getUriForFile(this,
+                intent.putExtra(
+                    MediaStore.EXTRA_OUTPUT,
+                    FileProvider.getUriForFile(
+                        this,
                         applicationContext.packageName + getString(R.string.provider),
-                        photoFile))
+                        photoFile
+                    )
+                )
 
                 startActivityForResult(intent, REQUEST_PHOTO_CAPTURE)
 
             } catch (ex: ActivityNotFoundException) {
-                Snackbar.make(composeButton, getString(R.string.error_no_camera),
-                    Snackbar.LENGTH_LONG).show()
+                Snackbar.make(
+                    composeButton, getString(R.string.error_no_camera),
+                    Snackbar.LENGTH_LONG
+                ).show()
             }
         }
     }
@@ -258,8 +259,10 @@ class HomeActivity : AppCompatActivity(), SpeedDialView.OnActionSelectedListener
                 startActivityForResult(intent, REQUEST_PHOTO_PICK)
 
             } catch (ex: ActivityNotFoundException) {
-                Snackbar.make(composeButton, getString(R.string.error_no_gallery),
-                    Snackbar.LENGTH_LONG).show()
+                Snackbar.make(
+                    composeButton, getString(R.string.error_no_gallery),
+                    Snackbar.LENGTH_LONG
+                ).show()
             }
         }
     }

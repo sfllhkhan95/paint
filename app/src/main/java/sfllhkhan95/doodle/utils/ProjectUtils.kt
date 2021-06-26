@@ -1,5 +1,6 @@
 package sfllhkhan95.doodle.utils
 
+import android.content.Context
 import android.graphics.Bitmap
 import android.os.Environment
 import com.google.gson.Gson
@@ -22,22 +23,22 @@ object ProjectUtils {
 
     private const val EXT = EXT_IMAGE
 
-    private const val PREFIX = "DOODLEv2_"
-    private const val DIR = "Android/data/sfllhkhan95.doodle/files/Projects/"
-    private val rootDirPath: String
-    private val rootDir: File
+    private const val PREFIX = "DOODLEv3_"
+    private const val DIR = "Projects/"
+    private lateinit var rootDirPath: String
+    private lateinit var rootDir: File
 
-    private const val PREFIX_LEGACY = "DOODLE_"
-    private const val DIR_LEGACY = "Pictures/Doodles/"
-    private val legacyRootDirPath: String
-    private val legacyRootDir: File
+    private const val PREFIX_LEGACY = "DOODLEv2_"
+    private const val DIR_LEGACY = "Android/data/sfllhkhan95.doodle/files/Projects/"
+    private lateinit var legacyRootDirPath: String
+    private lateinit var legacyRootDir: File
 
-    init {
+    fun init(context: Context) {
         legacyRootDirPath = Environment.getExternalStorageDirectory().toString() + "/" + DIR_LEGACY
         legacyRootDir = File(legacyRootDirPath)
         legacyRootDir.mkdirs()
 
-        rootDirPath = Environment.getExternalStorageDirectory().toString() + "/" + DIR
+        rootDirPath = context.filesDir.toString() + "/" + DIR
         rootDir = File(rootDirPath)
         rootDir.mkdirs()
     }

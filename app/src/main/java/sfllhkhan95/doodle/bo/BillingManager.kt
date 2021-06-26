@@ -4,7 +4,6 @@ import android.content.Context
 import android.os.Handler
 import androidx.appcompat.app.AppCompatActivity
 import com.android.billingclient.api.*
-import java.util.*
 
 /**
  * @author saifkhichi96
@@ -68,8 +67,9 @@ class BillingManager private constructor(context: Context) :
         }
 
         // Update user's purchases
-        val purchasesResult = mBillingClient.queryPurchases(BillingClient.SkuType.INAPP)
-        onPurchasesUpdated(purchasesResult.billingResult, purchasesResult.purchasesList)
+        mBillingClient.queryPurchasesAsync(BillingClient.SkuType.INAPP) { billingResult, purchases ->
+            onPurchasesUpdated(billingResult, purchases)
+        }
     }
 
     /**
@@ -134,9 +134,9 @@ class BillingManager private constructor(context: Context) :
      */
     private fun onItemPurchased(purchase: Purchase) {
         val orderId = purchase.orderId
-        val productId = purchase.sku
+        val productId = purchase.skus.firstOrNull()
 
-        if (!purchasedProducts.containsKey(productId) || purchasedProducts[productId] == null) {
+        if (productId != null && (!purchasedProducts.containsKey(productId) || purchasedProducts[productId] == null)) {
             purchasedProducts[productId] = orderId
         }
     }

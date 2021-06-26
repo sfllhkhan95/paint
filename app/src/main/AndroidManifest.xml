@@ -7,7 +7,6 @@
   <uses-permission android:name="android.permission.INTERNET"/>
   <uses-permission android:name="android.permission.VIBRATE"/>
   <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
-  <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
   <uses-permission android:name="com.android.vending.BILLING"/>
   <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE"/>
 
@@ -85,7 +84,8 @@
     </provider>
 
     <!-- This service receives FCM messages and generates notifications -->
-    <service android:name="sfllhkhan95.doodle.bo.service.NotificationService">
+    <service android:name="sfllhkhan95.doodle.bo.service.NotificationService"
+             android:exported="false">
       <intent-filter>
         <action android:name="com.google.firebase.MESSAGING_EVENT"/>
       </intent-filter>

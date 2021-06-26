@@ -3,4 +3,7 @@
   <external-path
       name="my_images"
       path="Android/data/sfllhkhan95.doodle/files/Pictures"/>
+  <files-path
+      name="my_images"
+      path="/"/>
 </paths>

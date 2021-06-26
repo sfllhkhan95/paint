@@ -1,7 +1,6 @@
 package sfllhkhan95.doodle.utils
 
 import android.content.Context
-import android.os.Environment
 import sfllhkhan95.doodle.DoodleApplication.Companion.EXT_IMAGE
 import java.io.File
 import java.io.FileOutputStream
@@ -27,7 +26,7 @@ object FileUtils {
      */
     @Throws(IOException::class)
     fun createImageFile(context: Context, name: String): File {
-        val dir = context.getExternalFilesDir(Environment.DIRECTORY_PICTURES)
+        val dir = context.filesDir
         val filename = dir?.toString() + File.separator + name + EXT_IMAGE
 
         val tempFile = File(filename)

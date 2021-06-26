@@ -1,11 +1,8 @@
 package sfllhkhan95.doodle.views.activity
 
-import android.Manifest
 import android.content.Intent
-import android.content.pm.PackageManager
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat
 import com.orhanobut.hawk.Hawk
 import sfllhkhan95.doodle.DoodleApplication
 import sfllhkhan95.doodle.R
@@ -31,18 +28,15 @@ class LaunchScreen : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
 
-        val permissionsGranted = ContextCompat.checkSelfPermission(this,
-                Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED &&
-                ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) ==
-                PackageManager.PERMISSION_GRANTED
-
         val introSeen: Boolean = Hawk.get(DoodleApplication.FLAG_INTRO, false)
         timer.schedule(object : TimerTask() {
             override fun run() {
-                startActivity(Intent(applicationContext, if (!introSeen || !permissionsGranted)
-                    IntroActivity::class.java
-                else
-                    HomeActivity::class.java))
+                startActivity(
+                    Intent(
+                        applicationContext,
+                        if (!introSeen) IntroActivity::class.java else HomeActivity::class.java
+                    )
+                )
                 finish()
             }
         }, delay)
